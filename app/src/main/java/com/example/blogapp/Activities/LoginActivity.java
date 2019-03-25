@@ -81,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                                                 }
                                             });
                                         }else {
-                                            showMessage("인증 오류");
+                                            showMessage(task.getException().getMessage());
                                         }
                                     }
                                 });

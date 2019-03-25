@@ -118,7 +118,7 @@ public class RegisterActivity extends AppCompatActivity {
                             });
 
                         } else{
-                            showMessage("What u r input mail can't sign in");
+                            showMessage(task.getException().getMessage());
                         }
                     }
                 });
