@@ -50,6 +50,7 @@ public class HomeActivity extends AppCompatActivity {
                             seletedFragment = new NotificationFragment();
                             break;
 
+
                         case R.id.nav_bottomBar_profile:
                             SharedPreferences.Editor editor = getSharedPreferences("PREFS", MODE_PRIVATE).edit();
                             editor.putString("profileid", FirebaseAuth.getInstance().getCurrentUser().getUid());
@@ -66,4 +67,8 @@ public class HomeActivity extends AppCompatActivity {
                     return true;
                 }
             };
+
+
+
+
 }

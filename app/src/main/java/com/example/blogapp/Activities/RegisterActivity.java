@@ -62,7 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                     showMessage("빈곳이 없는지 확인해주세요");
 
-                }else if(!str_password.equals(str_password2)){
+                }else if(!(str_password.equals(str_password2))){
                     showMessage("Password is not same.");
                 }else if(str_password.length() < 6){
                     showMessage("비밀번호의 길이는 6자 이상이어야 합니다.");
@@ -89,7 +89,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     private void register(final String username, final String fullname, String email, String password){
-        auth.signInWithEmailAndPassword(email, password)
+        auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -104,7 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
                             hashMap.put("username", username.toLowerCase());
                             hashMap.put("fullname", fullname);
                             hashMap.put("bio", "");
-                            hashMap.put("imageurl", "https://firebasestorage.googleapis.com/v0/b/blogapp-a9a56.appspot.com/o/users_photos%2Fimage%3A15?alt=media&token=014d5eac-d890-43b1-8d5b-ba5090d5a6db");
+                            hashMap.put("imageurl", "https://firebasestorage.googleapis.com/v0/b/blogapp-a9a56.appspot.com/o/users_photos%2Fprofile.png?alt=media&token=a112f73c-373f-41ba-bd0f-dfea8ac8d6a1");
 
                             reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
@@ -123,6 +123,8 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 });
     }
+
+
 
 
 

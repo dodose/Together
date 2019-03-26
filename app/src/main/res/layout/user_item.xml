@@ -37,15 +37,16 @@
             android:maxLines="1"/>
 
     </LinearLayout>
-    
+
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:background="@drawable/mdtp_material_button_background"
         android:id="@+id/btn_follow"
-        android:textColor="@color/colorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/mdtp_material_button_background"
+        android:textColor="@color/btnBackground"
         android:visibility="gone"/>
 
 
