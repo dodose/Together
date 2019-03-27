@@ -4,7 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +15,29 @@ import android.widget.ImageButton;
 
 import com.example.blogapp.Activities.HomeActivity;
 import com.example.blogapp.Activities.PostActivity;
+import com.example.blogapp.Adapter.PostAdapter;
+import com.example.blogapp.Model.Post;
 import com.example.blogapp.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class HomeFragment extends Fragment {
 
     ImageButton nav_top_post;
+
+    private RecyclerView recyclerView;
+    private PostAdapter postAdapter;
+    private List<Post> postLists;
+
+    private List<String> followingList;
 
 
     @Override
@@ -31,17 +51,83 @@ public class HomeFragment extends Fragment {
         nav_top_post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(getActivity(), PostActivity.class));
             }
         });
 
         // Inflate the layout for this fragment
+
+        recyclerView = view.findViewById(R.id.recycler_view);
+        recyclerView.setHasFixedSize(true);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        postLists = new ArrayList<>();
+        postAdapter = new PostAdapter(getContext(), postLists);
+        recyclerView.setAdapter(postAdapter);
+
+        checkFollowing();
+
         return view;
 
     }
 
 
+    private void checkFollowing(){
+        followingList = new ArrayList<>();
 
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Follow")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("following");
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                followingList.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    followingList.add(snapshot.getKey());
+                }
+
+                readPosts();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+
+
+    private void readPosts(){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                postLists.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    Post post = snapshot.getValue(Post.class);
+                    for (String id : followingList){
+                        if (post.getPublisher().equals(id)){
+                            postLists.add(post);
+                        }
+                    }
+                }
+
+
+                postAdapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 
 
 

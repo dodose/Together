@@ -1,13 +1,12 @@
 package com.example.blogapp.Activities;
 
-import android.app.Fragment;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.MimeTypeMap;
@@ -27,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.util.HashMap;
@@ -84,17 +84,19 @@ public class PostActivity extends AppCompatActivity {
 
     private void uploadImage(){
         if(imageUri!= null){
-            final StorageReference filereference = storageReference.child(System.currentTimeMillis() + "."+getFileExtension(imageUri));
+             final StorageReference ref = storageReference.child(System.currentTimeMillis() + "."+getFileExtension(imageUri));
+            uploadTask = ref.putFile(imageUri);
 
-            uploadTask = filereference.putFile(imageUri);
-            uploadTask.continueWith(new Continuation() {
+
+
+            Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>()  {
                 @Override
-                public Object then(@NonNull Task task) throws Exception {
-                    if(!task.isComplete()){
+                public  Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                    if(!task.isSuccessful()){
                         throw task.getException();
                     }
 
-                    return filereference.getDownloadUrl();
+                    return ref.getDownloadUrl();
                 }
             }).addOnCompleteListener(new OnCompleteListener<Uri>() {
                 @Override
