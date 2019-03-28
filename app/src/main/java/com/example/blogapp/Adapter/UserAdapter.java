@@ -100,8 +100,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
 
     @Override
     public int getItemCount() {
+
         return mUsers.size();
     }
+
+
+
+
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
@@ -122,6 +127,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
         }
 
     }
+
+
 
     private void isFollowing(final String userid, final Button button){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference()

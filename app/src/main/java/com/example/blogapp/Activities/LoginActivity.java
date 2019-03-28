@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                             reference.addValueEventListener(new ValueEventListener() {
                                                 @Override
-                                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                public void onDataChange(DataSnapshot dataSnapshot) {
                                                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                                                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                                     startActivity(intent);
@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                                                 }
 
                                                 @Override
-                                                public void onCancelled(@NonNull DatabaseError databaseError) {
+                                                public void onCancelled(DatabaseError databaseError) {
 
                                                 }
                                             });
