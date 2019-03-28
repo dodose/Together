@@ -92,7 +92,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         });
 
 
-        //
+
         viewHolder.comments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -143,7 +143,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                comments.setText("View All"+dataSnapshot.getChildrenCount()+"Comments");
+                comments.setText("View All "+dataSnapshot.getChildrenCount()+" Comments");
             }
 
             @Override
