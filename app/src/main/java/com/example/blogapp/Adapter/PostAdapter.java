@@ -2,7 +2,9 @@ package com.example.blogapp.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +14,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.blogapp.Activities.CommentsActivity;
+import com.example.blogapp.Fragment.PostDetailFragment;
+import com.example.blogapp.Fragment.ProfileFragment;
 import com.example.blogapp.Model.Post;
 import com.example.blogapp.Model.User;
 import com.example.blogapp.R;
@@ -67,6 +71,56 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         nrLikes(viewHolder.likes, post.getPostid());
         getComments(post.getPostid(), viewHolder.comments);
         isSaved(post.getPostid(), viewHolder.save);
+
+
+
+        // 포스트 편집
+
+        viewHolder.image_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editor = mContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit();
+                editor.putString("profileid", post.getPublisher());
+                editor.apply();
+
+                ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
+            }
+        });
+
+        viewHolder.username.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editor = mContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit();
+                editor.putString("profileid", post.getPublisher());
+                editor.apply();
+
+                ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
+            }
+        });
+
+        viewHolder.publisher.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editor = mContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit();
+                editor.putString("profileid", post.getPublisher());
+                editor.apply();
+
+                ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
+            }
+        });
+
+
+        viewHolder.post_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editor = mContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit();
+                editor.putString("postid", post.getPostid());
+                editor.apply();
+
+                ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new PostDetailFragment()).commit();
+            }
+        });
+
 
 
         // 포스트들저장

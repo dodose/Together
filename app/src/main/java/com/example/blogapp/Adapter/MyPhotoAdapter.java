@@ -1,7 +1,9 @@
 package com.example.blogapp.Adapter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.example.blogapp.Fragment.PostDetailFragment;
 import com.example.blogapp.Model.Post;
 import com.example.blogapp.R;
 
@@ -36,9 +39,20 @@ public class MyPhotoAdapter extends RecyclerView.Adapter<MyPhotoAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
 
-        Post post = mPosts.get(i);
+        final Post post = mPosts.get(i);
 
         Glide.with(context).load(post.getPostimage()).into(viewHolder.post_image);
+
+        viewHolder.post_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editor = context.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit();
+                editor.putString("postid", post.getPostid());
+                editor.apply();
+
+                ((FragmentActivity)context).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new PostDetailFragment()).commit();
+            }
+        });
 
     }
 
