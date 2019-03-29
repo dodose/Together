@@ -1,8 +1,8 @@
-package com.example.blogapp.Fragment;
+package com.example.together.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -15,14 +15,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.blogapp.Adapter.MyPhotoAdapter;
-import com.example.blogapp.Model.Post;
-import com.example.blogapp.Model.User;
-import com.example.blogapp.R;
+import com.example.together.Activities.EditProfileActivity;
+import com.example.together.Adapter.MyPhotoAdapter;
+import com.example.together.Model.Post;
+import com.example.together.Model.User;
+import com.example.together.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -32,7 +32,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -112,6 +111,7 @@ public class ProfileFragment extends Fragment {
         myPhotos();
         mysaves();
 
+
         if (profileid.equals(firebaseUser.getUid())){
             edit_profile.setText("Edit Profile");
         }else {
@@ -127,7 +127,7 @@ public class ProfileFragment extends Fragment {
                 String btn = edit_profile.getText().toString();
 
                 if (btn.equals("Edit Profile")){
-                    // Edit Profile activity open
+                    startActivity(new Intent(getContext(), EditProfileActivity.class));
                 } else if(btn.equals("follow")){
 
                     FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid())

@@ -1,4 +1,4 @@
-package com.example.blogapp.Model;
+package com.example.together.Model;
 
 public class Post {
 

@@ -1,4 +1,4 @@
-package com.example.blogapp.Activities;
+package com.example.together.Activities;
 
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.blogapp.R;
+import com.example.together.R;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;

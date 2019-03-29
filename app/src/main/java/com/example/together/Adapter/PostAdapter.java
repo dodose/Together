@@ -1,4 +1,4 @@
-package com.example.blogapp.Adapter;
+package com.example.together.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,12 +13,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.blogapp.Activities.CommentsActivity;
-import com.example.blogapp.Fragment.PostDetailFragment;
-import com.example.blogapp.Fragment.ProfileFragment;
-import com.example.blogapp.Model.Post;
-import com.example.blogapp.Model.User;
-import com.example.blogapp.R;
+import com.example.together.Activities.CommentsActivity;
+import com.example.together.Fragment.PostDetailFragment;
+import com.example.together.Fragment.ProfileFragment;
+import com.example.together.Model.Post;
+import com.example.together.Model.User;
+import com.example.together.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -28,8 +28,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
-
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 

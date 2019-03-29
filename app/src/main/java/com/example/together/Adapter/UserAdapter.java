@@ -1,4 +1,4 @@
-package com.example.blogapp.Adapter;
+package com.example.together.Adapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -12,9 +12,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.blogapp.Fragment.ProfileFragment;
-import com.example.blogapp.Model.User;
-import com.example.blogapp.R;
+import com.example.together.Fragment.ProfileFragment;
+import com.example.together.Model.User;
+import com.example.together.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;

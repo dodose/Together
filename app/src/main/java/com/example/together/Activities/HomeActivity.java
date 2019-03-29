@@ -1,4 +1,4 @@
-package com.example.blogapp.Activities;
+package com.example.together.Activities;
 
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
@@ -8,11 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.blogapp.Fragment.SearchFragment;
-import com.example.blogapp.Fragment.HomeFragment;
-import com.example.blogapp.Fragment.NotificationFragment;
-import com.example.blogapp.Fragment.ProfileFragment;
-import com.example.blogapp.R;
+import com.example.together.Fragment.SearchFragment;
+import com.example.together.Fragment.HomeFragment;
+import com.example.together.Fragment.NotificationFragment;
+import com.example.together.Fragment.ProfileFragment;
+import com.example.together.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeActivity extends AppCompatActivity {

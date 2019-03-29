@@ -1,4 +1,4 @@
-package com.example.blogapp.Adapter;
+package com.example.together.Adapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -11,9 +11,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.example.blogapp.Fragment.PostDetailFragment;
-import com.example.blogapp.Model.Post;
-import com.example.blogapp.R;
+import com.example.together.Fragment.PostDetailFragment;
+import com.example.together.Model.Post;
+import com.example.together.R;
 
 import java.util.List;
 

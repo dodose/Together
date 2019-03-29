@@ -1,14 +1,12 @@
-package com.example.blogapp.Fragment;
+package com.example.together.Fragment;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.blogapp.R;
+import com.example.together.R;
 
 
 public class NotificationFragment extends Fragment {

@@ -1,4 +1,4 @@
-package com.example.blogapp;
+package com.example.together;
 
 import org.junit.Test;
 

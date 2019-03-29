@@ -1,4 +1,4 @@
-package com.example.blogapp.Activities;
+package com.example.together.Activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -14,10 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.blogapp.Adapter.CommentAdapter;
-import com.example.blogapp.Model.Comment;
-import com.example.blogapp.Model.User;
-import com.example.blogapp.R;
+import com.example.together.Adapter.CommentAdapter;
+import com.example.together.Model.Comment;
+import com.example.together.Model.User;
+import com.example.together.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
