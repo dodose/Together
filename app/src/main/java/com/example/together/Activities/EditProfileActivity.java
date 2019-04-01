@@ -157,7 +157,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
 
             uploadTask = filereference.putFile(mImageUri);
-            uploadTask.continueWith(new Continuation() {
+            uploadTask.continueWithTask(new Continuation() {
                 @Override
                 public Object then(@NonNull Task task) throws Exception {
                     if (!task.isSuccessful()) {
@@ -204,11 +204,12 @@ public class EditProfileActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && requestCode == RESULT_OK){
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK){
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             mImageUri = result.getUri();
 
             uploadImage();
+
 
         }else {
             showMessage("무엇인가 잘못되었습니다.");
