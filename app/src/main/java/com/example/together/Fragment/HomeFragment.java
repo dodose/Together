@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 
 import com.example.together.Activities.PostActivity;
 import com.example.together.Adapter.PostAdapter;
@@ -35,6 +36,8 @@ public class HomeFragment extends Fragment {
     private List<Post> postLists;
 
     private List<String> followingList;
+
+    ProgressBar progressBar;
 
 
     @Override
@@ -63,6 +66,8 @@ public class HomeFragment extends Fragment {
         postLists = new ArrayList<>();
         postAdapter = new PostAdapter(getContext(), postLists);
         recyclerView.setAdapter(postAdapter);
+
+        progressBar = view.findViewById(R.id.progress_circular);
 
         checkFollowing();
 
@@ -116,6 +121,7 @@ public class HomeFragment extends Fragment {
 
 
                 postAdapter.notifyDataSetChanged();
+                progressBar.setVisibility(View.GONE);
 
             }
 

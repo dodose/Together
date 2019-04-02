@@ -19,6 +19,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.together.Activities.EditProfileActivity;
+import com.example.together.Activities.FollowersActivity;
+import com.example.together.Activities.OptionActivity;
 import com.example.together.Adapter.MyPhotoAdapter;
 import com.example.together.Model.Post;
 import com.example.together.Model.User;
@@ -33,6 +35,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -62,7 +65,7 @@ public class ProfileFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
@@ -136,6 +139,8 @@ public class ProfileFragment extends Fragment {
                     FirebaseDatabase.getInstance().getReference().child("Follow").child(profileid)
                             .child("followers").child(firebaseUser.getUid()).setValue(true);
 
+                    addNotifications();
+
                 } else if(btn.equals("following")) {
                     FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid())
                             .child("following").child(profileid).removeValue();
@@ -145,6 +150,15 @@ public class ProfileFragment extends Fragment {
                 }
             }
         });
+
+        options.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), OptionActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         my_photos.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,8 +178,45 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+
+        followers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), FollowersActivity.class);
+                intent.putExtra("id", profileid);
+                intent.putExtra("title","followers");
+                startActivity(intent);
+            }
+        });
+
+        following.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), FollowersActivity.class);
+                intent.putExtra("id", profileid);
+                intent.putExtra("title","following");
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
+
+
+
+    private void addNotifications() {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notifications").child(profileid);
+
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("userid", firebaseUser.getUid());
+        hashMap.put("text", "당신을 팔로잉하기 시작했습니다.");
+        hashMap.put("postid", "");
+        hashMap.put("ispost", true);
+
+        reference.push().setValue(hashMap);
+    }
+
+
 
 
     private void userInfo(){

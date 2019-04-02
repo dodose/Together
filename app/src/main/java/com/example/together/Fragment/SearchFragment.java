@@ -28,7 +28,7 @@ public class SearchFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private UserAdapter userAdapter;
-    private List<User> mUser;
+    private List<User> mUsers;
 
     EditText search_bar;
 
@@ -45,8 +45,8 @@ public class SearchFragment extends Fragment {
 
         search_bar = view.findViewById(R.id.search_bar);
 
-        mUser = new ArrayList<>();
-        userAdapter = new UserAdapter(getContext(), mUser);
+        mUsers = new ArrayList<>();
+        userAdapter = new UserAdapter(getContext(), mUsers, true);
         recyclerView.setAdapter(userAdapter);
 
         readUsers();
@@ -82,10 +82,10 @@ public class SearchFragment extends Fragment {
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                mUser.clear();
+                mUsers.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     User user = snapshot.getValue(User.class);
-                    mUser.add(user);
+                    mUsers.add(user);
                 }
 
                 userAdapter.notifyDataSetChanged();
@@ -109,10 +109,10 @@ public class SearchFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(search_bar.getText().toString().equals("")){
-                    mUser.clear();
+                    mUsers.clear();
                     for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                         User user = snapshot.getValue(User.class);
-                        mUser.add(user);
+                        mUsers.add(user);
                     }
 
                     userAdapter.notifyDataSetChanged();

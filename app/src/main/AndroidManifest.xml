@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.EditProfileActivity"></activity>
+        <activity android:name=".Activities.OptionActivity"></activity>
+        <activity android:name=".Activities.FollowersActivity" />
+        <activity android:name=".Activities.EditProfileActivity" />
         <activity android:name=".Activities.CommentsActivity" />
         <activity android:name=".Activities.LoginActivity">
             <intent-filter>
