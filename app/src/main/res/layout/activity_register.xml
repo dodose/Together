@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.RegisterActivity"
-    android:background="#ffffff">
+    android:background="#ffffff"
+    tools:context=".Activities.RegisterActivity">
 
     <EditText
         android:id="@+id/fullname"
@@ -124,17 +124,15 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <EditText
-        android:background="@drawable/reg_edittext_style"
-        android:hint="Mail"
         android:id="@+id/email"
         android:layout_width="265dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="12dp"
+        android:background="@drawable/reg_edittext_style"
         android:ems="10"
+        android:hint="Mail"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toEndOf="parent"

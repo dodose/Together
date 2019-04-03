@@ -92,7 +92,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         public TextView username,text;
 
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(View itemView) {
             super(itemView);
 
             image_profile = itemView.findViewById(R.id.image_profile);
@@ -106,31 +106,31 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(publisherid);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
                 Glide.with(mContext).load(user.getImageurl()).into(imageView);
                 username.setText(user.getUsername());
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onCancelled(DatabaseError databaseError) {
 
             }
         });
     }
 
 
-    private void getPostImage(final ImageView imageView, String postid){
+    private void getPostImage(final ImageView imageView, final String postid){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts").child(postid);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
                 Post post = dataSnapshot.getValue(Post.class);
                 Glide.with(mContext).load(post.getPostimage()).into(imageView);
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onCancelled(DatabaseError databaseError) {
 
             }
         });
