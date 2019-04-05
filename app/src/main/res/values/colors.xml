@@ -6,4 +6,5 @@
     <color name="colorAccent">#000000</color>
     <color name="btnBackground">#008CBA</color>
     <color name="button_black">#e7e7e7</color>
+    <color name="basicColorApp">#ffc549</color>
 </resources>

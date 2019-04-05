@@ -46,6 +46,9 @@ dependencies {
     //photo control
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.7.0'
 
+    // card view
+    implementation 'com.android.support:cardview-v7:28.0.0'
+
 
 
     testImplementation 'junit:junit:4.12'

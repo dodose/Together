@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 
+import com.example.together.Activities.Chat.ChatsActivity;
 import com.example.together.Activities.PostActivity;
 import com.example.together.Adapter.PostAdapter;
 import com.example.together.Model.Post;
@@ -29,7 +30,7 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-    ImageButton nav_top_post;
+    ImageButton nav_top_post, chat_button;
 
     private RecyclerView recyclerView;
     private PostAdapter postAdapter;
@@ -47,11 +48,19 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         nav_top_post = view.findViewById(R.id.nav_top_post);
+        chat_button = view.findViewById(R.id.chat);
 
         nav_top_post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), PostActivity.class));
+            }
+        });
+
+        chat_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), ChatsActivity.class));
             }
         });
 
@@ -131,6 +140,9 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
+
+
 
 
 

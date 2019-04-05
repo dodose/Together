@@ -42,6 +42,7 @@
                 android:layout_width="50dp"
                 android:layout_height="45dp"
                 android:src="@drawable/ic_top_message"
+                android:id="@+id/chat"
                 android:layout_marginRight="5dp"
                 android:layout_alignParentEnd="true"/>
 
