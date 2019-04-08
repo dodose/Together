@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.Chat.ChatsActivity"></activity>
+        <activity android:name=".Activities.Chat.MessageActivity"></activity>
+        <activity android:name=".Activities.Chat.ChatsActivity" />
         <activity android:name=".Activities.OptionActivity" />
         <activity android:name=".Activities.FollowersActivity" />
         <activity android:name=".Activities.EditProfileActivity" />

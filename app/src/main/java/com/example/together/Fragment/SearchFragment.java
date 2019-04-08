@@ -62,6 +62,7 @@ public class SearchFragment extends Fragment {
             }
         });
 
+        // close 미구현 상태 4.8
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,7 +86,6 @@ public class SearchFragment extends Fragment {
 
             }
         });
-
 
 
 
