@@ -24,13 +24,11 @@ public class ChatUserAdapter extends RecyclerView.Adapter<ChatUserAdapter.ViewHo
     private List<User> mUsers;
 
 
-
-
-
-    public ChatUserAdapter (Context mContext, List<User> mUsers){
+    public ChatUserAdapter (Context mContext, List<User> mUsers, boolean ischat){
         this.mContext = mContext;
         this.mUsers =  mUsers;
     }
+
 
     @NonNull
     @Override
@@ -38,6 +36,7 @@ public class ChatUserAdapter extends RecyclerView.Adapter<ChatUserAdapter.ViewHo
         View view = LayoutInflater.from(mContext).inflate(R.layout.chat_user_item, parent, false);
         return new ChatUserAdapter.ViewHolder(view);
     }
+
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
@@ -83,8 +82,6 @@ public class ChatUserAdapter extends RecyclerView.Adapter<ChatUserAdapter.ViewHo
             image_profile = itemView.findViewById(R.id.image_profile);
         }
     }
-
-
 
 
 
