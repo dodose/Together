@@ -3,7 +3,13 @@
     package="com.example.together">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 다음 지도 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <meta-data
+        android:name="com.kakao.sdk.AppKey"
+        android:value="a685d020e352ae9bc46997a53ec864f7" />
 
     <application
         android:allowBackup="true"
@@ -12,7 +18,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.Chat.MessageActivity"></activity>
+        <activity android:name=".Activities.PetHotel.PetHotelActivity"></activity>
+        <activity android:name=".Activities.Chat.MessageActivity" />
         <activity android:name=".Activities.Chat.ChatsActivity" />
         <activity android:name=".Activities.OptionActivity" />
         <activity android:name=".Activities.FollowersActivity" />

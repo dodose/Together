@@ -11,8 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.together.Activities.PetHotel.PetHotelActivity;
 import com.example.together.Adapter.UserAdapter;
 import com.example.together.Model.User;
 import com.example.together.R;
@@ -34,14 +37,24 @@ public class SearchFragment extends Fragment {
     private List<User> mUsers;
     private TextView close;
 
+    //버튼들 감추거나 보이기 표시를 위함
+    private RelativeLayout selects;
+
+    // 버튼 아이디들
+    private ImageView petHotel, petching, petHospital, petGroup, goodbyePet;
+
+
+
     EditText search_bar;
+
+
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_search, container, false);
+        final View view = inflater.inflate(R.layout.fragment_search, container, false);
 
         recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
@@ -50,27 +63,63 @@ public class SearchFragment extends Fragment {
 
         close = view.findViewById(R.id.close);
         search_bar = view.findViewById(R.id.search_bar);
+        selects = view.findViewById(R.id.selects);
 
         mUsers = new ArrayList<>();
         userAdapter = new UserAdapter(getContext(), mUsers, true);
         recyclerView.setAdapter(userAdapter);
 
+        //imageView 들 각각의 아이디
+        petHotel = view.findViewById(R.id.petHotel);
+        petHospital = view.findViewById(R.id.petHospital);
+        petching = view.findViewById(R.id.petching);
+        petGroup = view.findViewById(R.id.petGroup);
+        goodbyePet = view.findViewById(R.id.goodbyePet);
+
+        //petHotel 클릭시, activity 전환
+        petHotel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               startActivity(new Intent(getActivity(), PetHotelActivity.class));
+
+            }
+        });
+
+
+        //search bar 클릭 전후의 프래그먼트 표시
+
         search_bar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if(selects.getVisibility()==view.VISIBLE)
+                    selects.setVisibility(view.GONE);
+
+                if (recyclerView.getVisibility()==view.GONE)
+                    recyclerView.setVisibility(view.VISIBLE);
                 readUsers();
             }
         });
 
-        // close 미구현 상태 4.8
+
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                if(selects.getVisibility()==view.GONE)
+                    selects.setVisibility(view.VISIBLE);
+
+                 if(recyclerView.getVisibility()==view.VISIBLE)
+                    recyclerView.setVisibility(view.GONE);
             }
         });
 
+
+
+
+
         search_bar.addTextChangedListener(new TextWatcher() {
+
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
