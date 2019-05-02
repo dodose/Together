@@ -15,7 +15,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.together.Activities.GoodbyePet.GoodbyePetActivity;
+import com.example.together.Activities.PetGroup.PetGroupActivity;
 import com.example.together.Activities.PetHotel.PetHotelActivity;
+import com.example.together.Activities.Petching.PetchingActivity;
 import com.example.together.Adapter.UserAdapter;
 import com.example.together.Model.User;
 import com.example.together.R;
@@ -76,11 +79,53 @@ public class SearchFragment extends Fragment {
         petGroup = view.findViewById(R.id.petGroup);
         goodbyePet = view.findViewById(R.id.goodbyePet);
 
+
+        // 시간되면 코드 더 짧게 줄이기..
         //petHotel 클릭시, activity 전환
         petHotel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                startActivity(new Intent(getActivity(), PetHotelActivity.class));
+
+            }
+        });
+
+        //petHospital activity로 전환
+
+        petHospital.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), PetHotelActivity.class));
+
+            }
+        });
+
+        //petching activity로 전환
+
+        petching.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), PetchingActivity.class));
+
+            }
+        });
+
+        //petGroup activity로 전환
+
+        petGroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), PetGroupActivity.class));
+
+            }
+        });
+
+        //goodbyePet activity로 전환
+
+        goodbyePet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), GoodbyePetActivity.class));
 
             }
         });
@@ -113,7 +158,6 @@ public class SearchFragment extends Fragment {
                     recyclerView.setVisibility(view.GONE);
             }
         });
-
 
 
 
