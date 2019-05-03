@@ -52,7 +52,6 @@ public class SearchFragment extends Fragment {
 
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -131,7 +130,7 @@ public class SearchFragment extends Fragment {
         });
 
 
-        //search bar 클릭 전후의 프래그먼트 표시
+        //search bar 클릭 전후의 변경된 화면 표시
 
         search_bar.setOnClickListener(new View.OnClickListener() {
             @Override
