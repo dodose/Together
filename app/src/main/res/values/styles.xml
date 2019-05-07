@@ -9,4 +9,37 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+
+    <!--PetHotel Home-->
+
+    <style name="CollapsingToolbarCollapsed">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+
+    <style name="CollapsingToolbarExpanded">
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <style name="GlobalToolbarStyle">
+        <item name="contentInsetStart">20dp</item>
+        <item name="contentInsetStartWithNavigation">0dp</item>
+        <item name="theme">@style/GlobalToolbarTheme</item>
+    </style>
+
+    <style name="GlobalToolbarTheme">
+        <item name="toolbarNavigationButtonStyle">@style/GlobalToolbarStyleNavigation</item>
+    </style>
+
+    <style name="GlobalToolbarStyleNavigation">
+        <item name="android:maxWidth">44dp</item>
+        <item name="android:minWidth">44dp</item>
+    </style>
+
+
+
+
+
+
+
 </resources>
