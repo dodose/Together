@@ -7,6 +7,6 @@
     <!-- TODO: Remove or change this placeholder text -->
 
     <string name="appbar_scrolling_view_behavior">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
-    
+
     <string name="hotel_home_title">Pet Hotel </string>
 </resources>

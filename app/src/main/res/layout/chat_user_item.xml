@@ -12,15 +12,15 @@
         android:src="@mipmap/ic_launcher"/>
 
     <TextView
+        android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="사용자이름"
-        android:id="@+id/username"
-        android:layout_toRightOf="@+id/image_profile"
-        android:layout_toEndOf="@+id/image_profile"
-        android:layout_marginLeft="10dp"
         android:layout_centerVertical="true"
-        android:textSize="16dp"/>
+        android:layout_marginLeft="10dp"
+        android:layout_toEndOf="@+id/image_profile"
+        android:layout_toRightOf="@+id/image_profile"
+        android:text="사용자이름"
+        android:textSize="16dp" />
 
     <ImageView
         android:layout_width="35dp"
