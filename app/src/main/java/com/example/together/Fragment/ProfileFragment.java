@@ -42,7 +42,7 @@ import java.util.List;
 public class ProfileFragment extends Fragment {
 
     ImageView image_profile, options;
-    TextView posts, followers, following, fullname, bio, username;
+    TextView pets, followers, following, fullname, bio, username;
     Button edit_profile;
 
     private List<String> mySaves;
@@ -76,7 +76,7 @@ public class ProfileFragment extends Fragment {
 
         image_profile = view.findViewById(R.id.image_profile);
         options = view.findViewById(R.id.options);
-        posts = view.findViewById(R.id.posts);
+        pets = view.findViewById(R.id.pets);
         followers = view.findViewById(R.id.followers);
         following = view.findViewById(R.id.following);
         fullname = view.findViewById(R.id.fullname);

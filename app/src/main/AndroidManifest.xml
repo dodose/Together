@@ -18,7 +18,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.Map.MapActivity"></activity>
+        <activity android:name=".Activities.PetInfo.PetRegActivity"></activity>
+        <activity android:name=".Activities.Map.MapActivity" />
         <activity android:name=".Activities.GoodbyePet.GoodbyePetActivity" />
         <activity android:name=".Activities.PetHospital.PetHospitalActivity" />
         <activity android:name=".Activities.PetGroup.PetGroupActivity" />

@@ -19,6 +19,8 @@ public class HomeActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     Fragment seletedFragment = null;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +75,8 @@ public class HomeActivity extends AppCompatActivity {
                             editor.apply();
                             seletedFragment = new ProfileFragment();
                             break;
+
+
 
                     }
 
