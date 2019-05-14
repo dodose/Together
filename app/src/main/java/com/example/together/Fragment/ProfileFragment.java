@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.together.Activities.EditProfileActivity;
 import com.example.together.Activities.FollowersActivity;
+import com.example.together.Activities.MyPetInfo.MyPetListActivity;
 import com.example.together.Activities.OptionActivity;
 import com.example.together.Adapter.MyPhotoAdapter;
 import com.example.together.Model.Post;
@@ -61,7 +62,7 @@ public class ProfileFragment extends Fragment {
     FirebaseUser firebaseUser;
     String profileid;
 
-    ImageButton my_photos, saved_photos;
+    ImageButton my_photos, saved_photos, mydogs_info;
 
 
     @Override
@@ -85,7 +86,11 @@ public class ProfileFragment extends Fragment {
         my_photos = view.findViewById(R.id.my_photos);
         saved_photos = view.findViewById(R.id.saved_photos);
         edit_profile = view.findViewById(R.id.edit_profile );
+        mydogs_info = view.findViewById(R.id.mydogs_info);
 
+
+
+        // 업로드한 사진들
         recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new GridLayoutManager(getContext(), 3);
@@ -96,7 +101,7 @@ public class ProfileFragment extends Fragment {
 
 
 
-        // Save Photo check
+        // 저장된 사진들 리스트 Save Photo check
         recyclerView_saves = view.findViewById(R.id.recycler_view_save);
         recyclerView_saves.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager_saves = new GridLayoutManager(getContext(), 3);
@@ -104,7 +109,6 @@ public class ProfileFragment extends Fragment {
         postList_saves = new ArrayList<>();
         myPhotoAdapter_saves = new MyPhotoAdapter(getContext(), postList_saves);
         recyclerView_saves.setAdapter(myPhotoAdapter_saves);
-
         recyclerView.setVisibility(View.VISIBLE);
         recyclerView_saves.setVisibility(View.GONE);
 
@@ -160,6 +164,11 @@ public class ProfileFragment extends Fragment {
         });
 
 
+
+
+        //아래 리사이클 뷰를 보여주기위한 이미지 버튼들
+
+        //내 사진들
         my_photos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -169,6 +178,8 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+
+        //내가 저장한 사진들
         saved_photos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -177,6 +188,29 @@ public class ProfileFragment extends Fragment {
 
             }
         });
+
+
+        //내 강아지 정보들
+        mydogs_info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+//              recyclerView_dogsInfo.setVisibility(View.VISIBLE);
+                recyclerView_saves.setVisibility(View.GONE);
+
+            }
+        });
+
+        pets.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), MyPetListActivity.class);
+                intent.putExtra("id", profileid);
+                intent.putExtra("title","My Dogs");
+                startActivity(intent);
+            }
+        });
+
 
 
         followers.setOnClickListener(new View.OnClickListener() {
@@ -188,6 +222,10 @@ public class ProfileFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+
+
+
 
         following.setOnClickListener(new View.OnClickListener() {
             @Override
