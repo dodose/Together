@@ -6,18 +6,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.example.together.R;
 
-import java.sql.Date;
+
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class MyPetRegActivity extends AppCompatActivity {
 
     private TextView petBirth;
-    private DatePickerDialog.OnDateSetListener mDateSetListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,19 +30,43 @@ public class MyPetRegActivity extends AppCompatActivity {
         petBirth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calendar cal = Calendar.getInstance();
+                Calendar c = Calendar.getInstance();
 
-                DatePickerDialog dialog = new DatePickerDialog(MyPetRegActivity.this, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(MyPetRegActivity.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth, new DatePickerDialog.OnDateSetListener() {
+
                     @Override
-                    public void onDateSet(DatePicker datePicker, int year, int month, int date) {
 
-                        String msg = String.format("%d 년 %d 월 %d 일", year, month+1, date);
-                        Toast.makeText(MyPetRegActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+                        // TODO Auto-generated method stub
+
+                        try {
+
+                            Date d = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(year+"-"+(monthOfYear+1)+"-"+dayOfMonth);
+
+
+
+
+
+                        } catch (Exception e) {
+
+                            // TODO: handle exception
+
+                            e.printStackTrace();
+
+                        }
+
                     }
-                }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE));
 
-//                dialog.getDatePicker().setMaxDate(new Date().getTime());    //입력한 날짜 이후로 클릭 안되게 옵션
-//                dialog.show();
+                }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
+
+
+
+                datePickerDialog.getDatePicker().setCalendarViewShown(false);
+
+                datePickerDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+                datePickerDialog.show();
 
 
             }

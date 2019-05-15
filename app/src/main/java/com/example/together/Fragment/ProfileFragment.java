@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -43,8 +44,9 @@ import java.util.List;
 public class ProfileFragment extends Fragment {
 
     ImageView image_profile, options;
-    TextView pets, followers, following, fullname, bio, username;
+    TextView followers, following, fullname, bio, username;
     Button edit_profile;
+    LinearLayout pets;
 
     private List<String> mySaves;
 
@@ -127,7 +129,10 @@ public class ProfileFragment extends Fragment {
         }
 
 
-        // profile
+
+
+
+        // profile 편집 버튼 클릭
         edit_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -201,16 +206,6 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        pets.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), MyPetListActivity.class);
-                intent.putExtra("id", profileid);
-                intent.putExtra("title","My Dogs");
-                startActivity(intent);
-            }
-        });
-
 
 
         followers.setOnClickListener(new View.OnClickListener() {
@@ -234,6 +229,16 @@ public class ProfileFragment extends Fragment {
                 intent.putExtra("id", profileid);
                 intent.putExtra("title","following");
                 startActivity(intent);
+            }
+        });
+
+
+
+        // 내 펫 리스트 확인
+        pets.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), MyPetListActivity.class));
             }
         });
 

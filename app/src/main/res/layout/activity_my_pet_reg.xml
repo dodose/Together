@@ -24,19 +24,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+
                 <ImageView
+                    android:id="@+id/close"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_close"
-                    android:id="@+id/close"
+                    android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:layout_alignParentStart="true"/>
+                    android:src="@drawable/background_left" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginStart="115dp"
+                    android:layout_marginStart="142dp"
                     android:layout_toEndOf="@+id/close"
                     android:text="마이펫 등록"
                     android:textColor="@color/colorPrimaryDark"
@@ -45,16 +46,17 @@
 
 
                 <TextView
+                    android:id="@+id/save"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="SAVE"
-                    android:layout_centerHorizontal="true"
-                    android:id="@+id/save"
-                    android:textSize="16sp"
-                    android:layout_centerVertical="true"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"/>
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:text="SAVE"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="16sp" />
 
 
 
@@ -115,21 +117,30 @@
             app:met_floatingLabel="normal"/>
 
 
-
         <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/intro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/bio"
-            android:hint="Bio"
-            app:met_floatingLabel="normal"/>
+            android:hint="소개글 입력해주세요  (50자 이내)"
+            app:met_floatingLabel="normal" />
 
     </LinearLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <android.support.design.button.MaterialButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="등록하기" />
+        <android.support.design.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="등록하기"
+            android:layout_centerInParent="true"
+            android:textAlignment="center" />
+
+    </RelativeLayout>
+
+
+
 
 
 

@@ -76,65 +76,33 @@
         android:background="?android:attr/windowBackground">
 
         <android.support.design.widget.TabItem
+            android:id="@+id/findFriend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TAB-1"/>
+            android:text="친구찾기" />
 
 
         <android.support.design.widget.TabItem
+            android:id="@+id/lounge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TAB-2"/>
+            android:text="라운지"/>
 
 
         <android.support.design.widget.TabItem
+            android:id="@+id/message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TAB-3"/>
+            android:text="대화"/>
 
-        <android.support.design.widget.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TAB-4"/>
 
 
     </android.support.design.widget.TabLayout>
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/viewpager_id">
 
-
-
-    <TableLayout
-        android:id="@+id/tableLayout1"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:stretchColumns="*">
-        <TableRow
-            android:id="@+id/tableRow1"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1">
-            <Button
-                android:id="@+id/button1"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent" />
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent" />
-        </TableRow>
-        <TableRow
-            android:id="@+id/tableRow2"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1">
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent" />
-            <Button
-                android:id="@+id/button4"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent" />
-        </TableRow>
-    </TableLayout>
+    </android.support.v4.view.ViewPager>
 
 </LinearLayout>
