@@ -9,4 +9,5 @@
     <string name="appbar_scrolling_view_behavior">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
 
     <string name="hotel_home_title">Pet Hotel</string>
+    <string name="my_petlist">마이펫</string>
 </resources>
