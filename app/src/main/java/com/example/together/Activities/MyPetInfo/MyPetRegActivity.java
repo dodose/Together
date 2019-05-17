@@ -46,8 +46,6 @@ public class MyPetRegActivity extends AppCompatActivity {
 
 
 
-
-
                         } catch (Exception e) {
 
                             // TODO: handle exception
