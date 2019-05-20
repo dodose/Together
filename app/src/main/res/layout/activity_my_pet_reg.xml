@@ -77,27 +77,29 @@
 
 
         <TextView
+            android:layout_marginTop="20dp"
             android:id="@+id/dog_birthday"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_calendar"
-            android:text="생년월일"
+            android:text=" 생년월일"
             app:met_floatingLabel="normal"
             android:textSize="18sp"
             />
 
 
         <EditText
+            android:layout_marginTop="20dp"
             android:id="@+id/petBloodType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="혈액형"
+            android:hint="견종"
             app:met_floatingLabel="normal" />
 
 
-
         <RadioGroup
-            android:id="@+id/radioGroup1"
+            android:layout_marginTop="20dp"
+            android:id="@+id/genderGroup"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -105,7 +107,7 @@
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/female"/>
+                android:background="@drawable/male"/>
 
             <RadioButton
                 android:id="@+id/male"
@@ -118,7 +120,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/male"/>
+                android:background="@drawable/female"/>
 
             <RadioButton
                 android:id="@+id/female"
@@ -130,6 +132,7 @@
 
 
         <EditText
+            android:layout_marginTop="20dp"
             android:id="@+id/intro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
