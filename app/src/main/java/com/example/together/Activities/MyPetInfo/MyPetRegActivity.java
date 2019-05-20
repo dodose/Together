@@ -1,78 +1,60 @@
 package com.example.together.Activities.MyPetInfo;
 
 import android.app.DatePickerDialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TextView;
-
-
 import com.example.together.R;
 
-
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 public class MyPetRegActivity extends AppCompatActivity {
 
-    private TextView petBirth;
+    private static final String TAG = "MyPetRegActivity";
+
+    private TextView mDisplayDate;
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_pet_reg);
+        mDisplayDate = findViewById(R.id.dog_birthday);
 
-        petBirth = findViewById(R.id.petBirth);
-
-        petBirth.setOnClickListener(new View.OnClickListener() {
+        mDisplayDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calendar c = Calendar.getInstance();
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog datePickerDialog = new DatePickerDialog(MyPetRegActivity.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth, new DatePickerDialog.OnDateSetListener() {
-
-                    @Override
-
-                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-
-                        // TODO Auto-generated method stub
-
-                        try {
-
-                            Date d = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(year+"-"+(monthOfYear+1)+"-"+dayOfMonth);
-
-
-
-                        } catch (Exception e) {
-
-                            // TODO: handle exception
-
-                            e.printStackTrace();
-
-                        }
-
-                    }
-
-                }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
-
-
-
-                datePickerDialog.getDatePicker().setCalendarViewShown(false);
-
-                datePickerDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-
-                datePickerDialog.show();
-
+                DatePickerDialog dialog = new DatePickerDialog(
+                        MyPetRegActivity.this,
+                        android.R.style.Theme_NoTitleBar,
+                        mDateSetListener,
+                        year,month,day);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
 
             }
         });
+
+        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                Log.d(TAG, "onDateSet: "+year+"/" +month+"/"+dayOfMonth);
+            }
+        };
 
     }
 
 
 }
-
-

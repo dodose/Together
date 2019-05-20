@@ -32,7 +32,7 @@
 //    @Override
 //    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 //
-//        View view ;
+//        View view;
 //        LayoutInflater mInflater = LayoutInflater.from(mContext);
 //        view = mInflater.inflate(R.layout.item_mydoglist ,parent,false);
 //        return new MyViewHolder(view);
@@ -74,6 +74,7 @@
 //        TextView tv_book_title;
 //        ImageView img_book_thumbnail;
 //        CardView cardView ;
+//
 //
 //        public MyViewHolder(View itemView) {
 //            super(itemView);

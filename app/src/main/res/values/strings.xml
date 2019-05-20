@@ -10,4 +10,6 @@
 
     <string name="hotel_home_title">Pet Hotel</string>
     <string name="my_petlist">마이펫</string>
+    <string name="addPet">My Pet추가</string>
+    <string name="calendar">생일</string>
 </resources>

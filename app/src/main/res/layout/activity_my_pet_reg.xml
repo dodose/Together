@@ -15,49 +15,24 @@
 
 
         <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/toolbar"
             android:background="?android:attr/windowBackground">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-
-                <ImageView
-                    android:id="@+id/close"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/background_left" />
-
-                <TextView
+                <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginStart="142dp"
                     android:layout_toEndOf="@+id/close"
                     android:text="마이펫 등록"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="18sp"
+                    android:textSize="24sp"
                     android:textStyle="bold" />
-
-
-                <TextView
-                    android:id="@+id/save"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:text="SAVE"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="16sp" />
-
 
 
             </RelativeLayout>
@@ -88,11 +63,11 @@
             android:layout_height="wrap_content"
             android:text="사진 편집"
             android:layout_gravity="center"
-            android:id="@+id/tv_change"
+            android:id="@+id/dog_img_id"
             android:textColor="@color/colorPrimary"
             android:textSize="16sp"/>
 
-        <com.rengwuxian.materialedittext.MaterialEditText
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/petName"
@@ -101,23 +76,60 @@
             app:met_floatingLabel="normal"/>
 
 
-        <com.rengwuxian.materialedittext.MaterialEditText
+        <TextView
+            android:id="@+id/dog_birthday"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/petBirth"
-            android:hint="생년월일"
-            app:met_floatingLabel="normal"/>
+            android:drawableLeft="@drawable/ic_calendar"
+            android:text="생년월일"
+            app:met_floatingLabel="normal"
+            android:textSize="18sp"
+            />
 
 
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <EditText
             android:id="@+id/petBloodType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:hint="혈액형"
-            app:met_floatingLabel="normal"/>
+            app:met_floatingLabel="normal" />
 
 
-        <com.rengwuxian.materialedittext.MaterialEditText
+
+        <RadioGroup
+            android:id="@+id/radioGroup1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/female"/>
+
+            <RadioButton
+                android:id="@+id/male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Male"
+                />
+
+            <ImageView
+                android:layout_marginLeft="30dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/male"/>
+
+            <RadioButton
+                android:id="@+id/female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Female" />
+        </RadioGroup>
+
+
+
+        <EditText
             android:id="@+id/intro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -130,7 +142,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.support.design.button.MaterialButton
+        <Button
+            android:id="@+id/add_mypet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="등록하기"
@@ -138,11 +151,5 @@
             android:textAlignment="center" />
 
     </RelativeLayout>
-
-
-
-
-
-
 
 </LinearLayout>
