@@ -98,9 +98,7 @@ public class MyPetRegActivity extends AppCompatActivity {
 					break;
 
 				}
-
             }
-
         });
 
 

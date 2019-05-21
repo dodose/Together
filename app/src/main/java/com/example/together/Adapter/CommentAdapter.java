@@ -68,7 +68,6 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
 
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(mContext, HomeActivity.class);
                 intent.putExtra("publisherid", comment.getPublisher());
                 mContext.startActivity(intent);
@@ -94,7 +93,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
 
                     AlertDialog alertDialog = new AlertDialog.Builder(mContext).create();
                     alertDialog.setTitle("정말 삭제하시겠습니까?");
-                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "아니오",
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, " 아니오",
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int which) {
@@ -118,6 +117,9 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
                                     dialogInterface.dismiss();
                                 }
                             });
+
+
+
 
                     alertDialog.show();
                 }

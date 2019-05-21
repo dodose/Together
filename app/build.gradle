@@ -52,6 +52,9 @@ dependencies {
     // card view
     implementation 'com.android.support:cardview-v7:28.0.0'
 
+    // swipe cards for petching
+    implementation 'com.lorentzos.swipecards:library:1.0.9'
+
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
