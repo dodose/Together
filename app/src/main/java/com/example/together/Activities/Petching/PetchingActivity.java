@@ -32,7 +32,7 @@ public class PetchingActivity extends AppCompatActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         // 프래그먼트 추가하기
-        adapter.AddFragment(new FindFriend_Fragment(), "친구찾기");
+//        adapter.AddFragment(new FindFriend_Fragment(), "친구찾기");
         adapter.AddFragment(new Lounge_Fragment(), "라운지");
         adapter.AddFragment(new Message_Fragment(), "메시지");
 

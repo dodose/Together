@@ -8,6 +8,9 @@ public class Pet {
     private int gender;
     private int petAge;
 
+    public Pet() {
+    }
+
     public Pet(String petName, String petBloodType, String description, int thumbnail, int gender, int petAge) {
         this.petName = petName;
         this.petBloodType = petBloodType;
