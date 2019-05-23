@@ -15,10 +15,10 @@
         android:id="@+id/bar">
 
         <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?android:attr/windowBackground"
-            android:id="@+id/toolbar">
+            android:background="?android:attr/windowBackground">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -26,6 +26,7 @@
 
 
                 <TextView
+                    android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
@@ -39,7 +40,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:text="추가등록"/>
+                    android:text="추가등록" />
 
             </RelativeLayout>
 
@@ -48,13 +49,16 @@
 
     </android.support.design.widget.AppBarLayout>
 
-
     <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerview_my_dog"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        android:id="@+id/recyclerview_dogs"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
 
     </android.support.v7.widget.RecyclerView>
+
+
+
+
 
 
 

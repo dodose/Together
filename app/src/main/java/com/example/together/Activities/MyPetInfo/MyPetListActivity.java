@@ -39,10 +39,10 @@ public class MyPetListActivity extends AppCompatActivity {
         lsPet.add(new Pet("Test", "TestName1","TestTest",R.drawable.mariasemples,1,2));
 
 
-        RecyclerView mypet = (RecyclerView) findViewById(R.id.recyclerview_my_dog);
+        RecyclerView recyclerview_dogs = (RecyclerView) findViewById(R.id.recyclerview_dogs);
         PetAdapter petAdapter = new PetAdapter(this,lsPet);
-        mypet.setLayoutManager(new GridLayoutManager(this,3));
-        mypet.setAdapter(petAdapter);
+        recyclerview_dogs.setLayoutManager(new GridLayoutManager(this,3));
+        recyclerview_dogs.setAdapter(petAdapter);
 
         petadd.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -78,10 +78,19 @@
 
         <EditText
             android:layout_marginTop="20dp"
-            android:id="@+id/petBloodType"
+            android:id="@+id/petBreed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="견종"
+            app:met_floatingLabel="normal" />
+
+        <EditText
+            android:layout_marginTop="20dp"
+            android:id="@+id/petWeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="몸무게 (숫자만 입력 단위 : kg)"
             app:met_floatingLabel="normal" />
 
 
@@ -95,6 +104,7 @@
             app:met_floatingLabel="normal"
             android:textSize="18sp"
             />
+
 
 
 
@@ -147,13 +157,6 @@
 
 
         </LinearLayout>
-
-        <Spinner
-            android:layout_marginTop="20dp"
-            android:id="@+id/spinner1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:entries="@array/pet_size"/>
 
 
         <EditText

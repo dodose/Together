@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -15,34 +16,53 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.together.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 
 import java.util.Calendar;
 
 public class MyPetRegActivity extends AppCompatActivity {
 
+    private FirebaseUser firebaseUser;
+
     private static final String TAG = "MyPetRegActivity";
 
-    private TextView mDisplayDate;
-    private EditText petName, intro;
-    private RadioGroup genderGroup;
-    private RadioButton male, female;
-    private DatePickerDialog.OnDateSetListener mDateSetListener;
+    TextView mDisplayDate;
+    EditText mPetName, mIntro, mPetBreed, mPetWeight;
+    RadioGroup mGenderGroup;
+    RadioButton mMale, mFemale;
+    DatePickerDialog.OnDateSetListener mDateSetListener;
+    Button mAdd_mypet;
 
-
+    FirebaseAuth auth;
+    DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_pet_reg);
 
-
+        mAdd_mypet = findViewById(R.id.add_mypet);
         mDisplayDate = findViewById(R.id.dog_birthday);
-        petName = findViewById(R.id.petName);
-        intro = findViewById(R.id.intro);
-        male = findViewById(R.id.male);
-        female = findViewById(R.id.female);
-        genderGroup =  findViewById(R.id.genderGroup);
+        mPetName = findViewById(R.id.petName);
+        mPetBreed = findViewById(R.id.petBreed);
+        mPetWeight = findViewById(R.id.petWeight);
+        mIntro = findViewById(R.id.intro);
+        mMale = findViewById(R.id.male);
+        mFemale = findViewById(R.id.female);
+        mGenderGroup =  findViewById(R.id.genderGroup);
 
+
+
+        mAdd_mypet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                addPetInfo();
+
+            }
+        });
 
 
 
@@ -79,11 +99,13 @@ public class MyPetRegActivity extends AppCompatActivity {
 
 
 
-        genderGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+
+        mGenderGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
             @Override
 
-            public void onCheckedChanged(RadioGroup gender, int checkedId) {
+            public void onCheckedChanged(RadioGroup genderGroup, int checkedId) {
 
                 RadioButton radio_btn = (RadioButton) findViewById(checkedId);
 
@@ -96,13 +118,28 @@ public class MyPetRegActivity extends AppCompatActivity {
 
 				case R.id.female:
 					break;
-
 				}
             }
         });
 
 
 
+
+
+
+    }
+
+
+
+
+
+
+    private void addPetInfo() {
+
+        String petName = mPetName.getText().toString();
+        String intro = mIntro.getText().toString();
+        String petBreed = mPetBreed.getText().toString();
+        int petWeight = new Integer(mPetWeight.getText().toString());
 
     }
 
