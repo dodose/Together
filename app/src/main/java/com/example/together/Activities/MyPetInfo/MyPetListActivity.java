@@ -30,13 +30,7 @@ public class MyPetListActivity extends AppCompatActivity {
         petadd = findViewById(R.id.petadd);
 
         lsPet = new ArrayList<>();
-        lsPet.add(new Pet("Test", "TestName1","TestTest",R.drawable.thevigitarian,1,2));
-        lsPet.add(new Pet("Test", "TestName1","TestTest",R.drawable.thewildrobot,1,2));
-        lsPet.add(new Pet("Test", "TestName1","TestTest",R.drawable.mariasemples,1,2));
-        lsPet.add(new Pet("Test", "TestName1","TestTest",R.drawable.hediedwith,1,2));
-        lsPet.add(new Pet("Test", "TestName1","TestTest",R.drawable.thevigitarian,1,2));
-        lsPet.add(new Pet("Test", "TestName1","TestTest",R.drawable.thewildrobot,1,2));
-        lsPet.add(new Pet("Test", "TestName1","TestTest",R.drawable.mariasemples,1,2));
+
 
 
         RecyclerView recyclerview_dogs = (RecyclerView) findViewById(R.id.recyclerview_dogs);

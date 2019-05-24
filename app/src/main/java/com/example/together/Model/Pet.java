@@ -1,70 +1,83 @@
 package com.example.together.Model;
 
 public class Pet {
-    private String petName;
-    private String petBloodType;
-    private String description;
-    private int thumbnail;
-    private int gender;
-    private int petAge;
 
-    public Pet() {
+    private String imageurl;
+    private String petname;
+    private String petbreed;
+    private int petweight;
+    private int birthday;
+    private String gender;
+    private String intro;
+
+    public Pet(){
+
     }
 
-    public Pet(String petName, String petBloodType, String description, int thumbnail, int gender, int petAge) {
-        this.petName = petName;
-        this.petBloodType = petBloodType;
-        this.description = description;
-        this.thumbnail = thumbnail;
+
+    public Pet(String imageurl, String petname, String petbreed, int petweight, int birthday, String gender, String intro) {
+        this.imageurl = imageurl;
+        this.petname = petname;
+        this.petbreed = petbreed;
+        this.petweight = petweight;
+        this.birthday = birthday;
         this.gender = gender;
-        this.petAge = petAge;
+        this.intro = intro;
     }
 
-    public String getPetName() {
-        return petName;
+    public String getImageurl() {
+        return imageurl;
     }
 
-    public void setPetName(String petName) {
-        this.petName = petName;
+    public void setImageurl(String imageurl) {
+        this.imageurl = imageurl;
     }
 
-    public String getPetBloodType() {
-        return petBloodType;
+    public String getPetname() {
+        return petname;
     }
 
-    public void setPetBloodType(String petBloodType) {
-        this.petBloodType = petBloodType;
+    public void setPetname(String petname) {
+        this.petname = petname;
     }
 
-    public String getDescription() {
-        return description;
+    public String getPetbreed() {
+        return petbreed;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setPetbreed(String petbreed) {
+        this.petbreed = petbreed;
     }
 
-    public int getThumbnail() {
-        return thumbnail;
+    public int getPetweight() {
+        return petweight;
     }
 
-    public void setThumbnail(int thumbnail) {
-        this.thumbnail = thumbnail;
+    public void setPetweight(int petweight) {
+        this.petweight = petweight;
     }
 
-    public int getGender() {
+    public int getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(int birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(int gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
-    public int getPetAge() {
-        return petAge;
+    public String getIntro() {
+        return intro;
     }
 
-    public void setPetAge(int petAge) {
-        this.petAge = petAge;
+    public void setIntro(String intro) {
+        this.intro = intro;
     }
 }

@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:text="사진 편집"
             android:layout_gravity="center"
-            android:id="@+id/dog_img_id"
+            android:id="@+id/tv_change"
             android:textColor="@color/colorPrimary"
             android:textSize="16sp"/>
 
@@ -170,7 +170,7 @@
     </LinearLayout>
 
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -178,10 +178,20 @@
             android:id="@+id/add_mypet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="등록하기"
-            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:text="등록하기" />
+
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@+id/cancel"
+            android:text="취소"
             android:textAlignment="center" />
 
-    </RelativeLayout>
+
+    </LinearLayout>
 
 </LinearLayout>
