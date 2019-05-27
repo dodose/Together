@@ -14,6 +14,10 @@ public class Pet {
 
     }
 
+    public Pet(String imageurl, String petname, String intro){
+
+    }
+
 
     public Pet(String imageurl, String petname, String petbreed, int petweight, int birthday, String gender, String intro) {
         this.imageurl = imageurl;

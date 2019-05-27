@@ -76,7 +76,7 @@ public class MyPetRegActivity extends AppCompatActivity {
 
         storageReference = FirebaseStorage.getInstance().getReference("pets");
 
-        mTv_change = findViewById(R.id.image_profile);
+        mTv_change = findViewById(R.id.tv_change);
         mImage_profile = findViewById(R.id.image_profile);
         mAdd_mypet = findViewById(R.id.add_mypet);
         mDisplayDate = findViewById(R.id.dog_birthday);
@@ -133,8 +133,12 @@ public class MyPetRegActivity extends AppCompatActivity {
 
                 updateProfile(mPetName.getText().toString().trim(),
                               mPetBreed.getText().toString().trim(),
-                              mPetWeight.getText(),
-                              m
+                              mPetWeight.getText().toString().trim(),
+
+
+
+
+
                             );
 
             }
@@ -198,13 +202,13 @@ public class MyPetRegActivity extends AppCompatActivity {
 
 
         // 성별채크
-        mGenderGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+         mGenderGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
             @Override
 
             public void onCheckedChanged(RadioGroup genderGroup, int checkedId) {
 
-                RadioButton radio_btn = (RadioButton) findViewById(checkedId);
+                final RadioButton radio_btn = (RadioButton) findViewById(checkedId);
 
 				Toast.makeText(MyPetRegActivity.this, radio_btn.getText() + "체크", Toast.LENGTH_SHORT).show();
 
@@ -223,7 +227,7 @@ public class MyPetRegActivity extends AppCompatActivity {
 
     }
 
-    private void updateProfile(String petname, String petbreed, int petweight, String gender, Integer birthday, String intro){
+    private void updateProfile(String petname, String petbreed, String petweight, String gender, String birthday, String intro){
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Pets").child(firebaseUser.getUid());
 

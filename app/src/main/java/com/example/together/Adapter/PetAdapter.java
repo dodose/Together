@@ -9,9 +9,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.together.Activities.MyPetInfo.MyPetListActivity;
 import com.example.together.Model.Pet;
 import com.example.together.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
@@ -20,7 +25,7 @@ import java.util.List;
  */
 
 public class PetAdapter extends RecyclerView.Adapter<PetAdapter.MyViewHolder> {
-
+    FirebaseUser firebaseUser;
     private Context mContext;
     private List<Pet> mData;
 
@@ -45,10 +50,13 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        final Pet pet = mData.get(position);
 
 
-        holder.petName.setText(mData.get(position).getPetName());
-        holder.thumbnail.setImageResource(mData.get(position).getThumbnail());
+        holder.petname.setText(mData.get(position).getPetname());
+        Glide.with(mContext).load(pet.getImageurl()).into(holder.imageurl);
         holder.pet_cardview_id.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,9 +64,9 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.MyViewHolder> {
                 Intent intent = new Intent(mContext, MyPetListActivity.class);
 
                 // passing data to the book activity
-                intent.putExtra("petName", mData.get(position).getPetName());
-                intent.putExtra("Description", mData.get(position).getDescription());
-                intent.putExtra("Thumbnail", mData.get(position).getThumbnail());
+                intent.putExtra("petname", mData.get(position).getPetname());
+                intent.putExtra("intro", mData.get(position).getIntro());
+                intent.putExtra("Thumbnail", mData.get(position).getImageurl());
                 // start the activity
                 mContext.startActivity(intent);
 
@@ -70,21 +78,21 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.MyViewHolder> {
 
     @Override
     public int getItemCount() {
-        return mData.size();
+        return 0;
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView petName;
-        ImageView thumbnail;
+        TextView petname;
+        ImageView imageurl;
         CardView pet_cardview_id;
 
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
-            petName = (TextView) itemView.findViewById(R.id.dog_name);
-            thumbnail = (ImageView) itemView.findViewById(R.id.dog_img_id);
+            petname = (TextView) itemView.findViewById(R.id.dog_name);
+            imageurl = (ImageView) itemView.findViewById(R.id.dog_img_id);
             pet_cardview_id = (CardView) itemView.findViewById(R.id.pet_cardview_id);
 
 
