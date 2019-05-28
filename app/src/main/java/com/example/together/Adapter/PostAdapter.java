@@ -43,8 +43,8 @@ import java.util.List;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
-    public Context mContext;
-    public List<Post> mPost;
+    private Context mContext;
+    private List<Post> mPost;
 
     private FirebaseUser firebaseUser;
 

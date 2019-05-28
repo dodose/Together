@@ -90,7 +90,7 @@ public class PostActivity extends AppCompatActivity {
 
 
 
-            Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>()  {
+            Task urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>()  {
                 @Override
                 public  Task<Uri> then(Task<UploadTask.TaskSnapshot> task) throws Exception {
                     if(!task.isSuccessful()){
@@ -120,7 +120,7 @@ public class PostActivity extends AppCompatActivity {
                         reference.child(postid).setValue(hashMap);
 
                         startActivity(new Intent(PostActivity.this, HomeActivity.class));
-                        finish();;
+                        finish();
                     }else {
                         showMessage("업로드에 실패하였습니다!");
                     }
@@ -143,7 +143,9 @@ public class PostActivity extends AppCompatActivity {
 
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK){
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            imageUri = result.getUri();
+            if (result != null) {
+                imageUri = result.getUri();
+            }
 
             image_added.setImageURI(imageUri);
         }else{
