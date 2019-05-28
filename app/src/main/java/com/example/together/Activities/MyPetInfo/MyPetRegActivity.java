@@ -115,7 +115,6 @@ public class MyPetRegActivity extends AppCompatActivity {
 
 
 
-
         mDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -155,7 +154,6 @@ public class MyPetRegActivity extends AppCompatActivity {
 
                 // 성별 채크
 
-
                 RadioGroup rg = (RadioGroup)findViewById(R.id.genderGroup);
                 RadioButton seletedRdo = (RadioButton)findViewById(rg.getCheckedRadioButtonId());
                 final String selectedValue = seletedRdo.getText().toString();
@@ -185,8 +183,6 @@ public class MyPetRegActivity extends AppCompatActivity {
 
                 pet.setGender(selectedValue);
 
-
-
                 reference.push().setValue(pet);
 
                 startActivity(new Intent(MyPetRegActivity.this, MyPetListActivity.class));
@@ -201,7 +197,6 @@ public class MyPetRegActivity extends AppCompatActivity {
             public void onClick(View v) {
                 CropImage.activity()
                         .setAspectRatio(1, 1)
-                        .setCropShape(CropImageView.CropShape.OVAL)
                         .start(MyPetRegActivity.this);
             }
         });
@@ -212,7 +207,6 @@ public class MyPetRegActivity extends AppCompatActivity {
             public void onClick(View v) {
                 CropImage.activity()
                         .setAspectRatio(1, 1)
-                        .setCropShape(CropImageView.CropShape.OVAL)
                         .start(MyPetRegActivity.this);
             }
         });
@@ -225,9 +219,6 @@ public class MyPetRegActivity extends AppCompatActivity {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Pets").child(firebaseUser.getUid());
 
     }
-
-
-
 
 
 
