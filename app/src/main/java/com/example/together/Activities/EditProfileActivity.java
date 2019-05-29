@@ -124,7 +124,6 @@ public class EditProfileActivity extends AppCompatActivity {
 
     }
 
-
     private void updateProfile(String fullname, String username, String bio) {
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());

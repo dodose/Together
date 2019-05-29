@@ -85,8 +85,8 @@ public class PostActivity extends AppCompatActivity {
 
     private void uploadImage(){
         if(imageUri!= null){
-             final StorageReference ref = storageReference.child(System.currentTimeMillis() + "."+getFileExtension(imageUri));
-            uploadTask = ref.putFile(imageUri);
+                final StorageReference ref = storageReference.child(System.currentTimeMillis() + "."+getFileExtension(imageUri));
+                uploadTask = ref.putFile(imageUri);
 
 
 
