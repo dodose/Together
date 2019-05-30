@@ -56,7 +56,7 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.MyViewHolder> {
 
 
         holder.petname.setText(mData.get(position).getPetname());
-        Glide.with(mContext).load(pet.getImageurl()).into(holder.imageurl);
+        Glide.with(mContext).load(pet.getPetimage()).into(holder.petimage);
         holder.pet_cardview_id.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,7 +66,7 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.MyViewHolder> {
                 // passing data to the book activity
                 intent.putExtra("petname", mData.get(position).getPetname());
                 intent.putExtra("intro", mData.get(position).getIntro());
-                intent.putExtra("Thumbnail", mData.get(position).getImageurl());
+                intent.putExtra("Thumbnail", mData.get(position).getPetimage());
                 // start the activity
                 mContext.startActivity(intent);
 
@@ -84,7 +84,7 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.MyViewHolder> {
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView petname;
-        ImageView imageurl;
+        ImageView petimage;
         CardView pet_cardview_id;
 
 
@@ -92,7 +92,7 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.MyViewHolder> {
             super(itemView);
 
             petname = (TextView) itemView.findViewById(R.id.dog_name);
-            imageurl = (ImageView) itemView.findViewById(R.id.dog_img_id);
+            petimage = (ImageView) itemView.findViewById(R.id.dog_img_id);
             pet_cardview_id = (CardView) itemView.findViewById(R.id.pet_cardview_id);
 
 

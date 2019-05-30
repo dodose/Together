@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DialogTitle;
 import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
@@ -115,14 +116,13 @@ public class MyPetRegActivity extends AppCompatActivity {
 
 
 
-
         mDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 Log.d(TAG, "onDateSet: "+year+"/" +month+"/"+dayOfMonth);
 
-                String date = year + "년"+month +"월"+dayOfMonth+"일";
-                int birthday = year+month+dayOfMonth;
+                String date = year + "-"+month+1 +"-"+dayOfMonth;
+                final int birthday = year+month+dayOfMonth;
                 mDisplayDate.setText(date);
             }
         };
@@ -142,68 +142,71 @@ public class MyPetRegActivity extends AppCompatActivity {
         mAdd_mypet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Pets");
 
-                Pet pet = new Pet();
-
-                pet.setPetname(mPetName.getText().toString().trim());
-                pet.setPetbreed(mPetBreed.getText().toString().trim());
-                pet.setPetweight(Integer.valueOf(mPetWeight.toString().trim()));
-                pet.setBirthday(Integer.valueOf(mDisplayDate.toString().trim()));
-                pet.setIntro(mIntro.getText().toString().trim());
-                pet.setImageurl(myUrl);
-
-                // 성별 채크
-
+                String petid = reference.push().getKey();
 
                 RadioGroup rg = (RadioGroup)findViewById(R.id.genderGroup);
                 RadioButton seletedRdo = (RadioButton)findViewById(rg.getCheckedRadioButtonId());
                 final String selectedValue = seletedRdo.getText().toString();
 
-
-                mGenderGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-
-                    @Override
-
-                    public void onCheckedChanged(RadioGroup genderGroup, int checkedId) {
-
-                        final RadioButton radio_btn = (RadioButton) findViewById(checkedId);
-
-                        Toast.makeText(MyPetRegActivity.this, radio_btn.getText() + "체크", Toast.LENGTH_SHORT).show();
-
-                        switch (checkedId) {
-
-                            case R.id.male:
-                                break;
-
-                            case R.id.female:
-                                break;
-                        }
-
-                    }
-                });
-
-                pet.setGender(selectedValue);
+                HashMap<String, Object> hashMap = new HashMap<>();
+                hashMap.put("petname", mPetName.getText().toString().trim());
+                hashMap.put("petbreed", mPetBreed.getText().toString().trim());
+                hashMap.put("petweight", mPetWeight.getText().toString());
+                hashMap.put("birthday", mDisplayDate.getText().toString());
+                hashMap.put("intro", mIntro.getText().toString());
+                hashMap.put("gender", selectedValue);
+                hashMap.put("petimage", myUrl);
 
 
 
-                reference.push().setValue(pet);
+                reference.child(petid).setValue(hashMap);
 
                 startActivity(new Intent(MyPetRegActivity.this, MyPetListActivity.class));
                 finish();
+
+
             }
         });
 
 
 
+
+        mGenderGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+            @Override
+
+            public void onCheckedChanged(RadioGroup genderGroup, int checkedId) {
+
+                final RadioButton radio_btn = (RadioButton) findViewById(checkedId);
+
+                Toast.makeText(MyPetRegActivity.this, radio_btn.getText() + "체크", Toast.LENGTH_SHORT).show();
+
+                switch (checkedId) {
+
+                    case R.id.male:
+                        break;
+
+                    case R.id.female:
+                        break;
+                }
+
+            }
+        });
+
+
+        // 편집
         mTv_change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CropImage.activity()
                         .setAspectRatio(1, 1)
-                        .setCropShape(CropImageView.CropShape.OVAL)
                         .start(MyPetRegActivity.this);
             }
+
+
         });
 
 
@@ -212,22 +215,17 @@ public class MyPetRegActivity extends AppCompatActivity {
             public void onClick(View v) {
                 CropImage.activity()
                         .setAspectRatio(1, 1)
-                        .setCropShape(CropImageView.CropShape.OVAL)
                         .start(MyPetRegActivity.this);
             }
         });
 
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        storageRef = FirebaseStorage.getInstance().getReference().child("my_pets");
-
+        storageRef = FirebaseStorage.getInstance().getReference().child("pets");
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Pets").child(firebaseUser.getUid());
 
     }
-
-
-
 
 
 
@@ -240,32 +238,34 @@ public class MyPetRegActivity extends AppCompatActivity {
 
 
     private void uploadImage(){
-        if(imageUri!= null){
-            final StorageReference ref = storageReference.child(System.currentTimeMillis() + "."+getFileExtension(imageUri));
-            uploadTask = ref.putFile(imageUri);
+        // Progress .xml에서 Visible 하는거 구현
+
+        if (mImageUri != null){
+            final StorageReference filereference = storageRef.child(System.currentTimeMillis()
+                    +"."+getFileExtension(mImageUri));
 
 
-
-            Task urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>()  {
+            uploadTask = filereference.putFile(mImageUri);
+            uploadTask.continueWithTask(new Continuation() {
                 @Override
-                public  Task<Uri> then(Task<UploadTask.TaskSnapshot> task) throws Exception {
-                    if(!task.isSuccessful()){
+                public Object then(@NonNull Task task) throws Exception {
+                    if (!task.isSuccessful()) {
                         throw task.getException();
                     }
 
-                    return ref.getDownloadUrl();
+                    return filereference.getDownloadUrl();
                 }
+
             }).addOnCompleteListener(new OnCompleteListener<Uri>() {
                 @Override
-                public void onComplete(Task<Uri> task) {
-                    if(task.isSuccessful()){
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if (task.isSuccessful()){
                         Uri downloadUri = task.getResult();
-                        myUrl = downloadUri.toString();
+                        String myUrl = downloadUri.toString();
 
 
-
-                    }else {
-                        showMessage("업로드에 실패하였습니다!");
+                    } else {
+                        showMessage("Failed");
                     }
                 }
             }).addOnFailureListener(new OnFailureListener() {
@@ -274,12 +274,12 @@ public class MyPetRegActivity extends AppCompatActivity {
                     showMessage(e.getMessage());
                 }
             });
-        } else{
-            showMessage("이미지를 골라주세요!");
+
+        }else {
+            showMessage("이미지를 선택해주세요");
         }
+
     }
-
-
 
 
 
@@ -290,6 +290,8 @@ public class MyPetRegActivity extends AppCompatActivity {
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK){
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             mImageUri = result.getUri();
+
+            uploadImage();
 
 
         }else {

@@ -32,7 +32,6 @@ public class MyPetListActivity extends AppCompatActivity {
         lsPet = new ArrayList<>();
 
 
-
         RecyclerView recyclerview_dogs = (RecyclerView) findViewById(R.id.recyclerview_dogs);
         PetAdapter petAdapter = new PetAdapter(this,lsPet);
         recyclerview_dogs.setLayoutManager(new GridLayoutManager(this,3));

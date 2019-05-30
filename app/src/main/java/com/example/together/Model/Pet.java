@@ -2,7 +2,7 @@ package com.example.together.Model;
 
 public class Pet {
 
-    private String imageurl;
+    private String petimage;
     private String petname;
     private String petbreed;
     private int petweight;
@@ -14,13 +14,13 @@ public class Pet {
 
     }
 
-    public Pet(String imageurl, String petname, String intro){
+    public Pet(String petimage, String petname, String intro){
 
     }
 
 
-    public Pet(String imageurl, String petname, String petbreed, int petweight, int birthday, String gender, String intro) {
-        this.imageurl = imageurl;
+    public Pet(String petimage, String petname, String petbreed, int petweight, int birthday, String gender, String intro) {
+        this.petimage = petimage;
         this.petname = petname;
         this.petbreed = petbreed;
         this.petweight = petweight;
@@ -29,12 +29,12 @@ public class Pet {
         this.intro = intro;
     }
 
-    public String getImageurl() {
-        return imageurl;
+    public String getPetimage() {
+        return petimage;
     }
 
-    public void setImageurl(String imageurl) {
-        this.imageurl = imageurl;
+    public void setPetimage(String petimage) {
+        this.petimage = petimage;
     }
 
     public String getPetname() {
