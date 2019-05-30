@@ -75,6 +75,9 @@ dependencies {
     // Edit Text
     implementation 'com.rengwuxian.materialedittext:library:2.1.4'
 
+    // lombok 사용
+    compileOnly 'org.projectlombok:lombok:1.18.8'
+    annotationProcessor 'org.projectlombok:lombok:1.18.8'
 
 }
 

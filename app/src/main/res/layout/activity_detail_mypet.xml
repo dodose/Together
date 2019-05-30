@@ -29,7 +29,7 @@
         android:layout_marginEnd="70sp"
         android:src="@drawable/ic_edit"
         app:layout_anchor="@id/frameLayout"
-        app:layout_anchorGravity="right|bottom"/>
+        app:layout_anchorGravity="right|bottom" />
 
 </android.support.design.widget.CoordinatorLayout>
 
