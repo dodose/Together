@@ -10,7 +10,9 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.together.Activities.LoginActivity;
 import com.example.together.R;
 
 import java.util.Calendar;
@@ -104,7 +106,7 @@ public class PetHotelActivity extends AppCompatActivity {
                 Last = mCheckout.getText().toString();
                 AddVal = Search.getText().toString();
 
-//                Toast.makeText(PetHotelActivity.this, First + Last + AddVal, Toast.LENGTH_SHORT).show();
+                Toast.makeText(PetHotelActivity.this, First + Last + AddVal, Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(PetHotelActivity.this, HotelListDataActivity.class);
                     intent.putExtra("First_day", First);
