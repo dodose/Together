@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--<color name="colorBar">f5f5f5</color>-->
-    <color name="colorPrimary">#455cde</color>
+    <color name="colorPrimary">#ABB5EC</color>
     <color name="colorPrimaryDark">#403d3d</color>
     <color name="colorAccent">#000000</color>
     <color name="btnBackground">#008CBA</color>
     <color name="button_black">#e7e7e7</color>
-    <color name="basicColorApp">#ffc549</color>
+    <color name="basicColorApp">#FFFFFF</color>
 </resources>

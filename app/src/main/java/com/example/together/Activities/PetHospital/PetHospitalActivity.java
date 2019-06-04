@@ -21,6 +21,13 @@ public class PetHospitalActivity extends AppCompatActivity implements OnMapReady
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_hospital);
 
+        //프래그먼트 객체 연결
+//        fragment = (MapFragment) getSupportFragmentManager().findFragmentById(R.id.fragmet1);
+
+
+
+
+
 
     }
 
