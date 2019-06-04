@@ -7,26 +7,26 @@
     tools:context="com.example.together.Activities.PetHospital.PetHospitalActivity">
 
 
-   <TextView
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:id="@+id/textView"
-       android:text="PetHotel MAP!"/>
+   <!--<TextView-->
+       <!--android:layout_width="wrap_content"-->
+       <!--android:layout_height="wrap_content"-->
+       <!--android:id="@+id/textView"-->
+       <!--android:text="PetHotel MAP!"/>-->
 
-    <fragment
-        android:id="@+id/fragmet1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:name="com.google.android.gms.maps.MapFragment"
-        android:layout_alignParentRight="true"
-        android:layout_alignParnetLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/textView"
-        >
+    <!--<fragment-->
+        <!--android:id="@+id/fragmet1"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:name="com.google.android.gms.maps.MapFragment"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_alignParnetLeft="true"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_below="@+id/textView"-->
+        <!--&gt;-->
 
-    </fragment>
+    <!--</fragment>-->
 
 
 </RelativeLayout>
