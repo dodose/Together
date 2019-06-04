@@ -48,11 +48,8 @@ public class HotelListDataActivity extends AppCompatActivity{
     private String strUrl;
     JSONObject jobj;
 
-
     Button daysBtn;
     TextView Addrserch;
-
-
 
     RecyclerView mRecycleView;
     RecyclerView.LayoutManager mLayoutManager;
