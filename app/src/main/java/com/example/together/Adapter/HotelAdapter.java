@@ -33,15 +33,15 @@ public class HotelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         void onClick(View view, int position);
     }
 
-    public HotelAdapter(ArrayList<Hotel> HotelArrayList){
+    public HotelAdapter(ArrayList<Hotel> HotelArrayList, Context context, String first_day, String last_day){
 
         this.HotelArrayList = HotelArrayList;
     }
 
-    public void setItemClick(ItemClick itemClick){
+        public void setItemClick(ItemClick itemClick){
         this.itemClick = itemClick;
 
-    }
+        }
 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{

@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:tag="layout/activity_hotel_home_0"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="59dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/BackBtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.4
+"
+            android:background="#00FFFFFF"
+            app:srcCompat="@drawable/ic_btn_back" />
+
+        <TextView
+            android:id="@+id/HotelNameView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:text="업체이름" />
+
+        <ImageButton
+            android:id="@+id/DetalBtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.4
+"
+            android:background="#00FFFFFF"
+            app:srcCompat="@drawable/ic_more" />
+
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include
+            android:id="@+id/top"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/layout_hotelimage_view"
+            />
+
+            <TextView
+                android:id="@+id/bigname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Text"
+                android:textSize="50dp"/>
+
+                        <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                            <ImageButton
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.5"
+                                android:backgroundTint="#00F3F3F3"
+                                android:src="@drawable/ic_saved_photos" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:gravity="center_vertical"
+                                android:text="4.4"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.4"
+                                android:text="후기"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="20dp"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5"
+                                android:text="후기갯수"
+                                android:gravity="center_vertical"/>
+
+                       </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <ImageButton
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.7"
+                                android:backgroundTint="#00F0EBEB"
+                                android:src="@drawable/ic_place">
+
+                            </ImageButton>
+                            <TextView
+                                android:id="@+id/detail_addr"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5"
+                                android:gravity="center_vertical"
+                                android:text="주소가 들어갈곳"/>
+
+                            <ImageButton
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.7"
+                                android:backgroundTint="#00F0EBEB"
+                                android:src="@drawable/ic_btn_call">
+
+                            </ImageButton>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5"
+                                android:gravity="center_vertical"
+                                android:text="전화하기"/>
+
+                        </LinearLayout>
+
+            <!-- 상품들이 들어올 recyclerView -->
+
+
+            <!--정보 및 서비스 소개란-->
+            <LinearLayout
+                android:paddingTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <View
+                    android:background="#bebebe"
+                    android:layout_width="match_parent"
+                    android:layout_height="5px"></View>
+
+
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:text="숙소 소개"
+                   android:textSize="20dp"
+                   android:padding="10dp"/>
+
+                <TextView
+                    android:id="@+id/info"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="여기에 업체 소개가 나올겁니다."
+                    android:textSize="13dp"
+                    android:paddingLeft="10dp"
+                    android:paddingBottom="20dp"/>
+
+                <View
+                    android:background="#bebebe"
+                    android:layout_width="match_parent"
+                    android:layout_height="5px"></View>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="이용 안내 및 주의 사항"
+                    android:textSize="20dp"
+                    android:padding="10dp"/>
+
+                <TextView
+                    android:id="@+id/intro"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="이곳에 업체 주의사항 및 안내"
+                    android:textSize="13dp"
+                    android:paddingLeft="10dp"
+                    android:paddingBottom="20dp"/>
+
+                <View
+                    android:background="#bebebe"
+                    android:layout_width="match_parent"
+                    android:layout_height="5px"></View>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="이용 안내 및 주의 사항"
+                    android:textSize="20dp"
+                    android:padding="10dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="이곳에 업체 주의사항 및 안내"
+                    android:textSize="13dp"
+                    android:paddingLeft="10dp"
+                    android:paddingBottom="20dp"/>
+
+                <View
+                    android:background="#bebebe"
+                    android:layout_width="match_parent"
+                    android:layout_height="5px"></View>
+
+
+            </LinearLayout>
+            <!--후기 란-->
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/product_recycle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.7">
+
+            </android.support.v7.widget.RecyclerView>
+
+
+                    <ListView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </ListView>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
+
