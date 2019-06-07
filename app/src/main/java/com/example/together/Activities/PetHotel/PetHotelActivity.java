@@ -109,9 +109,9 @@ public class PetHotelActivity extends AppCompatActivity {
                 Toast.makeText(PetHotelActivity.this, First + Last + AddVal, Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(PetHotelActivity.this, HotelListDataActivity.class);
-                    intent.putExtra("First_day", First);
-                    intent.putExtra("Last_day", Last);
-                    intent.putExtra("AddVal", AddVal);
+                intent.putExtra("First_day", First);
+                intent.putExtra("Last_day", Last);
+                intent.putExtra("AddVal", AddVal);
 
 
                 startActivity(intent);
