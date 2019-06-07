@@ -110,7 +110,6 @@ public class HotelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     intent.putExtra("first",first.substring(5));
                     intent.putExtra("last",last.substring(5));
 
-
                     v.getContext().startActivity(intent);
             }
 
