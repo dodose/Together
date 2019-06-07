@@ -70,7 +70,7 @@ public class HotelListDataActivity extends AppCompatActivity{
 
     @SuppressLint("StaticFieldLeak")
     @Override
-        protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hotel_list_data);
 
