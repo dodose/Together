@@ -38,10 +38,10 @@ public class HotelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         this.HotelArrayList = HotelArrayList;
     }
 
-        public void setItemClick(ItemClick itemClick){
+    public void setItemClick(ItemClick itemClick){
         this.itemClick = itemClick;
 
-        }
+    }
 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
