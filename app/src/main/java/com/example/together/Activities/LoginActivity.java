@@ -49,44 +49,44 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String str_email = email.getText().toString();
-                    String str_passowrd = password.getText().toString();
+            @Override
+            public void onClick(View v) {
+                String str_email = email.getText().toString();
+                String str_passowrd = password.getText().toString();
 
-                    if(TextUtils.isEmpty(str_email) || TextUtils.isEmpty(str_passowrd)){
-                            showMessage("이메일과 패스워드 모두 기입해주세요");
-                    }else{
-                        auth.signInWithEmailAndPassword(str_email, str_passowrd)
-                                .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<AuthResult> task) {
-                                        if(task.isSuccessful()){
-                                            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users")
-                                                    .child(auth.getCurrentUser().getUid());
+                if(TextUtils.isEmpty(str_email) || TextUtils.isEmpty(str_passowrd)){
+                    showMessage("이메일과 패스워드 모두 기입해주세요");
+                }else{
+                    auth.signInWithEmailAndPassword(str_email, str_passowrd)
+                            .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if(task.isSuccessful()){
+                                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users")
+                                                .child(auth.getCurrentUser().getUid());
 
-                                            reference.addValueEventListener(new ValueEventListener() {
-                                                @Override
-                                                public void onDataChange(DataSnapshot dataSnapshot) {
-                                                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                                    startActivity(intent);
-                                                    finish();
-                                                }
+                                        reference.addValueEventListener(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                startActivity(intent);
+                                                finish();
+                                            }
 
-                                                @Override
-                                                public void onCancelled(DatabaseError databaseError) {
+                                            @Override
+                                            public void onCancelled(DatabaseError databaseError) {
 
-                                                }
-                                            });
-                                        }else {
-                                            showMessage(task.getException().getMessage());
-                                        }
+                                            }
+                                        });
+                                    }else {
+                                        showMessage(task.getException().getMessage());
                                     }
-                                });
-                    }
+                                }
+                            });
                 }
-            });
+            }
+        });
 
 
 

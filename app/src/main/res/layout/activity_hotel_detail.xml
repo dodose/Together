@@ -141,6 +141,14 @@
 
                         </LinearLayout>
 
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/product_recycle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.7">
+
+            </android.support.v7.widget.RecyclerView>
+
             <!-- 상품들이 들어올 recyclerView -->
 
 
@@ -226,13 +234,7 @@
             <!--후기 란-->
 
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/product_recycle"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0.7">
 
-            </android.support.v7.widget.RecyclerView>
 
 
                     <ListView

@@ -59,6 +59,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
+
+
         final User user = mUsers.get(i);
 
         viewHolder.btn_follow.setVisibility(View.VISIBLE);
@@ -123,6 +125,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
         hashMap.put("ispost", false);
 
         reference.push().setValue(hashMap);
+
     }
 
 

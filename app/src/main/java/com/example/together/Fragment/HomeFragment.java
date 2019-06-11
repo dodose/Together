@@ -135,7 +135,7 @@ public class HomeFragment extends Fragment {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onCancelled (@NonNull DatabaseError databaseError) {
 
             }
         });
