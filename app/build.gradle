@@ -33,8 +33,7 @@ dependencies {
     //1장에서 설정한거 추가
 
 
-    //Add Libraries
-    annotationProcessor 'com.jakewharton:butterknife-conpiler:8.8.1'
+
 
     //1장에서 설정한거 추가
     implementation 'com.jakewharton:butterknife:8.8.1'

@@ -91,14 +91,10 @@ public class GoodbyeMemorialActivity extends AppCompatActivity {
                 // here when image clicked we need to open the gallery
                 // before we open the gallery we need to check if our app have the access to user files
                 // we did this before in register activity I'm just going to copy the code to save time ...
-
                 checkAndRequestForPermission();
-
 
             }
         });
-
-
 
     }
 
@@ -130,8 +126,6 @@ public class GoodbyeMemorialActivity extends AppCompatActivity {
 
 
 
-
-
     private void openGallery() {
         //TODO: open gallery intent and wait for user to pick an image !
 
@@ -158,7 +152,6 @@ public class GoodbyeMemorialActivity extends AppCompatActivity {
 
 
     }
-
 
 
 
