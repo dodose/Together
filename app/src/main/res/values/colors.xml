@@ -7,4 +7,6 @@
     <color name="btnBackground">#008CBA</color>
     <color name="button_black">#e7e7e7</color>
     <color name="basicColorApp">#FFFFFF</color>
+    <color name="colorButton">#373738</color>
+    <color name="colorBackground">#FDF9EE</color>
 </resources>
