@@ -2,6 +2,10 @@ package com.example.together.Activities.PetHotel;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.nfc.Tag;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +16,10 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.together.Activities.HomeActivity;
 import com.example.together.Activities.LoginActivity;
+import com.example.together.Fragment.HomeFragment;
+import com.example.together.Fragment.ProfileFragment;
 import com.example.together.R;
 
 import java.util.Calendar;
@@ -22,11 +29,14 @@ public class PetHotelActivity extends AppCompatActivity {
 
 
     int mYear, mMonth, mDay;
+
+    ImageButton imageButton;
+
     TextView mCheckin; //체크인 숫자 뷰
     TextView mCheckout; // 체크아웃 숫자 뷰
 
     EditText Search;
-    ImageButton AddressBtn;
+    ImageButton backTo;
 
     Button HotelSearchBtn;
 
@@ -40,12 +50,27 @@ public class PetHotelActivity extends AppCompatActivity {
 
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_hotel);
 
         //텍스트뷰 2개 연결
+
+        backTo = (ImageButton) findViewById(R.id.backTo);
+
+        backTo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent  = new Intent(PetHotelActivity.this, HomeActivity.class);
+                intent.putExtra("flag","flag");
+                startActivity(intent);
+
+            }
+        });
+
 
         mCheckin = (TextView) findViewById(R.id.Checkin);
 
@@ -81,6 +106,9 @@ public class PetHotelActivity extends AppCompatActivity {
             }
         });
 //        이곳까지는 달력 기능
+
+
+
 
 
 
@@ -135,6 +163,8 @@ public class PetHotelActivity extends AppCompatActivity {
 
 
     }
+
+
 
 
 

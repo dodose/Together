@@ -69,11 +69,10 @@ public class MemorialCommentAdapter extends RecyclerView.Adapter<MemorialComment
 
     private String timestampToString(long time) {
 
-        Calendar calendar = Calendar.getInstance(Locale.ENGLISH);
+        Calendar calendar = Calendar.getInstance(Locale.KOREA);
         calendar.setTimeInMillis(time);
         String date = DateFormat.format("hh:mm",calendar).toString();
         return date;
-
 
     }
 

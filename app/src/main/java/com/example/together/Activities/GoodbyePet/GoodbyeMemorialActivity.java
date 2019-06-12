@@ -9,15 +9,13 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
@@ -26,29 +24,43 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.together.Adapter.MemorialPostAdapter;
 import com.example.together.Model.MemorialPost;
+import com.example.together.Model.User;
 import com.example.together.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
+import java.util.List;
 
 public class GoodbyeMemorialActivity extends AppCompatActivity {
 
     private static final int PReqCode = 2 ;
     private static final int REQUESCODE = 2 ;
     FirebaseAuth mAuth;
-    FirebaseUser currentUser ;
+    FirebaseUser firebaseUser ;
     Dialog popAddPost ;
     ImageView popupUserImage,popupPostImage,popupAddBtn;
     TextView popupTitle,popupDescription;
     ProgressBar popupClickProgress;
     private Uri pickedImgUri = null;
+
+
+    RecyclerView postRecyclerView ;
+    com.example.together.Adapter.MemorialPostAdapter MemorialPostAdapter ;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference ;
+    List<MemorialPost> memorialPostList;
 
 
     @Override
@@ -61,7 +73,7 @@ public class GoodbyeMemorialActivity extends AppCompatActivity {
         // ini
 
         mAuth = FirebaseAuth.getInstance();
-        currentUser = mAuth.getCurrentUser();
+        firebaseUser = mAuth.getCurrentUser();
 
         // ini popup
         iniPopup();
@@ -88,9 +100,6 @@ public class GoodbyeMemorialActivity extends AppCompatActivity {
         popupPostImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // here when image clicked we need to open the gallery
-                // before we open the gallery we need to check if our app have the access to user files
-                // we did this before in register activity I'm just going to copy the code to save time ...
                 checkAndRequestForPermission();
 
             }
@@ -135,7 +144,6 @@ public class GoodbyeMemorialActivity extends AppCompatActivity {
     }
 
 
-
     // when user picked an image ...
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -150,12 +158,12 @@ public class GoodbyeMemorialActivity extends AppCompatActivity {
 
         }
 
-
     }
 
 
-
     private void iniPopup() {
+
+
 
         popAddPost = new Dialog(this);
         popAddPost.setContentView(R.layout.popup_add_post);
@@ -173,7 +181,23 @@ public class GoodbyeMemorialActivity extends AppCompatActivity {
 
         // load Current user profile photo
 
-        Glide.with(GoodbyeMemorialActivity.this).load(currentUser.getPhotoUrl()).into(popupUserImage);
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
+        reference.addValueEventListener(new ValueEventListener() {
+
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue(User.class);
+                Glide.with(getApplicationContext()).load(user.getImageurl()).into(popupUserImage);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
 
 
         // Add post click Listener
@@ -191,11 +215,8 @@ public class GoodbyeMemorialActivity extends AppCompatActivity {
                         && !popupDescription.getText().toString().isEmpty()
                         && pickedImgUri != null ) {
 
-                    //everything is okey no empty or null value
-                    // TODO Create Post Object and add it to firebase database
-                    // first we need to upload post Image
-                    // access firebase storage
-                    StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("blog_images");
+
+                    StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("memorial_images");
                     final StorageReference imageFilePath = storageReference.child(pickedImgUri.getLastPathSegment());
                     imageFilePath.putFile(pickedImgUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -209,10 +230,9 @@ public class GoodbyeMemorialActivity extends AppCompatActivity {
                                     MemorialPost memorialPost = new MemorialPost(popupTitle.getText().toString(),
                                             popupDescription.getText().toString(),
                                             imageDownlaodLink,
-                                            currentUser.getUid(),
-                                            currentUser.getPhotoUrl().toString());
+                                            firebaseUser.getUid(),
+                                            firebaseUser.getPhotoUrl().toString());
 
-                                    // Add post to firebase database
 
                                     addPost(memorialPost);
 
@@ -229,20 +249,12 @@ public class GoodbyeMemorialActivity extends AppCompatActivity {
                                     popupAddBtn.setVisibility(View.VISIBLE);
 
 
-
                                 }
                             });
 
 
                         }
                     });
-
-
-
-
-
-
-
 
                 }
                 else {
@@ -258,13 +270,12 @@ public class GoodbyeMemorialActivity extends AppCompatActivity {
         });
 
 
-
     }
 
     private void addPost(MemorialPost memorialPost) {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Posts").push();
+        DatabaseReference myRef = database.getReference("Memorial").push();
 
         // get post unique ID and upadte post key
         String key = myRef.getKey();
@@ -282,10 +293,6 @@ public class GoodbyeMemorialActivity extends AppCompatActivity {
                 popAddPost.dismiss();
             }
         });
-
-
-
-
 
     }
 
