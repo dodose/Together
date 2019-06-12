@@ -6,15 +6,22 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 import com.example.together.Activities.PetHotel.HotelDetailActivity;
+import com.example.together.Activities.PetHotel.ProductOrderActivity;
 import com.example.together.Model.Hotel;
 import com.example.together.Model.Product;
 import com.example.together.R;
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 
@@ -24,11 +31,20 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     Context mContext;
     private ArrayList<Product> productList;
+    String intent_first;
+    String intent_last;
+    String intent_phnumber;
+    String intent_addr;
 
 
-    public ProductAdapter(ArrayList<Product> productList, Context c ){
+    public ProductAdapter(ArrayList<Product> productList, Context c, String pre_first, String pre_last, String detail_addr, String phNumber){
         this.mContext = c;
         this.productList = productList;
+        this.intent_first = pre_first;
+        this.intent_last = pre_last;
+        this.intent_addr = detail_addr;
+        this.intent_phnumber = phNumber;
+
 
 
     }
@@ -69,34 +85,43 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         final MyViewHolder myViewHolder = (MyViewHolder) viewHolder;
         final int Position = position;
 
-        myViewHolder.proimage.setImageResource(productList.get(position).productimage);
+        Log.e("result",productList.get(position).productimage);
+
+        Picasso.get().load(productList.get(position).productimage).into(myViewHolder.proimage);
         myViewHolder.pro_name.setText(productList.get(position).productname);
         myViewHolder.pro_cont.setText(productList.get(position).productcont);
-        myViewHolder.pro_price.setText(productList.get(position).productprice);
+        myViewHolder.pro_price.setText(productList.get(position).productprice + "원");
 
 
 
-//        myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                Toast.makeText(v.getContext(),myViewHolder.text1.getText(), Toast.LENGTH_SHORT).show();
-////                Toast.makeText(v.getContext(),myViewHolder.etp_name.getText(), Toast.LENGTH_SHORT).show();
-//                String addr = (String) myViewHolder.text1.getText();
-//                String na = (String) myViewHolder.etp_name.getText();
-//
-//
-//
-//                Intent intent = new Intent(v.getContext(), HotelDetailActivity.class);
-//                intent.putExtra("addr",addr);
-//                intent.putExtra("name",na);
-//                intent.putExtra("first",first.substring(5));
-//                intent.putExtra("last",last.substring(5));
-//
-//
-//                v.getContext().startActivity(intent);
-//            }
-//
-//        });
+        myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Toast.makeText(v.getContext(),myViewHolder.text1.getText(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(v.getContext(),myViewHolder.etp_name.getText(), Toast.LENGTH_SHORT).show();
+                String proname = (String) myViewHolder.pro_name.getText();
+                String proprise = (String) myViewHolder.pro_price.getText();
+                String procont = (String) myViewHolder.pro_cont.getText();
+
+
+
+                Intent intent = new Intent(v.getContext(), ProductOrderActivity.class);
+                intent.putExtra("proname", proname);
+                intent.putExtra("proprise",proprise);
+                intent.putExtra("procont", procont);
+                intent.putExtra("first", intent_first);
+                intent.putExtra("last", intent_last);
+                intent.putExtra("ph", intent_phnumber);
+                intent.putExtra("addr", intent_addr);
+
+
+
+
+
+                v.getContext().startActivity(intent);
+            }
+
+        });
 
 
     }

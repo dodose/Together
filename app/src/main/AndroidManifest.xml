@@ -10,6 +10,9 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <meta-data
         android:name="com.google.android.geo.API_KEY"
@@ -23,7 +26,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
+        <activity android:name=".Activities.PetHotel.reViewActivity"></activity>
+        <activity android:name=".Activities.PetHotel.ProductOrderActivity" />
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -38,10 +42,9 @@
         <activity android:name=".Activities.PetHospital.PetHospitalActivity" />
         <activity android:name=".Activities.PetGroup.PetGroupActivity" />
         <activity android:name=".Activities.Petching.PetchingActivity" />
-        <activity android:name=".Activities.PetHotel.PetHotelActivity">
-        </activity>
-        <activity android:name=".Activities.PetHotel.HotelListDataActivity"></activity>
-        <activity android:name=".Activities.PetHotel.HotelDetailActivity"></activity>
+        <activity android:name=".Activities.PetHotel.PetHotelActivity"></activity>
+        <activity android:name=".Activities.PetHotel.HotelListDataActivity" />
+        <activity android:name=".Activities.PetHotel.HotelDetailActivity" />
         <activity android:name=".Activities.Chat.MessageActivity" />
         <activity android:name=".Activities.Chat.ChatsActivity" />
         <activity android:name=".Activities.OptionActivity" />
@@ -58,7 +61,6 @@
         <activity android:name=".Activities.RegisterActivity" />
         <activity android:name=".Activities.PostActivity" />
         <activity android:name=".Activities.HomeActivity" />
-
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />

@@ -2,16 +2,27 @@ package com.example.together.Activities.PetHotel;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.together.Adapter.ProductAdapter;
+import com.example.together.Adapter.ReviewAdapter;
 import com.example.together.Model.Product;
+import com.example.together.Model.Review;
 import com.example.together.R;
 
 import org.json.JSONArray;
@@ -40,6 +51,8 @@ public class HotelDetailActivity extends AppCompatActivity {
     String pre_first;
     String pre_last;
 
+    //툴바선언
+    Toolbar myToolbar;
 
     //서블릿 통신을위한 변수 선언
     JSONObject jobj;
@@ -58,12 +71,34 @@ public class HotelDetailActivity extends AppCompatActivity {
     String name;
     String price;
     String cont;
+    String img_path;
+
+    //전화 버튼
+    ImageButton ph_Btn;
 
     //view에잇는 Textview선언
 
     TextView info;
     TextView intro;
+    TextView phNumber;
 
+    //test
+    String test1;
+    String test2;
+
+    //리뷰 변수
+    String user_id;
+    String reviewcontent;
+    String star;
+    String cont_dt;
+
+
+    //리뷰 리스트를위한 선언
+    private ListView reviewListView;
+
+    //최상단 스크롤 이벤트를 위한 변수 선언언
+    Button button;
+    ScrollView scrollView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +110,10 @@ public class HotelDetailActivity extends AppCompatActivity {
         detail_addr = findViewById(R.id.detail_addr);
         info = findViewById(R.id.info);
         intro = findViewById(R.id.intro);
+        phNumber = findViewById(R.id.ph_number);
+        ph_Btn = findViewById(R.id.ph_numberBtn);
+
+        reviewListView = findViewById(R.id.reviewListveiw);
 
         Bundle Ex = getIntent().getExtras();
 
@@ -93,6 +132,16 @@ public class HotelDetailActivity extends AppCompatActivity {
 
 
 
+        //툴바 선언
+        myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+
+
+        //액션바 왼쪽에 버튼
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_btn_back);
+        getSupportActionBar().setTitle("");
+
 
 
         //recyclerview 선언
@@ -101,6 +150,20 @@ public class HotelDetailActivity extends AppCompatActivity {
         mRecycleView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecycleView.setLayoutManager(mLayoutManager);
+
+
+        //
+        scrollView = (ScrollView) findViewById(R.id.scrollView);
+        button = (Button) findViewById(R.id.scollBtn);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                scrollView.fullScroll(ScrollView.FOCUS_UP);
+                scrollView.scrollTo(0,1000);
+
+            }
+        });
 
 
         //서블릿 통신
@@ -176,6 +239,7 @@ public class HotelDetailActivity extends AppCompatActivity {
                 super.onPostExecute(aVoid);
 
                 ArrayList<Product> Productlist = new ArrayList<>(); // 리사이클 뷰안에 넣기위한 Vo 배열
+                ArrayList<Review> reviewlist = new ArrayList<>(); // 리뷰 내용 넣기
                 try {
 
                     JSONObject jsonObject = (JSONObject) jobj.get("result");
@@ -183,6 +247,8 @@ public class HotelDetailActivity extends AppCompatActivity {
                     JSONArray productArray = (JSONArray) jsonObject.get("product"); //상품 배열 캐스트
 
                     JSONObject infoObj = (JSONObject) jsonObject.get("info"); // 정보 배열 캐스트
+
+                    JSONArray reviewArray = (JSONArray) jsonObject.get("review"); //리뷰 배열 캐스트
 
 //                    Log.e("array", String.valueOf(productArray.length()));
 //                    Log.e("array2", String.valueOf(productArray));
@@ -195,20 +261,27 @@ public class HotelDetailActivity extends AppCompatActivity {
                         price = product.optString("pd_price");
                         name = product.optString("pd_nm");
                         cont = product.optString("pd_content");
+                        img_path = product.optString("pd_img_src");
 
+                        Productlist.add(new Product(img_path,name,price,cont));
 
-
-                        Productlist.add(new Product(R.drawable.hotel, name,price,cont));
-
-//
                     }
-                    System.out.println(Productlist);
-//
-//                    //넣은 리스트를 리사이클 뷰를 통해 실행;
-                    ProductAdapter myAdapter = new ProductAdapter(Productlist,context);
 
-                    mRecycleView.setAdapter(myAdapter);
 
+                    for(int i=0; i<reviewArray.length(); i++){
+                        JSONObject review= reviewArray.getJSONObject(i);
+
+                        user_id = review.optString("user_id");
+                        reviewcontent = review.optString("rb_contents");
+                        star = review.optString("rb_avg");
+                        cont_dt = review.optString("rb_dt");
+
+                        reviewlist.add(new Review(user_id,reviewcontent,star,cont_dt));
+//                        Log.e("db result",user_id);
+
+                    }
+
+                    //db에서 가져온 업체정보 꺼내오는곳
                     infoObj.optString("etp_ph_no");
                     infoObj.optString("etp_license");
                     infoObj.optString("etp_email");
@@ -217,6 +290,24 @@ public class HotelDetailActivity extends AppCompatActivity {
 
                     info.setText(infoObj.optString("etp_info"));
                     intro.setText(infoObj.optString("etp_intro"));
+                    phNumber.setText(infoObj.optString("etp_ph_no"));
+
+                    test1 = (String) detail_addr.getText();
+                    test2 = (String) phNumber.getText();
+//
+//                  //상품을 넣은 리스트를 리사이클 뷰를 통해 실행;
+                    ProductAdapter myAdapter = new ProductAdapter(Productlist,context,pre_first,pre_last,test1,test2);
+
+                    mRecycleView.setAdapter(myAdapter);
+
+
+//                    Log.e("총몇개가 넘어가냐?", String.valueOf(reviewlist));
+                    //리뷰리스트
+
+                    ReviewAdapter reAdapter = new ReviewAdapter(reviewlist,context);
+
+                    reviewListView.setAdapter(reAdapter);
+
 
 
                 } catch (JSONException e) {
@@ -227,9 +318,45 @@ public class HotelDetailActivity extends AppCompatActivity {
         }.execute();
 
 
-
-
+        //전화걸기 버튼
+        phNumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:"+phNumber.getText()));
+                //Intent intent = new Intent(Intent.ACTION_CALL,Uri.parse("tel:12345"));
+                startActivity(intent);
+            }
+        });
 
 
     }
+
+
+    //액션바 등록
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.hotel_menu, menu) ;
+
+        return true ;
+    }
+
+
+    //액션바 클릭 이벤트
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                //                ((TextView)findViewById(R.id.textView)).setText("SEARCH") ;
+                return true;
+            case R.id.settings:
+                //                ((TextView)findViewById(R.id.textView)).setText("ACCOUNT") ;
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
 }

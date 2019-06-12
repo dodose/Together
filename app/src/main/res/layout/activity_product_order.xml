@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/mdtp_white"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_gravity="center"
+            android:id="@+id/toolbar_title"
+            android:textSize="20sp"
+            />
+
+
+    </android.support.v7.widget.Toolbar>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/proName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="상품이름"
+                    android:padding="10dp"
+                    android:textSize="30dp"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/etp_addrBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.8"
+                        android:backgroundTint="#00FCFCFC"
+                        android:src="@drawable/ic_place"
+                        />
+
+                    <TextView
+                        android:id="@+id/etp_addr"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:gravity="center_vertical"
+                        android:text="주소" />
+
+
+                    <ImageButton
+                        android:id="@+id/etp_phBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.8"
+                        android:backgroundTint="#00FCFCFC"
+                        android:src="@drawable/ic_btn_call" />
+
+                    <TextView
+                        android:id="@+id/etp_ph"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:gravity="center_vertical"
+                        android:text="전화번호" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/productimage"
+                    android:layout_width="match_parent"
+                    android:layout_height="235dp"
+                    android:layout_weight="1.3"
+                    android:src="#fefc" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:gravity="center"
+                            android:layout_weight="0.5"
+                            android:text="체크인" />
+
+                        <View
+                            android:layout_width="5px"
+                            android:layout_height="match_parent"
+                            android:background="#bebebe"
+                            ></View>
+
+                        <TextView
+                            android:id="@+id/textVi"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:layout_weight="0.5"
+                            android:text="체크아웃" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/first_day"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:gravity="center"
+                            android:layout_weight="0.5"
+                            android:text="날짜 폼이 들어갈 예정" />
+
+                        <View
+                            android:layout_width="5px"
+                            android:layout_height="match_parent"
+                            android:background="#bebebe"
+                            ></View>
+
+                        <TextView
+                            android:id="@+id/last_day"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:layout_weight="0.5"
+                            android:text="날짜 폼이 들어갈 에정~"
+                            />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="5px"
+                        android:background="#bebebe"
+                        ></View>
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="10dp"
+                        android:textSize="20dp"
+                        android:text="상품 내용" />
+
+                    <TextView
+                        android:id="@+id/procontent"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="내용이들어감요"
+                        android:paddingLeft="10dp"
+                        android:paddingBottom="20dp"/>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="5px"
+                        android:background="#bebebe"
+                        ></View>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="상품 가격"
+                        android:padding="10dp"
+                        android:textSize="20dp"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.4"
+                        android:paddingTop="20dp"
+                        android:padding="10dp"
+                        android:textSize="20dp"
+                        android:text="1박"/>
+
+                      <TextView
+                          android:id="@+id/proprice"
+                          android:layout_width="match_parent"
+                          android:layout_height="match_parent"
+                          android:layout_weight="0.7"
+                          android:gravity="center"
+                          android:text="10000"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </ScrollView>
+
+        <Button
+            android:id="@+id/orderbtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.9"
+            android:text="예약하기" />
+    </LinearLayout>
+
+</LinearLayout>

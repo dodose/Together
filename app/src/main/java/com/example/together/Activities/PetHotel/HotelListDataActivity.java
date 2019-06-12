@@ -12,6 +12,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -54,7 +56,6 @@ public class HotelListDataActivity extends AppCompatActivity{
 
     Button daysBtn;
     TextView Addrserch;
-
 
 
     RecyclerView mRecycleView;
