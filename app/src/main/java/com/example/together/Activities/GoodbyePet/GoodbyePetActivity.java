@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-import com.example.together.Activities.Map.MapActivity;
 import com.example.together.Activities.Map.MapsActivity;
 import com.example.together.R;
 

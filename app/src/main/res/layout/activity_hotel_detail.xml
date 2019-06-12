@@ -34,7 +34,7 @@
     </android.support.v7.widget.Toolbar>
 
 
-    <android.support.v4.widget.NestedScrollView
+    <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -244,6 +244,7 @@
                     android:layout_height="match_parent"
                     tools:srcCompat="@drawable/ic_saved_photos" />
 
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -264,7 +265,7 @@
 
         </LinearLayout>
 
-    </android.support.v4.widget.NestedScrollView>
+    </ScrollView>
 
 
 

@@ -94,6 +94,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+
                                 android:layout_gravity="center"
                                 android:textColor="@color/colorPrimaryDark"
                                 android:textSize="18sp"
@@ -136,18 +137,18 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/following"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/following"
-                            android:textColor="@color/colorPrimaryDark"
                             android:layout_gravity="center"
+                            android:textColor="@color/colorPrimaryDark"
                             android:textSize="18sp"
-                            android:textStyle="bold"/>
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="팔로잉"/>
+                            android:text="팔로잉" />
 
                     </LinearLayout>
 
