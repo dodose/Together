@@ -25,6 +25,16 @@
                 android:layout_height="wrap_content">
 
 
+                //뒤로가기 버튼
+                <ImageButton
+                    android:id="@+id/my_petlist_btn"
+                    android:layout_width="43dp"
+                    android:layout_height="48dp"
+                    android:adjustViewBounds="true"
+                    android:padding="0sp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_btn_back" />
+
                 <TextView
                     android:layout_centerVertical="true"
                     android:layout_width="wrap_content"

@@ -12,7 +12,10 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.together.Activities.HomeActivity;
 import com.example.together.Activities.LoginActivity;
+import com.example.together.Activities.MyPetInfo.MyPetListActivity;
+import com.example.together.Fragment.ProfileFragment;
 import com.example.together.R;
 
 import java.util.Calendar;
@@ -24,6 +27,8 @@ public class PetHotelActivity extends AppCompatActivity {
     int mYear, mMonth, mDay;
     TextView mCheckin; //체크인 숫자 뷰
     TextView mCheckout; // 체크아웃 숫자 뷰
+    ImageButton activity_pet_hotel_backbtn;  //activity_pet_hotel ImageButton id값
+
 
     EditText Search;
     ImageButton AddressBtn;
@@ -50,6 +55,10 @@ public class PetHotelActivity extends AppCompatActivity {
         mCheckin = (TextView) findViewById(R.id.Checkin);
 
         mCheckout = (TextView) findViewById(R.id.Checkout);
+
+        activity_pet_hotel_backbtn = findViewById(R.id.activity_pet_hotel_backbtn);  //xml에서 ImageButton값 찾음
+
+
 
 
         //현재 날짜와 시간을 가져오기위한 Calendar 인스턴스 선언
@@ -132,9 +141,20 @@ public class PetHotelActivity extends AppCompatActivity {
 //        });
 
 
+        activity_pet_hotel_backbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PetHotelActivity.this, HomeActivity.class);
+                //fragment 뒤로가기 넘기는법
+                intent.putExtra("CHECK", 1);
+                startActivity(intent);
+
+            }
+        });
 
 
-    }
+
+    }   //end of onCreate
 
 
 

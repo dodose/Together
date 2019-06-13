@@ -26,13 +26,20 @@
             app:title="@string/hotel_home_title"
             app:toolbarId="@+id/toolbar">
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                style="@style/GlobalToolbarStyle"
-                android:layout_width="match_parent"
-                android:layout_height="44dp"
-                app:layout_collapseMode="pin"
-                app:navigationIcon="@drawable/ic_btn_back" />
+            <!--<android.support.v7.widget.Toolbar--> ImageButton으로 바꿈
+                <!--android:id="@+id/toolbar"-->
+                <!--style="@style/GlobalToolbarStyle"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="44dp"-->
+                <!--app:layout_collapseMode="pin"-->
+                <!--app:navigationIcon="@drawable/ic_btn_back" />-->
+
+            <ImageButton
+                android:id="@+id/activity_pet_hotel_backbtn"
+                android:layout_width="78dp"
+                android:layout_height="match_parent"
+                android:background="#00FFFFFF"
+                app:srcCompat="@drawable/ic_btn_back" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
