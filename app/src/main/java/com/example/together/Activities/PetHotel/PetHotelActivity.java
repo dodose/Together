@@ -2,6 +2,10 @@ package com.example.together.Activities.PetHotel;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.nfc.Tag;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,7 +18,7 @@ import android.widget.Toast;
 
 import com.example.together.Activities.HomeActivity;
 import com.example.together.Activities.LoginActivity;
-import com.example.together.Activities.MyPetInfo.MyPetListActivity;
+import com.example.together.Fragment.HomeFragment;
 import com.example.together.Fragment.ProfileFragment;
 import com.example.together.R;
 
@@ -25,13 +29,14 @@ public class PetHotelActivity extends AppCompatActivity {
 
 
     int mYear, mMonth, mDay;
+
+    ImageButton imageButton;
+
     TextView mCheckin; //체크인 숫자 뷰
     TextView mCheckout; // 체크아웃 숫자 뷰
-    ImageButton activity_pet_hotel_backbtn;  //activity_pet_hotel ImageButton id값
-
 
     EditText Search;
-    ImageButton AddressBtn;
+    ImageButton backTo;
 
     Button HotelSearchBtn;
 
@@ -45,6 +50,8 @@ public class PetHotelActivity extends AppCompatActivity {
 
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,13 +59,22 @@ public class PetHotelActivity extends AppCompatActivity {
 
         //텍스트뷰 2개 연결
 
+        backTo = (ImageButton) findViewById(R.id.backTo);
+
+        backTo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent  = new Intent(PetHotelActivity.this, HomeActivity.class);
+                intent.putExtra("flag","flag");
+                startActivity(intent);
+
+            }
+        });
+
+
         mCheckin = (TextView) findViewById(R.id.Checkin);
 
         mCheckout = (TextView) findViewById(R.id.Checkout);
-
-        activity_pet_hotel_backbtn = findViewById(R.id.activity_pet_hotel_backbtn);  //xml에서 ImageButton값 찾음
-
-
 
 
         //현재 날짜와 시간을 가져오기위한 Calendar 인스턴스 선언
@@ -90,6 +106,9 @@ public class PetHotelActivity extends AppCompatActivity {
             }
         });
 //        이곳까지는 달력 기능
+
+
+
 
 
 
@@ -141,20 +160,11 @@ public class PetHotelActivity extends AppCompatActivity {
 //        });
 
 
-        activity_pet_hotel_backbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(PetHotelActivity.this, HomeActivity.class);
-                //fragment 뒤로가기 넘기는법
-                intent.putExtra("CHECK", 1);
-                startActivity(intent);
-
-            }
-        });
 
 
+    }
 
-    }   //end of onCreate
+
 
 
 

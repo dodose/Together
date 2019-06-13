@@ -15,7 +15,6 @@ public class PetHospitalActivity extends AppCompatActivity implements OnMapReady
     MapFragment fragment;
     GoogleMap map;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,10 +28,14 @@ public class PetHospitalActivity extends AppCompatActivity implements OnMapReady
 
 
 
+
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
     }
+
+
+
 }

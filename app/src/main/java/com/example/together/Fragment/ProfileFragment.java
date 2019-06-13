@@ -67,6 +67,7 @@ public class ProfileFragment extends Fragment {
     ImageButton my_photos, saved_photos, mydogs_info;
 
 
+
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

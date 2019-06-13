@@ -9,9 +9,9 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- 대략적인 위치 참조 권한 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 정확한 위치 참조 권한 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.SEND_SMS"/>
-    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:allowBackup="false"
@@ -21,9 +21,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.PetHotel.reViewActivity"></activity>
+        <activity android:name=".Activities.GoodbyePet.GoodbyepetReservationResultActivity"></activity>
+        <activity android:name=".Activities.GoodbyePet.GoodbyePetStoreListActivity" />
+        <activity android:name=".Activities.GoodbyePet.GoodbyePetTimeDateSelectActivity" />
+        <activity android:name=".Activities.GoodbyePet.GoodbyepetMenuSelectActivity"></activity>
+        <activity android:name=".Activities.GoodbyePet.GoodbyeHowActivity" />
+        <activity android:name=".Activities.GoodbyePet.GoodbyeRainbowActivity" />
+        <activity android:name=".Activities.GoodbyePet.GoodbyeSelectActivity" />
+        <activity android:name=".Activities.PetHotel.reViewActivity" />
         <activity android:name=".Activities.PetHotel.ProductOrderActivity" />
-        <activity android:name=".Activities.GoodbyePet.GoodbyeMemorialActivity"></activity>
+        <activity android:name=".Activities.GoodbyePet.GoodbyeMemorialActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -45,7 +52,7 @@
         <activity android:name=".Activities.PetHospital.PetHospitalActivity" />
         <activity android:name=".Activities.PetGroup.PetGroupActivity" />
         <activity android:name=".Activities.Petching.PetchingActivity" />
-        <activity android:name=".Activities.PetHotel.PetHotelActivity"></activity>
+        <activity android:name=".Activities.PetHotel.PetHotelActivity" />
         <activity android:name=".Activities.PetHotel.HotelListDataActivity" />
         <activity android:name=".Activities.PetHotel.HotelDetailActivity" />
         <activity android:name=".Activities.Chat.MessageActivity" />
@@ -57,7 +64,6 @@
         <activity android:name=".Activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
