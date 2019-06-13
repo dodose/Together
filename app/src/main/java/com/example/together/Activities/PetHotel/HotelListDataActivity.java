@@ -17,12 +17,15 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.together.Activities.MyPetInfo.MyPetListActivity;
 import com.example.together.Adapter.HotelAdapter;
+import com.example.together.Fragment.ProfileFragment;
 import com.example.together.Model.Hotel;
 import com.example.together.R;
 
@@ -73,12 +76,30 @@ public class HotelListDataActivity extends AppCompatActivity{
     String etp_lat; //위도
     String etp_lnt; // 경도
 
+    ImageButton activity_hotel_list_databackbtn;  //acitivity_hotel_list_databackbtn 버튼
+
 
     @SuppressLint("StaticFieldLeak")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hotel_list_data);
+
+
+        activity_hotel_list_databackbtn = findViewById(R.id.activity_hotel_list_databackbtn);  //뒤로 가기 버튼
+
+
+        //뒤로가기ㅣ 테스트로 만들었음
+        activity_hotel_list_databackbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HotelListDataActivity.this, PetHotelActivity.class);
+                startActivity(intent);
+
+            }
+        });
+        //뒤로가기ㅣ 테스트로 만들었음-ㅇㅋ
+
 
 
         //recyclerview 선언
