@@ -25,7 +25,7 @@ public class GoodbyeSelectActivity extends AppCompatActivity {
         goto_rainbow_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(GoodbyeSelectActivity.this, GoodbyeRainbowActivity.class );
+                Intent intent = new Intent(GoodbyeSelectActivity.this, GoodbyePetTimeDateSelectActivity.class );
                 startActivity(intent);
             }
         });
