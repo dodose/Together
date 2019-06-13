@@ -15,8 +15,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.together.Activities.GoodbyePet.GoodbyeMemorialActivity;
-import com.example.together.Activities.GoodbyePet.GoodbyePetActivity;
+import com.example.together.Activities.GoodbyePet.GoodbyeSelectActivity;
 import com.example.together.Activities.PetGroup.PetGroupActivity;
 import com.example.together.Activities.PetHotel.PetHotelActivity;
 import com.example.together.Activities.Petching.PetchingActivity;
@@ -125,7 +124,7 @@ public class SearchFragment extends Fragment {
         goodbyePet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), GoodbyeMemorialActivity.class));
+                startActivity(new Intent(getActivity(), GoodbyeSelectActivity.class));
 
             }
         });
