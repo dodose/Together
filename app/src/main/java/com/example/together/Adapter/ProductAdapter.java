@@ -87,7 +87,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         Log.e("result",productList.get(position).productimage);
 
-        Picasso.get().load(productList.get(position).productimage).into(myViewHolder.proimage);
+        Picasso.get().load(productList.get(position).productimage).fit().into(myViewHolder.proimage);
         myViewHolder.pro_name.setText(productList.get(position).productname);
         myViewHolder.pro_cont.setText(productList.get(position).productcont);
         myViewHolder.pro_price.setText(productList.get(position).productprice + "원");
@@ -99,6 +99,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             public void onClick(View v) {
 //                Toast.makeText(v.getContext(),myViewHolder.text1.getText(), Toast.LENGTH_SHORT).show();
 //                Toast.makeText(v.getContext(),myViewHolder.etp_name.getText(), Toast.LENGTH_SHORT).show();
+                String img = productList.get(Position).productimage.toString();
                 String proname = (String) myViewHolder.pro_name.getText();
                 String proprise = (String) myViewHolder.pro_price.getText();
                 String procont = (String) myViewHolder.pro_cont.getText();
@@ -106,6 +107,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 
                 Intent intent = new Intent(v.getContext(), ProductOrderActivity.class);
+                intent.putExtra("img",img);
                 intent.putExtra("proname", proname);
                 intent.putExtra("proprise",proprise);
                 intent.putExtra("procont", procont);

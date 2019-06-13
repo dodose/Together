@@ -51,6 +51,11 @@
                 layout="@layout/layout_hotelimage_view"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content" />
+            <!--<ImageView-->
+                <!--android:id="@+id/top"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="270dp" />-->
+
 
             <TextView
                 android:id="@+id/bigname"
@@ -72,6 +77,7 @@
                     android:src="@drawable/ic_saved_photos" />
 
                 <TextView
+                    android:id="@+id/starcount"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1.5"
@@ -87,6 +93,7 @@
                     android:text="후기" />
 
                 <TextView
+                    android:id="@+id/reviewcount"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"
@@ -217,19 +224,19 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.4"
                     android:padding="15dp"
                     android:text="후기"
                     android:textSize="20dp" />
 
                 <Button
+                    android:id="@+id/total_review_show"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.5"
-                    android:background="@drawable/background_left"
-                    android:backgroundTint="@color/basicColorApp"
+                    android:layout_weight="0.6"
+                    android:background="@android:drawable/screen_background_light_transparent"
                     android:gravity="center"
-                    android:paddingRight="20dp"
+                    android:paddingLeft="50dp"
                     android:text="전체 후기 보기 > " />
 
             </LinearLayout>
@@ -239,13 +246,9 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    tools:srcCompat="@drawable/ic_saved_photos" />
-
 
                 <TextView
+                    android:id="@+id/starcount2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -262,6 +265,76 @@
                 android:layout_height="match_parent">
 
             </ListView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5px"
+                    android:background="#bebebe"></View>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="업체정보 및 공지사항"
+                    android:padding="15dp"
+                    android:textSize="20dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="15dp"
+                        android:padding="15dp"
+                        android:layout_weight="0.7"
+                        android:text="사업자명"/>
+
+                    <TextView
+                        android:id="@+id/etp_user_nm"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="사업자 이름이 들어갈곳"
+                        android:gravity="center"
+                        android:paddingRight="40dp"
+                        android:layout_weight="0.3"
+                        android:textSize="15dp"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:text="▶  상품 이미지는 종류에 따라 제공되는 이미지로 실제 공간과 다를수 있습니다."/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:text="▶  상단 상품 및 가격은 업소에서 제공한 정보를 기준으로 작성되었으며 변동될수 있습니다."/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:text="▶  Together에서는 상품거래에대한 판매 중개자이며 판매원당사자가 아닙니다. 따라서 상품*거래정보 및 거래에 대하여 책임지지 않습니다."/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:text="▶  Together 고객센터 : 010-5505-9374"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 

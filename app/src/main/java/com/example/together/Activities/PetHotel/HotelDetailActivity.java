@@ -2,8 +2,11 @@ package com.example.together.Activities.PetHotel;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -24,6 +28,7 @@ import com.example.together.Adapter.ReviewAdapter;
 import com.example.together.Model.Product;
 import com.example.together.Model.Review;
 import com.example.together.R;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,6 +44,10 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static java.lang.Double.isNaN;
 
 public class HotelDetailActivity extends AppCompatActivity {
 
@@ -50,6 +59,10 @@ public class HotelDetailActivity extends AppCompatActivity {
     String pre_name;
     String pre_first;
     String pre_last;
+    String image;
+
+    //리뷰내용을 넘기기위해 선언
+    ArrayList<Review> reviewlist;
 
     //툴바선언
     Toolbar myToolbar;
@@ -77,10 +90,12 @@ public class HotelDetailActivity extends AppCompatActivity {
     ImageButton ph_Btn;
 
     //view에잇는 Textview선언
-
     TextView info;
     TextView intro;
     TextView phNumber;
+    TextView etpusernm;
+    ImageView etp_image;
+
 
     //test
     String test1;
@@ -89,9 +104,27 @@ public class HotelDetailActivity extends AppCompatActivity {
     //리뷰 변수
     String user_id;
     String reviewcontent;
-    String star;
+    Float star;
     String cont_dt;
+    String user_nm;
 
+    //총평점을 나타내기위한 변수선언
+    double avg_star = 0.0;
+    double total_avg_star;
+
+    //리뷰 갯수및 별점 선언
+    TextView starcount1;
+    TextView starcount2;
+    TextView reviewcount;
+
+    String re_count;
+
+    //전체후기보기 버튼
+    Button showBtn;
+
+
+    //리뷰 전체페이지로 가기위한 변수선언
+    String etp_code;
 
     //리뷰 리스트를위한 선언
     private ListView reviewListView;
@@ -112,6 +145,21 @@ public class HotelDetailActivity extends AppCompatActivity {
         intro = findViewById(R.id.intro);
         phNumber = findViewById(R.id.ph_number);
         ph_Btn = findViewById(R.id.ph_numberBtn);
+        etpusernm = findViewById(R.id.etp_user_nm);
+
+
+        //이전값 inclue된곳에 넣기
+        View imageView = findViewById(R.id.top);
+        etp_image =imageView.findViewById(R.id.etpimage);
+
+
+
+        //review
+        starcount1 = findViewById(R.id.starcount);
+        starcount2 = findViewById(R.id.starcount2);
+        reviewcount = findViewById(R.id.reviewcount);
+
+        showBtn =findViewById(R.id.total_review_show);
 
         reviewListView = findViewById(R.id.reviewListveiw);
 
@@ -123,13 +171,16 @@ public class HotelDetailActivity extends AppCompatActivity {
             pre_name = Ex.getString("name");
             pre_first = Ex.getString("first");
             pre_last = Ex.getString("last");
+            image = Ex.getString("img");
 
         }
+
+        Log.e("imgpath",image);
 
         Topname.setText(pre_name);
         Bigname.setText(pre_name);
         detail_addr.setText(pre_addr);
-
+        Picasso.get().load(image).fit().into(etp_image);
 
 
         //툴바 선언
@@ -239,7 +290,9 @@ public class HotelDetailActivity extends AppCompatActivity {
                 super.onPostExecute(aVoid);
 
                 ArrayList<Product> Productlist = new ArrayList<>(); // 리사이클 뷰안에 넣기위한 Vo 배열
-                ArrayList<Review> reviewlist = new ArrayList<>(); // 리뷰 내용 넣기
+                reviewlist = new ArrayList<>(); // 리뷰 내용 넣기
+
+                ArrayList<Float> total_star = new ArrayList<>();
                 try {
 
                     JSONObject jsonObject = (JSONObject) jobj.get("result");
@@ -272,25 +325,55 @@ public class HotelDetailActivity extends AppCompatActivity {
                         JSONObject review= reviewArray.getJSONObject(i);
 
                         user_id = review.optString("user_id");
+                        user_nm = review.optString("user_nm");
                         reviewcontent = review.optString("rb_contents");
-                        star = review.optString("rb_avg");
+                        star = Float.valueOf(review.optString("rb_avg"));
                         cont_dt = review.optString("rb_dt");
 
-                        reviewlist.add(new Review(user_id,reviewcontent,star,cont_dt));
+                        reviewlist.add(new Review(user_id,reviewcontent,star,cont_dt,user_nm));
 //                        Log.e("db result",user_id);
+
+                        total_star.add(Float.valueOf(star));
 
                     }
 
+
+                    //평점 함수
+                    Log.e("avg",total_star+"");
+                    for(int i=0; i<total_star.size(); i++){
+                        avg_star =  avg_star + total_star.get(i);
+                    }
+
+                    total_avg_star = avg_star/total_star.size();
+                    re_count = String.valueOf(total_star.size());
+                    Log.e("avg2" ,total_avg_star+"");
                     //db에서 가져온 업체정보 꺼내오는곳
-                    infoObj.optString("etp_ph_no");
-                    infoObj.optString("etp_license");
-                    infoObj.optString("etp_email");
-                    infoObj.optString("etp_info");
-                    infoObj.optString("etp_intro");
+//                    infoObj.optString("etp_user");
+//                    infoObj.optString("etp_ph_no");
+//                    infoObj.optString("etp_license");
+//                    infoObj.optString("etp_email");
+//                    infoObj.optString("etp_info");
+//                    infoObj.optString("etp_intro");
+//                    infoObj.optString("etp_code"); 정보꺼내쓸 미리 만들어둠 햇갈릴까봐
 
                     info.setText(infoObj.optString("etp_info"));
                     intro.setText(infoObj.optString("etp_intro"));
                     phNumber.setText(infoObj.optString("etp_ph_no"));
+                    etpusernm.setText(infoObj.optString("etp_user"));
+
+                    etp_code = infoObj.optString("etp_code");
+
+
+                    String star_String = String.format("%.1f", total_avg_star);
+                    //리뷰 갯수및 카운트
+                    if(isNaN(total_avg_star)) {
+                        starcount1.setText("0.0");
+                        starcount2.setText("☆  " + "0.0");
+                    }else{
+                        starcount1.setText(star_String);
+                        starcount2.setText("★  " + star_String);
+                    }
+                    reviewcount.setText(re_count);
 
                     test1 = (String) detail_addr.getText();
                     test2 = (String) phNumber.getText();
@@ -304,7 +387,7 @@ public class HotelDetailActivity extends AppCompatActivity {
 //                    Log.e("총몇개가 넘어가냐?", String.valueOf(reviewlist));
                     //리뷰리스트
 
-                    ReviewAdapter reAdapter = new ReviewAdapter(reviewlist,context);
+                    ReviewAdapter reAdapter = new ReviewAdapter(reviewlist);
 
                     reviewListView.setAdapter(reAdapter);
 
@@ -316,6 +399,9 @@ public class HotelDetailActivity extends AppCompatActivity {
 
             }
         }.execute();
+
+        //버튼색 배경색맞추기
+        showBtn.setBackgroundColor(Color.TRANSPARENT);
 
 
         //전화걸기 버튼
@@ -329,6 +415,21 @@ public class HotelDetailActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        showBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intents = new Intent(HotelDetailActivity.this,totalreviewActivity.class);
+//
+                intents.putExtra("array",reviewlist);
+//                Log.e("rrrrr", String.valueOf(reviewlist));
+                startActivity(intents);
+
+
+            }
+        });
+
+
 
 
     }
@@ -357,6 +458,8 @@ public class HotelDetailActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+
 
 
 }

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -23,6 +24,9 @@ import com.example.together.Activities.PetHotel.HotelListDataActivity;
 import com.example.together.Activities.PetHotel.PetHotelActivity;
 import com.example.together.Model.Hotel;
 import com.example.together.R;
+import com.squareup.picasso.Picasso;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,10 +53,16 @@ public class HotelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView etp_imgView;
-        TextView text1;
+        TextView starcount;
         TextView etp_name;
-        TextView content;
         TextView Time;
+        TextView etp_addr;
+        TextView content;
+        TextView prise;
+        // TextView 나중에 위도경도 변환값들어갈곳
+
+
+
 
 
 
@@ -62,9 +72,11 @@ public class HotelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
             etp_imgView = view.findViewById(R.id.drawableId);
             etp_name = view.findViewById(R.id.etp_name);
-            text1 = view.findViewById(R.id.etp_addr);
+            etp_addr = view.findViewById(R.id.etp_addr);
             content = view.findViewById(R.id.content);
             Time = view.findViewById(R.id.Time);
+            starcount = view.findViewById(R.id.etp_star);
+            prise = view.findViewById(R.id.product_firstPrice);
 
         }
 
@@ -87,11 +99,15 @@ public class HotelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         final MyViewHolder myViewHolder = (MyViewHolder) viewHolder;
         final int Position = position;
 
-        myViewHolder.etp_imgView.setImageResource(HotelArrayList.get(position).drawableId);
-        myViewHolder.text1.setText(HotelArrayList.get(position).etp_addr);
+        Log.e("0번째 가격",HotelArrayList.get(0).price);
+
+        Picasso.get().load(HotelArrayList.get(position).img_path).fit().into(myViewHolder.etp_imgView);
+        myViewHolder.etp_addr.setText(HotelArrayList.get(position).etp_addr);
         myViewHolder.etp_name.setText(HotelArrayList.get(position).etp_name);
         myViewHolder.content.setText(HotelArrayList.get(position).content);
         myViewHolder.Time.setText(HotelArrayList.get(position).Time);
+        myViewHolder.starcount.setText("★  " +HotelArrayList.get(position).starcount);
+        myViewHolder.prise.setText(HotelArrayList.get(position).price + "원");
 
 
         myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -99,12 +115,14 @@ public class HotelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             public void onClick(View v) {
 //                Toast.makeText(v.getContext(),myViewHolder.text1.getText(), Toast.LENGTH_SHORT).show();
 //                Toast.makeText(v.getContext(),myViewHolder.etp_name.getText(), Toast.LENGTH_SHORT).show();
-                String addr = (String) myViewHolder.text1.getText();
+                String img = HotelArrayList.get(Position).img_path;
+                String addr = (String) myViewHolder.etp_addr.getText();
                 String na = (String) myViewHolder.etp_name.getText();
 
-
+//                    Log.e("넘기기전",img+"");
 
                     Intent intent = new Intent(v.getContext(), HotelDetailActivity.class);
+                    intent.putExtra("img",img);
                     intent.putExtra("addr",addr);
                     intent.putExtra("name",na);
                     intent.putExtra("first",first.substring(5));

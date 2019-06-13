@@ -21,6 +21,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Activities.PetHotel.totalreviewActivity"></activity>
         <activity android:name=".Activities.GoodbyePet.GoodbyepetReservationResultActivity"></activity>
         <activity android:name=".Activities.GoodbyePet.GoodbyePetStoreListActivity" />
         <activity android:name=".Activities.GoodbyePet.GoodbyePetTimeDateSelectActivity" />

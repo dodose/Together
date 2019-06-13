@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/HotelListCardView"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="200dp"
     android:layout_margin="5dp"
     cardview:cardCornerRadius="5dp">
 
@@ -15,42 +15,124 @@
 
         <ImageView
             android:id="@+id/drawableId"
-            android:layout_width="60dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="#fefc"
-            android:layout_weight="0.3" />
+            android:layout_weight="1" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.7"
+            android:layout_weight="0.5"
             android:padding="10dp"
             android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/etp_star"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="5dp"
+                    android:text="★ 4.4"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/etp_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="test1"
-                android:padding="10dp" />
+                android:layout_weight="0.5"
+                android:text="업체이름"
+                android:padding="5dp" />
+
+                <TextView
+                    android:id="@+id/Time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:gravity="right"
+                    android:padding="5dp"
+                    android:layout_weight="0.5"
+                    android:text="시간이 들어감" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/etp_addr"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView"/>
+                android:layout_weight="0.3"
+                android:textSize="12dp"
+                android:padding="5dp"
+                android:text="업체 주소"/>
 
-            <TextView
-                android:id="@+id/Time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
+                <TextView
+                    android:id="@+id/dis_km"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:padding="5dp"
+                    android:gravity="right"
+                    android:text="· 228.2km"/>
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:padding="5dp"
+                android:text="업체 간단소개" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textSize="12dp"
+                android:text="예약가"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:paddingLeft="5dp"
+                    android:gravity="center_vertical"
+                    android:text="1일 기준 최저가"/>
+
+                <TextView
+                    android:id="@+id/product_firstPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:gravity="right"
+                    android:padding="15dp"
+                    android:text="50,000원"/>
+
+            </LinearLayout>
+
+
         </LinearLayout>
 
     </LinearLayout>
