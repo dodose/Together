@@ -34,6 +34,9 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:padding="10dp"
+                android:layout_margin="5dp"
+                android:textColor="@color/mdtp_white"
+                android:background="@drawable/rounded_button"
                 android:text="날짜를 선택 클릭" />
 
             <TextView
@@ -55,6 +58,9 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:padding="10dp"
+                android:layout_margin="5dp"
+                android:textColor="@color/mdtp_white"
+                android:background="@drawable/rounded_button"
                 android:text="예약 시간선택 클릭" />
 
             <TextView
