@@ -1,48 +1,70 @@
 package com.example.together.Activities.GoodbyePet;
 
+
 import android.os.Bundle;
+import android.support.design.widget.TabItem;
 import android.support.design.widget.TabLayout;
+
+
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.support.v7.widget.Toolbar;
 
 
-import com.example.together.Adapter.SectionPageAdapter;
-import com.example.together.Fragment.tab1Fragment;
-import com.example.together.Fragment.tab2Fragment;
-import com.example.together.Fragment.tab3Fragment;
+import com.example.together.Adapter.PageAdapter;
 import com.example.together.R;
 
 public class GoodbyepetMenuSelectActivity extends AppCompatActivity {
 
-    private static  final String TAG = "fowMainActivity";
-
-    private SectionPageAdapter mSectionPageAdapter;
-
-    private ViewPager mViewPager;
+    Toolbar toolbar;
+    TabLayout tabLayout;
+    ViewPager viewPager;
+    PageAdapter pageAdapter;
+    TabItem tabChats;
+    TabItem tabStatus;
+    TabItem tabCalls;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goodbyepet_menu_select);
-        Log.d(TAG,"onCreate:String.");
 
-        mSectionPageAdapter = new SectionPageAdapter((getSupportFragmentManager()));
+        toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(getResources().getString(R.string.app_name));
+        setSupportActionBar(toolbar);
 
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        setupViewPager(mViewPager);
+        tabLayout = findViewById(R.id.tablayout);
+        tabChats = findViewById(R.id.tabChats);
+        tabStatus = findViewById(R.id.tabStatus);
+        tabCalls = findViewById(R.id.tabCalls);
+        viewPager = findViewById(R.id.viewPager);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
+        pageAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(pageAdapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+
     }
 
-    private  void setupViewPager(ViewPager viewPager){
-        SectionPageAdapter adapter = new SectionPageAdapter(getSupportFragmentManager());
-        adapter.addFragment(new tab1Fragment(),"메뉴");
-        adapter.addFragment(new tab2Fragment(),"클린리뷰");
-        adapter.addFragment(new tab3Fragment(),"정보");
-        viewPager.setAdapter(adapter);
-    }
+
 
 }
 
