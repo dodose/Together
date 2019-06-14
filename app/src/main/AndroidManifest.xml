@@ -21,10 +21,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Activities.PetHotel.totalreviewActivity"></activity>
         <activity android:name=".Activities.GoodbyePet.GoodbyepetReservationResultActivity"></activity>
         <activity android:name=".Activities.GoodbyePet.GoodbyePetStoreListActivity" />
         <activity android:name=".Activities.GoodbyePet.GoodbyePetTimeDateSelectActivity" />
-        <activity android:name=".Activities.GoodbyePet.GoodbyepetMenuSelectActivity"></activity>
+        <activity android:name=".Activities.GoodbyePet.GoodbyepetMenuSelectActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".Activities.GoodbyePet.GoodbyeHowActivity" />
         <activity android:name=".Activities.GoodbyePet.GoodbyeRainbowActivity" />
         <activity android:name=".Activities.GoodbyePet.GoodbyeSelectActivity" />
@@ -62,10 +68,7 @@
         <activity android:name=".Activities.EditProfileActivity" />
         <activity android:name=".Activities.CommentsActivity" />
         <activity android:name=".Activities.LoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity android:name=".Activities.RegisterActivity" />
         <activity android:name=".Activities.PostActivity" />

@@ -12,12 +12,13 @@ import com.example.together.Model.Review;
 import com.example.together.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ReviewAdapter extends BaseAdapter {
 
-    private ArrayList<Review> review;
+    private List<Review> review;
 
-    public ReviewAdapter(ArrayList<Review> reviewlist, Context context){
+    public ReviewAdapter(ArrayList<Review> reviewlist){
         super();
         this.review = reviewlist;
     }
@@ -47,12 +48,16 @@ public class ReviewAdapter extends BaseAdapter {
 
         TextView tv_name = (TextView) convertView.findViewById(R.id.user_name); //유저아이디
         TextView tv_cont = (TextView) convertView.findViewById(R.id.reviewcontents); //리뷰내용
+        TextView tv_star = convertView.findViewById(R.id.star_avg); //리뷰 평점
+        TextView tv_dt = convertView.findViewById(R.id.review_dt); //리뷰 작성일시
 //        TextView tv_pro = convertView.findViewById(R.id.product_name); //상품이름
 
         Review getRevieList = review.get(position);
 
-        tv_name.setText(getRevieList.getReviewid());
+        tv_name.setText(getRevieList.getReviewnm());
         tv_cont.setText(getRevieList.getReviewcont());
+        tv_star.setText(getRevieList.getReviewstar().toString());
+        tv_dt.setText(getRevieList.getReviewdt());
 
         return convertView;
     }

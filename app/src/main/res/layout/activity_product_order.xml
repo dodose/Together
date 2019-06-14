@@ -96,7 +96,7 @@
                 <ImageView
                     android:id="@+id/productimage"
                     android:layout_width="match_parent"
-                    android:layout_height="235dp"
+                    android:layout_height="200dp"
                     android:layout_weight="1.3"
                     android:src="#fefc" />
 
@@ -229,6 +229,32 @@
                           android:text="10000"/>
 
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.4"
+                            android:paddingTop="20dp"
+                            android:padding="10dp"
+                            android:textSize="20dp"
+                            android:text="총가격"/>
+
+                        <TextView
+                            android:id="@+id/total_price"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.7"
+                            android:gravity="center"
+                            android:text="10000"/>
+
+                    </LinearLayout>
+
+
 
                 </LinearLayout>
 
