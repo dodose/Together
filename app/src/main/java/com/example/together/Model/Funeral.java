@@ -1,6 +1,6 @@
 package com.example.together.Model;
 
-public class Hotel {
+public class Funeral {
 
     public String img_path;
     public String Time;
@@ -11,18 +11,14 @@ public class Hotel {
     public String price;
 
 
-    public Hotel(String img_path, String mAddr, String mName, String mTime, String mcontent, Float starcount, String firstprise) {
-
+    public Funeral(String img_path, String mAddr, String mName, String mTime, String mcontent, Float starcount, String price) {
         this.img_path = img_path;
+        this.Time = mTime;
         this.etp_addr = mAddr;
         this.etp_name = mName;
-        this.Time = mTime;
-        this.content = mcontent;
         this.starcount = starcount.toString();
-        this.price = firstprise;
+        this.content = mcontent;
+        this.price = price;
 
     }
-
-
-
 }

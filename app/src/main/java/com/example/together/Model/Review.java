@@ -2,23 +2,34 @@ package com.example.together.Model;
 
 import android.graphics.drawable.Drawable;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 
-public class Review {
+public class Review implements Serializable {
 
     public Drawable userImage;
     public String reviewid;
     public String reviewcont;
-    public String reviewstar;
+    public Float reviewstar;
     public String reviewdt;
 
-    public Review(String user_id, String reviewcontent, String star, String cont_dt) {
+
+    public String reviewnm;
+
+    public Review(String user_id, String reviewcontent, Float star, String cont_dt,String user_nm) {
         this.reviewid = user_id;
         this.reviewcont = reviewcontent;
         this.reviewstar = star;
         this.reviewdt = cont_dt;
+        this.reviewnm = user_nm;
     }
 
+    public String getReviewnm() {
+        return reviewnm;
+    }
+
+    public void setReviewnm(String reviewnm) {
+        this.reviewnm = reviewnm;
+    }
 
     public Drawable getUserImage() {
         return userImage;
@@ -44,11 +55,11 @@ public class Review {
         this.reviewcont = reviewcont;
     }
 
-    public String getReviewstar() {
+    public Float getReviewstar() {
         return reviewstar;
     }
 
-    public void setReviewstar(String reviewstar) {
+    public void setReviewstar(Float reviewstar) {
         this.reviewstar = reviewstar;
     }
 

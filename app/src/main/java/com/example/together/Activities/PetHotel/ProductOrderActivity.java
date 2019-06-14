@@ -22,12 +22,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.together.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -69,6 +71,7 @@ public class ProductOrderActivity extends AppCompatActivity {
     String precont;
     String preaddr;
     String preph;
+    String preimage;
 
     //아이디값을 설정해둘 String 값
     String user;
@@ -82,6 +85,8 @@ public class ProductOrderActivity extends AppCompatActivity {
     TextView or_last;
     TextView or_cont;
     TextView or_price;
+    ImageView or_image;
+    TextView or_total_price;
 
     Button orBtn;
 
@@ -136,8 +141,7 @@ public class ProductOrderActivity extends AppCompatActivity {
         precont = Ex.getString("procont");
         preaddr = Ex.getString("addr");
         preph = Ex.getString("ph");
-
-        Log.e("Intent값",preaddr+preph);
+        preimage = Ex.getString("img");
 
 
         //텍스트 뷰 아이디값 잡아주기
@@ -148,10 +152,18 @@ public class ProductOrderActivity extends AppCompatActivity {
         or_last = findViewById(R.id.last_day);
         or_cont = findViewById(R.id.procontent);
         or_price = findViewById(R.id.proprice);
+        or_image = findViewById(R.id.productimage);
+        or_total_price = findViewById(R.id.total_price);
 
         //버튼 아이디값 잡기
         orBtn = findViewById(R.id.orderbtn);
 
+
+        int sum = Integer.parseInt(prelast.substring(2)) - Integer.parseInt(prefirst.substring(2));
+
+
+
+        Log.e("총일수",sum+"");
 
         //이전값과 텍스트 뷰 값 채워주기
 
@@ -162,6 +174,14 @@ public class ProductOrderActivity extends AppCompatActivity {
         or_last.setText(prelast);
         or_cont.setText(precont);
         or_price.setText(preprise);
+        Picasso.get().load(preimage).fit().into(or_image);
+
+        String[] aa = preprise.split("원");
+
+        int sum2 = Integer.parseInt(aa[0]) * sum;
+
+        or_total_price.setText(sum2 + "원");
+
 
 
         user =  firebaseUser.getEmail();
@@ -253,7 +273,7 @@ public class ProductOrderActivity extends AppCompatActivity {
 
                 String mess = "호텔의" + prefirst+"일" +"~"+prelast+"일의" +"상품 : "+prename + "이 예약이완료되었습니다 "+ ", 예약에는 1~3일정도 소요될수있습니다.";
                 //예약완료시 문자보내는것
-                sendSMS("01055059374",mess);
+//                sendSMS("01055059374",mess);
 
 
                 //완료시 alert 창

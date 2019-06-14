@@ -67,10 +67,15 @@ public class HotelListDataActivity extends AppCompatActivity{
 
 
     //넣을 변수들
-    String mAddr;
     String mName;
+    String mAddr;
     String mTime;
     String mcontent;
+    String img_path;
+    Float starcount;
+    String firstprise;
+    String etp_lat; //위도
+    String etp_lnt; // 경도
 
     ImageButton activity_hotel_list_databackbtn;  //acitivity_hotel_list_databackbtn 버튼
 
@@ -140,7 +145,7 @@ public class HotelListDataActivity extends AppCompatActivity{
             @Override
             protected JSONObject doInBackground(Void... voids) {
 
-                JSONArray data = new JSONArray();
+
                 jobj = new JSONObject();
 
                 try {
@@ -210,14 +215,21 @@ public class HotelListDataActivity extends AppCompatActivity{
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                        mAddr = jsonObject.optString("etp_addr");
                         mName = jsonObject.optString("etp_nm");
-                        mTime = jsonObject.optString("etp_if_time1");
-                        mcontent = jsonObject.optString("etp_if_time2");
+                        mAddr = jsonObject.optString("etp_addr");
+                        mTime = jsonObject.optString("etp_if_time1") + "~" + jsonObject.optString("etp_if_time2");
+                        mcontent = jsonObject.optString("etp_cont");
+                        img_path = jsonObject.optString("etp_img_path");
+                        starcount = Float.valueOf(jsonObject.optString("avg"));
+                        firstprise = jsonObject.optString("firstprice");
+                        etp_lat = jsonObject.optString("etp_lat");
+                        etp_lnt = jsonObject.optString("etp_lnt");
+
+                        Log.e("결과값",mName +" "+ mAddr +" "+ mTime +" "+ mcontent +" "+ img_path +" "+ starcount +" "+ firstprise +" "+ etp_lat +" "+ etp_lnt);
 
 
-                        HotelList.add(new Hotel(R.drawable.hotel, mAddr, mName, mTime, mcontent));
-//                        HotelList.add(new Hotel(mAddr));
+                        HotelList.add(new Hotel(img_path, mAddr, mName, mTime, mcontent,starcount,firstprise));
+
 
                     }
 //                    System.out.println(HotelList);
