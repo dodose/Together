@@ -145,10 +145,10 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
                 // 시간 날짜 입력되었는지 확인한 후에 입력하였으면 넘기기
                 if(set_date==null){
                     Toast.makeText(GoodbyePetTimeDateSelectActivity.this, "날짜를 입력해주세요", Toast.LENGTH_SHORT).show();
+
                 }else if(set_time==null){
                     Toast.makeText(GoodbyePetTimeDateSelectActivity.this, "시간을 입력해주세요", Toast.LENGTH_SHORT).show();
                 }else{
@@ -232,9 +232,6 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
             set_time.setText(time1);
         }
     };
-
-
-
 
 
 }
