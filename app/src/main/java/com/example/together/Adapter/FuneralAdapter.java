@@ -103,7 +103,7 @@ public class FuneralAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 intent.putExtra("name",na);
                 intent.putExtra("code",code);
 
-
+ 
                 v.getContext().startActivity(intent);
             }
 
