@@ -36,7 +36,7 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goodbye_pet_time_date_select);
 
-        int images[] = {R.drawable.q1, R.drawable.q2 , R.drawable.q3};
+        int images[] = {R.drawable.b1, R.drawable.b2 , R.drawable.b3};
 
         viewFlipper = findViewById(R.id.v_flipper);
         //루프
