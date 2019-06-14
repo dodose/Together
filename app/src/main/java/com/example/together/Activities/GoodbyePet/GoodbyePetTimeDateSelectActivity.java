@@ -220,7 +220,7 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
         @Override
         public void onTimeSet(TimePicker view, int hour, int minute) {
             // store the data in one string and set it to text
-            String time1 = String.valueOf(hour) + ":" + String.valueOf(minute);
+            String time1 = String.valueOf(hour) + ":00";
             set_time.setText(time1);
         }
     };
