@@ -144,7 +144,7 @@ public class HotelListDataActivity extends AppCompatActivity{
             @Override
             protected JSONObject doInBackground(Void... voids) {
 
-                JSONArray data = new JSONArray();
+
                 jobj = new JSONObject();
 
                 try {

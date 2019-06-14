@@ -61,12 +61,6 @@ public class HotelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         TextView prise;
         // TextView 나중에 위도경도 변환값들어갈곳
 
-
-
-
-
-
-
         MyViewHolder(View view){
             super(view);
 
@@ -99,8 +93,6 @@ public class HotelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         final MyViewHolder myViewHolder = (MyViewHolder) viewHolder;
         final int Position = position;
 
-        Log.e("0번째 가격",HotelArrayList.get(0).price);
-
         Picasso.get().load(HotelArrayList.get(position).img_path).fit().into(myViewHolder.etp_imgView);
         myViewHolder.etp_addr.setText(HotelArrayList.get(position).etp_addr);
         myViewHolder.etp_name.setText(HotelArrayList.get(position).etp_name);
@@ -113,13 +105,9 @@ public class HotelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Toast.makeText(v.getContext(),myViewHolder.text1.getText(), Toast.LENGTH_SHORT).show();
-//                Toast.makeText(v.getContext(),myViewHolder.etp_name.getText(), Toast.LENGTH_SHORT).show();
                 String img = HotelArrayList.get(Position).img_path;
                 String addr = (String) myViewHolder.etp_addr.getText();
                 String na = (String) myViewHolder.etp_name.getText();
-
-//                    Log.e("넘기기전",img+"");
 
                     Intent intent = new Intent(v.getContext(), HotelDetailActivity.class);
                     intent.putExtra("img",img);
@@ -135,7 +123,7 @@ public class HotelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         });
 
 
-        }
+    }
 
 
     @Override

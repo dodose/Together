@@ -79,8 +79,8 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
         // 2. Adapter
         // 3. AdapterView : Spinner
 
-        final String [] city = {"서울특별시","인천광역시","부산광역시",
-                "대전광역시","대구광역시","광주광역시","울산광역시"};
+        final String [] city = {"서울","인천","부산",
+                "대전","대구","광주","울산"};
         final String [] gu = {"동구","서구","남구","북구","남동구"};
 
         // city 와 gu 를 담을 두개의 Spinner 객체
@@ -127,7 +127,7 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
-                tvAddr.setText("주소 : " +
+                tvAddr.setText("주소 :" +
                         s1.getSelectedItem().toString()+ " " +
                         gu[position]);
             }
@@ -152,7 +152,15 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
                 }else if(set_time==null){
                     Toast.makeText(GoodbyePetTimeDateSelectActivity.this, "시간을 입력해주세요", Toast.LENGTH_SHORT).show();
                 }else{
+
+                    String day = (String) set_date.getText();
+                    String time = (String) set_time.getText();
+                    String addr = (String) tvAddr.getText();
+
                     Intent intent = new Intent(GoodbyePetTimeDateSelectActivity.this, GoodbyePetStoreListActivity.class);
+                    intent.putExtra("day",day);
+                    intent.putExtra("time",time);
+                    intent.putExtra("addr",addr);
                     startActivity(intent);
                 }
 
@@ -209,8 +217,8 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int day) {
             // store the data in one string and set it to text
-            String date1 = String.valueOf(month) + "/" + String.valueOf(day)
-                    + "/" + String.valueOf(year);
+            String date1 = String.valueOf(year) + "/" + String.valueOf(month)
+                    + "/" + String.valueOf(day);
             set_date.setText(date1);
         }
     };
