@@ -96,7 +96,6 @@ public class GoodbyeMemorialActivity extends AppCompatActivity {
 
     private void setupPopupImageClick() {
 
-
         popupPostImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

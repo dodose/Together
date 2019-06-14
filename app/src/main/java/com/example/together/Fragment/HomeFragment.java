@@ -2,8 +2,10 @@ package com.example.together.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -31,6 +33,7 @@ import java.util.List;
 public class HomeFragment extends Fragment {
 
     ImageButton nav_top_post, chat_button;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     private RecyclerView recyclerView;
     private PostAdapter postAdapter;
@@ -46,6 +49,25 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+
+        swipeRefreshLayout = view.findViewById(R.id.Swipe);
+
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                    readPosts();
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                           swipeRefreshLayout.setRefreshing(false);
+                        }
+                    }, 1000);
+            }
+        });
+
 
         nav_top_post = view.findViewById(R.id.nav_top_post);
         chat_button = view.findViewById(R.id.chat);
