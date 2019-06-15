@@ -180,13 +180,15 @@ public class GoodbyePetStoreListActivity extends AppCompatActivity {
                         price = jsonObject.optString("firstprice");
                         etp_cd = jsonObject.optString("etp_cd");
 
-                        FuneralList.add(new Funeral(img_path, mAddr, mName, mTime, mcontent,starcount,price));
+                        Log.e("etp_cd",etp_cd);
+
+                       FuneralList.add(new Funeral(img_path, mAddr, mName, mTime, mcontent,starcount,price,etp_cd));
 
                     }
 
 
 
-                    FuneralAdapter myAdapter = new FuneralAdapter(FuneralList,context,day,Time,addr,etp_cd);
+                    FuneralAdapter myAdapter = new FuneralAdapter(FuneralList,context,day,Time,addr);
 
                     mRecyclerView.setAdapter(myAdapter);
 

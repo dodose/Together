@@ -331,8 +331,8 @@ public class HotelDetailActivity extends AppCompatActivity {
 
                         reviewlist.add(new Review(user_id,reviewcontent,star,cont_dt,user_nm));
 //                        Log.e("db result",user_id);
+                        total_star.add(star);
 
-                        total_star.add(Float.valueOf(star));
 
                     }
 

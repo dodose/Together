@@ -11,8 +11,6 @@ public class Review implements Serializable {
     public String reviewcont;
     public Float reviewstar;
     public String reviewdt;
-
-
     public String reviewnm;
 
     public Review(String user_id, String reviewcontent, Float star, String cont_dt,String user_nm) {

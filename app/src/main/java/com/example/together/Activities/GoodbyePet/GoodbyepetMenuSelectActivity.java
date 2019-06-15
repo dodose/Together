@@ -9,6 +9,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 
 
 import com.example.together.Adapter.PageAdapter;
@@ -24,10 +25,29 @@ public class GoodbyepetMenuSelectActivity extends AppCompatActivity {
     TabItem tabStatus;
     TabItem tabCalls;
 
+    //이전 item요청에 따른 데이터 전달
+    String img;
+    String addr;
+    String name;
+    String code;
+    String time;
+    String day;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goodbyepet_menu_select);
+
+        Bundle Ex = getIntent().getExtras();
+
+        img = Ex.getString("img");
+        addr = Ex.getString("addr");
+        name = Ex.getString("name");
+        code = Ex.getString("code");
+        time = Ex.getString("time");
+        day = Ex.getString("day");
+
+        Log.e("넘어온 code값입니다",code);
 
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(getResources().getString(R.string.app_name));
@@ -39,7 +59,7 @@ public class GoodbyepetMenuSelectActivity extends AppCompatActivity {
         tabCalls = findViewById(R.id.tabCalls);
         viewPager = findViewById(R.id.viewPager);
 
-        pageAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        pageAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount(),code);
         viewPager.setAdapter(pageAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
