@@ -1,94 +1,157 @@
 package com.example.together.Fragment;
 
-import android.os.Bundle;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.ExpandableListView;
-import android.widget.TextView;
 
+import com.example.together.Activities.GoodbyePet.CheckedActivity;
+import com.example.together.Activities.GoodbyePet.ConstantManager;
+import com.example.together.Activities.GoodbyePet.GoodbyepetReservationResultActivity;
+import com.example.together.Activities.GoodbyePet.MyCategoriesExpandableListAdapter;
+import com.example.together.Model.DataItem;
+import com.example.together.Model.SubCategoryItem;
 import com.example.together.R;
-
-
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class TabFragment1 extends Fragment {
 
+    private Button btn;
+    private ExpandableListView lvCategory;
+
+    private ArrayList<DataItem> arCategory;
+    private ArrayList<SubCategoryItem> arSubCategory;
+    private ArrayList<ArrayList<SubCategoryItem>> arSubCategoryFinal;
+
+    private ArrayList<HashMap<String, String>> parentItems;
+    private ArrayList<ArrayList<HashMap<String, String>>> childItems;
+    private MyCategoriesExpandableListAdapter myCategoriesExpandableListAdapter;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.tab_fragment_1, null);
-        ExpandableListView elv = (ExpandableListView) v.findViewById(R.id.elv_list);
-        elv.setAdapter(new SavedTabsListAdapter());
-        return v;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.tab_fragment_1, container, false);
+        btn = view.findViewById(R.id.btn);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), GoodbyepetReservationResultActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        setupReferences(view);
+        return view;
     }
 
-    public class SavedTabsListAdapter extends BaseExpandableListAdapter {
+    private void setupReferences(View view) {
 
-        private String[] groups = { "People Names", "Dog Names", "Cat Names", "Fish Names" };
+        lvCategory = view.findViewById(R.id.lvCategory);
+        arCategory = new ArrayList<>();
+        arSubCategory = new ArrayList<>();
+        parentItems = new ArrayList<>();
+        childItems = new ArrayList<>();
 
-        private String[][] children = {
-                { "Arnold", "Barry", "Chuck", "David" },
-                { "Ace", "Bandit", "Cha-Cha", "Deuce" },
-                { "Fluffy", "Snuggles" },
-                { "Goldy", "Bubbles" }
-        };
+        DataItem dataItem = new DataItem();
+        dataItem.setCategoryId("1");
+        dataItem.setCategoryName("Adventure");
 
-        @Override
-        public int getGroupCount() {
-            return groups.length;
+        arSubCategory = new ArrayList<>();
+        for (int i = 1; i < 6; i++) {
+
+            SubCategoryItem subCategoryItem = new SubCategoryItem();
+            subCategoryItem.setCategoryId(String.valueOf(i));
+            subCategoryItem.setIsChecked(ConstantManager.CHECK_BOX_CHECKED_FALSE);
+            subCategoryItem.setSubCategoryName("Adventure: " + i);
+            arSubCategory.add(subCategoryItem);
+        }
+        dataItem.setSubCategory(arSubCategory);
+        arCategory.add(dataItem);
+
+        dataItem = new DataItem();
+        dataItem.setCategoryId("2");
+        dataItem.setCategoryName("Art");
+        arSubCategory = new ArrayList<>();
+        for (int j = 1; j < 6; j++) {
+
+            SubCategoryItem subCategoryItem = new SubCategoryItem();
+            subCategoryItem.setCategoryId(String.valueOf(j));
+            subCategoryItem.setIsChecked(ConstantManager.CHECK_BOX_CHECKED_FALSE);
+            subCategoryItem.setSubCategoryName("Art: " + j);
+            arSubCategory.add(subCategoryItem);
+        }
+        dataItem.setSubCategory(arSubCategory);
+        arCategory.add(dataItem);
+
+        dataItem = new DataItem();
+        dataItem.setCategoryId("3");
+        dataItem.setCategoryName("Cooking");
+        arSubCategory = new ArrayList<>();
+        for (int k = 1; k < 6; k++) {
+
+            SubCategoryItem subCategoryItem = new SubCategoryItem();
+            subCategoryItem.setCategoryId(String.valueOf(k));
+            subCategoryItem.setIsChecked(ConstantManager.CHECK_BOX_CHECKED_FALSE);
+            subCategoryItem.setSubCategoryName("Cooking: " + k);
+            arSubCategory.add(subCategoryItem);
         }
 
-        @Override
-        public int getChildrenCount(int i) {
-            return children[i].length;
+        dataItem.setSubCategory(arSubCategory);
+        arCategory.add(dataItem);
+
+        Log.d("TAG", "setupReferences: " + arCategory.size());
+
+        for (DataItem data : arCategory) {
+//                        Log.i("Item id",item.id);
+            ArrayList<HashMap<String, String>> childArrayList = new ArrayList<HashMap<String, String>>();
+            HashMap<String, String> mapParent = new HashMap<String, String>();
+
+            mapParent.put(ConstantManager.Parameter.CATEGORY_ID, data.getCategoryId());
+            mapParent.put(ConstantManager.Parameter.CATEGORY_NAME, data.getCategoryName());
+
+            int countIsChecked = 0;
+            for (SubCategoryItem subCategoryItem : data.getSubCategory()) {
+
+                HashMap<String, String> mapChild = new HashMap<String, String>();
+                mapChild.put(ConstantManager.Parameter.SUB_ID, subCategoryItem.getSubId());
+                mapChild
+                        .put(ConstantManager.Parameter.SUB_CATEGORY_NAME, subCategoryItem.getSubCategoryName());
+                mapChild.put(ConstantManager.Parameter.CATEGORY_ID, subCategoryItem.getCategoryId());
+                mapChild.put(ConstantManager.Parameter.IS_CHECKED, subCategoryItem.getIsChecked());
+
+                if (subCategoryItem.getIsChecked()
+                        .equalsIgnoreCase(ConstantManager.CHECK_BOX_CHECKED_TRUE)) {
+
+                    countIsChecked++;
+                }
+                childArrayList.add(mapChild);
+            }
+
+            if (countIsChecked == data.getSubCategory().size()) {
+
+                data.setIsChecked(ConstantManager.CHECK_BOX_CHECKED_TRUE);
+            } else {
+                data.setIsChecked(ConstantManager.CHECK_BOX_CHECKED_FALSE);
+            }
+
+            mapParent.put(ConstantManager.Parameter.IS_CHECKED, data.getIsChecked());
+            childItems.add(childArrayList);
+            parentItems.add(mapParent);
+
         }
 
-        @Override
-        public Object getGroup(int i) {
-            return groups[i];
-        }
+        ConstantManager.parentItems = parentItems;
+        ConstantManager.childItems = childItems;
 
-        @Override
-        public Object getChild(int i, int i1) {
-            return children[i][i1];
-        }
-
-        @Override
-        public long getGroupId(int i) {
-            return i;
-        }
-
-        @Override
-        public long getChildId(int i, int i1) {
-            return i1;
-        }
-
-        @Override
-        public boolean hasStableIds() {
-            return true;
-        }
-
-        @Override
-        public View getGroupView(int i, boolean b, View view, ViewGroup viewGroup) {
-            TextView textView = new TextView(TabFragment1.this.getActivity());
-            textView.setText(getGroup(i).toString());
-            return textView;
-        }
-
-        @Override
-        public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
-            TextView textView = new TextView(TabFragment1.this.getActivity());
-            textView.setText(getChild(i, i1).toString());
-            return textView;
-        }
-
-        @Override
-        public boolean isChildSelectable(int i, int i1) {
-            return true;
-        }
-
+        myCategoriesExpandableListAdapter = new MyCategoriesExpandableListAdapter(getActivity(), parentItems, childItems, false);
+        lvCategory.setAdapter(myCategoriesExpandableListAdapter);
     }
-
-
 }

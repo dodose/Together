@@ -10,5 +10,7 @@
     <color name="colorButton">#373738</color>
     <color name="colorBackground">#FDF9EE</color>
     <color name="colorBlue">#00b0ff</color>
+    <color name="colorBlack">#000</color>
+    <color name="colorWhite">#fff</color>
 </resources>
 
