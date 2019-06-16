@@ -22,6 +22,7 @@
             android:gravity="center|right">
 
             <ImageView
+                android:id="@+id/funeralImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:visibility="visible" />

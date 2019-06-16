@@ -38,6 +38,11 @@ public class TabFragment1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab_fragment_1, container, false);
+
+        final String etp_cd= getArguments().getString("code"); // 업체코드 가져오기
+
+        Log.e("frgment1",etp_cd);
+
         btn = view.findViewById(R.id.btn);
 
         btn.setOnClickListener(new View.OnClickListener() {
@@ -55,57 +60,85 @@ public class TabFragment1 extends Fragment {
     private void setupReferences(View view) {
 
         lvCategory = view.findViewById(R.id.lvCategory);
-        arCategory = new ArrayList<>();
+        arCategory = new ArrayList<>(); // 큰 상품들의 array 배열
+
         arSubCategory = new ArrayList<>();
         parentItems = new ArrayList<>();
         childItems = new ArrayList<>();
 
+
+        // 1
         DataItem dataItem = new DataItem();
         dataItem.setCategoryId("1");
-        dataItem.setCategoryName("Adventure");
-
+        dataItem.setCategoryName("수의");
         arSubCategory = new ArrayList<>();
         for (int i = 1; i < 6; i++) {
 
             SubCategoryItem subCategoryItem = new SubCategoryItem();
             subCategoryItem.setCategoryId(String.valueOf(i));
             subCategoryItem.setIsChecked(ConstantManager.CHECK_BOX_CHECKED_FALSE);
-            subCategoryItem.setSubCategoryName("Adventure: " + i);
+            subCategoryItem.setSubCategoryName("수의 상품들의 array" + i);
             arSubCategory.add(subCategoryItem);
         }
         dataItem.setSubCategory(arSubCategory);
         arCategory.add(dataItem);
 
+
+
+        // 2
         dataItem = new DataItem();
         dataItem.setCategoryId("2");
-        dataItem.setCategoryName("Art");
+        dataItem.setCategoryName("함");
         arSubCategory = new ArrayList<>();
         for (int j = 1; j < 6; j++) {
 
             SubCategoryItem subCategoryItem = new SubCategoryItem();
             subCategoryItem.setCategoryId(String.valueOf(j));
             subCategoryItem.setIsChecked(ConstantManager.CHECK_BOX_CHECKED_FALSE);
-            subCategoryItem.setSubCategoryName("Art: " + j);
+            subCategoryItem.setSubCategoryName("함 상품들의 array " + j);
             arSubCategory.add(subCategoryItem);
         }
         dataItem.setSubCategory(arSubCategory);
         arCategory.add(dataItem);
 
+
+        // 3
         dataItem = new DataItem();
         dataItem.setCategoryId("3");
-        dataItem.setCategoryName("Cooking");
+        dataItem.setCategoryName("관");
         arSubCategory = new ArrayList<>();
         for (int k = 1; k < 6; k++) {
 
             SubCategoryItem subCategoryItem = new SubCategoryItem();
             subCategoryItem.setCategoryId(String.valueOf(k));
             subCategoryItem.setIsChecked(ConstantManager.CHECK_BOX_CHECKED_FALSE);
-            subCategoryItem.setSubCategoryName("Cooking: " + k);
+            subCategoryItem.setSubCategoryName("관 상품들의 array " + k);
+            arSubCategory.add(subCategoryItem);
+        }
+        dataItem.setSubCategory(arSubCategory);
+        arCategory.add(dataItem);
+
+
+
+        //4
+        dataItem = new DataItem();
+        dataItem.setCategoryId("4");
+        dataItem.setCategoryName("화장비");
+        arSubCategory = new ArrayList<>();
+        for (int o = 1; o < 6; o++) {
+
+            SubCategoryItem subCategoryItem = new SubCategoryItem();
+            subCategoryItem.setCategoryId(String.valueOf(o));
+            subCategoryItem.setIsChecked(ConstantManager.CHECK_BOX_CHECKED_FALSE);
+            subCategoryItem.setSubCategoryName("화장 상품들의 array " + o);
             arSubCategory.add(subCategoryItem);
         }
 
         dataItem.setSubCategory(arSubCategory);
         arCategory.add(dataItem);
+
+
+
 
         Log.d("TAG", "setupReferences: " + arCategory.size());
 

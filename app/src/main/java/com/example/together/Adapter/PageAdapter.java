@@ -26,7 +26,11 @@ public class PageAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new TabFragment1();
+                Fragment fragment1 = new TabFragment1();
+                Bundle bundle0 = new Bundle(1); // 파라미터는 전달할 데이터 개수
+                bundle0.putString("code", code); // key , value
+                fragment1.setArguments(bundle0);
+                return fragment1;
             case 1:
                 Fragment fragment2 = new TabFragment2(); // Fragment 생성
                 Bundle bundle = new Bundle(1); // 파라미터는 전달할 데이터 개수
