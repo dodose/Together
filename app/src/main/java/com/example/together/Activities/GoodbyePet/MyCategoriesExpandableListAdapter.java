@@ -14,6 +14,7 @@ import com.example.together.R;
 import java.util.ArrayList;
 import java.util.HashMap;
 import com.example.together.Fragment.TabFragment1;
+import com.squareup.picasso.Picasso;
 
 
 /**
@@ -89,6 +90,7 @@ public class MyCategoriesExpandableListAdapter extends BaseExpandableListAdapter
             }
             viewHolderParent = new ViewHolderParent();
 
+
             viewHolderParent.tvMainCategoryName = convertView.findViewById(R.id.tvMainCategoryName);
             viewHolderParent.cbMainCategory = convertView.findViewById(R.id.cbMainCategory);
             viewHolderParent.ivCategory = convertView.findViewById(R.id.ivCategory);
@@ -146,9 +148,11 @@ public class MyCategoriesExpandableListAdapter extends BaseExpandableListAdapter
             convertView = inflater.inflate(R.layout.child_list_layout_choose_category, null);
             viewHolderChild = new ViewHolderChild();
 
+            viewHolderChild.funeralImage = convertView.findViewById(R.id.funeralImage);
             viewHolderChild.tvSubCategoryName = convertView.findViewById(R.id.tvSubCategoryName);
             viewHolderChild.cbSubCategory = convertView.findViewById(R.id.cbSubCategory);
             viewHolderChild.viewDivider = convertView.findViewById(R.id.viewDivider);
+            viewHolderChild.value = convertView.findViewById(R.id.value);
             convertView.setTag(viewHolderChild);
         } else {
             viewHolderChild = (ViewHolderChild) convertView.getTag();
@@ -163,6 +167,9 @@ public class MyCategoriesExpandableListAdapter extends BaseExpandableListAdapter
         }
 
         viewHolderChild.tvSubCategoryName.setText(child.get(ConstantManager.Parameter.SUB_CATEGORY_NAME));
+//        Picasso.get().load()
+//        viewHolderChild.value.setText(child.get());
+
         viewHolderChild.cbSubCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -221,9 +228,11 @@ public class MyCategoriesExpandableListAdapter extends BaseExpandableListAdapter
 
     private class ViewHolderChild {
 
+        ImageView funeralImage;
         TextView tvSubCategoryName;
         CheckBox cbSubCategory;
         View viewDivider;
+        TextView value;
     }
 
 
