@@ -20,20 +20,26 @@ public class GoodbyepetReservationResultActivity extends AppCompatActivity {
             tvParent = findViewById(R.id.parent);
             tvChild = findViewById(R.id.child);
 
-            Log.e("parentsize",MyCategoriesExpandableListAdapter.parentItems.size()+"");
-            Log.e("childsize",MyCategoriesExpandableListAdapter.childItems.size()+"");
-            Log.e("dddddddddddddddd",MyCategoriesExpandableListAdapter.parentItems.get(0).size()+"");
+        for (int i = 0; i < MyCategoriesExpandableListAdapter.parentItems.size(); i++ ){
 
-//            Log.e("나오세요" ,MyCategoriesExpandableListAdapter.childItems.toString());
+            String isChecked = MyCategoriesExpandableListAdapter.parentItems.get(i).get(ConstantManager.Parameter.IS_CHECKED);
 
+            if (isChecked.equalsIgnoreCase(ConstantManager.CHECK_BOX_CHECKED_TRUE))
+            {
+                tvParent.setText(tvParent.getText() + MyCategoriesExpandableListAdapter.parentItems.get(i).get(ConstantManager.Parameter.CATEGORY_NAME));
+            }
 
-            for (int j = 0; j < MyCategoriesExpandableListAdapter.childItems.size(); j++ ){
+            for (int j = 0; j < MyCategoriesExpandableListAdapter.childItems.get(i).size(); j++ ){
 
-                if(MyCategoriesExpandableListAdapter.parentItems.get(j).get(ConstantManager.Parameter.IS_CHECKED) == "YES"){
-                    Log.e("Yes","ㅇㅇㅇㅇㅇㅇ");
+                String isChildChecked = MyCategoriesExpandableListAdapter.childItems.get(i).get(j).get(ConstantManager.Parameter.IS_CHECKED);
 
+                if (isChildChecked.equalsIgnoreCase(ConstantManager.CHECK_BOX_CHECKED_TRUE))
+                {
+                    tvChild.setText(tvChild.getText()+" ," +MyCategoriesExpandableListAdapter.parentItems.get(i).get(ConstantManager.Parameter.SUB_CATEGORY_PRICE)+" "+(j+1));
+                    tvChild.setText(tvChild.getText() +" , " + MyCategoriesExpandableListAdapter.parentItems.get(i).get(ConstantManager.Parameter.CATEGORY_NAME) + " "+(j+1));
                 }
 
+            }
 
         }
     }

@@ -12,11 +12,7 @@ public class SubCategoryItem {
     private String isChecked;
     private String imgurl;
 
-
-
-
 //    private ArrayList<SubCategoryItem> suit;
-
     private String pd_nm;
     private String pd_img;
     private String pd_content;

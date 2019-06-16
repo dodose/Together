@@ -43,7 +43,6 @@ public class TabFragment1 extends Fragment {
 
     private ArrayList<DataItem> arCategory;
     private ArrayList<SubCategoryItem> arSubCategory;
-    private ArrayList<ArrayList<SubCategoryItem>> arSubCategoryFinal;
 
 
 

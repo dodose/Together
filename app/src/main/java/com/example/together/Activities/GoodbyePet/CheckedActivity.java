@@ -4,9 +4,15 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
+import com.example.together.Model.SubCategoryItem;
 import com.example.together.R;
 
 public class CheckedActivity extends AppCompatActivity {
+
+    SubCategoryItem subCategoryItem;
+
+
+
 
     private TextView tvParent, tvChild;
 
