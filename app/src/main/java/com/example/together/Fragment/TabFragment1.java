@@ -258,10 +258,8 @@ public class TabFragment1 extends Fragment {
             SubCategoryItem subCategoryItem = new SubCategoryItem();
             subCategoryItem.setCategoryId(String.valueOf(i));
             subCategoryItem.setPd_img(suit.get(i).getPd_img());
-            subCategoryItem.setPd_price(suit.get(i).getPd_price());
-            subCategoryItem.setSubCategoryName(suit.get(i).getPd_nm());
             subCategoryItem.setIsChecked(ConstantManager.CHECK_BOX_CHECKED_FALSE);
-
+            subCategoryItem.setSubCategoryName(suit.get(i).getPd_nm());
             arSubCategory.add(subCategoryItem);
         }
         dataItem.setSubCategory(arSubCategory);
@@ -322,6 +320,8 @@ public class TabFragment1 extends Fragment {
         arCategory.add(dataItem);
 
 
+
+
         Log.d("TAG", "setupReferences: " + arCategory.size());
 
         for (DataItem data : arCategory) {
@@ -337,11 +337,10 @@ public class TabFragment1 extends Fragment {
 
                 HashMap<String, String> mapChild = new HashMap<String, String>();
                 mapChild.put(ConstantManager.Parameter.SUB_ID, subCategoryItem.getSubId());
-                mapChild.put(ConstantManager.Parameter.SUB_CATEGORY_NAME, subCategoryItem.getSubCategoryName());
+                mapChild
+                        .put(ConstantManager.Parameter.SUB_CATEGORY_NAME, subCategoryItem.getSubCategoryName());
                 mapChild.put(ConstantManager.Parameter.CATEGORY_ID, subCategoryItem.getCategoryId());
                 mapChild.put(ConstantManager.Parameter.IS_CHECKED, subCategoryItem.getIsChecked());
-                mapChild.put(ConstantManager.Parameter.SUB_CATEGORY_PRICE, subCategoryItem.getPd_price());
-                mapChild.put(ConstantManager.Parameter.SUB_CATEGORY_IMAGE, subCategoryItem.getImgurl());
 
                 if (subCategoryItem.getIsChecked()
                         .equalsIgnoreCase(ConstantManager.CHECK_BOX_CHECKED_TRUE)) {
