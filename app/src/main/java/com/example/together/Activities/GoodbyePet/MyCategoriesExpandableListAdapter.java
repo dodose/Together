@@ -169,7 +169,7 @@ public class MyCategoriesExpandableListAdapter extends BaseExpandableListAdapter
 
         viewHolderChild.tvSubCategoryName.setText(child.get(ConstantManager.Parameter.SUB_CATEGORY_NAME));
         viewHolderChild.tvSubCategoryPrice.setText(child.get(ConstantManager.Parameter.SUB_CATEGORY_PRICE));
-        viewHolderChild.tvSubCategoryImage.setImageURI(Uri.parse(child.get(ConstantManager.Parameter.SUB_CATEGORY_IMAGE)));
+        Picasso.get().load(child.get(ConstantManager.Parameter.SUB_CATEGORY_IMAGE)).fit().into(viewHolderChild.tvSubCategoryImage);
 //        Picasso.get().load()
 //        viewHolderChild.value.setText(child.get());
 

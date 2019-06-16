@@ -60,7 +60,10 @@ public class TabFragment1 extends Fragment {
     JSONObject jobj;
 
 
-    ArrayList<SubCategoryItem> suit = new ArrayList<>();
+    ArrayList<SubCategoryItem> f_s = new ArrayList<>(); //수의 담는배열
+    ArrayList<SubCategoryItem> f_h = new ArrayList<>(); //함 담는 배열
+    ArrayList<SubCategoryItem> f_g = new ArrayList<>(); //관 담는 배열
+    ArrayList<SubCategoryItem> f_f = new ArrayList<>(); //화장비 담는 배열
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -157,66 +160,92 @@ public class TabFragment1 extends Fragment {
 
                     JSONArray jsonArray = (JSONArray) jobj.get("result");
 
-//                    Log.e("jsonarray",jsonArray.length()+"");
-                                for (int i = 0; i < jsonArray.length(); i++) {
-                                    jsonObject = jsonArray.getJSONObject(i);
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        jsonObject = jsonArray.getJSONObject(i);
 
-                                    if(i==0) {
-                                        String pd_nm;
-                                        String pd_img;
-                                        String pd_content;
-                                        String pd_price;
-                                        JSONArray sarray = (JSONArray) jsonObject.get("수의");
-            //                            Log.e("sarray",sarray+"");
-                                        for (int s=0; s<sarray.length(); s++) {
-                                         JSONObject sjobj =  sarray.getJSONObject(s);
-                                            pd_nm = sjobj.getString("etp_pd_nm");
-                                            pd_img = sjobj.getString("etp_img_path");
-                                            pd_content = sjobj.getString("etp_pd_content");
-                                            pd_price = sjobj.getString("etp_pd_price");
+                        if(i==0) {
+                            String pd_nm;
+                            String pd_img;
+                            String pd_content;
+                            String pd_price;
+                            JSONArray sarray = (JSONArray) jsonObject.get("수의");
+                            for (int s=0; s<sarray.length(); s++) {
+                                JSONObject sjobj =  sarray.getJSONObject(s);
+                                pd_nm = sjobj.getString("etp_pd_nm");
+                                pd_img = sjobj.getString("etp_img_path");
+                                pd_content = sjobj.getString("etp_pd_content");
+                                pd_price = sjobj.getString("etp_pd_price");
+                                Log.e("수의 imageURL",pd_img);
 
-            //                                Log.e("수의",pd_nm + "//" + pd_price);
-
-            //                                suit.add(new SubCategoryItem(pd_nm,pd_img,pd_content,pd_price));
-                                        }
-
-            //                            Log.e("subcategory",suit+"");
-            //
-
-                                    } else if(i==1){
-            //                            Log.e("함", jsonObject.getString("함"));
-                                    } else if(i==2){
-            //                            Log.e("관", jsonObject.getString("관"));
-                                    } else {
-
-                                        String pd_nm;
-                                        String pd_img;
-                                        String pd_content;
-                                        String pd_price;
-
-                                        JSONArray farray = (JSONArray) jsonObject.get("화장");
-            //                            Log.e("farray",farray+"");
-                                        for (int f=0; f<farray.length(); f++) {
-                                         JSONObject sjobj =  farray.getJSONObject(f);
-                                            pd_nm = sjobj.getString("etp_pd_nm");
-                                            pd_img = sjobj.getString("etp_img_path");
-                                            pd_content = sjobj.getString("etp_pd_content");
-                                            pd_price = sjobj.getString("etp_pd_price");
-
-            //                                Log.e("수의",pd_nm + "//" + pd_price);
-                                            //해당 모델 객체에 add하기
-                                            suit.add(new SubCategoryItem(pd_nm,pd_img,pd_content,pd_price));
-                                        }
-                                        Log.e("sub",suit+"");
-                                    }
-                                }
+                                f_s.add(new SubCategoryItem(pd_nm,pd_img,pd_content,pd_price)); //array 배열에 넣음
+                            }
 
 
-                    setupReferences(view,suit);
+                        } else if(i==1){
 
-                    }catch (JSONException e) {
-                     e.printStackTrace();
-                  }
+                            String pd_nm;
+                            String pd_img;
+                            String pd_content;
+                            String pd_price;
+                            JSONArray sarray = (JSONArray) jsonObject.get("함");
+                            //                            Log.e("sarray",sarray+"");
+                            for (int s=0; s<sarray.length(); s++) {
+                                JSONObject sjobj =  sarray.getJSONObject(s);
+                                pd_nm = sjobj.getString("etp_pd_nm");
+                                pd_img = sjobj.getString("etp_img_path");
+                                pd_content = sjobj.getString("etp_pd_content");
+                                pd_price = sjobj.getString("etp_pd_price");
+
+//                                            Log.e("수의",pd_nm + "//" + pd_price);
+
+                                f_h.add(new SubCategoryItem(pd_nm,pd_img,pd_content,pd_price)); //함 배열 add
+                            }
+                        } else if(i==2){
+
+                            String pd_nm;
+                            String pd_img;
+                            String pd_content;
+                            String pd_price;
+                            JSONArray sarray = (JSONArray) jsonObject.get("관");
+
+                            for (int s=0; s<sarray.length(); s++) {
+                                JSONObject sjobj =  sarray.getJSONObject(s);
+                                pd_nm = sjobj.getString("etp_pd_nm");
+                                pd_img = sjobj.getString("etp_img_path");
+                                pd_content = sjobj.getString("etp_pd_content");
+                                pd_price = sjobj.getString("etp_pd_price");
+
+
+                                f_g.add(new SubCategoryItem(pd_nm,pd_img,pd_content,pd_price)); //관 배열 add
+                            }
+                        } else {
+
+                            String pd_nm;
+                            String pd_img;
+                            String pd_content;
+                            String pd_price;
+
+                            JSONArray farray = (JSONArray) jsonObject.get("화장");
+                            for (int f=0; f<farray.length(); f++) {
+                                JSONObject sjobj =  farray.getJSONObject(f);
+                                pd_nm = sjobj.getString("etp_pd_nm");
+                                pd_img = sjobj.getString("etp_img_path");
+                                pd_content = sjobj.getString("etp_pd_content");
+                                pd_price = sjobj.getString("etp_pd_price");
+
+                                //                                Log.e("수의",pd_nm + "//" + pd_price);
+                                //해당 모델 객체에 add하기
+                                f_f.add(new SubCategoryItem(pd_nm,pd_img,pd_content,pd_price));
+                            }
+                        }
+                    }
+
+
+                    setupReferences(view,f_s,f_h,f_g,f_f);
+
+                }catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }.execute();
 
@@ -236,7 +265,7 @@ public class TabFragment1 extends Fragment {
         return view;
     }
 
-    private void setupReferences(View view, ArrayList<SubCategoryItem> suit) {
+    private void setupReferences(View view, ArrayList<SubCategoryItem> f_s, ArrayList<SubCategoryItem> f_h, ArrayList<SubCategoryItem> f_g, ArrayList<SubCategoryItem> f_f) {
 
         lvCategory = view.findViewById(R.id.lvCategory);
         arCategory = new ArrayList<>(); // 큰 상품들의 array 배열
@@ -246,7 +275,7 @@ public class TabFragment1 extends Fragment {
         childItems = new ArrayList<>();
 
 
-        Log.e("suit 0 번지", this.suit +"");
+        Log.e("넘어온 이미지",f_s.get(0).getPd_img()+"");
 //        ArrayList<SubCategoryItem> list = suit;
 
         // 1
@@ -254,12 +283,13 @@ public class TabFragment1 extends Fragment {
         dataItem.setCategoryId("1");
         dataItem.setCategoryName("수의");
 //        arSubCategory = new ArrayList<>();
-        for (int i = 0; i <suit.size(); i++) {
+        for (int i = 0; i <f_s.size(); i++) {
             SubCategoryItem subCategoryItem = new SubCategoryItem();
             subCategoryItem.setCategoryId(String.valueOf(i));
-            subCategoryItem.setPd_img(suit.get(i).getPd_img());
             subCategoryItem.setIsChecked(ConstantManager.CHECK_BOX_CHECKED_FALSE);
-            subCategoryItem.setSubCategoryName(suit.get(i).getPd_nm());
+            subCategoryItem.setSubCategoryName(f_s.get(i).getPd_nm());
+            subCategoryItem.setPd_price(f_s.get(i).getPd_price());
+            subCategoryItem.setPd_img(f_s.get(i).getPd_img());
             arSubCategory.add(subCategoryItem);
         }
         dataItem.setSubCategory(arSubCategory);
@@ -272,12 +302,14 @@ public class TabFragment1 extends Fragment {
         dataItem.setCategoryId("2");
         dataItem.setCategoryName("함");
         arSubCategory = new ArrayList<>();
-        for (int j = 1; j < 6; j++) {
+        for (int j = 0; j < f_h.size(); j++) {
 
             SubCategoryItem subCategoryItem = new SubCategoryItem();
             subCategoryItem.setCategoryId(String.valueOf(j));
             subCategoryItem.setIsChecked(ConstantManager.CHECK_BOX_CHECKED_FALSE);
-            subCategoryItem.setSubCategoryName("함 상품들의 array " + j);
+            subCategoryItem.setSubCategoryName(f_h.get(j).getPd_nm());
+            subCategoryItem.setPd_price(f_h.get(j).getPd_price());
+            subCategoryItem.setPd_img(f_h.get(j).getPd_img());
             arSubCategory.add(subCategoryItem);
         }
         dataItem.setSubCategory(arSubCategory);
@@ -289,12 +321,14 @@ public class TabFragment1 extends Fragment {
         dataItem.setCategoryId("3");
         dataItem.setCategoryName("관");
         arSubCategory = new ArrayList<>();
-        for (int k = 1; k < 6; k++) {
+        for (int k = 0; k < f_g.size(); k++) {
 
             SubCategoryItem subCategoryItem = new SubCategoryItem();
             subCategoryItem.setCategoryId(String.valueOf(k));
             subCategoryItem.setIsChecked(ConstantManager.CHECK_BOX_CHECKED_FALSE);
-            subCategoryItem.setSubCategoryName("관 상품들의 array " + k);
+            subCategoryItem.setSubCategoryName(f_g.get(k).getPd_nm());
+            subCategoryItem.setPd_price(f_g.get(k).getPd_price());
+            subCategoryItem.setPd_img(f_g.get(k).getPd_img());
             arSubCategory.add(subCategoryItem);
         }
         dataItem.setSubCategory(arSubCategory);
@@ -307,12 +341,14 @@ public class TabFragment1 extends Fragment {
         dataItem.setCategoryId("4");
         dataItem.setCategoryName("화장비");
         arSubCategory = new ArrayList<>();
-        for (int o = 1; o < 6; o++) {
+        for (int o = 0; o < f_f.size(); o++) {
 
             SubCategoryItem subCategoryItem = new SubCategoryItem();
             subCategoryItem.setCategoryId(String.valueOf(o));
             subCategoryItem.setIsChecked(ConstantManager.CHECK_BOX_CHECKED_FALSE);
-            subCategoryItem.setSubCategoryName("화장 상품들의 array " + o);
+            subCategoryItem.setSubCategoryName(f_f.get(o).getPd_nm());
+            subCategoryItem.setPd_img(f_f.get(o).getPd_img());
+            subCategoryItem.setPd_price(f_f.get(o).getPd_price());
             arSubCategory.add(subCategoryItem);
         }
 
@@ -337,8 +373,9 @@ public class TabFragment1 extends Fragment {
 
                 HashMap<String, String> mapChild = new HashMap<String, String>();
                 mapChild.put(ConstantManager.Parameter.SUB_ID, subCategoryItem.getSubId());
-                mapChild
-                        .put(ConstantManager.Parameter.SUB_CATEGORY_NAME, subCategoryItem.getSubCategoryName());
+                mapChild.put(ConstantManager.Parameter.SUB_CATEGORY_NAME, subCategoryItem.getSubCategoryName());
+                mapChild.put(ConstantManager.Parameter.SUB_CATEGORY_PRICE, subCategoryItem.getPd_price());
+                mapChild.put(ConstantManager.Parameter.SUB_CATEGORY_IMAGE, subCategoryItem.getPd_img());
                 mapChild.put(ConstantManager.Parameter.CATEGORY_ID, subCategoryItem.getCategoryId());
                 mapChild.put(ConstantManager.Parameter.IS_CHECKED, subCategoryItem.getIsChecked());
 
