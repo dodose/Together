@@ -60,11 +60,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
 
-
         final User user = mUsers.get(i);
 
         viewHolder.btn_follow.setVisibility(View.VISIBLE);
-
         viewHolder.username.setText(user.getUsername());
         viewHolder.fullname.setText(user.getFullname());
         Glide.with(mContext).load(user.getImageurl()).into(viewHolder.image_profile);

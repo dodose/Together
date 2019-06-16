@@ -1,6 +1,7 @@
 package com.example.together.Activities.GoodbyePet;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -148,11 +149,11 @@ public class MyCategoriesExpandableListAdapter extends BaseExpandableListAdapter
             convertView = inflater.inflate(R.layout.child_list_layout_choose_category, null);
             viewHolderChild = new ViewHolderChild();
 
-            viewHolderChild.funeralImage = convertView.findViewById(R.id.funeralImage);
+            viewHolderChild.tvSubCategoryImage = convertView.findViewById(R.id.tvSubCategoryImage);
             viewHolderChild.tvSubCategoryName = convertView.findViewById(R.id.tvSubCategoryName);
             viewHolderChild.cbSubCategory = convertView.findViewById(R.id.cbSubCategory);
             viewHolderChild.viewDivider = convertView.findViewById(R.id.viewDivider);
-            viewHolderChild.value = convertView.findViewById(R.id.value);
+            viewHolderChild.tvSubCategoryPrice = convertView.findViewById(R.id.tvSubCategoryPrice);
             convertView.setTag(viewHolderChild);
         } else {
             viewHolderChild = (ViewHolderChild) convertView.getTag();
@@ -167,6 +168,8 @@ public class MyCategoriesExpandableListAdapter extends BaseExpandableListAdapter
         }
 
         viewHolderChild.tvSubCategoryName.setText(child.get(ConstantManager.Parameter.SUB_CATEGORY_NAME));
+        viewHolderChild.tvSubCategoryPrice.setText(child.get(ConstantManager.Parameter.SUB_CATEGORY_PRICE));
+        viewHolderChild.tvSubCategoryImage.setImageURI(Uri.parse(child.get(ConstantManager.Parameter.SUB_CATEGORY_IMAGE)));
 //        Picasso.get().load()
 //        viewHolderChild.value.setText(child.get());
 
@@ -228,11 +231,11 @@ public class MyCategoriesExpandableListAdapter extends BaseExpandableListAdapter
 
     private class ViewHolderChild {
 
-        ImageView funeralImage;
+        ImageView tvSubCategoryImage;
         TextView tvSubCategoryName;
         CheckBox cbSubCategory;
         View viewDivider;
-        TextView value;
+        TextView tvSubCategoryPrice;
     }
 
 

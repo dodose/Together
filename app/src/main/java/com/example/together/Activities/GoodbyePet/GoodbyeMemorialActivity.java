@@ -163,7 +163,6 @@ public class GoodbyeMemorialActivity extends AppCompatActivity {
     private void iniPopup() {
 
 
-
         popAddPost = new Dialog(this);
         popAddPost.setContentView(R.layout.popup_add_post);
         popAddPost.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -226,12 +225,12 @@ public class GoodbyeMemorialActivity extends AppCompatActivity {
                                 public void onSuccess(Uri uri) {
                                     String imageDownlaodLink = uri.toString();
                                     // create post Object
-                                    MemorialPost memorialPost = new MemorialPost(popupTitle.getText().toString(),
+                                    MemorialPost memorialPost = new MemorialPost(
+                                            popupTitle.getText().toString(),
                                             popupDescription.getText().toString(),
                                             imageDownlaodLink,
                                             firebaseUser.getUid(),
                                             firebaseUser.getPhotoUrl().toString());
-
 
                                     addPost(memorialPost);
 
