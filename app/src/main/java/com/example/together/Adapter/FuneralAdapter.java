@@ -26,15 +26,13 @@ public class FuneralAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         String day;
         String time;
         String addr;
-        String code;
 
-        public FuneralAdapter(ArrayList<Funeral> FuneralArrayList, Context c, String day,String time,String addr,String etp_cd){
+        public FuneralAdapter(ArrayList<Funeral> FuneralArrayList, Context c, String day,String time,String addr){
                 this.mContext = c;
                 this.FuneralArrayList = FuneralArrayList;
                 this.day = day;
                 this.time = time;
                 this.addr = addr;
-                this.code = etp_cd;
 
                 }
 
@@ -75,7 +73,7 @@ public class FuneralAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder viewHolder, final int position) {
 
         final MyViewHolder myViewHolder = (MyViewHolder) viewHolder;
         final int Position = position;
@@ -96,14 +94,17 @@ public class FuneralAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 String img = FuneralArrayList.get(Position).img_path;
                 String addr = (String) myViewHolder.etp_addr.getText();
                 String na = (String) myViewHolder.etp_name.getText();
+                String code = FuneralArrayList.get(position).etp_cd;
 
                 Intent intent = new Intent(v.getContext(), GoodbyepetMenuSelectActivity.class);
                 intent.putExtra("img",img);
                 intent.putExtra("addr",addr);
                 intent.putExtra("name",na);
                 intent.putExtra("code",code);
+                intent.putExtra("day",day);
+                intent.putExtra("time",time);
 
- 
+
                 v.getContext().startActivity(intent);
             }
 

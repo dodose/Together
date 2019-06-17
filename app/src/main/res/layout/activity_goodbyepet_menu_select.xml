@@ -34,13 +34,13 @@ tools:context=".Activities.GoodbyePet.GoodbyepetMenuSelectActivity">
         android:id="@+id/tabChats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="메뉴" />
+        android:text="상품" />
 
     <android.support.design.widget.TabItem
         android:id="@+id/tabStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="클린리뷰" />
+        android:text="리뷰" />
 
     <android.support.design.widget.TabItem
         android:id="@+id/tabCalls"

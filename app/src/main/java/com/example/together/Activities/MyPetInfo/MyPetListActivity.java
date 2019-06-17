@@ -53,16 +53,6 @@ public class MyPetListActivity extends AppCompatActivity {
             }
         });
 
-
-        petadd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            
-            public void onClick(View v) {
-                Intent intent = new Intent(MyPetListActivity.this, ProfileFragment.class);
-                startActivity(intent);
-
-            }
-        });
     }
 
 

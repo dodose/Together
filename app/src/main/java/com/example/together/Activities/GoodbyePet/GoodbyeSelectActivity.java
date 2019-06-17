@@ -43,7 +43,7 @@ public class GoodbyeSelectActivity extends AppCompatActivity {
         goodbyePet_how_to_use.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(GoodbyeSelectActivity.this, GoodbyeMemorialActivity.class );
+                Intent intent = new Intent(GoodbyeSelectActivity.this, GoodbyeHowActivity.class );
                 startActivity(intent);
             }
         });

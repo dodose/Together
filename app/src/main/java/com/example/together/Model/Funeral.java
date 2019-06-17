@@ -9,9 +9,10 @@ public class Funeral {
     public String etp_addr;
     public String starcount;
     public String price;
+    public String etp_cd;
 
 
-    public Funeral(String img_path, String mAddr, String mName, String mTime, String mcontent, Float starcount, String price) {
+    public Funeral(String img_path, String mAddr, String mName, String mTime, String mcontent, Float starcount, String price,String etp_cd) {
         this.img_path = img_path;
         this.Time = mTime;
         this.etp_addr = mAddr;
@@ -19,6 +20,7 @@ public class Funeral {
         this.starcount = starcount.toString();
         this.content = mcontent;
         this.price = price;
+        this.etp_cd = etp_cd;
 
     }
 }

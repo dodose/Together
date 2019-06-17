@@ -13,8 +13,10 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import com.example.together.Activities.HomeActivity;
 import com.example.together.Activities.LoginActivity;
@@ -27,7 +29,8 @@ import java.util.GregorianCalendar;
 
 public class PetHotelActivity extends AppCompatActivity {
 
-
+    //이미지 배너 슬라이드
+    ViewFlipper viewFlipper;
     int mYear, mMonth, mDay;
 
     ImageButton imageButton;
@@ -56,6 +59,21 @@ public class PetHotelActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_hotel);
+
+        //이미지 배너 슬라이드
+        int images[] = {R.drawable.hb1, R.drawable.hb2 , R.drawable.hb3};
+
+        viewFlipper = findViewById(R.id.v_flipper);
+        //루프
+//        for(int i=0; i<images.length; i++){
+//            flipperImages(imges[i]);
+//        }
+
+        for(int image: images){
+            flipperImages(image);
+        }
+        //이미지 배너 슬라이드
+
 
         //텍스트뷰 2개 연결
 
@@ -163,7 +181,19 @@ public class PetHotelActivity extends AppCompatActivity {
 
 
     }
+    public void flipperImages(int image){
+        ImageView imageview = new ImageView(this);
+        imageview.setBackgroundResource(image);
 
+        viewFlipper.addView(imageview);
+        viewFlipper.setFlipInterval(4000); //4초
+        viewFlipper.setAutoStart(true);
+
+        //애니메이션
+        viewFlipper.setInAnimation(this,android.R.anim.slide_in_left);
+        viewFlipper.setOutAnimation(this,android.R.anim.slide_out_right);
+
+    }
 
 
 

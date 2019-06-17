@@ -23,6 +23,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.together.Activities.GoodbyePet.GoodbyepetMenuSelectActivity;
 import com.example.together.Activities.MyPetInfo.MyPetListActivity;
 import com.example.together.Adapter.HotelAdapter;
 import com.example.together.Fragment.ProfileFragment;
@@ -93,7 +94,7 @@ public class HotelListDataActivity extends AppCompatActivity{
         activity_hotel_list_databackbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HotelListDataActivity.this, PetHotelActivity.class);
+                Intent intent = new Intent(HotelListDataActivity.this, GoodbyepetMenuSelectActivity.class);
                 startActivity(intent);
 
             }

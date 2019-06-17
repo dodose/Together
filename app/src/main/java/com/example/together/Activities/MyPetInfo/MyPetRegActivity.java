@@ -95,6 +95,7 @@ public class MyPetRegActivity extends AppCompatActivity {
 
 
 
+
         mDisplayDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,11 +146,13 @@ public class MyPetRegActivity extends AppCompatActivity {
 
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Pets");
 
-                String petid = reference.push().getKey();
+
 
                 RadioGroup rg = (RadioGroup)findViewById(R.id.genderGroup);
                 RadioButton seletedRdo = (RadioButton)findViewById(rg.getCheckedRadioButtonId());
                 final String selectedValue = seletedRdo.getText().toString();
+
+                String petid = reference.push().getKey();
 
                 HashMap<String, Object> hashMap = new HashMap<>();
                 hashMap.put("petname", mPetName.getText().toString().trim());
@@ -229,7 +232,6 @@ public class MyPetRegActivity extends AppCompatActivity {
 
 
 
-
     private String getFileExtension(Uri uri){
         ContentResolver contentResolver = getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
@@ -262,6 +264,16 @@ public class MyPetRegActivity extends AppCompatActivity {
                     if (task.isSuccessful()){
                         Uri downloadUri = task.getResult();
                         String myUrl = downloadUri.toString();
+
+                        System.out.println(myUrl);
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Pets").child(firebaseUser.getUid());
+
+
+                        HashMap<String, Object> hashMap = new HashMap<>();
+                        hashMap.put("petimage", myUrl);
+                        System.out.println(myUrl);
+
+                        reference.updateChildren(hashMap);
 
 
                     } else {
