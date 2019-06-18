@@ -3,6 +3,7 @@ package com.example.together.Activities.GoodbyePet;
 import android.content.Context;
 import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +15,14 @@ import com.example.together.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
+
 import com.example.together.Fragment.TabFragment1;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 /**
@@ -32,6 +39,8 @@ public class MyCategoriesExpandableListAdapter extends BaseExpandableListAdapter
     private HashMap<String, String> child;
     private int count = 0;
     private boolean isFromMyCategoriesFragment;
+
+
 
     public MyCategoriesExpandableListAdapter(FragmentActivity activity, ArrayList<HashMap<String, String>> parentItems,
                                              ArrayList<ArrayList<HashMap<String, String>>> childItems, boolean isFromMyCategoriesFragment) {
@@ -82,6 +91,9 @@ public class MyCategoriesExpandableListAdapter extends BaseExpandableListAdapter
     @Override
     public View getGroupView(final int groupPosition, final boolean b, View convertView, ViewGroup viewGroup) {
          final ViewHolderParent viewHolderParent;
+        Log.e("ddd", childItems.get(groupPosition)+"");
+
+
         if (convertView == null) {
 
             if(isFromMyCategoriesFragment) {
@@ -145,6 +157,8 @@ public class MyCategoriesExpandableListAdapter extends BaseExpandableListAdapter
         final ViewHolderChild viewHolderChild;
         child = childItems.get(groupPosition).get(childPosition);
 
+
+
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.child_list_layout_choose_category, null);
             viewHolderChild = new ViewHolderChild();
@@ -167,11 +181,13 @@ public class MyCategoriesExpandableListAdapter extends BaseExpandableListAdapter
             notifyDataSetChanged();
         }
 
-        viewHolderChild.tvSubCategoryName.setText(child.get(ConstantManager.Parameter.SUB_CATEGORY_NAME));
-        viewHolderChild.tvSubCategoryPrice.setText(child.get(ConstantManager.Parameter.SUB_CATEGORY_PRICE));
-        Picasso.get().load(child.get(ConstantManager.Parameter.SUB_CATEGORY_IMAGE)).fit().into(viewHolderChild.tvSubCategoryImage);
-//        Picasso.get().load()
-//        viewHolderChild.value.setText(child.get());
+
+            viewHolderChild.tvSubCategoryName.setText(child.get(ConstantManager.Parameter.SUB_CATEGORY_NAME));
+            viewHolderChild.tvSubCategoryPrice.setText(child.get(ConstantManager.Parameter.SUB_CATEGORY_PRICE));
+            Picasso.get().load(child.get(ConstantManager.Parameter.SUB_CATEGORY_IMAGE)).fit().into(viewHolderChild.tvSubCategoryImage);
+
+
+
 
         viewHolderChild.cbSubCategory.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -202,6 +218,8 @@ public class MyCategoriesExpandableListAdapter extends BaseExpandableListAdapter
 
                 ConstantManager.childItems = childItems;
                 ConstantManager.parentItems = parentItems;
+
+
             }
         });
 

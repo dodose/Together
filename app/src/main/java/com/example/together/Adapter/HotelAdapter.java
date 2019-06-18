@@ -42,6 +42,7 @@ public class HotelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     String first;
     String last;
 
+
     public HotelAdapter(ArrayList<Hotel> HotelArrayList, Context c, String first_day, String last_day){
         this.mContext = c;
         this.HotelArrayList = HotelArrayList;
@@ -106,6 +107,8 @@ public class HotelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             @Override
             public void onClick(View v) {
                 String img = HotelArrayList.get(Position).img_path;
+                String etp_lat = HotelArrayList.get(Position).etp_lat;//위도
+                String etp_lnt = HotelArrayList.get(Position).etp_lnt; //경도
                 String addr = (String) myViewHolder.etp_addr.getText();
                 String na = (String) myViewHolder.etp_name.getText();
 
@@ -115,6 +118,8 @@ public class HotelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     intent.putExtra("name",na);
                     intent.putExtra("first",first.substring(5));
                     intent.putExtra("last",last.substring(5));
+                    intent.putExtra("lat",etp_lat);
+                    intent.putExtra("lnt",etp_lnt);
 
 
                     v.getContext().startActivity(intent);

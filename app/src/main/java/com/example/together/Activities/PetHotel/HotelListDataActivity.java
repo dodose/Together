@@ -225,10 +225,10 @@ public class HotelListDataActivity extends AppCompatActivity{
                         etp_lat = jsonObject.optString("etp_lat");
                         etp_lnt = jsonObject.optString("etp_lnt");
 
-                        Log.e("결과값",mName +" "+ mAddr +" "+ mTime +" "+ mcontent +" "+ img_path +" "+ starcount +" "+ firstprise +" "+ etp_lat +" "+ etp_lnt);
+//                        Log.e("결과값",mName +" "+ mAddr +" "+ mTime +" "+ mcontent +" "+ img_path +" "+ starcount +" "+ firstprise +" "+ etp_lat +" "+ etp_lnt);
 
 
-                        HotelList.add(new Hotel(img_path, mAddr, mName, mTime, mcontent,starcount,firstprise));
+                        HotelList.add(new Hotel(img_path, mAddr, mName, mTime, mcontent,starcount,firstprise,etp_lat,etp_lnt));
 
 
                     }

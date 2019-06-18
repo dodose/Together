@@ -27,21 +27,21 @@ public class PageAdapter extends FragmentPagerAdapter {
         switch (position) {
             case 0:
                 Fragment fragment1 = new TabFragment1();
-                Bundle bundle0 = new Bundle(1); // 파라미터는 전달할 데이터 개수
-                bundle0.putString("code", code); // key , value
-                fragment1.setArguments(bundle0);
+                Bundle bundle = new Bundle(1); // 파라미터는 전달할 데이터 개수
+                bundle.putString("code", code); // key , value
+                fragment1.setArguments(bundle);
                 return fragment1;
             case 1:
                 Fragment fragment2 = new TabFragment2(); // Fragment 생성
-                Bundle bundle = new Bundle(1); // 파라미터는 전달할 데이터 개수
-                bundle.putString("code", code); // key , value
-                fragment2.setArguments(bundle);
+                Bundle bundle2 = new Bundle(1); // 파라미터는 전달할 데이터 개수
+                bundle2.putString("code", code); // key , value
+                fragment2.setArguments(bundle2);
                 return fragment2;
             case 2:
                 Fragment fragment3 = new TabFragment3(); // Fragment 생성
-                Bundle bundle2 = new Bundle(1); // 파라미터는 전달할 데이터 개수
-                bundle2.putString("code", code); // key , value
-                fragment3.setArguments(bundle2);
+                Bundle bundle3 = new Bundle(1); // 파라미터는 전달할 데이터 개수
+                bundle3.putString("code", code); // key , value
+                fragment3.setArguments(bundle3);
                 return fragment3;
             default:
                 return null;

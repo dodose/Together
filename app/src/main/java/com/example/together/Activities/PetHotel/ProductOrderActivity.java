@@ -273,7 +273,7 @@ public class ProductOrderActivity extends AppCompatActivity {
 
                 String mess = "호텔의" + prefirst+"일" +"~"+prelast+"일의" +"상품 : "+prename + "이 예약이완료되었습니다 "+ ", 예약에는 1~3일정도 소요될수있습니다.";
                 //예약완료시 문자보내는것
-//                sendSMS("01055059374",mess);
+                sendSMS("01055059374",mess);
 
 
                 //완료시 alert 창

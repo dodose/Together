@@ -58,11 +58,13 @@ public class TabFragment1 extends Fragment {
 
     JSONObject jobj;
 
+    int count =  0;
 
-    ArrayList<SubCategoryItem> f_s = new ArrayList<>(); //수의 담는배열
-    ArrayList<SubCategoryItem> f_h = new ArrayList<>(); //함 담는 배열
-    ArrayList<SubCategoryItem> f_g = new ArrayList<>(); //관 담는 배열
-    ArrayList<SubCategoryItem> f_f = new ArrayList<>(); //화장비 담는 배열
+
+    final ArrayList<SubCategoryItem> f_s = new ArrayList<>(); //수의 담는배열
+    final ArrayList<SubCategoryItem> f_h = new ArrayList<>(); //함 담는 배열
+    final ArrayList<SubCategoryItem> f_g = new ArrayList<>(); //관 담는 배열
+    final ArrayList<SubCategoryItem> f_f = new ArrayList<>(); //화장비 담는 배열
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -71,182 +73,178 @@ public class TabFragment1 extends Fragment {
 
         final String etp_cd= getArguments().getString("code"); // 업체코드 가져오기
 
-//        Log.e("frgment1",etp_cd);
 
 
 
 
-        //서블릿 통신
-        new AsyncTask<Void, Void, JSONObject>() {
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                strUrl = "http://39.127.7.80:8080/Funeral_Detail"; //탐색하고 싶은 URL이다.
 
-            }
+    //서블릿 통신
+    new AsyncTask<Void, Void, JSONObject>() {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            strUrl = "http://39.127.7.80:8080/Funeral_Detail"; //탐색하고 싶은 URL이다.
 
-            @Override
-            protected JSONObject doInBackground(Void... voids) {
+        }
 
-                jobj = new JSONObject();
+        @Override
+        protected JSONObject doInBackground(Void... voids) {
 
-                try {
-                    //서버 연결
-                    Url = new URL(strUrl);  // URL화 한다.
-                    HttpURLConnection conn = (HttpURLConnection) Url.openConnection(); // URL을 연결한 객체 생성.
-                    conn.setRequestMethod("POST"); // post방식 통신
-                    conn.setDoOutput(true);       // 쓰기모드 지정
-                    conn.setDoInput(true);        // 읽기모드 지정
+            jobj = new JSONObject();
 
-                    conn.setRequestProperty("Content-Type", "application/json; utf-8");
-                    conn.setRequestProperty("Accept", "application/json; utf-8");
-                    conn.connect();
+            try {
+                //서버 연결
+                Url = new URL(strUrl);  // URL화 한다.
+                HttpURLConnection conn = (HttpURLConnection) Url.openConnection(); // URL을 연결한 객체 생성.
+                conn.setRequestMethod("POST"); // post방식 통신
+                conn.setDoOutput(true);       // 쓰기모드 지정
+                conn.setDoInput(true);        // 읽기모드 지정
 
-
-                    //데이터 전달 하는곳
-
-                    OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-
-                    wr.write(etp_cd);
-
-                    wr.flush();
-
-                    wr.close(); //전달후 닫아준다.
+                conn.setRequestProperty("Content-Type", "application/json; utf-8");
+                conn.setRequestProperty("Accept", "application/json; utf-8");
+                conn.connect();
 
 
-                    // 데이터 받아오는 곳
-                    InputStream is = null;        //input스트림 개방
-                    BufferedReader reader = null;
+                //데이터 전달 하는곳
 
-                    is = conn.getInputStream();
-                    reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));  //문자열 셋 세팅
-                    StringBuffer rbuffer = new StringBuffer();   //문자열을 담기 위한 객체
-                    String line = null;
+                OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
 
-                    rbuffer.append(reader.readLine());
+                wr.write(etp_cd);
 
-                    jobj = new JSONObject(rbuffer.toString().trim());
-                    is.close();
+                wr.flush();
+
+                wr.close(); //전달후 닫아준다.
+
+
+                // 데이터 받아오는 곳
+                InputStream is = null;        //input스트림 개방
+                BufferedReader reader = null;
+
+                is = conn.getInputStream();
+                reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));  //문자열 셋 세팅
+                StringBuffer rbuffer = new StringBuffer();   //문자열을 담기 위한 객체
+                String line = null;
+
+                rbuffer.append(reader.readLine());
+
+                jobj = new JSONObject(rbuffer.toString().trim());
+                is.close();
 //                    result = rbuffer.toString().trim();
-                    conn.disconnect();
+                conn.disconnect();
 
 
-                    Log.e("result", jobj+"");
+                Log.e("result", jobj + "");
 
 
-                } catch (MalformedURLException | ProtocolException exception) {
-                    exception.printStackTrace();
-                } catch (IOException io) {
-                    io.printStackTrace();
-                }catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                return jobj;
+            } catch (MalformedURLException | ProtocolException exception) {
+                exception.printStackTrace();
+            } catch (IOException io) {
+                io.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
+            return jobj;
+        }
 
-            @Override
-            protected void onPostExecute(JSONObject aVoid) {
-                super.onPostExecute(aVoid);
+        @Override
+        protected void onPostExecute(JSONObject aVoid) {
+            super.onPostExecute(aVoid);
 
+            JSONObject jsonObject = null;
+            try {
 
-//                Log.e("넘어왓는지 확인", jobj + "");
+                JSONArray jsonArray = (JSONArray) jobj.get("result");
 
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    jsonObject = jsonArray.getJSONObject(i);
 
-//
+                    if (i == 0) {
+                        String pd_nm;
+                        String pd_img;
+                        String pd_content;
+                        String pd_price;
+                        JSONArray sarray = (JSONArray) jsonObject.get("수의");
+                        for (int s = 0; s < sarray.length(); s++) {
+                            JSONObject sjobj = sarray.getJSONObject(s);
+                            pd_nm = sjobj.getString("etp_pd_nm");
+                            pd_img = sjobj.getString("etp_img_path");
+                            pd_content = sjobj.getString("etp_pd_content");
+                            pd_price = sjobj.getString("etp_pd_price");
+                            Log.e("수의 imageURL", pd_img);
 
-                JSONObject jsonObject = null;
-                try {
-
-                    JSONArray jsonArray = (JSONArray) jobj.get("result");
-
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        jsonObject = jsonArray.getJSONObject(i);
-
-                        if(i==0) {
-                            String pd_nm;
-                            String pd_img;
-                            String pd_content;
-                            String pd_price;
-                            JSONArray sarray = (JSONArray) jsonObject.get("수의");
-                            for (int s=0; s<sarray.length(); s++) {
-                                JSONObject sjobj =  sarray.getJSONObject(s);
-                                pd_nm = sjobj.getString("etp_pd_nm");
-                                pd_img = sjobj.getString("etp_img_path");
-                                pd_content = sjobj.getString("etp_pd_content");
-                                pd_price = sjobj.getString("etp_pd_price");
-                                Log.e("수의 imageURL",pd_img);
-
-                                f_s.add(new SubCategoryItem(pd_nm,pd_img,pd_content,pd_price)); //array 배열에 넣음
-                            }
+                            f_s.add(new SubCategoryItem(pd_nm, pd_img, pd_content, pd_price)); //array 배열에 넣음
+                        }
 
 
-                        } else if(i==1){
+                    } else if (i == 1) {
 
-                            String pd_nm;
-                            String pd_img;
-                            String pd_content;
-                            String pd_price;
-                            JSONArray sarray = (JSONArray) jsonObject.get("함");
-                            //                            Log.e("sarray",sarray+"");
-                            for (int s=0; s<sarray.length(); s++) {
-                                JSONObject sjobj =  sarray.getJSONObject(s);
-                                pd_nm = sjobj.getString("etp_pd_nm");
-                                pd_img = sjobj.getString("etp_img_path");
-                                pd_content = sjobj.getString("etp_pd_content");
-                                pd_price = sjobj.getString("etp_pd_price");
+                        String pd_nm;
+                        String pd_img;
+                        String pd_content;
+                        String pd_price;
+                        JSONArray sarray = (JSONArray) jsonObject.get("함");
+                        //                            Log.e("sarray",sarray+"");
+                        for (int s = 0; s < sarray.length(); s++) {
+                            JSONObject sjobj = sarray.getJSONObject(s);
+                            pd_nm = sjobj.getString("etp_pd_nm");
+                            pd_img = sjobj.getString("etp_img_path");
+                            pd_content = sjobj.getString("etp_pd_content");
+                            pd_price = sjobj.getString("etp_pd_price");
 
 //                                            Log.e("수의",pd_nm + "//" + pd_price);
 
-                                f_h.add(new SubCategoryItem(pd_nm,pd_img,pd_content,pd_price)); //함 배열 add
-                            }
-                        } else if(i==2){
+                            f_h.add(new SubCategoryItem(pd_nm, pd_img, pd_content, pd_price)); //함 배열 add
+                        }
+                    } else if (i == 2) {
 
-                            String pd_nm;
-                            String pd_img;
-                            String pd_content;
-                            String pd_price;
-                            JSONArray sarray = (JSONArray) jsonObject.get("관");
+                        String pd_nm;
+                        String pd_img;
+                        String pd_content;
+                        String pd_price;
+                        JSONArray sarray = (JSONArray) jsonObject.get("관");
 
-                            for (int s=0; s<sarray.length(); s++) {
-                                JSONObject sjobj =  sarray.getJSONObject(s);
-                                pd_nm = sjobj.getString("etp_pd_nm");
-                                pd_img = sjobj.getString("etp_img_path");
-                                pd_content = sjobj.getString("etp_pd_content");
-                                pd_price = sjobj.getString("etp_pd_price");
+                        for (int s = 0; s < sarray.length(); s++) {
+                            JSONObject sjobj = sarray.getJSONObject(s);
+                            pd_nm = sjobj.getString("etp_pd_nm");
+                            pd_img = sjobj.getString("etp_img_path");
+                            pd_content = sjobj.getString("etp_pd_content");
+                            pd_price = sjobj.getString("etp_pd_price");
 
 
-                                f_g.add(new SubCategoryItem(pd_nm,pd_img,pd_content,pd_price)); //관 배열 add
-                            }
-                        } else {
+                            f_g.add(new SubCategoryItem(pd_nm, pd_img, pd_content, pd_price)); //관 배열 add
+                        }
+                    } else {
 
-                            String pd_nm;
-                            String pd_img;
-                            String pd_content;
-                            String pd_price;
+                        String pd_nm;
+                        String pd_img;
+                        String pd_content;
+                        String pd_price;
 
-                            JSONArray farray = (JSONArray) jsonObject.get("화장");
-                            for (int f=0; f<farray.length(); f++) {
-                                JSONObject sjobj =  farray.getJSONObject(f);
-                                pd_nm = sjobj.getString("etp_pd_nm");
-                                pd_img = sjobj.getString("etp_img_path");
-                                pd_content = sjobj.getString("etp_pd_content");
-                                pd_price = sjobj.getString("etp_pd_price");
+                        JSONArray farray = (JSONArray) jsonObject.get("화장");
+                        for (int f = 0; f < farray.length(); f++) {
+                            JSONObject sjobj = farray.getJSONObject(f);
+                            pd_nm = sjobj.getString("etp_pd_nm");
+                            pd_img = sjobj.getString("etp_img_path");
+                            pd_content = sjobj.getString("etp_pd_content");
+                            pd_price = sjobj.getString("etp_pd_price");
 
-                                //                                Log.e("수의",pd_nm + "//" + pd_price);
-                                //해당 모델 객체에 add하기
-                                f_f.add(new SubCategoryItem(pd_nm,pd_img,pd_content,pd_price));
-                            }
+                            //                                Log.e("수의",pd_nm + "//" + pd_price);
+                            //해당 모델 객체에 add하기
+                            f_f.add(new SubCategoryItem(pd_nm, pd_img, pd_content, pd_price));
                         }
                     }
-
-
-                    setupReferences(view,f_s,f_h,f_g,f_f);
-
-                }catch (JSONException e) {
-                    e.printStackTrace();
                 }
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        }.execute();
+
+            setupReferences(view, f_s, f_h, f_g, f_f);
+        }
+
+    }.execute();
+
 
 
         btn = view.findViewById(R.id.btn);
@@ -264,7 +262,7 @@ public class TabFragment1 extends Fragment {
         return view;
     }
 
-    private void setupReferences(View view, ArrayList<SubCategoryItem> f_s, ArrayList<SubCategoryItem> f_h, ArrayList<SubCategoryItem> f_g, ArrayList<SubCategoryItem> f_f) {
+    public void setupReferences(View view, ArrayList<SubCategoryItem> f_s, ArrayList<SubCategoryItem> f_h, ArrayList<SubCategoryItem> f_g, ArrayList<SubCategoryItem> f_f) {
 
         lvCategory = view.findViewById(R.id.lvCategory);
         arCategory = new ArrayList<>(); // 큰 상품들의 array 배열
@@ -394,8 +392,10 @@ public class TabFragment1 extends Fragment {
             }
 
             mapParent.put(ConstantManager.Parameter.IS_CHECKED, data.getIsChecked());
+
             childItems.add(childArrayList);
             parentItems.add(mapParent);
+
 
         }
 

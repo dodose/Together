@@ -2,6 +2,7 @@ package com.example.together.Activities.GoodbyePet;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.example.together.Model.SubCategoryItem;
@@ -39,7 +40,7 @@ public class CheckedActivity extends AppCompatActivity {
 
                 if (isChildChecked.equalsIgnoreCase(ConstantManager.CHECK_BOX_CHECKED_TRUE))
                 {
-                    tvChild.setText(tvChild.getText() +" , " + MyCategoriesExpandableListAdapter.parentItems.get(i).get(ConstantManager.Parameter.CATEGORY_NAME) + " "+(j+1));
+                    tvChild.setText(tvChild.getText() +" , " + MyCategoriesExpandableListAdapter.parentItems.get(i).get(ConstantManager.Parameter.SUB_CATEGORY_NAME) + " "+(j+1));
                 }
 
             }

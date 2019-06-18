@@ -54,12 +54,16 @@ public class HotelDetailActivity extends AppCompatActivity {
     TextView Topname;
     TextView Bigname;
     TextView detail_addr;
-//
+
+
+    //intent해서 가져온 것들
     String pre_addr;
     String pre_name;
     String pre_first;
     String pre_last;
     String image;
+    String pre_lat;
+    String pre_lnt;
 
     //리뷰내용을 넘기기위해 선언
     ArrayList<Review> reviewlist;
@@ -165,17 +169,20 @@ public class HotelDetailActivity extends AppCompatActivity {
 
         Bundle Ex = getIntent().getExtras();
 
-        Log.d("dd", String.valueOf(Ex));
         if (Ex != null) {
             pre_addr = Ex.getString("addr");
             pre_name = Ex.getString("name");
             pre_first = Ex.getString("first");
             pre_last = Ex.getString("last");
             image = Ex.getString("img");
+            pre_lat = Ex.getString("lat");
+            pre_lnt = Ex.getString("lnt");
+
 
         }
 
-        Log.e("imgpath",image);
+        Log.e("해당하는 업체 위도값",pre_lat);
+        Log.e("해당하는 업체 경도값",pre_lnt);
 
         Topname.setText(pre_name);
         Bigname.setText(pre_name);
@@ -271,8 +278,6 @@ public class HotelDetailActivity extends AppCompatActivity {
                     conn.disconnect();
 
 
-                    Log.e("result", String.valueOf(jobj));
-
 
                 } catch (MalformedURLException | ProtocolException exception) {
                     exception.printStackTrace();
@@ -338,14 +343,14 @@ public class HotelDetailActivity extends AppCompatActivity {
 
 
                     //평점 함수
-                    Log.e("avg",total_star+"");
+
                     for(int i=0; i<total_star.size(); i++){
                         avg_star =  avg_star + total_star.get(i);
                     }
 
                     total_avg_star = avg_star/total_star.size();
                     re_count = String.valueOf(total_star.size());
-                    Log.e("avg2" ,total_avg_star+"");
+
                     //db에서 가져온 업체정보 꺼내오는곳
 //                    infoObj.optString("etp_user");
 //                    infoObj.optString("etp_ph_no");

@@ -7,6 +7,11 @@ import android.widget.TextView;
 
 import com.example.together.R;
 
+import org.json.JSONArray;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class GoodbyepetReservationResultActivity extends AppCompatActivity {
 
     private TextView tvParent, tvChild;
@@ -20,27 +25,24 @@ public class GoodbyepetReservationResultActivity extends AppCompatActivity {
             tvParent = findViewById(R.id.parent);
             tvChild = findViewById(R.id.child);
 
-        for (int i = 0; i < MyCategoriesExpandableListAdapter.parentItems.size(); i++ ){
+            for (int i = 0; i < MyCategoriesExpandableListAdapter.parentItems.size(); i++ ) {
 
-            String isChecked = MyCategoriesExpandableListAdapter.parentItems.get(i).get(ConstantManager.Parameter.IS_CHECKED);
+                for (int j = 0; j < MyCategoriesExpandableListAdapter.childItems.get(i).size(); j++ ){
 
-            if (isChecked.equalsIgnoreCase(ConstantManager.CHECK_BOX_CHECKED_TRUE))
-            {
-                tvParent.setText(tvParent.getText() + MyCategoriesExpandableListAdapter.parentItems.get(i).get(ConstantManager.Parameter.CATEGORY_NAME));
-            }
+                    String isChildChecked = MyCategoriesExpandableListAdapter.childItems.get(i).get(j).get(ConstantManager.Parameter.IS_CHECKED);
 
-            for (int j = 0; j < MyCategoriesExpandableListAdapter.childItems.get(i).size(); j++ ){
+                    if (isChildChecked.equalsIgnoreCase(ConstantManager.CHECK_BOX_CHECKED_TRUE)) {
 
-                String isChildChecked = MyCategoriesExpandableListAdapter.childItems.get(i).get(j).get(ConstantManager.Parameter.IS_CHECKED);
+                        tvParent.setText(tvParent.getText() + MyCategoriesExpandableListAdapter.childItems.get(i).get(j).get(ConstantManager.Parameter.SUB_CATEGORY_NAME));
+                        tvChild.setText(tvChild.getText() + MyCategoriesExpandableListAdapter.childItems.get(i).get(j).get(ConstantManager.Parameter.SUB_CATEGORY_PRICE));
 
-                if (isChildChecked.equalsIgnoreCase(ConstantManager.CHECK_BOX_CHECKED_TRUE))
-                {
-                    tvChild.setText(tvChild.getText()+" ," +MyCategoriesExpandableListAdapter.parentItems.get(i).get(ConstantManager.Parameter.SUB_CATEGORY_PRICE)+" "+(j+1));
-                    tvChild.setText(tvChild.getText() +" , " + MyCategoriesExpandableListAdapter.parentItems.get(i).get(ConstantManager.Parameter.CATEGORY_NAME) + " "+(j+1));
+                    }
+
                 }
 
             }
 
-        }
+
+
     }
 }
