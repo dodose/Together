@@ -113,6 +113,7 @@
                 android:orientation="horizontal">
 
                 <ImageButton
+                    android:id="@+id/map_pethotel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"

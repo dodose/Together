@@ -2,11 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.together">
+
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <!-- 맵 이용하기 위함 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 다음 지도 -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- 대략적인 위치 참조 권한 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 대략적인 위치 참조 권한 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 정확한 위치 참조 권한 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.SEND_SMS" />
@@ -21,22 +28,33 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.PetHotel.totalreviewActivity"></activity>
-        <activity android:name=".Activities.GoodbyePet.GoodbyepetReservationResultActivity"></activity>
+
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".Activities.Map.MapPetHotel"
+            android:label="@string/title_activity_map_pet_hotel"></activity>
+        <activity android:name=".Activities.PetHotel.totalreviewActivity" />
+        <activity android:name=".Activities.GoodbyePet.GoodbyepetReservationResultActivity" />
         <activity android:name=".Activities.GoodbyePet.GoodbyePetStoreListActivity" />
         <activity android:name=".Activities.GoodbyePet.GoodbyePetTimeDateSelectActivity" />
-        <activity android:name=".Activities.GoodbyePet.GoodbyepetMenuSelectActivity"></activity>
+        <activity android:name=".Activities.GoodbyePet.GoodbyepetMenuSelectActivity" />
         <activity android:name=".Activities.GoodbyePet.GoodbyeHowActivity" />
         <activity android:name=".Activities.GoodbyePet.GoodbyeRainbowActivity" />
         <activity android:name=".Activities.GoodbyePet.GoodbyeSelectActivity" />
         <activity android:name=".Activities.PetHotel.reViewActivity" />
         <activity android:name=".Activities.PetHotel.ProductOrderActivity" />
         <activity android:name=".Activities.GoodbyePet.GoodbyeMemorialActivity" />
-
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyD2_TIxJ1iVZZC5fQPZvFHFoWQrxRGwBmo" />
-
         <activity android:name=".Activities.Map.MapTestActivity" />
         <activity android:name=".Activities.Map.Map1" />
 
@@ -65,6 +83,7 @@
         <activity android:name=".Activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -17,6 +17,8 @@ public class MapTestActivity extends FragmentActivity implements OnMapReadyCallb
     GoogleMap googleMap;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
 import com.example.together.Adapter.UserAdapter;
@@ -43,6 +44,7 @@ public class FollowersActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(title);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,11 +155,14 @@ public class FollowersActivity extends AppCompatActivity {
                 userList.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     User user = snapshot.getValue(User.class);
-                    for (String id : idList){
-                        if (user.getId().equals(id)){
-                            userList.add(user);
+                        for (String id : idList){
+                            Log.e("id맨",id+"");
+                            if (user.getId().equals(id)){
+                                Log.e("result db user",user.getId()+"");
+                                Log.e("arrayList",idList.size()+"");
+                                userList.add(user);
+                            }
                         }
-                    }
                 }
 
                 userAdapter.notifyDataSetChanged();

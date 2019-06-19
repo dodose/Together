@@ -112,7 +112,9 @@ public class HotelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 String addr = (String) myViewHolder.etp_addr.getText();
                 String na = (String) myViewHolder.etp_name.getText();
 
-                    Intent intent = new Intent(v.getContext(), HotelDetailActivity.class);
+//                Log.e("firstAndlast",first+"~"+last);
+
+                   Intent intent = new Intent(v.getContext(), HotelDetailActivity.class);
                     intent.putExtra("img",img);
                     intent.putExtra("addr",addr);
                     intent.putExtra("name",na);

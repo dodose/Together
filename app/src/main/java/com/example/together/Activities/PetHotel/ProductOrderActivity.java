@@ -22,10 +22,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.together.Activities.Map.MapPetHotel;
 import com.example.together.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -50,6 +52,11 @@ public class ProductOrderActivity extends AppCompatActivity {
     //접속중인 아이디 값 가져오기
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+
+
+    // 지도 버튼
+    ImageButton etp_addrBtn;
+
 
 
     //db 접속 구문
@@ -98,6 +105,33 @@ public class ProductOrderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_order);
+
+
+
+        // 지도 띄우기
+        etp_addrBtn = findViewById(R.id.etp_addrBtn);
+
+        etp_addrBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProductOrderActivity.this, MapPetHotel.class);
+                //위도 latitude
+//                intent.putExtra("pre_lat",pre_lat);
+//
+//                //경도 longitude
+//                intent.putExtra("pre_lnt",pre_lnt);
+//
+//                //호텔 이름
+//                intent.putExtra("name",pre_name);
+//
+//                //이미지
+//                intent.putExtra("image",image);
+
+                startActivity(intent);
+            }
+        });
+
+
 
         //문자를위한 권한체크
         int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS);

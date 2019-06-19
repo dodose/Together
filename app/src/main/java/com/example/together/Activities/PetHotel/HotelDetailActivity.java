@@ -3,10 +3,8 @@ package com.example.together.Activities.PetHotel;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,6 +21,8 @@ import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.example.together.Activities.Map.HotelMapActivity;
+import com.example.together.Activities.Map.MapPetHotel;
 import com.example.together.Adapter.ProductAdapter;
 import com.example.together.Adapter.ReviewAdapter;
 import com.example.together.Model.Product;
@@ -44,8 +44,6 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import static java.lang.Double.isNaN;
 
@@ -121,6 +119,10 @@ public class HotelDetailActivity extends AppCompatActivity {
     TextView starcount2;
     TextView reviewcount;
 
+    //호텔 맵 버튼
+    ImageButton map_pethotel;
+
+
     String re_count;
 
     //전체후기보기 버튼
@@ -150,6 +152,7 @@ public class HotelDetailActivity extends AppCompatActivity {
         phNumber = findViewById(R.id.ph_number);
         ph_Btn = findViewById(R.id.ph_numberBtn);
         etpusernm = findViewById(R.id.etp_user_nm);
+        map_pethotel = findViewById(R.id.map_pethotel);
 
 
         //이전값 inclue된곳에 넣기
@@ -432,6 +435,31 @@ public class HotelDetailActivity extends AppCompatActivity {
 
             }
         });
+
+
+        // 지도 이미지버튼 클릭
+        map_pethotel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HotelDetailActivity.this, MapPetHotel.class);
+                //위도 latitude
+                intent.putExtra("pre_lat",pre_lat);
+
+                //경도 longitude
+                intent.putExtra("pre_lnt",pre_lnt);
+
+                //호텔 이름
+                intent.putExtra("name",pre_name);
+
+                //이미지
+                intent.putExtra("image",image);
+
+                startActivity(intent);
+
+
+            }
+        });
+
 
 
 

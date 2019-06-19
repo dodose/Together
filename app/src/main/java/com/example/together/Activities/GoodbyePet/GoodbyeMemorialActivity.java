@@ -56,6 +56,7 @@ public class GoodbyeMemorialActivity extends AppCompatActivity {
     private Uri pickedImgUri = null;
 
 
+
     RecyclerView postRecyclerView ;
     com.example.together.Adapter.MemorialPostAdapter MemorialPostAdapter ;
     FirebaseDatabase firebaseDatabase;
@@ -108,7 +109,6 @@ public class GoodbyeMemorialActivity extends AppCompatActivity {
 
 
     private void checkAndRequestForPermission() {
-
 
         if (ContextCompat.checkSelfPermission(GoodbyeMemorialActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -179,10 +179,8 @@ public class GoodbyeMemorialActivity extends AppCompatActivity {
 
         // load Current user profile photo
 
-
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
         reference.addValueEventListener(new ValueEventListener() {
-
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -214,7 +212,7 @@ public class GoodbyeMemorialActivity extends AppCompatActivity {
                         && pickedImgUri != null ) {
 
 
-                    StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("memorial_images");
+                    StorageReference storageReference = FirebaseStorage.getInstance().getReference("memorial_images");
                     final StorageReference imageFilePath = storageReference.child(pickedImgUri.getLastPathSegment());
                     imageFilePath.putFile(pickedImgUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
