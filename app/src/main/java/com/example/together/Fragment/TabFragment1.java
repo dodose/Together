@@ -61,10 +61,10 @@ public class TabFragment1 extends Fragment {
     int count =  0;
 
 
-    final ArrayList<SubCategoryItem> f_s = new ArrayList<>(); //수의 담는배열
-    final ArrayList<SubCategoryItem> f_h = new ArrayList<>(); //함 담는 배열
-    final ArrayList<SubCategoryItem> f_g = new ArrayList<>(); //관 담는 배열
-    final ArrayList<SubCategoryItem> f_f = new ArrayList<>(); //화장비 담는 배열
+    ArrayList<SubCategoryItem> f_s; //수의 담는배열
+    ArrayList<SubCategoryItem> f_h; //함 담는 배열
+    ArrayList<SubCategoryItem> f_g; //관 담는 배열
+    ArrayList<SubCategoryItem> f_f; //화장비 담는 배열
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -89,6 +89,13 @@ public class TabFragment1 extends Fragment {
 
         @Override
         protected JSONObject doInBackground(Void... voids) {
+
+
+            f_s = new ArrayList<>();
+            f_h = new ArrayList<>();
+            f_g = new ArrayList<>();
+            f_f = new ArrayList<>();
+
 
             jobj = new JSONObject();
 
@@ -240,7 +247,12 @@ public class TabFragment1 extends Fragment {
                 e.printStackTrace();
             }
 
-            setupReferences(view, f_s, f_h, f_g, f_f);
+            if(f_s != null) {
+
+                setupReferences(view, f_s, f_h, f_g, f_f);
+            }else{
+                return;
+            }
         }
 
     }.execute();

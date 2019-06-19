@@ -74,7 +74,7 @@ public class TabFragment3 extends Fragment {
         license = view.findViewById(R.id.etp_license);
 
 
-if(jobj == null) {
+
     new AsyncTask<Void, Void, JSONObject>() {
         @Override
         protected void onPreExecute() {
@@ -129,7 +129,7 @@ if(jobj == null) {
                 conn.disconnect();
 
 
-                Log.e("result", jobj + "");
+                Log.e("resultInfointro", jobj + "");
 
 
             } catch (MalformedURLException | ProtocolException exception) {
@@ -153,11 +153,6 @@ if(jobj == null) {
 
                     JSONObject info = jsonArray.getJSONObject(i);
 
-//                            user_id = review.optString("user_id");
-//                            user_nm = review.optString("user_nm");
-//                            reviewcontent = review.optString("rb_contents");
-//                            star = Float.valueOf(review.optString("rb_avg"));
-//                            cont_dt = review.optString("rb_dt");
                    etp_nm = info.optString("etp_nm");
                    etp_addr = info.optString("etp_addr");
                    etp_ph_no= info.optString("etp_ph_no");
@@ -172,29 +167,28 @@ if(jobj == null) {
                    etp_license = info.optString("etp_license");
 
 
-
-
-
                 }
+
+                time.setText(etp_time);
+                ph.setText(etp_ph_no);
+                addr.setText(etp_addr);
+                info.setText(etp_info);
+                intro.setText(etp_intro);
+                nm.setText(etp_nm);
+                license.setText(etp_license);
+
+                Log.e("etp_time",time.getText()+"");
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
 
-            time.setText(etp_time);
-            ph.setText(etp_ph_no);
-            addr.setText(etp_addr);
-            info.setText(etp_info);
-            intro.setText(etp_intro);
-            nm.setText(etp_nm);
-            license.setText(etp_license);
-
         }
 
 
     }.execute();
-}
+
         return view;
     }
 }
