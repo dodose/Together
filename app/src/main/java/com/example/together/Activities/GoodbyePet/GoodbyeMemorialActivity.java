@@ -223,6 +223,7 @@ public class GoodbyeMemorialActivity extends AppCompatActivity {
                                 public void onSuccess(Uri uri) {
                                     String imageDownlaodLink = uri.toString();
                                     // create post Object
+                                    User user = new User();
                                     MemorialPost memorialPost = new MemorialPost(
                                             popupTitle.getText().toString(),
                                             popupDescription.getText().toString(),
@@ -231,8 +232,6 @@ public class GoodbyeMemorialActivity extends AppCompatActivity {
                                             firebaseUser.getPhotoUrl().toString());
 
                                     addPost(memorialPost);
-
-
 
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
@@ -260,8 +259,6 @@ public class GoodbyeMemorialActivity extends AppCompatActivity {
 
                 }
 
-
-
             }
         });
 
@@ -270,8 +267,7 @@ public class GoodbyeMemorialActivity extends AppCompatActivity {
 
     private void addPost(MemorialPost memorialPost) {
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Memorial").push();
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("MemorialPosts").push();
 
         // get post unique ID and upadte post key
         String key = myRef.getKey();

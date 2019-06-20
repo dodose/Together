@@ -7,9 +7,11 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,6 +49,8 @@ public class EditProfileActivity extends AppCompatActivity {
     private Uri mImageUri;
     private StorageTask uploadTask;
     StorageReference storageRef;
+
+    public static String TAG = "EditProfileActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +116,9 @@ public class EditProfileActivity extends AppCompatActivity {
 
 
         save.setOnClickListener(new View.OnClickListener() {
+
+            String userid = firebaseUser.getUid();
+
             @Override
             public void onClick(View v) {
                 updateProfile(fullname.getText().toString(),
@@ -149,13 +156,17 @@ public class EditProfileActivity extends AppCompatActivity {
 
     private void uploadImage(){
         // Progress .xml에서 Visible 하는거 구현
+        final ProgressBar pd = new ProgressBar(this);
+        pd.setVisibility(View.VISIBLE);
+         //To show ProgressBar
+
 
         if (mImageUri != null){
             final StorageReference filereference = storageRef.child(System.currentTimeMillis()
                     +"."+getFileExtension(mImageUri));
 
-
             uploadTask = filereference.putFile(mImageUri);
+
             uploadTask.continueWithTask(new Continuation() {
                 @Override
                 public Object then(@NonNull Task task) throws Exception {
@@ -180,6 +191,7 @@ public class EditProfileActivity extends AppCompatActivity {
                         hashMap.put("imageurl", ""+myUrl);
 
                         reference.updateChildren(hashMap);
+                        pd.setVisibility(View.INVISIBLE);
 
 
                     } else {
@@ -198,6 +210,7 @@ public class EditProfileActivity extends AppCompatActivity {
         }
 
     }
+    
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -207,13 +220,14 @@ public class EditProfileActivity extends AppCompatActivity {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             mImageUri = result.getUri();
 
+            Log.wtf(TAG, "onActivityResult: TAG 실행된 결과값오나요? "+mImageUri+"ImageUri" );
+
             uploadImage();
 
 
         }else {
             showMessage("무엇인가 잘못되었습니다.");
         }
-
     }
 
     private void showMessage(String text) {

@@ -55,7 +55,7 @@ public class MyPetRegActivity extends AppCompatActivity {
     private Uri mImageUri;
     private StorageTask uploadTask;
     StorageReference storageReference;
-    Uri imageUri;
+    private FirebaseAuth firebaseAuth;
     String myUrl = "";
 
     private static final String TAG = "MyPetRegActivity";
@@ -71,14 +71,11 @@ public class MyPetRegActivity extends AppCompatActivity {
 
     FirebaseAuth auth;
     DatabaseReference reference;
-    StorageReference storageRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_pet_reg);
-
-        storageReference = FirebaseStorage.getInstance().getReference("pets");
 
         mTv_change = findViewById(R.id.tv_change);
         mImage_profile = findViewById(R.id.image_profile);
@@ -92,7 +89,6 @@ public class MyPetRegActivity extends AppCompatActivity {
         mFemale = findViewById(R.id.female);
         mGenderGroup = findViewById(R.id.genderGroup);
         cancel = findViewById(R.id.cancel);
-
 
 
 
@@ -144,15 +140,16 @@ public class MyPetRegActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Pets");
-
+                FirebaseUser firebaseUser = auth.getCurrentUser();
+                String userid = firebaseUser.getUid();
+                String petid = reference.push().getKey();
+                reference = FirebaseDatabase.getInstance().getReference().child("Pets").child(userid).child(petid);
 
 
                 RadioGroup rg = (RadioGroup)findViewById(R.id.genderGroup);
                 RadioButton seletedRdo = (RadioButton)findViewById(rg.getCheckedRadioButtonId());
                 final String selectedValue = seletedRdo.getText().toString();
 
-                String petid = reference.push().getKey();
 
                 HashMap<String, Object> hashMap = new HashMap<>();
                 hashMap.put("petname", mPetName.getText().toString().trim());
@@ -161,19 +158,25 @@ public class MyPetRegActivity extends AppCompatActivity {
                 hashMap.put("birthday", mDisplayDate.getText().toString());
                 hashMap.put("intro", mIntro.getText().toString());
                 hashMap.put("gender", selectedValue);
-                hashMap.put("petimage", myUrl);
 
 
 
-                reference.child(petid).setValue(hashMap);
+                reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()){
+                            Intent intent = new Intent(MyPetRegActivity.this, MyPetListActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                        }
+                    }
+                });
 
                 startActivity(new Intent(MyPetRegActivity.this, MyPetListActivity.class));
                 finish();
 
-
             }
         });
-
 
 
 
@@ -223,11 +226,6 @@ public class MyPetRegActivity extends AppCompatActivity {
         });
 
 
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        storageRef = FirebaseStorage.getInstance().getReference().child("pets");
-
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Pets").child(firebaseUser.getUid());
-
     }
 
 
@@ -236,14 +234,18 @@ public class MyPetRegActivity extends AppCompatActivity {
         ContentResolver contentResolver = getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(contentResolver.getType(uri));
+
     }
 
 
     private void uploadImage(){
         // Progress .xml에서 Visible 하는거 구현
 
+        storageReference = FirebaseStorage.getInstance().getReference().child("myPet_image");
+
+
         if (mImageUri != null){
-            final StorageReference filereference = storageRef.child(System.currentTimeMillis()
+            final StorageReference filereference = storageReference.child(System.currentTimeMillis()
                     +"."+getFileExtension(mImageUri));
 
 
@@ -265,13 +267,9 @@ public class MyPetRegActivity extends AppCompatActivity {
                         Uri downloadUri = task.getResult();
                         String myUrl = downloadUri.toString();
 
-                        System.out.println(myUrl);
-                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Pets").child(firebaseUser.getUid());
-
 
                         HashMap<String, Object> hashMap = new HashMap<>();
-                        hashMap.put("petimage", myUrl);
-                        System.out.println(myUrl);
+                        hashMap.put("imageurl", ""+myUrl);
 
                         reference.updateChildren(hashMap);
 
@@ -294,7 +292,6 @@ public class MyPetRegActivity extends AppCompatActivity {
     }
 
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -303,6 +300,9 @@ public class MyPetRegActivity extends AppCompatActivity {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             mImageUri = result.getUri();
 
+
+
+            Log.wtf(TAG, "onActivityResult 되느냥?" );
             uploadImage();
 
 
@@ -314,12 +314,14 @@ public class MyPetRegActivity extends AppCompatActivity {
 
 
 
-
     private void showMessage(String text) {
 
         Toast.makeText(getApplicationContext(),text,Toast.LENGTH_LONG).show();
 
     }
+
+
+
 
 
 }
