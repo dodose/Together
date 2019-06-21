@@ -78,7 +78,8 @@ public class GoodbyepetReservationResultActivity extends AppCompatActivity {
             }
 
             f_productAdapter orAdapter = new f_productAdapter(f_order);
-
+//            orAdapter.setHasStableId(true);
+            Log.e("view activiey", f_order.size()+"");
             funeralview.setAdapter(orAdapter);
 
 

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="fill_parent"
     tools:context=".Activities.GoodbyePet.GoodbyepetReservationResultActivity">
 
     <android.support.v7.widget.Toolbar
@@ -25,32 +25,30 @@
 
     </android.support.v7.widget.Toolbar>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="0.1"
-        android:fillViewport="true">
+
 
 
         <ListView
             android:id="@+id/funeral_order"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="0.3"
             android:drawSelectorOnTop="false">
 
         </ListView>
 
-    </ScrollView>
 
     <Button
         android:id="@+id/f_orderBtn"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.45"
+        android:layout_weight="0.8"
         android:layout_margin="10dp"
+        android:text="바뀌어주세요"
         android:background="@drawable/button_radius"
-        android:text="응기잇"
         android:textSize="18dp"/>
+
+
 
 
 </LinearLayout>

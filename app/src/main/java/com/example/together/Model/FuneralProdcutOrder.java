@@ -15,9 +15,6 @@ public class FuneralProdcutOrder {
         this.img = img;
     }
 
-
-
-
     public String getName() {
         return name;
     }
