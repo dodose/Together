@@ -24,11 +24,6 @@ public class PetHospitalActivity extends AppCompatActivity implements OnMapReady
 //        fragment = (MapFragment) getSupportFragmentManager().findFragmentById(R.id.fragmet1);
 
 
-
-
-
-
-
     }
 
     @Override

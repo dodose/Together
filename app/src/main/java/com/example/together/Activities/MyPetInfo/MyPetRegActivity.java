@@ -34,17 +34,13 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
-import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
+
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -56,9 +52,11 @@ public class MyPetRegActivity extends AppCompatActivity {
     private StorageTask uploadTask;
     StorageReference storageReference;
     private FirebaseAuth firebaseAuth;
-    String myUrl = "";
+
+    private String petimageUrl;
 
     private static final String TAG = "MyPetRegActivity";
+
 
 
     ImageView mImage_profile;
@@ -139,11 +137,11 @@ public class MyPetRegActivity extends AppCompatActivity {
         mAdd_mypet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                reference = FirebaseDatabase.getInstance().getReference("Pets").child(firebaseUser.getUid());
 
-                FirebaseUser firebaseUser = auth.getCurrentUser();
-                String userid = firebaseUser.getUid();
                 String petid = reference.push().getKey();
-                reference = FirebaseDatabase.getInstance().getReference().child("Pets").child(userid).child(petid);
+
 
 
                 RadioGroup rg = (RadioGroup)findViewById(R.id.genderGroup);
@@ -158,10 +156,10 @@ public class MyPetRegActivity extends AppCompatActivity {
                 hashMap.put("birthday", mDisplayDate.getText().toString());
                 hashMap.put("intro", mIntro.getText().toString());
                 hashMap.put("gender", selectedValue);
+                hashMap.put("petimageurl", petimageUrl);
 
 
-
-                reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                reference.child(petid).setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){
@@ -265,13 +263,8 @@ public class MyPetRegActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<Uri> task) {
                     if (task.isSuccessful()){
                         Uri downloadUri = task.getResult();
-                        String myUrl = downloadUri.toString();
-
-
-                        HashMap<String, Object> hashMap = new HashMap<>();
-                        hashMap.put("imageurl", ""+myUrl);
-
-                        reference.updateChildren(hashMap);
+                         petimageUrl = downloadUri.toString();
+                        Log.wtf(TAG, "onComplete: 이미지 뭘까"+petimageUrl );
 
 
                     } else {
@@ -299,10 +292,11 @@ public class MyPetRegActivity extends AppCompatActivity {
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK){
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             mImageUri = result.getUri();
+            mImage_profile.setImageURI(mImageUri);
 
 
 
-            Log.wtf(TAG, "onActivityResult 되느냥?" );
+            Log.wtf(TAG, "onActivityResult 되느냥?"+mImageUri );
             uploadImage();
 
 

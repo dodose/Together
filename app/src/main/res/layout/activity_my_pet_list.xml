@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,66 +11,63 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:attr/windowBackground"
-        android:id="@+id/bar">
+        android:id="@+id/bar"
+        android:background="?android:attr/windowBackground">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar"
+        android:background="?android:attr/windowBackground">
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?android:attr/windowBackground">
+            android:layout_height="wrap_content">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_btn_back"
+                android:id="@+id/close"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"/>
 
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="102dp"
+                android:layout_toEndOf="@+id/close"
+                android:text="나의 펫 리스트"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-                //뒤로가기 버튼
-                <ImageButton
-                    android:id="@+id/my_petlist_btn"
-                    android:layout_width="43dp"
-                    android:layout_height="48dp"
-                    android:adjustViewBounds="true"
-                    android:padding="0sp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_btn_back" />
+            <Button
+                android:id="@+id/petadd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="마이펫 등록" />
 
-                <TextView
-                    android:layout_centerVertical="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:text="마이펫 리스트"
-                    android:textAlignment="center"
-                    android:textSize="18sp" />
+        </RelativeLayout>
 
-
-                <Button
-                    android:id="@+id/petadd"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:text="추가등록" />
-
-            </RelativeLayout>
-
-        </android.support.v7.widget.Toolbar>
-
+    </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
 
+
     <android.support.v7.widget.RecyclerView
+
         android:id="@+id/recyclerview_dogs"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/bar">
 
     </android.support.v7.widget.RecyclerView>
 
 
 
-
-
-
-
-
-</LinearLayout>
+</RelativeLayout>

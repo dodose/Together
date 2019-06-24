@@ -30,7 +30,7 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.MyViewHolder> {
     private List<Pet> mData;
 
 
-    public PetAdapter(List<Pet> mData) {
+    public PetAdapter(Context mContext, List<Pet> mData) {
         this.mContext = mContext;
         this.mData = mData;
     }

@@ -14,7 +14,17 @@ public class Pet {
 
     }
 
+    public Pet(String petimage, String petname){
+        this.petimage = petimage;
+        this.petname = petname;
+
+    }
+
+
     public Pet(String petimage, String petname, String intro){
+        this.petimage = petimage;
+        this.petname = petname;
+        this.intro = intro;
 
     }
 

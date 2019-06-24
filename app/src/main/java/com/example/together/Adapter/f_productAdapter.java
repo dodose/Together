@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.example.together.Activities.EditProfileActivity.TAG;
+
 public class f_productAdapter extends BaseAdapter {
 
     Button b;
@@ -29,6 +31,7 @@ public class f_productAdapter extends BaseAdapter {
     LayoutInflater inflater = null;
 
     private ArrayList<FuneralProdcutOrder> list;
+
 
     public f_productAdapter(ArrayList<FuneralProdcutOrder> f_order) {
         super();
@@ -74,12 +77,12 @@ public class f_productAdapter extends BaseAdapter {
         View Toplayout =  inflaters.inflate(R.layout.activity_goodbyepet_reservation_result, null );
 //
         b = Toplayout.findViewById(R.id.f_orderBtn);
+
         TextView test = Toplayout.findViewById(R.id.toolbar_title);
 
 
         Log.e("test",test.getText()+"");
 
-        test.setText("바뀌어라 이이이잉 앗쌀람말라잉쿵");
 
 //        Log.e("view context", parent.getContext()+"");
 //        Log.e("view position", position+"");
@@ -88,10 +91,13 @@ public class f_productAdapter extends BaseAdapter {
 //        b.setText("테스트");
 
 
+
+
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.e("view alert" ,"확실히 버튼 객체를 찾았습니다 눌림");
+
             }
         });
 
@@ -100,11 +106,14 @@ public class f_productAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 list.remove(position);
-//                b.setText("테스트");
+                b.setText("Show me~~~~ u r change!!!");
                 notifyDataSetChanged();
+                Log.d(TAG, "onClick: What is you?"+list.size());
             }
         });
 
         return convertView;
     }
+
+
 }

@@ -26,8 +26,6 @@
     </android.support.v7.widget.Toolbar>
 
 
-
-
         <ListView
             android:id="@+id/funeral_order"
             android:layout_width="match_parent"

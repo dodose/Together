@@ -71,6 +71,8 @@ public class GoodbyepetReservationResultActivity extends AppCompatActivity {
 
                             f_order.add(new FuneralProdcutOrder(name,price,img));
                             total_price = total_price + Integer.parseInt(price);
+
+
                     }
 
                 }
@@ -79,19 +81,18 @@ public class GoodbyepetReservationResultActivity extends AppCompatActivity {
 
             f_productAdapter orAdapter = new f_productAdapter(f_order);
 //            orAdapter.setHasStableId(true);
-            Log.e("view activiey", f_order.size()+"");
+            Log.e("view activiey", f_order.size()+"안녕");
             funeralview.setAdapter(orAdapter);
 
-
-
             Btn.setText(f_order.size()+"개   " + total_price+" 원 예약 신청하기");
+
+
 
 
 
             Btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
 
 
                 }
