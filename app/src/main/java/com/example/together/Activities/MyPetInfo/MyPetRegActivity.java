@@ -157,6 +157,7 @@ public class MyPetRegActivity extends AppCompatActivity {
                 hashMap.put("intro", mIntro.getText().toString());
                 hashMap.put("gender", selectedValue);
                 hashMap.put("petimageurl", petimageUrl);
+                hashMap.put("petid", petid);
 
 
                 reference.child(petid).setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {

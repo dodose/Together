@@ -2,15 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.together">
-
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the 'MyLocation' functionality.
     -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
-    <!-- 맵 이용하기 위함 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- 맵 이용하기 위함 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 다음 지도 -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- 대략적인 위치 참조 권한 -->
@@ -28,7 +25,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
+        <activity android:name=".Activities.PetHospital.PetHospitalShowReservationInfoActivity"></activity>
+        <activity android:name=".Activities.PetHospital.PetHospitalCheckReservationInfoActivity" />
+        <activity android:name=".Activities.PetHospital.PetHospitalDetailInfoActivity" />
+        <activity android:name=".Activities.PetHospital.PetHospitalListActivity" />
+        <activity android:name=".Activities.PetHospital.PetHospitalPetConditionActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -43,7 +44,7 @@
 
         <activity
             android:name=".Activities.Map.MapPetHotel"
-            android:label="@string/title_activity_map_pet_hotel"></activity>
+            android:label="@string/title_activity_map_pet_hotel" />
         <activity android:name=".Activities.PetHotel.totalreviewActivity" />
         <activity android:name=".Activities.GoodbyePet.GoodbyepetReservationResultActivity" />
         <activity android:name=".Activities.GoodbyePet.GoodbyePetStoreListActivity" />
@@ -51,8 +52,7 @@
         <activity android:name=".Activities.GoodbyePet.GoodbyepetMenuSelectActivity" />
         <activity android:name=".Activities.GoodbyePet.GoodbyeHowActivity" />
         <activity android:name=".Activities.GoodbyePet.GoodbyeRainbowActivity" />
-        <activity android:name=".Activities.GoodbyePet.GoodbyeSelectActivity" >
-        </activity>
+        <activity android:name=".Activities.GoodbyePet.GoodbyeSelectActivity" />
         <activity android:name=".Activities.PetHotel.reViewActivity" />
         <activity android:name=".Activities.PetHotel.ProductOrderActivity" />
         <activity android:name=".Activities.GoodbyePet.GoodbyeMemorialActivity" />
@@ -69,7 +69,6 @@
         <activity android:name=".Activities.Petching.SettingsActivity" />
         <activity android:name=".Activities.Map.HotelMapActivity" />
         <activity android:name=".Activities.GoodbyePet.GoodbyePetActivity" />
-        <activity android:name=".Activities.PetHospital.PetHospitalActivity" />
         <activity android:name=".Activities.PetGroup.PetGroupActivity" />
         <activity android:name=".Activities.Petching.PetchingActivity" />
         <activity android:name=".Activities.PetHotel.PetHotelActivity" />

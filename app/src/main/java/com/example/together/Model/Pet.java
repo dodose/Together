@@ -9,6 +9,9 @@ public class Pet {
     private int birthday;
     private String gender;
     private String intro;
+    private String petid;
+
+
 
     public Pet(){
 
@@ -29,7 +32,7 @@ public class Pet {
     }
 
 
-    public Pet(String petimage, String petname, String petbreed, int petweight, int birthday, String gender, String intro) {
+    public Pet(String petimage, String petname, String petbreed, int petweight, int birthday, String gender, String intro, String petid) {
         this.petimage = petimage;
         this.petname = petname;
         this.petbreed = petbreed;
@@ -37,6 +40,16 @@ public class Pet {
         this.birthday = birthday;
         this.gender = gender;
         this.intro = intro;
+        this.petid = petid;
+    }
+
+
+    public String getPetid() {
+        return petid;
+    }
+
+    public void setPetid(String petid) {
+        this.petid = petid;
     }
 
     public String getPetimage() {
