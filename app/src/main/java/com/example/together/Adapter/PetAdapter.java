@@ -30,9 +30,10 @@ import java.util.List;
  */
 
 public class PetAdapter extends RecyclerView.Adapter<PetAdapter.MyViewHolder> {
-    FirebaseUser firebaseUser;
     private Context mContext;
     private List<Pet> mPet;
+
+    private FirebaseUser firebaseUser;
 
 
     public PetAdapter(Context mContext, List<Pet> mPet) {
@@ -40,9 +41,7 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.MyViewHolder> {
         this.mPet = mPet;
     }
 
-    public PetAdapter(MyPetListActivity myPetListActivity, List<Pet> lsPet) {
 
-    }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -50,7 +49,7 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.MyViewHolder> {
         View view;
         LayoutInflater mInflater = LayoutInflater.from(mContext);
         view = mInflater.inflate(R.layout.item_mydoglist, parent, false);
-        return new MyViewHolder(view);
+        return new PetAdapter.MyViewHolder(view);
     }
 
     @Override
@@ -91,7 +90,7 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.MyViewHolder> {
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mPet.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
