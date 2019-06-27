@@ -47,7 +47,7 @@ public class MemorialPostDetailActivity extends AppCompatActivity {
     RecyclerView RvComment;
     MemorialCommentAdapter commentAdapter;
     List<MemorialComment> listComment;
-    static String COMMENT_KEY = "Comment" ;
+    static String COMMENT_KEY = "Comment";
 
 
 

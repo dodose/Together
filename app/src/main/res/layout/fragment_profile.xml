@@ -85,27 +85,27 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                        <LinearLayout
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
                             android:id="@+id/pets"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
-                                android:layout_gravity="center"
-                                android:textColor="@color/colorPrimaryDark"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="마이펫" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="마이펫"/>
-
-                        </LinearLayout>
+                    </LinearLayout>
 
 
                     <LinearLayout

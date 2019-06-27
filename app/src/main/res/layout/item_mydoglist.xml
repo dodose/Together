@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="166dp"
             android:background="#2d2d2d"
-            android:scaleType="centerCrop" />
+            android:scaleType="fitXY" />
 
         <TextView
             android:id="@+id/dog_name"

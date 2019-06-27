@@ -25,7 +25,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.PetHospital.PetHospitalShowReservationInfoActivity"></activity>
+        <activity android:name=".Activities.MyPetInfo.MyPetInfoCheckActivity"></activity>
+        <activity android:name=".Activities.PetHospital.PetHospitalShowReservationInfoActivity" />
         <activity android:name=".Activities.PetHospital.PetHospitalCheckReservationInfoActivity" />
         <activity android:name=".Activities.PetHospital.PetHospitalDetailInfoActivity" />
         <activity android:name=".Activities.PetHospital.PetHospitalListActivity" />

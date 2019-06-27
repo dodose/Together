@@ -6,19 +6,61 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ImageButton
-        android:id="@+id/imageButton3"
-        android:layout_width="wrap_content"
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_btn_back" />
+        android:id="@+id/bar"
+        android:background="?android:attr/windowBackground">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="410dp"
-        android:layout_height="319dp"
-        tools:layout_editor_absoluteX="-3dp"
-        tools:layout_editor_absoluteY="3dp"
-        tools:srcCompat="@tools:sample/avatars[3]" />
+
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/toolbar"
+            android:background="?android:attr/windowBackground">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_btn_back"
+                    android:id="@+id/close"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentStart="true"/>
+
+                <TextView
+                    android:id="@+id/petName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="113dp"
+                    android:layout_toEndOf="@+id/close"
+                    android:text="My Pet Name"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="240dp">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="-3dp"
+            tools:layout_editor_absoluteY="3dp"
+            tools:srcCompat="@tools:sample/avatars[3]" />
+    </LinearLayout>
+
+
 
 
     <LinearLayout
@@ -41,10 +83,11 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
-            android:text="breed"
+            android:text="혈액형"
             android:textSize="36sp"
             tools:layout_editor_absoluteX="59dp"
             tools:layout_editor_absoluteY="341dp" />
+
 
         <TextView
             android:id="@+id/Age"
@@ -52,7 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
             android:layout_marginTop="20dp"
-            android:text="Age"
+            android:text="생년월일"
             android:textSize="36sp"
             tools:layout_editor_absoluteX="252dp"
             tools:layout_editor_absoluteY="341dp" />
@@ -102,16 +145,16 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="0dp"
             android:layout_weight="0"
-            android:text="Gender"
+            android:text="성별"
             android:textSize="36sp" />
 
         <TextView
             android:id="@+id/Status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="70dp"
+            android:layout_marginLeft="130dp"
             android:layout_weight="0"
-            android:text="Status"
+            android:text="상태"
             android:textSize="36sp" />
     </LinearLayout>
 
@@ -158,16 +201,16 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_weight="0"
-            android:text="Weight"
+            android:text="몸무게"
             android:textSize="36sp" />
 
         <TextView
             android:id="@+id/Height"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="70dp"
+            android:layout_marginLeft="110dp"
             android:layout_weight="0"
-            android:text="Height"
+            android:text="신장"
             android:textSize="36sp" />
 
     </LinearLayout>

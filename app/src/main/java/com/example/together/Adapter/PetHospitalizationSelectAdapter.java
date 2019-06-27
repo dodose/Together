@@ -24,9 +24,6 @@ public class PetHospitalizationSelectAdapter extends RecyclerView.Adapter<PetHos
     private Context mContext;
 
 
-
-
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {

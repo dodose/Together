@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,15 +42,14 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.MyViewHolder> {
         this.mPet = mPet;
     }
 
+    private static final String TAG = "PetAdapter";
+
 
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view;
-        LayoutInflater mInflater = LayoutInflater.from(mContext);
-        view = mInflater.inflate(R.layout.item_mydoglist, parent, false);
-        return new PetAdapter.MyViewHolder(view);
+        return new MyViewHolder(LayoutInflater.from(mContext).inflate(R.layout.item_mydoglist, parent, false));
     }
 
     @Override
@@ -62,11 +62,12 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.MyViewHolder> {
         holder.petname.setText(mPet.get(position).getPetname());
         // holder.petimage.setImageResource(mPet.get());
 
+        Log.d(TAG, "펫이미지: "+pet.getPetimageurl());
+
         Glide.with(mContext)
-                .load(pet.getPetimage())
+                .load(pet.getPetimageurl())
                 .placeholder(R.drawable.placeholder)
                 .fitCenter()
-                .centerCrop()
                 .into(holder.petimage);
 
         holder.pet_cardview_id.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +79,7 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.MyViewHolder> {
                 // passing data to the book activity
                 intent.putExtra("petname", mPet.get(position).getPetname());
                 intent.putExtra("intro", mPet.get(position).getIntro());
-                intent.putExtra("Thumbnail", mPet.get(position).getPetimage());
+                intent.putExtra("Thumbnail", mPet.get(position).getPetimageurl());
                 // start the activity
                 mContext.startActivity(intent);
 
@@ -112,26 +113,4 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.MyViewHolder> {
     }
 
 
-
-    private void readPets(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Pets").child(firebaseUser.getUid());
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    Pet pet = snapshot.getValue(Pet.class);
-
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-
 }
-
