@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -24,20 +25,33 @@ public class PetHospitalizationSelectAdapter extends RecyclerView.Adapter<PetHos
     private Context mContext;
 
 
+    public PetHospitalizationSelectAdapter(Context mContext, ArrayList<Pet> mPet){
+        this.mContext = mContext;
+        this.mPet = mPet;
+    }
+
+
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Log.d(TAG, "onCreateViewHolder: ");
-        return null;
+
+        return new ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.list_mypet_hospitalization, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
 
+        final Pet pet = mPet.get(position);
+
+        viewHolder.petname.setText(mPet.get(position).getPetname());
+
+
         Glide.with(mContext)
-                .asBitmap()
-                .load(mPet.get(position))
-                .into(viewHolder.mypet_image);
+                .load(pet.getPetimageurl())
+                .placeholder(R.drawable.placeholder)
+                .fitCenter()
+                .into(viewHolder.petimage);
 
         //viewHolder.petName_Hospitalization.setText(mPet.get(position));
 
@@ -45,19 +59,19 @@ public class PetHospitalizationSelectAdapter extends RecyclerView.Adapter<PetHos
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mPet.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        CircleImageView mypet_image;
-        TextView petName_Hospitalization;
+        CircleImageView petimage;
+        TextView petname;
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            mypet_image = itemView.findViewById(R.id.mypet_image);
-            petName_Hospitalization = itemView.findViewById(R.id.petName_Hospitalization);
+            petimage = itemView.findViewById(R.id.petimage);
+            petname = itemView.findViewById(R.id.petname);
         }
     }
 

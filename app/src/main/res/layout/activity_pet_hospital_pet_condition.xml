@@ -22,6 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -29,11 +30,29 @@
                     android:src="@drawable/ic_btn_back"
                     android:id="@+id/backTo"/>
 
+                <TextView
+                    android:id="@+id/petName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="113dp"
+                    android:layout_toEndOf="@+id/close"
+                    android:text="Pet Hospital "
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+
             </RelativeLayout>
 
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:text="진료받을 펫 선택"/>
 
     <LinearLayout
         android:background="#f2f2f2"
@@ -45,7 +64,7 @@
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/recycler_view"
+            android:id="@+id/recyclerview_dogs"
             android:orientation="horizontal">
 
 
@@ -55,20 +74,85 @@
     </LinearLayout>
 
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <DatePicker
-            android:id="@+id/dataPicker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:datePickerMode="spinner"
-            android:calendarViewShown="false"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:text="진료과"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginTop="4dp"
+            android:background="@android:color/darker_gray"/>
+
+
+    <CheckBox
+        android:id="@+id/dpt_all"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dpt_all" />
+
+    <CheckBox
+        android:id="@+id/dpt_internal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dpt_internal"/>
+
+    <CheckBox
+        android:id="@+id/dpt_surgery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dpt_surgery"/>
+
+    <CheckBox
+        android:id="@+id/dpt_skin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dpt_skin"/>
+
+    <CheckBox
+        android:id="@+id/dpt_eyes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dpt_eyes"/>
+
+    <CheckBox
+        android:id="@+id/dpt_dentist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dpt_dentist"/>
+
+    <CheckBox
+        android:id="@+id/dpt_birth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dpt_birth"/>
 
     </LinearLayout>
 
 
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginTop="4dp"
+        android:background="@android:color/darker_gray"/>
+
+    <Button
+        android:layout_marginTop="5dp"
+        android:id="@+id/date_select"
+        android:text="날짜 선택"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_background" />
 
 
     <LinearLayout
@@ -76,10 +160,20 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center">
 
+
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="호텔검색"/>
+            android:text="검색"/>
 
     </LinearLayout>
 
