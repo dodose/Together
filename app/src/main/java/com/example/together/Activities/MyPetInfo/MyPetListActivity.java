@@ -38,8 +38,9 @@ public class MyPetListActivity extends AppCompatActivity {
 
     FirebaseUser firebaseUser;
     DatabaseReference reference;
-    Button petadd;
     List<Pet> lsPet;
+
+    Button petadd;
 
     ImageView backTo; // layout : activity_my_pet_list.xml
 
@@ -66,14 +67,12 @@ public class MyPetListActivity extends AppCompatActivity {
                     String key = childSnapshot.getKey();
                     Log.d(TAG,key+"키키키");
                     Pet pet = childSnapshot.getValue(Pet.class);
-                    String image = childSnapshot.child("petimageurl").getValue() + "";
 
                     pet.getPetname();
                     pet.getPetimageurl();
                     pet.getBirthday();
 
                     Log.d(TAG, pet+"펫이당");
-                    Log.wtf(TAG, "Stack support "+image);
                     Log.wtf(TAG, "did you get petweight? : "+pet.getPetweight());
                     Log.wtf(TAG, "did you get Birthday?: "+pet.getBirthday());
                     Log.wtf(TAG, "did you get name?"+pet.getPetname());
@@ -81,7 +80,7 @@ public class MyPetListActivity extends AppCompatActivity {
                     lsPet.add(pet);
                 }
 
-                RecyclerView recyclerview_dogs = (RecyclerView) findViewById(R.id.recyclerview_dogs);
+                RecyclerView recyclerview_dogs =  findViewById(R.id.recyclerview_dogs);
                 PetAdapter petAdapter = new PetAdapter(MyPetListActivity.this,lsPet);
                 recyclerview_dogs.setLayoutManager(new GridLayoutManager(MyPetListActivity.this,3));
                 recyclerview_dogs.setAdapter(petAdapter);
@@ -94,7 +93,6 @@ public class MyPetListActivity extends AppCompatActivity {
                 Log.wtf(TAG, "onCancelled: 펫이미지 가져오는데 문제 발생! ");
             }
         });
-
 
 
 

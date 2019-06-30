@@ -10,9 +10,15 @@ public class Pet {
     private String gender;
     private String intro;
     private String petid;
+    private Boolean isChecked;
 
     public Pet() {
 
+    }
+
+
+    public Pet(Boolean isChecked) {
+        this.isChecked = isChecked;
     }
 
     public Pet(String petimageurl, String petname, String petbreed, String petweight, String birthday, String gender, String intro, String petid) {
@@ -99,6 +105,14 @@ public class Pet {
 
     public void setPetid(String petid) {
         this.petid = petid;
+    }
+
+    public Boolean getChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(Boolean checked) {
+        isChecked = checked;
     }
 }
 

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,8 +15,7 @@ import com.bumptech.glide.Glide;
 import com.example.together.Activities.MyPetInfo.MyPetListActivity;
 import com.example.together.Model.Pet;
 import com.example.together.R;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+
 
 import java.util.List;
 
@@ -29,6 +29,7 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.MyViewHolder> {
 
     private Context mContext;
     private List<Pet> mPet;
+
 
 
     public PetAdapter(Context mContext, List<Pet> mPet) {
@@ -95,9 +96,9 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.MyViewHolder> {
         public MyViewHolder(View itemView) {
             super(itemView);
 
-            petname = (TextView) itemView.findViewById(R.id.dog_name);
-            petimage = (ImageView) itemView.findViewById(R.id.dog_img_id);
-            pet_cardview_id = (CardView) itemView.findViewById(R.id.pet_cardview_id);
+            petname =  itemView.findViewById(R.id.dog_name);
+            petimage =  itemView.findViewById(R.id.dog_img_id);
+            pet_cardview_id =  itemView.findViewById(R.id.pet_cardview_id);
 
 
         }
