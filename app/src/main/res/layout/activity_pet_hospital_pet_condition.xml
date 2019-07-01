@@ -104,19 +104,19 @@
         android:id="@+id/dpt_internal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/dpt_internal"/>
+        android:text="@string/dpt_internal" />
 
     <CheckBox
         android:id="@+id/dpt_surgery"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/dpt_surgery"/>
+        android:text="@string/dpt_surgery" />
 
     <CheckBox
         android:id="@+id/dpt_skin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/dpt_skin"/>
+        android:text="@string/dpt_skin" />
 
     <CheckBox
         android:id="@+id/dpt_eyes"
@@ -128,13 +128,13 @@
         android:id="@+id/dpt_dentist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/dpt_dentist"/>
+        android:text="@string/dpt_dentist" />
 
     <CheckBox
         android:id="@+id/dpt_birth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/dpt_birth"/>
+        android:text="@string/dpt_birth" />
 
     </LinearLayout>
 

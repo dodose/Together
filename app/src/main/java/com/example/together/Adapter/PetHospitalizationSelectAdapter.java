@@ -2,6 +2,8 @@ package com.example.together.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.ColorSpace;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -24,9 +26,10 @@ public class PetHospitalizationSelectAdapter extends RecyclerView.Adapter<PetHos
 
     private static final String TAG = "PetHospitalizationSelec";
 
-
+    public int row_index = -1;
     private Context mContext;
     private List<Pet> mPet;
+    public boolean selectedPet;
 
     private ItemClick itemClick;
 
@@ -57,7 +60,7 @@ public class PetHospitalizationSelectAdapter extends RecyclerView.Adapter<PetHos
 
 
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder,  int position) {
+    public void onBindViewHolder(final ViewHolder viewHolder, final int position) {
 
         final Pet pet = mPet.get(position);
 
@@ -71,6 +74,23 @@ public class PetHospitalizationSelectAdapter extends RecyclerView.Adapter<PetHos
                 .into(viewHolder.petimage);
 
 //        if (!mPet.get(position).)
+
+        viewHolder.pet_cardview_id.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                row_index = position;
+                notifyDataSetChanged();
+
+            }
+        });
+        if (row_index==position){
+            viewHolder.pet_cardview_id.setBackgroundColor(Color.parseColor("#ebfaa0"));
+        }
+        else
+        {
+            viewHolder.pet_cardview_id.setBackgroundColor(Color.TRANSPARENT);
+        }
 
     }
 
@@ -100,8 +120,6 @@ public class PetHospitalizationSelectAdapter extends RecyclerView.Adapter<PetHos
             petimage = itemView.findViewById(R.id.petimage);
             petname = itemView.findViewById(R.id.petname);
             pet_cardview_id = itemView.findViewById(R.id.pet_cardview_id);
-
-
 
         }
 

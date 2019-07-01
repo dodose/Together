@@ -2,6 +2,10 @@
     <string name="app_name">Together</string>
 
     <!-- PetHospital 증상 입력 채크박스 -->
+
+    <string-array name="petHospital_myPet_condition">
+        <item name="dpt_all">종합</item>
+    </string-array>
     <string name="dpt_all">종합</string>
     <string name="dpt_internal">내과</string>
     <string name="dpt_surgery">외과</string>
