@@ -34,6 +34,8 @@ import java.util.Locale;
 
 public class AirCalendarDatePickerActivity extends AppCompatActivity implements DatePickerController {
 
+    private static final String TAG = "AirCalendarDatePickerAc";
+
     public final static String EXTRA_FLAG = "FLAG";
     public final static String EXTRA_IS_BOOIKNG = "IS_BOOING";
     public final static String EXTRA_IS_SELECT = "IS_SELECT";
@@ -305,9 +307,9 @@ public class AirCalendarDatePickerActivity extends AppCompatActivity implements 
                 resultIntent.putExtra(RESULT_TYPE, FLAG);
                 resultIntent.putExtra(RESULT_STATE, "done");
                 setResult(RESULT_OK, resultIntent);
-                finish();
-
                 startActivity(resultIntent);
+
+                Log.d(TAG, "값선택 나오나? "+resultIntent);
 
             }
         });

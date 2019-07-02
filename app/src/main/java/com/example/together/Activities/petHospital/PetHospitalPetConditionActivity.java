@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class PetHospitalPetConditionActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
+public class PetHospitalPetConditionActivity extends AppCompatActivity  {
     public final static int REQUEST_CODE = 1;
     private static final String TAG = "PetHospitalPetCondition";
     private CheckBox dpt_all, dpt_internal, dpt_surgery, dpt_skin, dpt_eyes, dpt_dentist, dpt_birth;
@@ -43,7 +43,6 @@ public class PetHospitalPetConditionActivity extends AppCompatActivity implement
     FirebaseUser firebaseUser;
     DatabaseReference reference;
     List<Pet> lsPet;
-    boolean[] checkedItems;
     ArrayList<String> pet_condition = new ArrayList<String>();
 
 
@@ -52,6 +51,8 @@ public class PetHospitalPetConditionActivity extends AppCompatActivity implement
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_hospital_pet_condition);
+
+
 
 
         //증상 채크박스선택
@@ -78,7 +79,6 @@ public class PetHospitalPetConditionActivity extends AppCompatActivity implement
         date_select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "버튼클릭했냐?");
                 AirCalendarIntent intent = new AirCalendarIntent(PetHospitalPetConditionActivity.this);
                 intent.setSelectButtonText("Select");
                 intent.setResetBtnText("Reset");
@@ -145,6 +145,10 @@ public class PetHospitalPetConditionActivity extends AppCompatActivity implement
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        Intent intent2 = getIntent();
+        String test = intent2.getExtras().getString("RESULT_SELECT_START_VIEW_DATE");
+        Log.d(TAG, "TEST@@@@@"+test);
+
         if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
 //            AirCalendarDatePickerActivity.RESULT_SELECT_START_DATE
 //            AirCalendarDatePickerActivity.RESULT_SELECT_END_DATE
@@ -164,24 +168,104 @@ public class PetHospitalPetConditionActivity extends AppCompatActivity implement
     }
 
 
-    // 채크박스 선택 부분
-    @Override
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        pet_condition.clear();
-
-        if (dpt_all.isChecked()) pet_condition.add(dpt_all.getText().toString());
-        if (dpt_internal.isChecked()) pet_condition.add(dpt_internal.getText().toString());
-        if (dpt_surgery.isChecked()) pet_condition.add(dpt_surgery.getText().toString());
-        if (dpt_skin.isChecked()) pet_condition.add(dpt_skin.getText().toString());
-        if (dpt_eyes.isChecked()) pet_condition.add(dpt_eyes.getText().toString());
-        if (dpt_dentist.isChecked()) pet_condition.add(dpt_dentist.getText().toString());
-        if (dpt_birth.isChecked()) pet_condition.add(dpt_birth.getText().toString());
 
 
-        for (int i = 0; i<pet_condition.size(); i++){
-            Log.d(TAG, "onCheckedChanged: "+pet_condition.get(i)+"채크박스 값");
-        }
+    // 채크박스 값 선택여부
+    public void selectItem(View view)
+    {
+        boolean checked = ((CheckBox) view).isChecked();
+            switch (view.getId())
+            {
+                //종합
+                case R.id.dpt_all:
+                    if (checked)
+                    {
+                        pet_condition.add("종합");
+                    }
+                    else
+                    {
+                        pet_condition.remove("종합");
+                    }
+                    break;
 
-        //   Intent intent = new Intent(PetHospitalPetConditionActivity.this, );
+                //내과
+                case R.id.dpt_internal:
+                    if (checked)
+                    {
+                        pet_condition.add("내과");
+                    }
+                    else
+                    {
+                        pet_condition.remove("내과");
+                    }
+                    break;
+
+                //외과
+                case R.id.dpt_surgery:
+                    if (checked)
+                    {
+                        pet_condition.add("외과");
+                    }
+                    else
+                    {
+                        pet_condition.remove("외과");
+                    }
+                    break;
+                //피부과
+                case R.id.dpt_skin:
+                    if (checked)
+                    {
+                        pet_condition.add("피부과");
+                    }
+                    else
+                    {
+                        pet_condition.remove("피부과");
+                    }
+                    break;
+                //안과
+                case R.id.dpt_eyes:
+                    if (checked)
+                    {
+                        pet_condition.add("안과");
+                    }
+                    else
+                    {
+                        pet_condition.remove("안과");
+                    }
+                    break;
+                //치과
+                case R.id.dpt_dentist:
+                    if (checked)
+                    {
+                        pet_condition.add("치과");
+                    }
+                    else
+                    {
+                        pet_condition.remove("치과");
+                    }
+                    break;
+                //산과
+                case R.id.dpt_birth:
+                    if (checked)
+                    {
+                        pet_condition.add("산과");
+                    }
+                    else
+                    {
+                        pet_condition.remove("산과");
+                    }
+                    break;
+            }
+
+
+            //값들어오는지 채크해보자
+            for (int i=0; i<pet_condition.size(); i++)
+            {
+                Log.d(TAG, "selectItem: 병원 "+pet_condition.get(i));
+            }
+
+
     }
+
+
 }
