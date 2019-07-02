@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.together.common.BackPressCloseHandler;
 import com.example.together.fragment.SearchFragment;
 import com.example.together.fragment.HomeFragment;
 import com.example.together.fragment.NotificationFragment;
@@ -15,9 +16,11 @@ import com.example.together.fragment.ProfileFragment;
 import com.example.together.R;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity  {
     BottomNavigationView bottomNavigationView;
     Fragment seletedFragment = null;
+
+    private BackPressCloseHandler backPressCloseHandler;
 
 
 
@@ -26,9 +29,16 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        //뒤로가기 두번 누를시 종료
+        backPressCloseHandler = new BackPressCloseHandler(this);
+
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
+
+
+        backPressCloseHandler.onBackPressed();
+
 
         Bundle intent = getIntent().getExtras();
         if (intent != null){
@@ -86,6 +96,9 @@ public class HomeActivity extends AppCompatActivity {
                     return true;
                 }
             };
+
+
+
 
 
 }

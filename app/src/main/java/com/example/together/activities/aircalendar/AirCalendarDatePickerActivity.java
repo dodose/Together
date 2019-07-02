@@ -308,10 +308,11 @@ public class AirCalendarDatePickerActivity extends AppCompatActivity implements 
                 resultIntent.putExtra(RESULT_STATE, "done");
                 setResult(RESULT_OK, resultIntent);
                 startActivity(resultIntent);
+                finish();
 
                 Log.d(TAG, "값선택 나오나? "+resultIntent);
 
-            }
+        }
         });
 
         tv_reset_btn.setOnClickListener(new View.OnClickListener() {

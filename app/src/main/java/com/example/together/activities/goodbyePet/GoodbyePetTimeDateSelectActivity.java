@@ -217,7 +217,7 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int day) {
             // store the data in one string and set it to text
-            String date1 = String.valueOf(year) + "/" + String.valueOf(month)
+            String date1 = String.valueOf(year) + "/" + String.valueOf(month+1)
                     + "/" + String.valueOf(day);
             set_date.setText(date1);
         }

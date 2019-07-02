@@ -77,7 +77,8 @@ public class PetHospitalizationSelectAdapter extends RecyclerView.Adapter<PetHos
 
                 row_index = position;
                 notifyDataSetChanged();
-
+                String selected_my_pet = mPet.get(position).getPetid();
+                Log.d(TAG, "@@@@@@@@@@@@@@@"+selected_my_pet);
             }
         });
         if (row_index==position){

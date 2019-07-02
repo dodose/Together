@@ -65,11 +65,13 @@ public class TabFragment1 extends Fragment {
     ArrayList<SubCategoryItem> f_f; //화장비 담는 배열
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.tab_fragment_1, container, false);
 
         final String etp_cd= getArguments().getString("code"); // 업체코드 가져오기
+        final String day= getArguments().getString("day"); // 이전에선택햇던 날짜값
+        final String time= getArguments().getString("time"); // 이전에 선택했던 시간값
 
 
 
@@ -263,6 +265,9 @@ public class TabFragment1 extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), GoodbyepetReservationResultActivity.class);
+                intent.putExtra("day",day);
+                intent.putExtra("time",time);
+                intent.putExtra("code",etp_cd);
                 startActivity(intent);
             }
         });
@@ -281,9 +286,6 @@ public class TabFragment1 extends Fragment {
         parentItems = new ArrayList<>();
         childItems = new ArrayList<>();
 
-
-        Log.e("넘어온 이미지",f_s.get(0).getPd_img()+"");
-//        ArrayList<SubCategoryItem> list = suit;
 
         // 1
         DataItem dataItem = new DataItem();

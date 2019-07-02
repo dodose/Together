@@ -1,11 +1,10 @@
 package com.example.together.activities.goodbyePet;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.support.v7.widget.Toolbar;
@@ -25,9 +24,13 @@ public class GoodbyepetReservationResultActivity extends AppCompatActivity {
 
     ListView funeralview;
 
-    Button Btn;
+//    Button Btn;
 
     private ArrayList<FuneralProdcutOrder> f_order = new ArrayList<>();
+
+    private Context mContext;
+
+    private Button order_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,13 +38,20 @@ public class GoodbyepetReservationResultActivity extends AppCompatActivity {
             setContentView(R.layout.activity_goodbyepet_reservation_result);
 
 
+         //Intent된 날짜값
+        Bundle Bx = getIntent().getExtras();
+        String day = Bx.getString("day");
+        String time = Bx.getString("time");
+        String code = Bx.getString("code");
+
+
             int total_price = 0;
             //리스트뷰선언
         funeralview = findViewById(R.id.funeral_order);
-
+        mContext = this;
         //예약 버튼
 
-        Btn = findViewById(R.id.f_orderBtn);
+        order_btn = findViewById(R.id.f_orderBtn);
 
         //툴바 선언
         myToolbar = findViewById(R.id.my_toolbar);
@@ -77,24 +87,9 @@ public class GoodbyepetReservationResultActivity extends AppCompatActivity {
 
             }
 
-            f_productAdapter orAdapter = new f_productAdapter(f_order);
-//            orAdapter.setHasStableId(true);
-            Log.e("view activiey", f_order.size()+"안녕");
+            f_productAdapter orAdapter = new f_productAdapter(f_order, mContext,order_btn,day,time,code);
+
             funeralview.setAdapter(orAdapter);
-
-            Btn.setText(f_order.size()+"개   " + total_price+" 원 예약 신청하기");
-
-
-
-
-
-            Btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-
-                }
-            });
 
 
     }
