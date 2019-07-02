@@ -53,7 +53,6 @@ public class PetHospitalPetConditionActivity extends AppCompatActivity  {
 
 
 
-
         //증상 채크박스선택
 
         //종합
@@ -144,21 +143,11 @@ public class PetHospitalPetConditionActivity extends AppCompatActivity  {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Intent intent2 = getIntent();
-        String test = intent2.getExtras().getString("RESULT_SELECT_START_VIEW_DATE");
-        Log.d(TAG, "TEST@@@@@"+test);
-
         if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
-//            AirCalendarDatePickerActivity.RESULT_SELECT_START_DATE
-//            AirCalendarDatePickerActivity.RESULT_SELECT_END_DATE
-//            AirCalendarDatePickerActivity.RESULT_SELECT_START_VIEW_DATE
-//            AirCalendarDatePickerActivity.RESULT_SELECT_END_VIEW_DATE
-//            AirCalendarDatePickerActivity.RESULT_FLAG
-//            AirCalendarDatePickerActivity.RESULT_TYPE
-//            AirCalendarDatePickerActivity.RESULT_STATE
-            Intent intent = getIntent();
-            String date = intent.getExtras().getString("RESULT_SELECT_START_DATE");
-            Log.d(TAG, "선택한 날짜는 과연 나올까요?"+date);
+
+            data.getStringExtra(AirCalendarDatePickerActivity.RESULT_SELECT_START_DATE);
+            data.getStringExtra(AirCalendarDatePickerActivity.RESULT_SELECT_END_DATE);
+//
 
             if(data != null){
                 Toast.makeText(this, "Select Date range : " + data.getStringExtra(AirCalendarDatePickerActivity.RESULT_SELECT_START_DATE) + " ~ " + data.getStringExtra(AirCalendarDatePickerActivity.RESULT_SELECT_END_DATE), Toast.LENGTH_SHORT).show();
