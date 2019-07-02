@@ -301,18 +301,10 @@ public class AirCalendarDatePickerActivity extends AppCompatActivity implements 
                 Intent resultIntent = new Intent(getApplicationContext(), PetHospitalPetConditionActivity.class);
                 resultIntent.putExtra(RESULT_SELECT_START_DATE, SELECT_START_DATE);
                 resultIntent.putExtra(RESULT_SELECT_END_DATE, SELECT_END_DATE);
-                resultIntent.putExtra(RESULT_SELECT_START_VIEW_DATE, tv_start_date.getText().toString());
-                resultIntent.putExtra(RESULT_SELECT_END_VIEW_DATE, tv_end_date.getText().toString());
-                resultIntent.putExtra(RESULT_FLAG, FLAG);
-                resultIntent.putExtra(RESULT_TYPE, FLAG);
-                resultIntent.putExtra(RESULT_STATE, "done");
+
                 setResult(RESULT_OK, resultIntent);
-                startActivity(resultIntent);
                 finish();
-
-                Log.d(TAG, "값선택 나오나? "+resultIntent);
-
-        }
+            }
         });
 
         tv_reset_btn.setOnClickListener(new View.OnClickListener() {
