@@ -59,7 +59,7 @@ public class GoodbyepetMenuSelectActivity extends AppCompatActivity {
         tabCalls = findViewById(R.id.tabCalls);
         viewPager = findViewById(R.id.viewPager);
 
-        pageAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount(),code);
+        pageAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount(),code,day,time);
         viewPager.setAdapter(pageAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 

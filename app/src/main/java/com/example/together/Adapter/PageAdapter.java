@@ -14,12 +14,16 @@ public class PageAdapter extends FragmentPagerAdapter {
 
     private int numOfTabs;
     private String code;
+    private String day;
+    private String time;
 
 
-    public PageAdapter(FragmentManager fm, int numOfTabs,String code) {
+    public PageAdapter(FragmentManager fm, int numOfTabs,String code,String day , String time) {
         super(fm);
         this.numOfTabs = numOfTabs;
         this.code = code;
+        this.day = day;
+        this.time = time;
     }
 
     @Override
@@ -29,6 +33,8 @@ public class PageAdapter extends FragmentPagerAdapter {
                 Fragment fragment1 = new TabFragment1();
                 Bundle bundle = new Bundle(1); // 파라미터는 전달할 데이터 개수
                 bundle.putString("code", code); // key , value
+                bundle.putString("day",day);
+                bundle.putString("time",time);
                 fragment1.setArguments(bundle);
                 return fragment1;
             case 1:
