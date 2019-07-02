@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.together.Activities.PetHospital.PetHospitalPetConditionActivity">
+    tools:context="com.example.together.activities.petHospital.PetHospitalPetConditionActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -48,6 +48,8 @@
 
     </android.support.design.widget.AppBarLayout>
     <TextView
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="24dp"
@@ -79,8 +81,9 @@
         android:layout_height="wrap_content">
 
 
-
     <TextView
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="24dp"
@@ -98,43 +101,50 @@
         android:id="@+id/dpt_all"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/dpt_all" />
+        android:text="@string/dpt_all"
+        android:onClick="selectItem"/>
 
     <CheckBox
         android:id="@+id/dpt_internal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/dpt_internal" />
+        android:text="@string/dpt_internal"
+        android:onClick="selectItem"/>
 
     <CheckBox
         android:id="@+id/dpt_surgery"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/dpt_surgery" />
+        android:text="@string/dpt_surgery"
+        android:onClick="selectItem"/>
 
     <CheckBox
         android:id="@+id/dpt_skin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/dpt_skin" />
+        android:text="@string/dpt_skin"
+        android:onClick="selectItem"/>
 
     <CheckBox
         android:id="@+id/dpt_eyes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/dpt_eyes"/>
+        android:text="@string/dpt_eyes"
+        android:onClick="selectItem"/>
 
     <CheckBox
         android:id="@+id/dpt_dentist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/dpt_dentist" />
+        android:text="@string/dpt_dentist"
+        android:onClick="selectItem"/>
 
     <CheckBox
         android:id="@+id/dpt_birth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/dpt_birth" />
+        android:text="@string/dpt_birth"
+        android:onClick="selectItem"/>
 
     </LinearLayout>
 
@@ -150,7 +160,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="5dp"
         android:id="@+id/date_select"
-        android:text="날짜 선택"
+        android:text="진료날짜 선택"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/round_background" />
@@ -175,7 +185,7 @@
             android:id="@+id/petHospital_search_btn"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="검색"/>
+            android:text="검색" />
 
     </LinearLayout>
 

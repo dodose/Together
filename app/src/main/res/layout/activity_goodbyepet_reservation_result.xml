@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
-    tools:context=".Activities.GoodbyePet.GoodbyepetReservationResultActivity">
+    tools:context=".activities.goodbyePet.GoodbyepetReservationResultActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
