@@ -1,15 +1,24 @@
 package com.example.together.Activities;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.DrawableImageViewTarget;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.example.together.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -23,9 +32,10 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
-
+    ImageView mTogether_loading, login_photo;
     EditText email, password;
     Button signUp, loginBtn;
+
 
     FirebaseAuth auth;
 
@@ -38,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         password = findViewById(R.id.login_password);
         loginBtn = findViewById(R.id.loginBtn);
         signUp = findViewById(R.id.register);
+        login_photo  = findViewById(R.id.login_photo);
 
         auth = FirebaseAuth.getInstance();
 
@@ -49,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 String str_email = email.getText().toString();
@@ -57,10 +69,16 @@ public class LoginActivity extends AppCompatActivity {
                 if(TextUtils.isEmpty(str_email) || TextUtils.isEmpty(str_passowrd)){
                     showMessage("이메일과 패스워드 모두 기입해주세요");
                 }else{
+                    loading();
                     auth.signInWithEmailAndPassword(str_email, str_passowrd)
                             .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (!task.isSuccessful()){
+                                        loading_disable();
+                                    }
+
                                     if(task.isSuccessful()){
                                         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users")
                                                 .child(auth.getCurrentUser().getUid());
@@ -91,6 +109,34 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
+
+    private  void loading(){
+        mTogether_loading = findViewById(R.id.together_loading);
+        mTogether_loading.setVisibility(View.VISIBLE);
+
+        email.setVisibility(View.INVISIBLE);
+        password.setVisibility(View.INVISIBLE);
+        loginBtn.setVisibility(View.INVISIBLE);
+        signUp.setVisibility(View.INVISIBLE);
+        login_photo.setVisibility(View.INVISIBLE);
+
+        DrawableImageViewTarget imageViewTarget = new DrawableImageViewTarget(mTogether_loading);
+        Glide.with(this).load(R.raw.together_loading).into(imageViewTarget);
+
+    }
+
+    private void loading_disable(){
+
+        mTogether_loading.setVisibility(View.INVISIBLE);
+        email.setVisibility(View.VISIBLE);
+        password.setVisibility(View.VISIBLE);
+        loginBtn.setVisibility(View.VISIBLE);
+        signUp.setVisibility(View.VISIBLE);
+        login_photo.setVisibility(View.VISIBLE);
+    }
+
+
+
 
     private void showMessage(String text) {
 

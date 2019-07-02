@@ -26,6 +26,12 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".Activities.GoodbyePet.GoodbyepetOrders"></activity>
+        <activity android:name=".Activities.MyPetInfo.MyPetInfoCheckActivity"></activity>
+        <activity android:name=".Activities.PetHospital.PetHospitalShowReservationInfoActivity" />
+        <activity android:name=".Activities.PetHospital.PetHospitalCheckReservationInfoActivity" />
+        <activity android:name=".Activities.PetHospital.PetHospitalDetailInfoActivity" />
+        <activity android:name=".Activities.PetHospital.PetHospitalListActivity" />
+        <activity android:name=".Activities.PetHospital.PetHospitalPetConditionActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -48,9 +54,7 @@
         <activity android:name=".Activities.GoodbyePet.GoodbyepetMenuSelectActivity" />
         <activity android:name=".Activities.GoodbyePet.GoodbyeHowActivity" />
         <activity android:name=".Activities.GoodbyePet.GoodbyeRainbowActivity" />
-        <activity android:name=".Activities.GoodbyePet.GoodbyeSelectActivity">
-
-        </activity>
+        <activity android:name=".Activities.GoodbyePet.GoodbyeSelectActivity" />
         <activity android:name=".Activities.PetHotel.reViewActivity" />
         <activity android:name=".Activities.PetHotel.ProductOrderActivity" />
         <activity android:name=".Activities.GoodbyePet.GoodbyeMemorialActivity" />
@@ -67,7 +71,6 @@
         <activity android:name=".Activities.Petching.SettingsActivity" />
         <activity android:name=".Activities.Map.HotelMapActivity" />
         <activity android:name=".Activities.GoodbyePet.GoodbyePetActivity" />
-        <activity android:name=".Activities.PetHospital.PetHospitalActivity" />
         <activity android:name=".Activities.PetGroup.PetGroupActivity" />
         <activity android:name=".Activities.Petching.PetchingActivity" />
         <activity android:name=".Activities.PetHotel.PetHotelActivity" />

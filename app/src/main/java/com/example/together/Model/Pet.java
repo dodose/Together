@@ -2,39 +2,53 @@ package com.example.together.Model;
 
 public class Pet {
 
-    private String petimage;
+    private String petimageurl;
     private String petname;
     private String petbreed;
-    private int petweight;
-    private int birthday;
+    private String petweight;
+    private String birthday;
     private String gender;
     private String intro;
+    private String petid;
+    private Boolean isChecked;
 
-    public Pet(){
-
-    }
-
-    public Pet(String petimage, String petname, String intro){
+    public Pet() {
 
     }
 
 
-    public Pet(String petimage, String petname, String petbreed, int petweight, int birthday, String gender, String intro) {
-        this.petimage = petimage;
+    public Pet(Boolean isChecked) {
+        this.isChecked = isChecked;
+    }
+
+    public Pet(String petimageurl, String petname, String petbreed, String petweight, String birthday, String gender, String intro, String petid) {
+        this.petimageurl = petimageurl;
         this.petname = petname;
         this.petbreed = petbreed;
         this.petweight = petweight;
         this.birthday = birthday;
         this.gender = gender;
         this.intro = intro;
+        this.petid = petid;
     }
 
-    public String getPetimage() {
-        return petimage;
+    public Pet(String petimageurl, String petname, String intro) {
+        this.petimageurl = petimageurl;
+        this.petname = petname;
+        this.intro = intro;
     }
 
-    public void setPetimage(String petimage) {
-        this.petimage = petimage;
+    public Pet(String petimageurl, String petname) {
+        this.petimageurl = petimageurl;
+        this.petname = petname;
+    }
+
+    public String getPetimageurl() {
+        return petimageurl;
+    }
+
+    public void setPetimageurl(String petimageurl) {
+        this.petimageurl = petimageurl;
     }
 
     public String getPetname() {
@@ -53,19 +67,19 @@ public class Pet {
         this.petbreed = petbreed;
     }
 
-    public int getPetweight() {
+    public String getPetweight() {
         return petweight;
     }
 
-    public void setPetweight(int petweight) {
+    public void setPetweight(String petweight) {
         this.petweight = petweight;
     }
 
-    public int getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(int birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 
@@ -84,4 +98,21 @@ public class Pet {
     public void setIntro(String intro) {
         this.intro = intro;
     }
+
+    public String getPetid() {
+        return petid;
+    }
+
+    public void setPetid(String petid) {
+        this.petid = petid;
+    }
+
+    public Boolean getChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(Boolean checked) {
+        isChecked = checked;
+    }
 }
+

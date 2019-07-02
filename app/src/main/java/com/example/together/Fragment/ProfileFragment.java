@@ -44,10 +44,11 @@ import java.util.List;
 
 public class ProfileFragment extends Fragment {
 
+    private static final String TAG = "ProfileFragment";
+
     ImageView image_profile, options;
-    TextView followers, following, fullname, bio, username;
+    TextView followers, following, fullname, bio, username,pets;
     Button edit_profile;
-    LinearLayout pets;
 
     private List<String> mySaves;
 
@@ -118,6 +119,7 @@ public class ProfileFragment extends Fragment {
 
 
         userInfo();
+        myPetCount();
         getFollowers();
         myPhotos();
         mysaves();
@@ -337,6 +339,24 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
+            }
+        });
+    }
+
+    private void myPetCount(){
+
+        DatabaseReference reference =  FirebaseDatabase.getInstance().getReference("Pets")
+                .child(firebaseUser.getUid());
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                pets.setText(""+dataSnapshot.getChildrenCount());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.d(TAG, "My Pet Count something wrong");
             }
         });
     }

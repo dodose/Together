@@ -33,6 +33,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.rengwuxian.materialedittext.MaterialEditText;
+import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
@@ -77,6 +78,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 username.setText(user.getUsername());
                 bio.setText(user.getBio());
                 Glide.with(getApplicationContext()).load(user.getImageurl()).into(image_profile);
+
             }
 
             @Override
@@ -98,7 +100,6 @@ public class EditProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 CropImage.activity()
                         .setAspectRatio(1, 1)
-                        .setCropShape(CropImageView.CropShape.OVAL)
                         .start(EditProfileActivity.this);
             }
         });
@@ -109,7 +110,6 @@ public class EditProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 CropImage.activity()
                         .setAspectRatio(1, 1)
-                        .setCropShape(CropImageView.CropShape.OVAL)
                         .start(EditProfileActivity.this);
             }
         });
@@ -117,7 +117,6 @@ public class EditProfileActivity extends AppCompatActivity {
 
         save.setOnClickListener(new View.OnClickListener() {
 
-            String userid = firebaseUser.getUid();
 
             @Override
             public void onClick(View v) {
@@ -146,7 +145,6 @@ public class EditProfileActivity extends AppCompatActivity {
 
 
     private String getFileExtension(Uri uri){
-
         ContentResolver contentResolver = getContentResolver();
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
@@ -156,10 +154,8 @@ public class EditProfileActivity extends AppCompatActivity {
 
     private void uploadImage(){
         // Progress .xml에서 Visible 하는거 구현
-        final ProgressBar pd = new ProgressBar(this);
-        pd.setVisibility(View.VISIBLE);
-         //To show ProgressBar
 
+        //To show ProgressBar
 
         if (mImageUri != null){
             final StorageReference filereference = storageRef.child(System.currentTimeMillis()
@@ -184,14 +180,14 @@ public class EditProfileActivity extends AppCompatActivity {
                         Uri downloadUri = task.getResult();
                         String myUrl = downloadUri.toString();
 
-                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
+                        Log.d(TAG, "onComplete: "+myUrl+"주소");
 
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
 
                         HashMap<String, Object> hashMap = new HashMap<>();
                         hashMap.put("imageurl", ""+myUrl);
 
                         reference.updateChildren(hashMap);
-                        pd.setVisibility(View.INVISIBLE);
 
 
                     } else {
@@ -225,8 +221,10 @@ public class EditProfileActivity extends AppCompatActivity {
             uploadImage();
 
 
+
+
         }else {
-            showMessage("무엇인가 잘못되었습니다.");
+            showMessage("Somethings wrong");
         }
     }
 

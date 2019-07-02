@@ -84,6 +84,8 @@ public class GoodbyepetReservationResultActivity extends AppCompatActivity {
 
                             f_order.add(new FuneralProdcutOrder(name,price,img));
                             total_price = total_price + Integer.parseInt(price);
+
+
                     }
 
                 }

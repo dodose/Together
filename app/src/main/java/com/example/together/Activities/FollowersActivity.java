@@ -156,10 +156,7 @@ public class FollowersActivity extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     User user = snapshot.getValue(User.class);
                         for (String id : idList){
-                            Log.e("id맨",id+"");
                             if (user.getId().equals(id)){
-                                Log.e("result db user",user.getId()+"");
-                                Log.e("arrayList",idList.size()+"");
                                 userList.add(user);
                             }
                         }

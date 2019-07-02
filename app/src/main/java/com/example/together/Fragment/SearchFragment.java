@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.example.together.Activities.GoodbyePet.GoodbyeSelectActivity;
 import com.example.together.Activities.PetGroup.PetGroupActivity;
+import com.example.together.Activities.PetHospital.PetHospitalPetConditionActivity;
 import com.example.together.Activities.PetHotel.PetHotelActivity;
 import com.example.together.Activities.Petching.PetchingActivity;
 import com.example.together.Adapter.UserAdapter;
@@ -94,7 +95,7 @@ public class SearchFragment extends Fragment {
         petHospital.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), PetHotelActivity.class));
+                startActivity(new Intent(getActivity(), PetHospitalPetConditionActivity.class));
 
             }
         });
