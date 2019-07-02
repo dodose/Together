@@ -7,11 +7,10 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 
-import com.example.together.Adapter.UserAdapter;
-import com.example.together.Model.User;
+import com.example.together.adapter.UserAdapter;
+import com.example.together.model.User;
 import com.example.together.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

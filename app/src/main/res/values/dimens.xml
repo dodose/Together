@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- Calendar -->
+    <dimen name="text_size_day">14sp</dimen>
+    <dimen name="text_size_month">22sp</dimen>
+    <dimen name="text_size_day_name">11sp</dimen>
+    <dimen name="header_month_height">80dp</dimen>
+    <dimen name="selected_day_radius">18dp</dimen>
+    <dimen name="calendar_height">320dp</dimen>
+
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>

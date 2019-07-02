@@ -14,9 +14,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.together.Adapter.CommentAdapter;
-import com.example.together.Model.Comment;
-import com.example.together.Model.User;
+import com.example.together.adapter.CommentAdapter;
+import com.example.together.model.Comment;
+import com.example.together.model.User;
 import com.example.together.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

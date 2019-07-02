@@ -8,10 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.together.Fragment.SearchFragment;
-import com.example.together.Fragment.HomeFragment;
-import com.example.together.Fragment.NotificationFragment;
-import com.example.together.Fragment.ProfileFragment;
+import com.example.together.fragment.SearchFragment;
+import com.example.together.fragment.HomeFragment;
+import com.example.together.fragment.NotificationFragment;
+import com.example.together.fragment.ProfileFragment;
 import com.example.together.R;
 import com.google.firebase.auth.FirebaseAuth;
 
