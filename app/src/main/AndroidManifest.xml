@@ -56,6 +56,7 @@
         <activity android:name=".activities.goodbyePet.GoodbyeHowActivity" />
         <activity android:name=".activities.goodbyePet.GoodbyeRainbowActivity" />
         <activity android:name=".activities.goodbyePet.GoodbyeSelectActivity" />
+        <activity android:name=".activities.goodbyePet.GoodbyepetOrders"/>
         <activity android:name=".activities.petHotel.reViewActivity" />
         <activity android:name=".activities.petHotel.ProductOrderActivity" />
         <activity android:name=".activities.goodbyePet.GoodbyeMemorialActivity" />
