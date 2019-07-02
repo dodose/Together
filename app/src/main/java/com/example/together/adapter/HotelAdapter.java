@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.together.Activities.petHotel.HotelDetailActivity;
+import com.example.together.activities.petHotel.HotelDetailActivity;
 import com.example.together.model.Hotel;
 import com.example.together.R;
 import com.squareup.picasso.Picasso;

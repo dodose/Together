@@ -82,6 +82,7 @@ public class PetHospitalizationSelectAdapter extends RecyclerView.Adapter<PetHos
         });
         if (row_index==position){
             viewHolder.pet_cardview_id.setBackgroundColor(Color.parseColor("#ebfaa0"));
+
         }
         else
         {

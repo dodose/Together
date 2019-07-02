@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.together.Activities.my_petInfo.MyPetListActivity;
+import com.example.together.activities.my_petInfo.MyPetListActivity;
 import com.example.together.model.Pet;
 import com.example.together.R;
 

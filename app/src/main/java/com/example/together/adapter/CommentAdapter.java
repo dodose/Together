@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.together.Activities.HomeActivity;
+import com.example.together.activities.HomeActivity;
 import com.example.together.model.Comment;
 import com.example.together.model.User;
 import com.example.together.R;

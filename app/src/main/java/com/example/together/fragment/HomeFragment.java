@@ -14,8 +14,8 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 
-import com.example.together.Activities.chat.ChatsActivity;
-import com.example.together.Activities.PostActivity;
+import com.example.together.activities.chat.ChatsActivity;
+import com.example.together.activities.PostActivity;
 import com.example.together.adapter.PostAdapter;
 import com.example.together.model.Post;
 import com.example.together.R;

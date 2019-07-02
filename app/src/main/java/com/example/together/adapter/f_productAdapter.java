@@ -16,7 +16,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import static com.example.together.Activities.EditProfileActivity.TAG;
+import static com.example.together.activities.EditProfileActivity.TAG;
 
 public class f_productAdapter extends BaseAdapter {
 

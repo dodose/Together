@@ -21,8 +21,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.together.Activities.CommentsActivity;
-import com.example.together.Activities.FollowersActivity;
+import com.example.together.activities.CommentsActivity;
+import com.example.together.activities.FollowersActivity;
 import com.example.together.fragment.PostDetailFragment;
 import com.example.together.fragment.ProfileFragment;
 import com.example.together.model.Post;

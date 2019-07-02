@@ -267,7 +267,7 @@
             </RelativeLayout>
         </LinearLayout>
 
-        <com.example.together.Activities.aircalendar.core.DayPickerView
+        <com.example.together.activities.aircalendar.core.DayPickerView
             android:id="@+id/pickerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

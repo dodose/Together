@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Chat -->
+    <color name="chat">#91e4ff</color>
+
     <!-- Calendar -->
     <color name="normal_day">#000000</color>
     <color name="colorMonthDayLabelPaint">#424242</color>

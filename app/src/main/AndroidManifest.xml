@@ -27,12 +27,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.my_petInfo.MyPetInfoCheckActivity"></activity>
-        <activity android:name=".Activities.petHospital.PetHospitalShowReservationInfoActivity" />
-        <activity android:name=".Activities.petHospital.PetHospitalCheckReservationInfoActivity" />
-        <activity android:name=".Activities.petHospital.PetHospitalDetailInfoActivity" />
-        <activity android:name=".Activities.petHospital.PetHospitalListActivity" />
-        <activity android:name=".Activities.petHospital.PetHospitalPetConditionActivity" />
+        <activity android:name=".activities.my_petInfo.MyPetInfoCheckActivity"></activity>
+        <activity android:name=".activities.petHospital.PetHospitalShowReservationInfoActivity" />
+        <activity android:name=".activities.petHospital.PetHospitalCheckReservationInfoActivity" />
+        <activity android:name=".activities.petHospital.PetHospitalDetailInfoActivity" />
+        <activity android:name=".activities.petHospital.PetHospitalListActivity" />
+        <activity android:name=".activities.petHospital.PetHospitalPetConditionActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -46,22 +46,22 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".Activities.map.MapPetHotel"
+            android:name=".activities.map.MapPetHotel"
             android:label="@string/title_activity_map_pet_hotel" />
-        <activity android:name=".Activities.petHotel.totalreviewActivity" />
-        <activity android:name=".Activities.goodbyePet.GoodbyepetReservationResultActivity" />
-        <activity android:name=".Activities.goodbyePet.GoodbyePetStoreListActivity" />
-        <activity android:name=".Activities.goodbyePet.GoodbyePetTimeDateSelectActivity" />
-        <activity android:name=".Activities.goodbyePet.GoodbyepetMenuSelectActivity" />
-        <activity android:name=".Activities.goodbyePet.GoodbyeHowActivity" />
-        <activity android:name=".Activities.goodbyePet.GoodbyeRainbowActivity" />
-        <activity android:name=".Activities.goodbyePet.GoodbyeSelectActivity" />
-        <activity android:name=".Activities.petHotel.reViewActivity" />
-        <activity android:name=".Activities.petHotel.ProductOrderActivity" />
-        <activity android:name=".Activities.goodbyePet.GoodbyeMemorialActivity" />
-        <activity android:name=".Activities.map.MapTestActivity" />
-        <activity android:name=".Activities.map.Map1" />
-        <activity android:name=".Activities.aircalendar.AirCalendarDatePickerActivity">
+        <activity android:name=".activities.petHotel.totalreviewActivity" />
+        <activity android:name=".activities.goodbyePet.GoodbyepetReservationResultActivity" />
+        <activity android:name=".activities.goodbyePet.GoodbyePetStoreListActivity" />
+        <activity android:name=".activities.goodbyePet.GoodbyePetTimeDateSelectActivity" />
+        <activity android:name=".activities.goodbyePet.GoodbyepetMenuSelectActivity" />
+        <activity android:name=".activities.goodbyePet.GoodbyeHowActivity" />
+        <activity android:name=".activities.goodbyePet.GoodbyeRainbowActivity" />
+        <activity android:name=".activities.goodbyePet.GoodbyeSelectActivity" />
+        <activity android:name=".activities.petHotel.reViewActivity" />
+        <activity android:name=".activities.petHotel.ProductOrderActivity" />
+        <activity android:name=".activities.goodbyePet.GoodbyeMemorialActivity" />
+        <activity android:name=".activities.map.MapTestActivity" />
+        <activity android:name=".activities.map.Map1" />
+        <activity android:name=".activities.aircalendar.AirCalendarDatePickerActivity">
 
         </activity>
 
@@ -69,33 +69,33 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
 
-        <activity android:name=".Activities.my_petInfo.MyPetRegActivity" />
-        <activity android:name=".Activities.my_petInfo.MyPetListActivity" />
-        <activity android:name=".Activities.petching.MatchesActivity" />
-        <activity android:name=".Activities.petching.SettingsActivity" />
-        <activity android:name=".Activities.map.HotelMapActivity" />
-        <activity android:name=".Activities.goodbyePet.GoodbyePetActivity" />
-        <activity android:name=".Activities.petGroup.PetGroupActivity" />
-        <activity android:name=".Activities.petching.PetchingActivity" />
-        <activity android:name=".Activities.petHotel.PetHotelActivity" />
-        <activity android:name=".Activities.petHotel.HotelListDataActivity" />
-        <activity android:name=".Activities.petHotel.HotelDetailActivity" />
-        <activity android:name=".Activities.chat.MessageActivity" />
-        <activity android:name=".Activities.chat.ChatsActivity" />
-        <activity android:name=".Activities.OptionActivity" />
-        <activity android:name=".Activities.FollowersActivity" />
-        <activity android:name=".Activities.EditProfileActivity" />
-        <activity android:name=".Activities.CommentsActivity" />
-        <activity android:name=".Activities.LoginActivity">
+        <activity android:name=".activities.my_petInfo.MyPetRegActivity" />
+        <activity android:name=".activities.my_petInfo.MyPetListActivity" />
+        <activity android:name=".activities.petching.MatchesActivity" />
+        <activity android:name=".activities.petching.SettingsActivity" />
+        <activity android:name=".activities.map.HotelMapActivity" />
+        <activity android:name=".activities.goodbyePet.GoodbyePetActivity" />
+        <activity android:name=".activities.petGroup.PetGroupActivity" />
+        <activity android:name=".activities.petching.PetchingActivity" />
+        <activity android:name=".activities.petHotel.PetHotelActivity" />
+        <activity android:name=".activities.petHotel.HotelListDataActivity" />
+        <activity android:name=".activities.petHotel.HotelDetailActivity" />
+        <activity android:name=".activities.chat.MessageActivity" />
+        <activity android:name=".activities.chat.ChatsActivity" />
+        <activity android:name=".activities.OptionActivity" />
+        <activity android:name=".activities.FollowersActivity" />
+        <activity android:name=".activities.EditProfileActivity" />
+        <activity android:name=".activities.CommentsActivity" />
+        <activity android:name=".activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.RegisterActivity" />
-        <activity android:name=".Activities.PostActivity" />
-        <activity android:name=".Activities.HomeActivity" />
+        <activity android:name=".activities.RegisterActivity" />
+        <activity android:name=".activities.PostActivity" />
+        <activity android:name=".activities.HomeActivity" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />

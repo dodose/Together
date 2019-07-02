@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.together.Activities.chat.MessageActivity;
+import com.example.together.activities.chat.MessageActivity;
 import com.example.together.model.User;
 import com.example.together.R;
 

@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.together.Activities.petHotel.ProductOrderActivity;
+import com.example.together.activities.petHotel.ProductOrderActivity;
 import com.example.together.model.Product;
 import com.example.together.R;
 import com.squareup.picasso.Picasso;

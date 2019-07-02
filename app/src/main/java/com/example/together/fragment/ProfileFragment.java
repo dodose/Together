@@ -19,10 +19,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.together.Activities.EditProfileActivity;
-import com.example.together.Activities.FollowersActivity;
-import com.example.together.Activities.my_petInfo.MyPetListActivity;
-import com.example.together.Activities.OptionActivity;
+import com.example.together.activities.EditProfileActivity;
+import com.example.together.activities.FollowersActivity;
+import com.example.together.activities.my_petInfo.MyPetListActivity;
+import com.example.together.activities.OptionActivity;
 import com.example.together.adapter.MyPhotoAdapter;
 import com.example.together.model.Post;
 import com.example.together.model.User;

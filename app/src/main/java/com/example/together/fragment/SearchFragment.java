@@ -15,11 +15,11 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.together.Activities.goodbyePet.GoodbyeSelectActivity;
-import com.example.together.Activities.petGroup.PetGroupActivity;
-import com.example.together.Activities.petHospital.PetHospitalPetConditionActivity;
-import com.example.together.Activities.petHotel.PetHotelActivity;
-import com.example.together.Activities.petching.PetchingActivity;
+import com.example.together.activities.goodbyePet.GoodbyeSelectActivity;
+import com.example.together.activities.petGroup.PetGroupActivity;
+import com.example.together.activities.petHospital.PetHospitalPetConditionActivity;
+import com.example.together.activities.petHotel.PetHotelActivity;
+import com.example.together.activities.petching.PetchingActivity;
 import com.example.together.adapter.UserAdapter;
 import com.example.together.model.User;
 import com.example.together.R;

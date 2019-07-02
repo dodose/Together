@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.together.Activities.goodbyePet.GoodbyepetMenuSelectActivity;
+import com.example.together.activities.goodbyePet.GoodbyepetMenuSelectActivity;
 import com.example.together.model.Funeral;
 import com.example.together.R;
 import com.squareup.picasso.Picasso;

@@ -11,9 +11,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ExpandableListView;
 
-import com.example.together.Activities.goodbyePet.ConstantManager;
-import com.example.together.Activities.goodbyePet.GoodbyepetReservationResultActivity;
-import com.example.together.Activities.goodbyePet.MyCategoriesExpandableListAdapter;
+import com.example.together.activities.goodbyePet.ConstantManager;
+import com.example.together.activities.goodbyePet.GoodbyepetReservationResultActivity;
+import com.example.together.activities.goodbyePet.MyCategoriesExpandableListAdapter;
 import com.example.together.model.DataItem;
 import com.example.together.model.SubCategoryItem;
 import com.example.together.R;

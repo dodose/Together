@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.together.Activities.goodbyePet.PostDetailActivity;
+import com.example.together.activities.goodbyePet.PostDetailActivity;
 import com.example.together.model.MemorialPost;
 import com.example.together.R;
 
