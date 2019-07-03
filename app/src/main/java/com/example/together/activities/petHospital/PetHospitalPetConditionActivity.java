@@ -83,6 +83,7 @@ public class PetHospitalPetConditionActivity extends AppCompatActivity  {
                 intent.setSelectButtonText("Select");
                 intent.setResetBtnText("Reset");
                 intent.setWeekStart(Calendar.MONDAY);
+                intent.putExtra("pet_hospital",-1);
                 startActivityForResult(intent, REQUEST_CODE);
             }
         });
@@ -157,6 +158,7 @@ public class PetHospitalPetConditionActivity extends AppCompatActivity  {
             }
         }
     }
+
 
 
 
@@ -254,6 +256,8 @@ public class PetHospitalPetConditionActivity extends AppCompatActivity  {
             {
                 Log.d(TAG, "selectItem: 병원 "+pet_condition.get(i));
             }
+
+
 
 
     }

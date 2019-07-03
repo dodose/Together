@@ -1,6 +1,7 @@
 package com.example.together.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.together.activities.HomeActivity;
+import com.example.together.activities.petHospital.PetHospitalPetConditionActivity;
 import com.example.together.model.Pet;
 import com.example.together.R;
 
@@ -74,11 +77,12 @@ public class PetHospitalizationSelectAdapter extends RecyclerView.Adapter<PetHos
         viewHolder.pet_cardview_id.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 row_index = position;
                 notifyDataSetChanged();
                 String selected_my_pet = mPet.get(position).getPetid();
                 Log.d(TAG, "@@@@@@@@@@@@@@@"+selected_my_pet);
+                Intent intent = new Intent(v.getContext(), PetHospitalPetConditionActivity.class);
+                intent.putExtra("selected_my_pet",selected_my_pet);
             }
         });
         if (row_index==position){

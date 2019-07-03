@@ -111,6 +111,7 @@ public class AirCalendarDatePickerActivity extends AppCompatActivity implements 
     private int maxActivieMonth = -1;
     private int maxYear = -1;
     private int mSetStartYear = -1;
+    private int mPet_hospital = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,6 +119,7 @@ public class AirCalendarDatePickerActivity extends AppCompatActivity implements 
         setContentView(R.layout.aicalendar_activity_date_picker);
 
         Intent getData = getIntent();
+
         FLAG = getData.getStringExtra(EXTRA_FLAG) != null ? getData.getStringExtra(EXTRA_FLAG) : "all";
         isBooking = getData.getBooleanExtra(EXTRA_IS_BOOIKNG, false);
         isSelect = getData.getBooleanExtra(EXTRA_IS_SELECT, false);
@@ -127,6 +129,9 @@ public class AirCalendarDatePickerActivity extends AppCompatActivity implements 
         maxActivieMonth = getData.getIntExtra(EXTRA_ACTIVE_MONTH_NUM, -1);
         maxYear = getData.getIntExtra(EXTRA_MAX_YEAR, -1);
         mSetStartYear = getData.getIntExtra(EXTRA_START_YEAR, -1);
+        mPet_hospital = getData.getIntExtra("pet_hospital",-1);
+        Log.d(TAG, "onCreate: "+mPet_hospital+"@@@@@@@");
+
 
         sYear = getData.getIntExtra(EXTRA_SELECT_DATE_SY, 0);
         sMonth = getData.getIntExtra(EXTRA_SELECT_DATE_SM, 0);
@@ -282,6 +287,14 @@ public class AirCalendarDatePickerActivity extends AppCompatActivity implements 
         tv_done_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //장례||펫병원 통해 달력 출력
+                if(mPet_hospital == -1){
+
+                }
+
+
+                //호텔을 통해 달력 출력
+
                 if ((SELECT_START_DATE == null || SELECT_START_DATE.equals("")) && (SELECT_END_DATE == null || SELECT_END_DATE.equals(""))) {
                     SELECT_START_DATE = "";
                     SELECT_END_DATE = "";

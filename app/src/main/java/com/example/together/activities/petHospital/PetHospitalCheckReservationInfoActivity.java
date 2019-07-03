@@ -15,8 +15,6 @@ public class PetHospitalCheckReservationInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_hospital_check_reservation_info);
 
-
-
-
+        
     }
 }

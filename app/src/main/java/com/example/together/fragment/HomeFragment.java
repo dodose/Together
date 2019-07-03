@@ -44,6 +44,7 @@ public class HomeFragment extends Fragment {
     ProgressBar progressBar;
 
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

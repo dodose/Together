@@ -161,7 +161,7 @@ public class MemorialPostDetailActivity extends AppCompatActivity {
                 for (DataSnapshot snap:dataSnapshot.getChildren()) {
 
                     MemorialComment comment = snap.getValue(MemorialComment.class);
-                    listComment.add(comment) ;
+                    listComment.add(comment);
 
                 }
 

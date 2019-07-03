@@ -1,14 +1,15 @@
 package com.example.together.activities;
 
 import android.content.SharedPreferences;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
-import com.example.together.common.BackPressCloseHandler;
 import com.example.together.fragment.SearchFragment;
 import com.example.together.fragment.HomeFragment;
 import com.example.together.fragment.NotificationFragment;
@@ -20,24 +21,20 @@ public class HomeActivity extends AppCompatActivity  {
     BottomNavigationView bottomNavigationView;
     Fragment seletedFragment = null;
 
-    private BackPressCloseHandler backPressCloseHandler;
-
+    private Boolean backKeyPressed = false;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        //뒤로가기 두번 누를시 종료
-        backPressCloseHandler = new BackPressCloseHandler(this);
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
-
-
-        backPressCloseHandler.onBackPressed();
 
 
         Bundle intent = getIntent().getExtras();
@@ -59,6 +56,24 @@ public class HomeActivity extends AppCompatActivity  {
         }
 
     }
+
+    @Override
+    public void onBackPressed() {
+        if (backKeyPressed) {
+            finish(); // finish activity
+        } else {
+            Toast.makeText(this, "뒤로가기를 한번 더 누르시면 앱을 종료합니다.",
+                    Toast.LENGTH_SHORT).show();
+            backKeyPressed = true;
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    backKeyPressed = false;
+                }
+            }, 3 * 1000);
+        }
+    }
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -88,6 +103,7 @@ public class HomeActivity extends AppCompatActivity  {
 
 
                     }
+
 
                     if (seletedFragment != null){
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, seletedFragment).commit();

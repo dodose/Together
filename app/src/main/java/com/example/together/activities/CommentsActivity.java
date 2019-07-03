@@ -171,8 +171,6 @@ public class CommentsActivity extends AppCompatActivity {
 
 
 
-
-
     private void showMessage(String text) {
 
         Toast.makeText(getApplicationContext(),text,Toast.LENGTH_LONG).show();
