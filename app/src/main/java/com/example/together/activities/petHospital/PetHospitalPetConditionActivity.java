@@ -39,12 +39,19 @@ public class PetHospitalPetConditionActivity extends AppCompatActivity  {
 
     Button petHospital_search_btn, date_select;
 
+    private String selectDate;
 
+    PetHospitalizationSelectAdapter petHospitalizationSelectAdapter;
 
     FirebaseUser firebaseUser;
     DatabaseReference reference;
     List<Pet> lsPet;
     ArrayList<String> pet_condition = new ArrayList<String>();
+    private String date;
+
+    public static String petcode;
+
+
 
 
 
@@ -52,8 +59,6 @@ public class PetHospitalPetConditionActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_hospital_pet_condition);
-
-
 
         //증상 채크박스선택
 
@@ -102,7 +107,11 @@ public class PetHospitalPetConditionActivity extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PetHospitalPetConditionActivity.this, PetHospitalListActivity.class);
+                intent.putExtra("PETCODE", petcode);
+                intent.putExtra("SELECTDAY",date);
+                intent.putStringArrayListExtra("PETCATEGORY", pet_condition);
                 startActivity(intent);
+
             }
         });
 
@@ -124,11 +133,14 @@ public class PetHospitalPetConditionActivity extends AppCompatActivity  {
                     lsPet.add(pet);
                 }
 
-                LinearLayoutManager layoutManager = new LinearLayoutManager(PetHospitalPetConditionActivity.this, LinearLayoutManager.HORIZONTAL, false);
-                RecyclerView recyclerview_dogs =  findViewById(R.id.recyclerview_dogs);
-                recyclerview_dogs.setLayoutManager(layoutManager);
-                PetHospitalizationSelectAdapter petHospitalizationSelectAdapter = new PetHospitalizationSelectAdapter(PetHospitalPetConditionActivity.this, lsPet);
-                recyclerview_dogs.setAdapter(petHospitalizationSelectAdapter);
+
+                    LinearLayoutManager layoutManager = new LinearLayoutManager(PetHospitalPetConditionActivity.this, LinearLayoutManager.HORIZONTAL, false);
+                    RecyclerView recyclerview_dogs = findViewById(R.id.recyclerview_dogs);
+                    recyclerview_dogs.setLayoutManager(layoutManager);
+
+                    petHospitalizationSelectAdapter = new PetHospitalizationSelectAdapter(PetHospitalPetConditionActivity.this, lsPet);
+                    recyclerview_dogs.setAdapter(petHospitalizationSelectAdapter);
+
 
             }
 
@@ -148,18 +160,14 @@ public class PetHospitalPetConditionActivity extends AppCompatActivity  {
 
         if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
 
-            String date = data.getStringExtra(AirCalendarDatePickerActivity.RESULT_SELECT_START_DATE);
-            data.getStringExtra(AirCalendarDatePickerActivity.RESULT_SELECT_END_DATE);
-
-
+            date = data.getStringExtra(AirCalendarDatePickerActivity.RESULT_SELECT_START_DATE);
+//            data.getStringExtra(AirCalendarDatePickerActivity.RESULT_SELECT_END_DATE);
             if(data != null)
             {
                 Toast.makeText(this, "Select Date range : " + data.getStringExtra(AirCalendarDatePickerActivity.RESULT_SELECT_START_DATE) + " ~ " + data.getStringExtra(AirCalendarDatePickerActivity.RESULT_SELECT_END_DATE), Toast.LENGTH_SHORT).show();
             }
         }
     }
-
-
 
 
 
@@ -260,6 +268,10 @@ public class PetHospitalPetConditionActivity extends AppCompatActivity  {
 
 
 
+    }
+
+    public static void myPetcode(String selected_my_pet) {
+        petcode = selected_my_pet;
     }
 
 

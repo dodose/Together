@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -17,6 +18,7 @@ import com.example.together.activities.petHospital.PetHospitalPetConditionActivi
 import com.example.together.model.Pet;
 import com.example.together.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -30,7 +32,9 @@ public class PetHospitalizationSelectAdapter extends RecyclerView.Adapter<PetHos
     private List<Pet> mPet;
     public boolean selectedPet;
 
+
     private ItemClick itemClick;
+
 
     public interface ItemClick {
         public void onClick(View view,int position);
@@ -45,17 +49,16 @@ public class PetHospitalizationSelectAdapter extends RecyclerView.Adapter<PetHos
     public PetHospitalizationSelectAdapter(Context mContext, List<Pet> mPet){
         this.mContext = mContext;
         this.mPet = mPet;
-    }
 
+
+    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         Log.d(TAG, "onCreateViewHolder: ");
-
         return new ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.list_mypet_hospitalization, parent, false));
     }
-
 
 
     @Override
@@ -72,7 +75,7 @@ public class PetHospitalizationSelectAdapter extends RecyclerView.Adapter<PetHos
                 .fitCenter()
                 .into(viewHolder.petimage);
 
-//        if (!mPet.get(position).)
+
 
         viewHolder.pet_cardview_id.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,11 +83,12 @@ public class PetHospitalizationSelectAdapter extends RecyclerView.Adapter<PetHos
                 row_index = position;
                 notifyDataSetChanged();
                 String selected_my_pet = mPet.get(position).getPetid();
-                Log.d(TAG, "@@@@@@@@@@@@@@@"+selected_my_pet);
-                Intent intent = new Intent(v.getContext(), PetHospitalPetConditionActivity.class);
-                intent.putExtra("selected_my_pet",selected_my_pet);
+
+                PetHospitalPetConditionActivity.myPetcode(selected_my_pet);
             }
         });
+
+
         if (row_index==position){
             viewHolder.pet_cardview_id.setBackgroundColor(Color.parseColor("#ebfaa0"));
 
@@ -95,6 +99,7 @@ public class PetHospitalizationSelectAdapter extends RecyclerView.Adapter<PetHos
         }
 
     }
+
 
     @Override
     public int getItemCount() {
@@ -130,6 +135,7 @@ public class PetHospitalizationSelectAdapter extends RecyclerView.Adapter<PetHos
         public void onClick(View v) {
 
         }
+
     }
 
 }
