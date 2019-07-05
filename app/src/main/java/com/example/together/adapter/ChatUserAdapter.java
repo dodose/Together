@@ -24,7 +24,7 @@ public class ChatUserAdapter extends RecyclerView.Adapter<ChatUserAdapter.ViewHo
     private List<User> mUsers;
 
 
-    public ChatUserAdapter (Context mContext, List<User> mUsers, boolean ischat){
+    public ChatUserAdapter (Context mContext, List<User> mUsers){
         this.mContext = mContext;
         this.mUsers =  mUsers;
     }
@@ -41,7 +41,7 @@ public class ChatUserAdapter extends RecyclerView.Adapter<ChatUserAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        final User user = mUsers.get(position);
+        User user = mUsers.get(position);
 
         holder.username.setText(user.getUsername());
         if (user.getImageurl().equals("default")){

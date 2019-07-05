@@ -83,7 +83,7 @@ public class MessageActivity extends AppCompatActivity {
 
         intent = getIntent();
         final String userid = intent.getStringExtra("userid");
-        fuser = FirebaseAuth.getInstance().getCurrentUser();
+
 
         btn_send.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +98,7 @@ public class MessageActivity extends AppCompatActivity {
             }
         });
 
-
+        fuser = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
 
         reference.addValueEventListener(new ValueEventListener() {
@@ -126,7 +126,7 @@ public class MessageActivity extends AppCompatActivity {
 
 
 
-    private void sendMessage(String sender, final String receiver, String message){
+    private void sendMessage(String sender,  String receiver, String message){
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 

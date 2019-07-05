@@ -16,9 +16,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/basicColorApp"
-            android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+            android:background="@color/basicColorApp">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="30dp"
@@ -32,6 +30,7 @@
                 android:layout_marginLeft="30dp"
                 android:text="username"
                 android:textSize="15dp"
+                android:textColor="@color/mdtp_transparent_black"
                 android:textStyle="bold"/>
 
         </android.support.v7.widget.Toolbar>
