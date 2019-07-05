@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
@@ -31,6 +33,10 @@ public class PetHospitalListActivity extends AppCompatActivity {
     private JSONObject jobj;
 //    TextView
 
+    RecyclerView mRecycleView;
+    RecyclerView.LayoutManager mLayoutManager;
+
+
 
     Button selectDay,selectPet;
 
@@ -40,16 +46,29 @@ public class PetHospitalListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_hospital_list);
 
+
         Bundle Bx = getIntent().getExtras();
         String petcode = Bx.getString("PETCODE");
         String day = Bx.getString("SELECTDAY");
         ArrayList<String> petcategory = Bx.getStringArrayList("PETCATEGORY");
+
+        Log.e("petcode",petcode);
+
+        //recyclerview 선언
+
+        mRecycleView = findViewById(R.id.Hospital_recycler);
+        mRecycleView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecycleView.setLayoutManager(mLayoutManager);
 
         selectDay = findViewById(R.id.date_select);
         selectPet = findViewById(R.id.pet_select_count);
 
         selectDay.setText(day);
         selectPet.setText("값이올예정");
+
+
+
 
 
         new AsyncTask<Void, Void, JSONObject>() {
