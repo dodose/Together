@@ -2,6 +2,7 @@ package com.example.together.activities.petHospital;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,14 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.together.R;
+import com.example.together.model.Pet;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,9 +32,16 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 public class PetHospitalListActivity extends AppCompatActivity {
 
+    private static final String TAG = "PetHospitalListActivity";
+
+    DatabaseReference reference;
+    FirebaseUser firebaseUser;
+    List<Pet> lsPet;
+    private String petname;
     private String strUrl;
     private URL Url;
     private JSONObject jobj;
@@ -40,8 +56,53 @@ public class PetHospitalListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_hospital_list);
 
+
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         Bundle Bx = getIntent().getExtras();
         String petcode = Bx.getString("PETCODE");
+        Log.d(TAG, "강아지 코드: "+petcode);
+
+        Log.d(TAG, "네임코드 "+firebaseUser.getUid());
+        reference = FirebaseDatabase.getInstance().getReference().child("Pets").child(firebaseUser.getUid()).child(petcode);
+
+        reference.child("petname").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                try {
+                    if (snapshot.getValue() != null) {
+                        try {
+                            petname = (String)snapshot.getValue();
+                            Log.e("TAG", "가져오냐" + snapshot.getValue()); // your name values you will get here
+                            selectPet.setText(petname);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Log.e("TAG", " it's null.");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
         String day = Bx.getString("SELECTDAY");
         ArrayList<String> petcategory = Bx.getStringArrayList("PETCATEGORY");
 
@@ -50,6 +111,7 @@ public class PetHospitalListActivity extends AppCompatActivity {
 
         selectDay.setText(day);
         selectPet.setText("값이올예정");
+
 
 
         new AsyncTask<Void, Void, JSONObject>() {
@@ -130,4 +192,5 @@ public class PetHospitalListActivity extends AppCompatActivity {
 
 
     }
+
 }
