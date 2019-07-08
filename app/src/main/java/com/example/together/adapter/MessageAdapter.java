@@ -3,6 +3,7 @@ package com.example.together.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,8 @@ import java.util.List;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
 
+    private static final String TAG = "MessageAdapter";
+
     public static final int MSG_TYPE_LEFT = 0;
     public static final int MSG_TYPE_RIGHT = 1;
 
@@ -27,13 +30,14 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     private List<Chat> mChat;
     private String imageurl;
 
+
     FirebaseUser fuser;
 
 
 
     public MessageAdapter(Context mContext, List<Chat> mChat, String imageurl){
+        this.mChat = mChat;
         this.mContext = mContext;
-        this.mChat =  mChat;
         this.imageurl = imageurl;
     }
 

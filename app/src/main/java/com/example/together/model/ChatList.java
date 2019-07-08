@@ -4,7 +4,6 @@ public class ChatList {
     public String id;
 
     public ChatList(String id) {
-
         this.id = id;
     }
 

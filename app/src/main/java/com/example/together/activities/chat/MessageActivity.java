@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -36,6 +37,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MessageActivity extends AppCompatActivity {
 
+    private static final String TAG = "MessageActivity";
+
     CircleImageView image_profile;
     TextView username;
 
@@ -62,12 +65,7 @@ public class MessageActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        toolbar.setNavigationOnClickListener(v -> finish());
 
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
@@ -85,17 +83,14 @@ public class MessageActivity extends AppCompatActivity {
         final String userid = intent.getStringExtra("userid");
 
 
-        btn_send.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String msg = text_send.getText().toString();
-                if (!msg.equals("")){
-                    sendMessage(fuser.getUid(), userid, msg);
-                }else {
-                    Toast.makeText(MessageActivity.this, "내용을 입력해주세요", Toast.LENGTH_SHORT).show();
-                }
-                text_send.setText("");
+        btn_send.setOnClickListener(v -> {
+            String msg = text_send.getText().toString();
+            if (!msg.equals("")){
+                sendMessage(fuser.getUid(), userid, msg);
+            }else {
+                Toast.makeText(MessageActivity.this, "내용을 입력해주세요", Toast.LENGTH_SHORT).show();
             }
+            text_send.setText("");
         });
 
         fuser = FirebaseAuth.getInstance().getCurrentUser();
@@ -112,6 +107,7 @@ public class MessageActivity extends AppCompatActivity {
                 }else {
                     Glide.with(MessageActivity.this).load(user.getImageurl()).into(image_profile);
                 }
+
 
                 readMessages(fuser.getUid(), userid, user.getImageurl());
 
@@ -187,5 +183,29 @@ public class MessageActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void status(String status){
+        reference = FirebaseDatabase.getInstance().getReference("Users").child(fuser.getUid());
+
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("status", status);
+
+        reference.updateChildren(hashMap);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        status("online");
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        status("offline");
+    }
+
 
 }

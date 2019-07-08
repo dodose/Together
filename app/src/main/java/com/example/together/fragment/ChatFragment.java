@@ -62,13 +62,8 @@ public class ChatFragment extends Fragment {
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     Chat chat = snapshot.getValue(Chat.class);
-
-                    if (chat.getReceiver().equals(fuser.getUid())){
-                        usersList.add(chat.getReceiver());
-                    }
-                    if (chat.getReceiver().equals(fuser.getUid())){
-                        usersList.add(chat.getSender());
-                    }
+                    if(!usersList.contains(chat.getReceiver()))usersList.add(chat.getReceiver());
+                    if(!usersList.contains(chat.getSender()))usersList.add(chat.getSender());
                 }
 
                 readChats();
@@ -103,6 +98,7 @@ public class ChatFragment extends Fragment {
                                 for (User user1 : mUsers){
                                     if (!user.getId().equals(user1.getId())){
                                         mUsers.add(user);
+                                        break;
                                     }
                                 }
                             } else {
@@ -112,7 +108,7 @@ public class ChatFragment extends Fragment {
                     }
                 }
 
-                chatUserAdapter = new ChatUserAdapter(getContext(), mUsers);
+                chatUserAdapter = new ChatUserAdapter(getContext(), mUsers, true);
                 recyclerView.setAdapter(chatUserAdapter);
             }
 

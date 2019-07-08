@@ -55,7 +55,7 @@ public class UsersFragment extends Fragment {
 
     private void readUsers(){
 
-        final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
 
         reference.addValueEventListener(new ValueEventListener() {
@@ -65,12 +65,15 @@ public class UsersFragment extends Fragment {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     User user = snapshot.getValue(User.class);
 
+                    assert user != null;
+                    assert  firebaseUser != null;
+
                     if (!user.getId().equals(firebaseUser.getUid())){
                         mUsers.add(user);
                     }
                 }
 
-                chatUserAdapter = new ChatUserAdapter(getContext(), mUsers);
+                chatUserAdapter = new ChatUserAdapter(getContext(), mUsers, false);
                 recyclerView.setAdapter(chatUserAdapter);
                 
             }
