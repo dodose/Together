@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 
 import com.bumptech.glide.Glide;
+import com.example.together.activities.HomeActivity;
+import com.example.together.activities.LoginActivity;
 import com.example.together.adapter.MessageAdapter;
 import com.example.together.model.Chat;
 import com.example.together.model.User;
@@ -65,7 +67,12 @@ public class MessageActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationOnClickListener(v -> finish());
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MessageActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            }
+        });
 
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);

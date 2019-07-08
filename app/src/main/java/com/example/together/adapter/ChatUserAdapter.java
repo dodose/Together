@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,11 +19,15 @@ import com.example.together.R;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class ChatUserAdapter extends RecyclerView.Adapter<ChatUserAdapter.ViewHolder> {
+
+    private static final String TAG = "ChatUserAdapter";
 
     private Context mContext;
     private List<User> mUsers;
-    private Boolean ischat;
+    private boolean ischat;
 
 
     public ChatUserAdapter (Context mContext, List<User> mUsers, boolean ischat){
@@ -43,7 +48,7 @@ public class ChatUserAdapter extends RecyclerView.Adapter<ChatUserAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        User user = mUsers.get(position);
+        final User user = mUsers.get(position);
 
         holder.username.setText(user.getUsername());
         if (user.getImageurl().equals("default")){
@@ -52,7 +57,11 @@ public class ChatUserAdapter extends RecyclerView.Adapter<ChatUserAdapter.ViewHo
             Glide.with(mContext).load(user.getImageurl()).into(holder.image_profile);
         }
 
+
+        Log.d(TAG , "나오나?"+ischat);
+
         if (ischat){
+            Log.d(TAG, "AAAAA"+user.getStatus());
             if (user.getStatus().equals("online")){
                 holder.img_on.setVisibility(View.VISIBLE);
                 holder.img_off.setVisibility(View.GONE);
@@ -86,8 +95,8 @@ public class ChatUserAdapter extends RecyclerView.Adapter<ChatUserAdapter.ViewHo
 
         public TextView username;
         public ImageView image_profile;
-        private ImageView img_on;
-        private ImageView img_off;
+        private CircleImageView img_on;
+        private CircleImageView img_off;
 
         public ViewHolder(View itemView) {
             super(itemView);

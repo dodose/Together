@@ -18,6 +18,21 @@ public class User {
         this.status = status;
     }
 
+    public User(String id, String username, String fullname, String imageurl, String bio) {
+        this.id = id;
+        this.username = username;
+        this.fullname = fullname;
+        this.imageurl = imageurl;
+        this.bio = bio;
+    }
+
+    public User(String id, String username, String imageurl, String status){
+        this.id = id;
+        this.username = username;
+        this.imageurl = imageurl;
+        this.status = status;
+    }
+
 
     public User() {
     }
