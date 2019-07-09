@@ -13,6 +13,7 @@
 
     <TextView
         android:id="@+id/username"
+        android:textColor="@color/colorBlack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
@@ -52,6 +53,18 @@
         android:layout_toEndOf="@id/image_profile"
         />
 
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/username"
+        android:layout_toRightOf="@+id/image_profile"
+        android:layout_marginTop="5dp"
+        android:paddingTop="5dp"
+        android:id="@+id/last_msg"
+        android:textColor="@color/mdtp_transparent_black"
+        android:layout_marginLeft="20dp"
+        android:maxLines="1" />
 
 
 
