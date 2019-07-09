@@ -80,12 +80,8 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        chat_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), ChatsActivity.class));
-            }
-        });
+        chat_button.setOnClickListener(v -> startActivity(new Intent(getActivity(),
+                                            ChatsActivity.class)));
 
         // Inflate the layout for this fragment
 

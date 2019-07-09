@@ -25,6 +25,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+
 public class LoginActivity extends AppCompatActivity {
 
     ImageView mTogether_loading, login_photo;
@@ -34,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
 
     FirebaseAuth auth;
     FirebaseUser firebaseUser;
+    DatabaseReference reference;
 
     public void onStart(){
         super.onStart();
@@ -41,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         if (firebaseUser != null){
+
             Intent intent = new Intent(LoginActivity.this, HomeActivity.class );
             startActivity(intent);
             finish();
@@ -155,4 +159,8 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),text,Toast.LENGTH_LONG).show();
 
     }
+
+
+
+
 }

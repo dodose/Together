@@ -66,6 +66,16 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             Glide.with(mContext).load(imageurl).into(holder.image_profile);
         }
 
+        if (position == mChat.size()-1){
+            if (chat.isIsseen()){
+                holder.txt_seen.setText("읽음");
+            }else {
+                holder.txt_seen.setText("전송됨");
+            }
+        }else {
+            holder.txt_seen.setVisibility(View.GONE);
+        }
+
 
 
     }
@@ -78,14 +88,16 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView show_message;
+        public TextView show_message, txt_seen;
         public ImageView image_profile;
+
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             show_message = itemView.findViewById(R.id.show_message);
             image_profile = itemView.findViewById(R.id.image_profile);
+            txt_seen = itemView.findViewById(R.id.txt_seen);
         }
     }
 

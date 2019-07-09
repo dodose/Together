@@ -34,15 +34,17 @@ public class OptionActivity extends AppCompatActivity {
             }
         });
 
-        logout.setOnClickListener(new View.OnClickListener(){
 
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(OptionActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-            }
-
+        logout.setOnClickListener(v -> {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(OptionActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
         });
+
+        settings.setOnClickListener(v -> {
+            startActivity(new Intent(OptionActivity.this, DetailSettings.class));
+        });
+
+
 
     }
 }
