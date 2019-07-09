@@ -33,6 +33,10 @@ public class User {
         this.status = status;
     }
 
+    public User(String status){
+        this.status = status;
+    }
+
 
     public User() {
     }
