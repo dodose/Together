@@ -4,11 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 
 
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.together.activities.aircalendar.core.AirCalendarIntent;
 import com.example.together.activities.aircalendar.core.AirMonthAdapter;
@@ -244,7 +245,6 @@ public class AirCalendarDatePickerActivity extends AppCompatActivity implements 
             }
 
         }
-
         pickerView = findViewById(R.id.pickerView);
         pickerView.setIsMonthDayLabel(isMonthLabel);
         pickerView.setIsSingleSelect(isSingleSelect);

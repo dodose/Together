@@ -11,8 +11,10 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.IBinder;
 import android.provider.Settings;
-import android.support.v4.app.ActivityCompat;
+
 import android.widget.Toast;
+
+import androidx.core.app.ActivityCompat;
 
 import com.google.android.gms.location.LocationListener;
 

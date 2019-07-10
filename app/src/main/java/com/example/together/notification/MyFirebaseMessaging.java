@@ -9,12 +9,12 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 
+
 import androidx.core.app.NotificationCompat;
 
 import com.example.together.activities.chat.MessageActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 

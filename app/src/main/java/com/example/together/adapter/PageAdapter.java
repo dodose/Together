@@ -1,10 +1,10 @@
 package com.example.together.adapter;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.together.fragment.TabFragment1;
 import com.example.together.fragment.TabFragment2;
@@ -18,7 +18,7 @@ public class PageAdapter extends FragmentPagerAdapter {
     private String time;
 
 
-    public PageAdapter(FragmentManager fm, int numOfTabs,String code,String day , String time) {
+    public PageAdapter(FragmentManager fm, int numOfTabs, String code, String day , String time) {
         super(fm);
         this.numOfTabs = numOfTabs;
         this.code = code;
