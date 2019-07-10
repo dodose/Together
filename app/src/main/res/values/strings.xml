@@ -43,7 +43,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
 
-    <string name="appbar_scrolling_view_behavior">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
+    <string name="appbar_scrolling_view_behavior">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
 
     <string name="hotel_home_title">Pet Hotel</string>
     <string name="my_petlist">마이펫</string>

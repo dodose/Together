@@ -1,9 +1,10 @@
 package com.example.together.activities.map;
 
 
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
+
+import androidx.fragment.app.FragmentActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.together.R;
 import com.google.android.gms.maps.CameraUpdateFactory;

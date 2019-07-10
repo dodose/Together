@@ -7,9 +7,8 @@ android:layout_height="match_parent"
 android:orientation="vertical"
 tools:context=".activities.goodbyePet.GoodbyepetMenuSelectActivity">
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -18,11 +17,11 @@ tools:context=".activities.goodbyePet.GoodbyepetMenuSelectActivity">
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 
 
 
-<android.support.design.widget.TabLayout
+<com.google.android.material.tabs.TabLayout
     android:id="@+id/tablayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -30,25 +29,25 @@ tools:context=".activities.goodbyePet.GoodbyepetMenuSelectActivity">
     app:tabSelectedTextColor="@android:color/white"
     app:tabTextColor="@android:color/black">
 
-    <android.support.design.widget.TabItem
+    <com.google.android.material.tabs.TabItem
         android:id="@+id/tabChats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="상품" />
 
-    <android.support.design.widget.TabItem
+    <com.google.android.material.tabs.TabItem
         android:id="@+id/tabStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="리뷰" />
 
-    <android.support.design.widget.TabItem
+    <com.google.android.material.tabs.TabItem
         android:id="@+id/tabCalls"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="정보" />
 
-    </android.support.design.widget.TabLayout>
+    </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"

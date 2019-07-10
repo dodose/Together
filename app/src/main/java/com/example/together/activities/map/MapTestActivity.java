@@ -1,7 +1,8 @@
 package com.example.together.activities.map;
 
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+
+import androidx.fragment.app.FragmentActivity;
 
 import com.example.together.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
