@@ -4,6 +4,7 @@ import android.content.Intent;
 
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -173,7 +174,7 @@ public class MessageActivity extends AppCompatActivity {
 
 
 
-    private void sendMessage(String sender,  String receiver, String message){
+    private void sendMessage(String sender, final String receiver, String message){
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
@@ -184,25 +185,6 @@ public class MessageActivity extends AppCompatActivity {
         hashMap.put("isseen", false);
 
         reference.child("Chats").push().setValue(hashMap);
-
-        // 여기부터 다시 part 16
-//        final DatabaseReference chatRef = FirebaseDatabase.getInstance().getReference("ChatList")
-//                .child(fuser.getUid())
-//                .child(userid);
-//
-//        chatRef.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                if (!dataSnapshot.exists()){
-//                    chatRef.child("id").setValue(userid);
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
 
         final String msg = message;
 
@@ -236,7 +218,10 @@ public class MessageActivity extends AppCompatActivity {
                     Token token = snapshot.getValue(Token.class);
                     Data data = new Data(fuser.getUid(), R.mipmap.ic_launcher, username+": "+message, "새로운 메시지", userid);
 
+                    Log.d(TAG, "토큰: "+token.getToken());
+
                     Sender sender = new Sender(data, token.getToken());
+
 
                     apiService.sendNotification(sender)
                             .enqueue(new Callback<MyResponse>() {
