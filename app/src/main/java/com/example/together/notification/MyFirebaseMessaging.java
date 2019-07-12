@@ -26,7 +26,7 @@ import java.util.Map;
 public class MyFirebaseMessaging extends FirebaseMessagingService {
 
     private static final String TAG = "MyFirebaseMessaging";
-    private static final String TESTCommit = "TTTT";
+    private static final String TESTCommit = "TTTTT";
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
