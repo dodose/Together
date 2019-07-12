@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.together.adapter.ChatUserAdapter;
 import com.example.together.model.Chat;
-import com.example.together.model.ChatList;
 import com.example.together.model.User;
 import com.example.together.R;
 import com.example.together.notification.Token;
@@ -129,32 +128,5 @@ public class ChatFragment extends Fragment {
         Token token1 = new Token(token);
         reference.child(fuser.getUid()).setValue(token1);
     }
-
-//    private void chatList(){
-//        mUsers = new ArrayList<>();
-//        reference = FirebaseDatabase.getInstance().getReference("Users");
-//        reference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                mUsers.clear();
-//                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-//                    User user = snapshot.getValue(User.class);
-//                    for (ChatList chatList : usersList){
-//                        if (user.getId().equals(chatList.getId())){
-//                            mUsers.add(user);
-//                        }
-//                    }
-//                }
-//                chatUserAdapter = new ChatUserAdapter(getContext(), mUsers, true);
-//                recyclerView.setAdapter(chatUserAdapter);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-//    }
-
 
 }
