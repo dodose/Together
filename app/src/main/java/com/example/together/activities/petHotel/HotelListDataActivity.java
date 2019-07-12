@@ -91,7 +91,6 @@ public class HotelListDataActivity extends AppCompatActivity{
 
 
         //recyclerview 선언
-
         mRecycleView = findViewById(R.id.recycler_view);
         mRecycleView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);

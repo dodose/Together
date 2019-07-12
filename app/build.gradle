@@ -69,7 +69,6 @@ dependencies {
     // swipe cards for petching
     implementation 'com.lorentzos.swipecards:library:1.0.9'
 
-
     testImplementation 'junit:junit:4.12'    //있고 ㅇㅇ
     androidTestImplementation 'com.android.support.test:runner:1.0.2'   //있고 ㅇㅇ
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'  //있고 ㅇㅇ

@@ -61,7 +61,6 @@
         <activity android:name=".activities.petHotel.ProductOrderActivity" />
         <activity android:name=".activities.goodbyePet.GoodbyeMemorialActivity" />
         <activity android:name=".activities.map.MapTestActivity" />
-        <activity android:name=".activities.map.Map1" />
         <activity android:name=".activities.aircalendar.AirCalendarDatePickerActivity">
 
         </activity>
@@ -74,7 +73,6 @@
         <activity android:name=".activities.my_petInfo.MyPetListActivity" />
         <activity android:name=".activities.petching.MatchesActivity" />
         <activity android:name=".activities.petching.SettingsActivity" />
-        <activity android:name=".activities.map.HotelMapActivity" />
         <activity android:name=".activities.goodbyePet.GoodbyePetActivity" />
         <activity android:name=".activities.petGroup.PetGroupActivity" />
         <activity android:name=".activities.petching.PetchingActivity" />
