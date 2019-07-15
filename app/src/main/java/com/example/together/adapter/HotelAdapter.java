@@ -19,9 +19,6 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 public class HotelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
-
-
     Context mContext;
     private ArrayList<Hotel> HotelArrayList;
     String first;
@@ -53,7 +50,7 @@ public class HotelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             etp_imgView = view.findViewById(R.id.drawableId);
             etp_name = view.findViewById(R.id.etp_name);
             etp_addr = view.findViewById(R.id.etp_addr);
-            content = view.findViewById(R.id.content);
+//            content = view.findViewById(R.id.content);
             Time = view.findViewById(R.id.Time);
             starcount = view.findViewById(R.id.etp_star);
             prise = view.findViewById(R.id.product_firstPrice);
@@ -82,7 +79,7 @@ public class HotelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         Picasso.get().load(HotelArrayList.get(position).img_path).fit().into(myViewHolder.etp_imgView);
         myViewHolder.etp_addr.setText(HotelArrayList.get(position).etp_addr);
         myViewHolder.etp_name.setText(HotelArrayList.get(position).etp_name);
-        myViewHolder.content.setText(HotelArrayList.get(position).content);
+//        myViewHolder.content.setText(HotelArrayList.get(position).content);
         myViewHolder.Time.setText(HotelArrayList.get(position).Time);
         myViewHolder.starcount.setText("★  " +HotelArrayList.get(position).starcount);
         myViewHolder.prise.setText(HotelArrayList.get(position).price + "원");
@@ -99,17 +96,17 @@ public class HotelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
 //                Log.e("firstAndlast",first+"~"+last);
 
-                   Intent intent = new Intent(v.getContext(), HotelDetailActivity.class);
-                    intent.putExtra("img",img);
-                    intent.putExtra("addr",addr);
-                    intent.putExtra("name",na);
-                    intent.putExtra("first",first.substring(5));
-                    intent.putExtra("last",last.substring(5));
-                    intent.putExtra("lat",etp_lat);
-                    intent.putExtra("lnt",etp_lnt);
+                Intent intent = new Intent(v.getContext(), HotelDetailActivity.class);
+                intent.putExtra("img",img);
+                intent.putExtra("addr",addr);
+                intent.putExtra("name",na);
+                intent.putExtra("first",first.substring(5));
+                intent.putExtra("last",last.substring(5));
+                intent.putExtra("lat",etp_lat);
+                intent.putExtra("lnt",etp_lnt);
 
 
-                    v.getContext().startActivity(intent);
+                v.getContext().startActivity(intent);
             }
 
         });
@@ -124,6 +121,7 @@ public class HotelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         return HotelArrayList.size();
 
     }
+
 
 
 
