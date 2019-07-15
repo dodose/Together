@@ -7,15 +7,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.together.activities.petHospital.PetHospitalListActivity">
 
-
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/bar"
-        android:background="?android:attr/windowBackground">
-
-
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/toolbar"
@@ -36,9 +28,8 @@
                 android:textSize="20dp"
                 android:text="다음"/>
 
-        </android.support.v7.widget.Toolbar>
+        </androidx.appcompat.widget.Toolbar>
 
-    </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
         android:id="@+id/filter_location_Info"

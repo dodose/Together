@@ -52,5 +52,9 @@
         <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
+    <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:textSize">18dp</item>
+    </style>
+
 
 </resources>

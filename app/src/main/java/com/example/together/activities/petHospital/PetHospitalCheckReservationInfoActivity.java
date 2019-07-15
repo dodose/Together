@@ -1,12 +1,8 @@
 package com.example.together.activities.petHospital;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,7 +13,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+
 import com.example.together.R;
 import com.example.together.adapter.TimesetAdapter;
 import com.example.together.fragment.Hos_or_fragment1;
@@ -30,13 +30,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import static com.example.together.activities.petHospital.PetHospitalPetConditionActivity.petcode;
 
 public class PetHospitalCheckReservationInfoActivity extends AppCompatActivity {
 
@@ -62,7 +57,7 @@ public class PetHospitalCheckReservationInfoActivity extends AppCompatActivity {
 
     //프래그먼트
     Hos_or_fragment1 fragment1;
-    Hos_or_fragment2 fragment2;
+    Fragment fragment2;
 
     String petcode;
     String dateday;
@@ -78,7 +73,7 @@ public class PetHospitalCheckReservationInfoActivity extends AppCompatActivity {
         topName = Bx.getString("etp_name");
 
         //툴바 선언
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
 
 

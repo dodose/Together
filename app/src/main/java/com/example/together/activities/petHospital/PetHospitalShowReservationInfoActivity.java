@@ -1,7 +1,7 @@
 package com.example.together.activities.petHospital;
 
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.util.Log;
 
@@ -61,6 +61,9 @@ public class PetHospitalShowReservationInfoActivity extends AppCompatActivity {
 
         fuser = FirebaseAuth.getInstance().getCurrentUser();
 
+
+
+
         try {
             SendObj.put("user_id",fuser.getEmail());
             SendObj.put("Time",Time);
@@ -72,7 +75,16 @@ public class PetHospitalShowReservationInfoActivity extends AppCompatActivity {
             }else{
                 SendObj.put("edit",edit);
             }
-            SendObj.put("canser",canser);
+
+
+            JSONArray CanserArry = new JSONArray();
+            for(int i=0; i<canser.size(); i++){
+                JSONObject CanserObj = new JSONObject();
+                Log.e("dd",canser.size()+"~"+canser.get(i));
+                CanserObj.put("list",canser.get(i));
+                CanserArry.put(CanserObj);
+            }
+            SendObj.put("Canser",CanserArry);
             Log.e("jobj",SendObj+"");
 
 //

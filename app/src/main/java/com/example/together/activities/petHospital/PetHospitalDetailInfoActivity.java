@@ -2,10 +2,7 @@ package com.example.together.activities.petHospital;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,9 +10,12 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+
 import com.example.together.R;
 import com.example.together.fragment.Hos_fragment1;
 import com.example.together.fragment.Hos_fragment2;
+import com.google.android.material.tabs.TabLayout;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -157,6 +157,7 @@ public class PetHospitalDetailInfoActivity extends AppCompatActivity {
                 TabLayout tabs=(TabLayout)findViewById(R.id.tabs);
                 tabs.addTab(tabs.newTab().setText("정보"));
                 tabs.addTab(tabs.newTab().setText("리뷰"));
+
 
 
                 //탭버튼을 클릭했을 때 프레그먼트 동작
