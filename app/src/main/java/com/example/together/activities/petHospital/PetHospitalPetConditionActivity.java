@@ -142,7 +142,6 @@ public class PetHospitalPetConditionActivity extends AppCompatActivity {
                     petHospitalizationSelectAdapter = new PetHospitalizationSelectAdapter(PetHospitalPetConditionActivity.this, lsPet);
                     recyclerview_dogs.setAdapter(petHospitalizationSelectAdapter);
 
-
             }
 
             @Override

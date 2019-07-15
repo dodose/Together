@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.together.activities.petching.PetchingActivity">
+    tools:context="com.example.together.activities.petching.PetchingSelectPetActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -24,40 +26,49 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/close"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_btn_back"
+                    android:id="@+id/backTo"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentStart="true"/>
+
+                <TextView
                     android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="6dp"
-                    android:src="@drawable/ic_btn_back" />
-
-            <TextView
-                android:layout_centerInParent="true"
-                android:gravity="center_horizontal"
-                android:id="@+id/petHospitalName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="PetChing "
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/selct_pets"
-                android:layout_alignParentRight="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="펫 선택"/>
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="102dp"
+                    android:layout_toEndOf="@+id/close"
+                    android:text="마이펫 정보"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
             </RelativeLayout>
 
-
-
         </androidx.appcompat.widget.Toolbar>
 
+        <LinearLayout
+            android:background="#f2f2f2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/recyclerview_dogs"
+                android:orientation="horizontal">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </LinearLayout>
+
+
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/main_tabs"
+            android:id="@+id/myPetInfoEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
@@ -66,11 +77,10 @@
 
         </com.google.android.material.tabs.TabLayout>
 
-
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/main_tabs_pager"
+        android:id="@+id/main_petchingPetInfo_tabs_pager"
         android:layout_below="@+id/bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -80,5 +90,4 @@
 
 
 
-
-</RelativeLayout>
+</LinearLayout>

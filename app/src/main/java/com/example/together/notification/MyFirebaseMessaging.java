@@ -26,16 +26,27 @@ import java.util.Map;
 public class MyFirebaseMessaging extends FirebaseMessagingService {
 
     private static final String TAG = "MyFirebaseMessaging";
-    private static final String TESTCommit = "TTTTT";
+
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
-        String sented = remoteMessage.getData().get("sented");
+
 
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        if (firebaseUser != null && sented.equals(firebaseUser.getUid())){
-            sendNotification(remoteMessage);
+        Map<String, String> data_noti = remoteMessage.getData();
+
+
+        if (firebaseUser != null && data_noti.equals(firebaseUser.getUid())){
+
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+            {
+                sendOreoNotification(remoteMessage);
+            } else {
+                sendNotification(remoteMessage);
+            }
+
         }
     }
 
@@ -59,6 +70,7 @@ public class MyFirebaseMessaging extends FirebaseMessagingService {
 
         OreoNotification oreoNotification = new OreoNotification(this);
         Notification.Builder builder = oreoNotification.getOreoNotification(title, body, pendingIntent, defaultSound, icon);
+
 
         int i = 0;
 

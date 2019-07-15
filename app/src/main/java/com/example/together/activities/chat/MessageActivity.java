@@ -111,7 +111,9 @@ public class MessageActivity extends AppCompatActivity {
 
 
         btn_send.setOnClickListener(v -> {
+
             notify = true;
+
             String msg = text_send.getText().toString();
             if (!msg.equals("")){
                 sendMessage(fuser.getUid(), userid, msg);
@@ -193,10 +195,12 @@ public class MessageActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
+                Log.d(TAG, "노티파이"+notify);
                 if (notify) {
                     sendNotification(receiver, user.getUsername(), msg);
+                }else{
+                    notify = false;
                 }
-                notify = false;
             }
 
             @Override
@@ -218,11 +222,9 @@ public class MessageActivity extends AppCompatActivity {
                     Token token = snapshot.getValue(Token.class);
                     Data data = new Data(fuser.getUid(), R.mipmap.ic_launcher, username+": "+message, "새로운 메시지", userid);
 
-                    Log.d(TAG, "토큰: "+token.getToken());
-
                     Sender sender = new Sender(data, token.getToken());
 
-
+                    Log.d(TAG, "onDataChange: "+sender+"@@@@");
                     apiService.sendNotification(sender)
                             .enqueue(new Callback<MyResponse>() {
                                 @Override
