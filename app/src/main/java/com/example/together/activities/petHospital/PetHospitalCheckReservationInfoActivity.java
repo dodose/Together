@@ -16,6 +16,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import androidx.appcompat.app.AppCompatActivity;
 import com.example.together.R;
 import com.example.together.adapter.TimesetAdapter;
 import com.example.together.fragment.Hos_or_fragment1;
@@ -160,14 +162,14 @@ public class PetHospitalCheckReservationInfoActivity extends AppCompatActivity {
     public void switchFragment(String value){
         Fragment selected = null;
 
-            if (value == "1") {
-                selected = fragment1;
-            } else if(value == "2") {
-                selected = fragment2;
-            }
-
-                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_rigth).replace(R.id.container, selected).commit();
+        if (value == "1") {
+            selected = fragment1;
+        } else if(value == "2") {
+            selected = fragment2;
         }
+
+        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_rigth).replace(R.id.container, selected).commit();
+    }
 
 
     //액션바 등록
@@ -184,47 +186,47 @@ public class PetHospitalCheckReservationInfoActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
 
-                    switch (item.getItemId()) {
-                        case android.R.id.home:
-            //                Intent intent = new Intent(ProductOrderActivity.this,HotelDetailActivity.class);
-            //                startActivity(intent);
-                            return true;
-                        case R.id.next:
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                //                Intent intent = new Intent(ProductOrderActivity.this,HotelDetailActivity.class);
+                //                startActivity(intent);
+                return true;
+            case R.id.next:
 
-                            ArrayList<String> canserlist = new ArrayList<>();
-                            canserlist = Hos_or_fragment1.CanserLIst();
-                            String detailcanser = null;
-                            String orderTime = null;
+                ArrayList<String> canserlist = new ArrayList<>();
+                canserlist = Hos_or_fragment1.CanserLIst();
+                String detailcanser = null;
+                String orderTime = null;
 
-                            detailcanser = Hos_or_fragment1.editCanser();
-                            orderTime = TimesetAdapter.Timeset();
+                detailcanser = Hos_or_fragment1.editCanser();
+                orderTime = TimesetAdapter.Timeset();
 
-                            if (canserlist.isEmpty()) {
-                                Toast.makeText(this, "병명을 최소 하나이상 선택해 주세요", Toast.LENGTH_SHORT).show();
-                            } else if (orderTime == null) {
-                                Toast.makeText(this, "예약날짜를 최소 하나를 선택해 주세요", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Intent intent = new Intent(PetHospitalCheckReservationInfoActivity.this, PetHospitalShowReservationInfoActivity.class);
-                                intent.putStringArrayListExtra("canser", canserlist);
-                                intent.putExtra("orderTime", orderTime);
-                                intent.putExtra("petcode", petcode);
-                                intent.putExtra("date", dateday);
-                                intent.putExtra("etp_nm", topName);
-                                if(detailcanser != null){
-                                    intent.putExtra("edit",detailcanser);
-                                }
-                                startActivity(intent);
-
-                            }
-
-
-
-                            return true;
-
-                        default:
-                            return super.onOptionsItemSelected(item);
-
+                if (canserlist.isEmpty()) {
+                    Toast.makeText(this, "병명을 최소 하나이상 선택해 주세요", Toast.LENGTH_SHORT).show();
+                } else if (orderTime == null) {
+                    Toast.makeText(this, "예약날짜를 최소 하나를 선택해 주세요", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(PetHospitalCheckReservationInfoActivity.this, PetHospitalShowReservationInfoActivity.class);
+                    intent.putStringArrayListExtra("canser", canserlist);
+                    intent.putExtra("orderTime", orderTime);
+                    intent.putExtra("petcode", petcode);
+                    intent.putExtra("date", dateday);
+                    intent.putExtra("etp_nm", topName);
+                    if(detailcanser != null){
+                        intent.putExtra("edit",detailcanser);
                     }
+                    startActivity(intent);
+
+                }
+
+
+
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }
 
 
 

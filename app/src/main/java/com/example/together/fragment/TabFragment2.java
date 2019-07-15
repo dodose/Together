@@ -2,13 +2,14 @@ package com.example.together.fragment;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 import com.example.together.adapter.ReviewAdapter;
 import com.example.together.model.Review;

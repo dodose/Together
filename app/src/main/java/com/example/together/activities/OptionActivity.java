@@ -1,11 +1,12 @@
 package com.example.together.activities;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.together.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,16 +35,17 @@ public class OptionActivity extends AppCompatActivity {
             }
         });
 
-        logout.setOnClickListener(new View.OnClickListener(){
 
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(OptionActivity.this, LoginActivity.class)
-                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-
-            }
+        logout.setOnClickListener(v -> {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(OptionActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
         });
+
+        settings.setOnClickListener(v -> {
+            startActivity(new Intent(OptionActivity.this, DetailSettings.class));
+        });
+
+
 
     }
 }

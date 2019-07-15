@@ -1,6 +1,5 @@
 package com.example.together.activities.goodbyePet;
 
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +8,9 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.fragment.app.FragmentActivity;
+
 import com.example.together.R;
 
 import java.util.ArrayList;

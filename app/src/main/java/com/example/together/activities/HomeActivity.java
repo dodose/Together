@@ -2,24 +2,40 @@ package com.example.together.activities;
 
 import android.content.SharedPreferences;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.OnLifecycleEvent;
+import androidx.lifecycle.ProcessLifecycleOwner;
 
 import com.example.together.fragment.SearchFragment;
 import com.example.together.fragment.HomeFragment;
 import com.example.together.fragment.NotificationFragment;
 import com.example.together.fragment.ProfileFragment;
 import com.example.together.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-public class HomeActivity extends AppCompatActivity  {
+import java.util.HashMap;
+
+public class HomeActivity extends AppCompatActivity implements LifecycleObserver {
+
+
     BottomNavigationView bottomNavigationView;
     Fragment seletedFragment = null;
+    DatabaseReference reference;
+    FirebaseUser firebaseUser;
+
 
     private Boolean backKeyPressed = false;
 
@@ -29,8 +45,9 @@ public class HomeActivity extends AppCompatActivity  {
 
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
 
+        setContentView(R.layout.activity_home);
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -55,7 +72,46 @@ public class HomeActivity extends AppCompatActivity  {
 
         }
 
+
+
     }
+
+
+    // LifeCycle을 채크하여 앱 꺼짐 여부를 채크후 온/오프라인 표시
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+    private void onAppBackgrounded() {
+
+        Log.d("MyApp", "App in background");
+
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
+
+
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("status", "offline");
+
+        reference.updateChildren(hashMap);
+
+
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_START)
+    private void onAppForegrounded() {
+
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
+
+        Log.d("MyApp", "App in foreground");
+
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("status", "online");
+
+        reference.updateChildren(hashMap);
+
+
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -112,9 +168,6 @@ public class HomeActivity extends AppCompatActivity  {
                     return true;
                 }
             };
-
-
-
 
 
 }

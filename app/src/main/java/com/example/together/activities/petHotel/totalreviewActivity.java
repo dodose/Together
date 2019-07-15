@@ -1,11 +1,12 @@
 package com.example.together.activities.petHotel;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.together.adapter.ReviewAdapter;
 import com.example.together.model.Review;
@@ -13,7 +14,7 @@ import com.example.together.R;
 
 import java.util.ArrayList;
 
-public class totalreviewActivity extends AppCompatActivity{
+public class totalreviewActivity extends AppCompatActivity {
 
 
     //이전페이지에서 업체코드 받아오기

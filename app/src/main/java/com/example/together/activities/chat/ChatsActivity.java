@@ -1,23 +1,25 @@
 package com.example.together.activities.chat;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
 import com.example.together.fragment.ChatFragment;
 import com.example.together.fragment.UsersFragment;
 import com.example.together.model.User;
 import com.example.together.R;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -62,7 +64,7 @@ public class ChatsActivity extends AppCompatActivity {
                 if (user.getImageurl().equals("default")){
                     image_profile.setImageResource(R.mipmap.ic_launcher);
                 }else {
-                    Glide.with(ChatsActivity.this).load(user.getImageurl()).into(image_profile);
+                    Glide.with(getApplicationContext()).load(user.getImageurl()).into(image_profile);
                 }
             }
 
@@ -116,7 +118,7 @@ public class ChatsActivity extends AppCompatActivity {
         }
 
 
-        // C
+        // Ctrl + O
 
 
         @Nullable
@@ -125,4 +127,7 @@ public class ChatsActivity extends AppCompatActivity {
             return titles.get(position);
         }
     }
+
+
+
 }

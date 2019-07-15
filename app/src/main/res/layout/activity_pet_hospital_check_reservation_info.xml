@@ -21,14 +21,14 @@
             android:id="@+id/toolbar"
             android:background="?android:attr/windowBackground">
 
-                <TextView
-                    android:id="@+id/petName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="병원 예약중..."
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
+            <TextView
+                android:id="@+id/petName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="병원 예약중..."
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"

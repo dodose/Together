@@ -7,18 +7,16 @@
     android:background="#e6e6e6"
     tools:context="com.example.together.activities.chat.MessageActivity">
 
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/basicColorApp"
-            android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+            android:background="@color/basicColorApp">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="30dp"
@@ -32,21 +30,22 @@
                 android:layout_marginLeft="30dp"
                 android:text="username"
                 android:textSize="15dp"
+                android:textColor="@color/mdtp_transparent_black"
                 android:textStyle="bold"/>
 
-        </android.support.v7.widget.Toolbar>
+        </androidx.appcompat.widget.Toolbar>
 
 
-    </android.support.design.widget.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/recycler_view"
         android:layout_below="@+id/bar_layout"
         android:layout_above="@+id/messageBox">
 
-    </android.support.v7.widget.RecyclerView>
+    </androidx.recyclerview.widget.RecyclerView>
 
 
     <RelativeLayout

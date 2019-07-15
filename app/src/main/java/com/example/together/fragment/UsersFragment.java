@@ -1,13 +1,14 @@
 package com.example.together.fragment;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.together.adapter.ChatUserAdapter;
 import com.example.together.model.User;
@@ -55,7 +56,7 @@ public class UsersFragment extends Fragment {
 
     private void readUsers(){
 
-        final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
 
         reference.addValueEventListener(new ValueEventListener() {
@@ -65,12 +66,15 @@ public class UsersFragment extends Fragment {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     User user = snapshot.getValue(User.class);
 
+                    assert user != null;
+                    assert firebaseUser != null;
+
                     if (!user.getId().equals(firebaseUser.getUid())){
                         mUsers.add(user);
                     }
                 }
 
-                chatUserAdapter = new ChatUserAdapter(getContext(), mUsers, true);
+                chatUserAdapter = new ChatUserAdapter(getContext(), mUsers, false);
                 recyclerView.setAdapter(chatUserAdapter);
                 
             }

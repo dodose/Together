@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import androidx.appcompat.app.AppCompatActivity;
 import com.example.together.R;
 import com.example.together.fragment.Hos_fragment1;
 import com.example.together.fragment.Hos_fragment2;
@@ -209,6 +209,8 @@ public class PetHospitalDetailInfoActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
 
 
 

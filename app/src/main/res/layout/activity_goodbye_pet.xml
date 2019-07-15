@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="match_parent">
 
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/bar"
         android:background="?android:attr/windowBackground">
 
 
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/funeral"
@@ -35,9 +34,9 @@
                 android:layout_height="wrap_content"
                 android:hint="대구 광역시 북구 복현동"/>
 
-        </android.support.v7.widget.Toolbar>
+        </androidx.appcompat.widget.Toolbar>
 
-    </android.support.design.widget.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
 
     <LinearLayout
@@ -46,7 +45,7 @@
         android:layout_below="@+id/bar"
         android:orientation="vertical">
 
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/item_funeral">
@@ -71,20 +70,20 @@
                     android:layout_marginEnd="29dp"
                     android:orientation="horizontal">
 
-                    <android.support.v7.widget.AppCompatRadioButton
+                    <androidx.appcompat.widget.AppCompatRadioButton
                         android:id="@+id/radio0"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="인기순"/>
 
-                    <android.support.v7.widget.AppCompatRadioButton
+                    <androidx.appcompat.widget.AppCompatRadioButton
                         android:id="@+id/radio1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="평점순"/>
 
 
-                    <android.support.v7.widget.AppCompatRadioButton
+                    <androidx.appcompat.widget.AppCompatRadioButton
                         android:id="@+id/radio2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -94,13 +93,13 @@
 
             </RelativeLayout>
 
-        </android.support.v7.widget.Toolbar>
+        </androidx.appcompat.widget.Toolbar>
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        </android.support.v7.widget.RecyclerView>
+        </androidx.recyclerview.widget.RecyclerView>
 
 
 

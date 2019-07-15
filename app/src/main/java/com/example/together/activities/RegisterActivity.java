@@ -2,8 +2,6 @@ package com.example.together.activities;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -13,6 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.together.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -181,6 +182,7 @@ public class RegisterActivity extends AppCompatActivity {
                             hashMap.put("birth_dt",birthday);
                             hashMap.put("bio", "");
                             hashMap.put("imageurl", "https://firebasestorage.googleapis.com/v0/b/blogapp-a9a56.appspot.com/o/users_photos%2Fprofile.png?alt=media&token=a112f73c-373f-41ba-bd0f-dfea8ac8d6a1");
+                            hashMap.put("status","offline");
 
                             reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override

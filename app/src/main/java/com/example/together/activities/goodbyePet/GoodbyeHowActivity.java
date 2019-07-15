@@ -1,10 +1,11 @@
 package com.example.together.activities.goodbyePet;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ViewFlipper;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.together.R;
 

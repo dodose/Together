@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.together.activities.map.HotelMapActivity">
 
-    <android.support.v7.widget.AppCompatButton
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,18 +18,17 @@
         android:text="google map"/>
 
 
-    <android.support.v7.widget.AppCompatButton
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@id/button1"
+        android:layout_alignParentLeft="true"
         android:onClick="onClick"
-        tools:context=".activities.map.HotelMapActivity"
-        android:text="place"/>
+        android:text="place"
+        tools:context=".activities.map.HotelMapActivity" />
 
-    <android.support.v7.widget.AppCompatButton
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -12,6 +12,9 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.together.R;
 import com.example.together.adapter.HospitalAdapter;
 import com.example.together.model.Hospital;
@@ -256,11 +259,14 @@ public class PetHospitalListActivity extends AppCompatActivity {
                     mRecycleView.setAdapter(myAdapter);
 
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-    }.execute();
+            }
+        }.execute();
+
+
+
 
 
     }
