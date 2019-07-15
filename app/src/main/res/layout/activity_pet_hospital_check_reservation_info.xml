@@ -8,14 +8,14 @@
     tools:context="com.example.together.activities.petHospital.PetHospitalListActivity">
 
 
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/bar"
         android:background="?android:attr/windowBackground">
 
 
-        <android.support.v7.widget.Toolbar
+        <Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/toolbar"
@@ -36,9 +36,9 @@
                 android:textSize="20dp"
                 android:text="다음"/>
 
-        </android.support.v7.widget.Toolbar>
+        </Toolbar>
 
-    </android.support.design.widget.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
         android:id="@+id/filter_location_Info"

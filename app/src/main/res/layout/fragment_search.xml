@@ -40,11 +40,11 @@
                     android:id="@+id/close"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="-370sp"
+                    android:layout_marginEnd="-370dp"
                     android:layout_toStartOf="@+id/search_bar"
                     android:text="CLOSE"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="15sp" />
+                    android:textSize="15dp" />
 
             </RelativeLayout>
 
@@ -65,94 +65,107 @@
     </androidx.recyclerview.widget.RecyclerView>
 
     <RelativeLayout
+        android:layout_margin="10dp"
         android:id="@+id/selects"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/bar"
         android:visibility="visible">
 
-
-    <LinearLayout
-        android:id="@+id/firstLine"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40sp"
-
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:clipToPadding="false">
-
-        <androidx.cardview.widget.CardView
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_margin="10dp">
-
         <LinearLayout
+            android:id="@+id/firstLine"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center">
-            <ImageView
-                android:id="@+id/petHotel"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/hotel"
-                android:padding="10dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:text="애견호텔"
-                android:textSize="20sp"/>
+            android:layout_height="210dp"
+            android:clipToPadding="false"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="205dp"
+                android:layout_height="250dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/petHotel"
+                        android:layout_width="141dp"
+                        android:layout_height="129dp"
+                        android:padding="10dp"
+                        android:src="@drawable/hotel" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="애견호텔"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <!--//2개 버튼 사이에 세로 줄-->
+            <!--<View-->
+                <!--android:layout_width="2dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:background="#D6D6D6"-->
+                <!--/>-->
+            <View
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="#D6D6D6"
+                />
+            <androidx.cardview.widget.CardView
+                android:layout_width="200dp"
+                android:layout_height="250dp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/petching"
+                        android:layout_width="141dp"
+                        android:layout_height="129dp"
+                        android:padding="10dp"
+                        android:src="@drawable/petching" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="펫칭"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
 
         </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:layout_margin="10dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center">
-                <ImageView
-                    android:id="@+id/petching"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/petching"
-                    android:padding="10dp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="펫칭"
-                    android:textSize="20sp"/>
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-    </LinearLayout>
-
 
     <LinearLayout
         android:id="@+id/secondLine"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="220dp"
         android:layout_below="@+id/firstLine"
-        android:layout_marginTop="15dp"
         android:clipToPadding="false"
         android:gravity="center"
         android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:layout_margin="10dp">
+            android:layout_width="200dp"
+            android:layout_height="218dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -162,8 +175,8 @@
 
                 <ImageView
                     android:id="@+id/petHospital"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="141dp"
+                    android:layout_height="129dp"
                     android:padding="10dp"
                     android:src="@drawable/hospital" />
 
@@ -175,14 +188,26 @@
                     android:textStyle="bold" />
 
             </LinearLayout>
-
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#D6D6D6"
+                />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:layout_margin="10dp">
-
+            android:layout_width="200dp"
+            android:layout_height="218dp">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#D6D6D6"
+                />
+            <View
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="#D6D6D6"
+                />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -191,8 +216,8 @@
 
                 <ImageView
                     android:id="@+id/goodbyePet"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="141dp"
+                    android:layout_height="129dp"
                     android:padding="10dp"
                     android:src="@drawable/rainbow" />
 
@@ -209,49 +234,88 @@
 
     </LinearLayout>
 
-
-    <LinearLayout
-        android:id="@+id/thirdLine"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/secondLine"
-        android:layout_marginTop="15dp"
-        android:clipToPadding="false"
-        android:gravity="center"
-        android:orientation="horizontal">
+        <LinearLayout
+            android:id="@+id/thirdLine"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:layout_below="@+id/secondLine"
+            android:clipToPadding="false"
+            android:gravity="center"
+            android:orientation="horizontal">
 
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:layout_margin="10dp">
+            <androidx.cardview.widget.CardView
+                android:layout_width="200dp"
+                android:layout_height="220dp">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#D6D6D6"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
+                    <ImageView
+                        android:id="@+id/petGroup"
+                        android:layout_width="141dp"
+                        android:layout_height="129dp"
+                        android:padding="10dp"
+                        android:src="@drawable/group" />
 
-                <ImageView
-                    android:id="@+id/petGroup"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:padding="10dp"
-                    android:src="@drawable/group" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="펫모여"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="펫모여"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
+                </LinearLayout>
 
 
-        </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
-    </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="200dp"
+                android:layout_height="220dp">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#D6D6D6"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/next"
+                        android:layout_width="141dp"
+                        android:layout_height="129dp"
+                        android:padding="10dp"
+                        android:src="@drawable/group" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="추후 개발 예정"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:background="#D6D6D6" />
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
 
     </RelativeLayout>
 

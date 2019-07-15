@@ -29,5 +29,8 @@
     <color name="colorBlue">#00b0ff</color>
     <color name="colorBlack">#000</color>
     <color name="colorWhite">#fff</color>
+    <color name="LoginBtnO">#54caff</color>
+    <color name="LoginBtnT">#00b0ff</color>
+    <color name="LoginBtnThree">#0082bd</color>
 </resources>
 

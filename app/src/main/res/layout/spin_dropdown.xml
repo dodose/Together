@@ -4,8 +4,10 @@
     android:id="@android:id/text1"
     style="?android:attr/spinnerDropDownItemStyle"
     android:singleLine="true"
-    android:textColor="#000"
-    android:background="#022986"
+    android:textColor="#000000"
+    android:textSize="25sp"
+    android:text="test"
+    android:background="#f0f0f0"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:ellipsize="marquee"/>

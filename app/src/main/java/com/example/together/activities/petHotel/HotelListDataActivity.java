@@ -92,6 +92,7 @@ public class HotelListDataActivity extends AppCompatActivity {
 
 
         //recyclerview 선언
+
         mRecycleView = findViewById(R.id.recycler_view);
         mRecycleView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
@@ -117,8 +118,8 @@ public class HotelListDataActivity extends AppCompatActivity {
 
         daysBtn = findViewById(R.id.dayBtn);
         Addrserch = findViewById(R.id.Addrserch);
-        daysBtn.setText(first_day.substring(5) + "~" + Last_day.substring(5) + " , " + Sum + "박");
-        Addrserch.setText(Address);
+//        daysBtn.setText(first_day.substring(5) + "~" + Last_day.substring(5) + " , " + Sum + "박");
+//        Addrserch.setText(Address);
 
 
         new AsyncTask<Void, Void, JSONObject>() {
