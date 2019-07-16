@@ -70,6 +70,7 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/petAge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|right"
@@ -134,7 +135,7 @@
                     android:layout_weight="0.5">
 
                     <RadioGroup
-                        android:id="@+id/genderGroup"
+                        android:id="@+id/having"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -143,14 +144,14 @@
 
 
                         <RadioButton
-                            android:id="@+id/male"
+                            android:id="@+id/yes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="예" />
 
 
                         <RadioButton
-                            android:id="@+id/female"
+                            android:id="@+id/no"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="20dp"
