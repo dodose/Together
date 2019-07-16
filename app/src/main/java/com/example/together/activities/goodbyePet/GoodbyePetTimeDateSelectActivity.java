@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -84,7 +85,7 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(adspin1.getItem(i).equals("서울특별시")) {
-                    choice_do = "서울특별시"; //버튼 클릭시 출력을 위해 값을 넣음
+                    choice_do = "서울"; //버튼 클릭시 출력을 위해 값을 넣음
                     adspin2 = ArrayAdapter.createFromResource(GoodbyePetTimeDateSelectActivity.this, R.array.spinner_do_seoul,
                             android.R.layout.simple_spinner_dropdown_item);
                     adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -100,7 +101,7 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
                         }
                     });
                 }else if(adspin1.getItem(i).equals("대구광역시")) {
-                    choice_do = "대구광역시";
+                    choice_do = "대구";
                     adspin2 = ArrayAdapter.createFromResource(GoodbyePetTimeDateSelectActivity.this,
                             R.array.spinner_do_daegu, android.R.layout.simple_spinner_dropdown_item);
                     adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -116,7 +117,7 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
                         }
                     });
                 }else if(adspin1.getItem(i).equals("부산광역시")) {
-                    choice_do = "부산광역시";
+                    choice_do = "부산";
                     adspin2 = ArrayAdapter.createFromResource(GoodbyePetTimeDateSelectActivity.this,
                             R.array.spinner_do_busan, android.R.layout.simple_spinner_dropdown_item);
                     adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -132,7 +133,7 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
                         }
                     });
                 }else if(adspin1.getItem(i).equals("인천광역시")) {
-                    choice_do = "인천광역시";
+                    choice_do = "인천";
                     adspin2 = ArrayAdapter.createFromResource(GoodbyePetTimeDateSelectActivity.this,
                             R.array.spinner_do_Incheon, android.R.layout.simple_spinner_dropdown_item);
                     adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -148,7 +149,7 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
                         }
                     });
                 }else if(adspin1.getItem(i).equals("광주광역시")) {
-                    choice_do = "광주광역시";
+                    choice_do = "광주";
                     adspin2 = ArrayAdapter.createFromResource(GoodbyePetTimeDateSelectActivity.this,
                             R.array.spinner_do_Gwangju, android.R.layout.simple_spinner_dropdown_item);
                     adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -164,7 +165,7 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
                         }
                     });
                 }else if(adspin1.getItem(i).equals("대전광역시")) {
-                    choice_do = "대전광역시";
+                    choice_do = "대전";
                     adspin2 = ArrayAdapter.createFromResource(GoodbyePetTimeDateSelectActivity.this,
                             R.array.spinner_do_Daejeon, android.R.layout.simple_spinner_dropdown_item);
                     adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -180,7 +181,7 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
                         }
                     });
                 }else if(adspin1.getItem(i).equals("울산광역시")) {
-                    choice_do = "울산광역시";
+                    choice_do = "울산";
                     adspin2 = ArrayAdapter.createFromResource(GoodbyePetTimeDateSelectActivity.this,
                             R.array.spinner_do_Ulsan, android.R.layout.simple_spinner_dropdown_item);
                     adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -196,7 +197,7 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
                         }
                     });
                 }else if(adspin1.getItem(i).equals("세종특별자치시")) {
-                    choice_do = "세종특별자치시";
+                    choice_do = "세종시";
                     adspin2 = ArrayAdapter.createFromResource(GoodbyePetTimeDateSelectActivity.this,
                             R.array.spinner_do_Sejong_Special, android.R.layout.simple_spinner_dropdown_item);
                     adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -244,7 +245,7 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
                         }
                     });
                 }else if(adspin1.getItem(i).equals("충청북도")) {
-                    choice_do = "충청북도";
+                    choice_do = "충북";
                     adspin2 = ArrayAdapter.createFromResource(GoodbyePetTimeDateSelectActivity.this,
                             R.array.spinner_do_Chungcheongbukdo, android.R.layout.simple_spinner_dropdown_item);
                     adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -260,7 +261,7 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
                         }
                     });
                 }else if(adspin1.getItem(i).equals("충청남도")) {
-                    choice_do = "충청남도";
+                    choice_do = "충남";
                     adspin2 = ArrayAdapter.createFromResource(GoodbyePetTimeDateSelectActivity.this,
                             R.array.spinner_do_Chungcheongnamdo, android.R.layout.simple_spinner_dropdown_item);
                     adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -276,7 +277,7 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
                         }
                     });
                 }else if(adspin1.getItem(i).equals("전라북도")) {
-                    choice_do = "전라북도";
+                    choice_do = "전북";
                     adspin2 = ArrayAdapter.createFromResource(GoodbyePetTimeDateSelectActivity.this,
                             R.array.spinner_do_Jeollabukdo, android.R.layout.simple_spinner_dropdown_item);
                     adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -292,7 +293,7 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
                         }
                     });
                 }else if(adspin1.getItem(i).equals("전라남도")) {
-                    choice_do = "전라남도";
+                    choice_do = "전남";
                     adspin2 = ArrayAdapter.createFromResource(GoodbyePetTimeDateSelectActivity.this,
                             R.array.spinner_do_Jeollanamdo, android.R.layout.simple_spinner_dropdown_item);
                     adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -308,7 +309,7 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
                         }
                     });
                 }else if(adspin1.getItem(i).equals("경상북도")) {
-                    choice_do = "경상북도";
+                    choice_do = "경북";
                     adspin2 = ArrayAdapter.createFromResource(GoodbyePetTimeDateSelectActivity.this,
                             R.array.spinner_do_Gyeongsangbukdo, android.R.layout.simple_spinner_dropdown_item);
                     adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -324,7 +325,7 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
                         }
                     });
                 }else if(adspin1.getItem(i).equals("경상남도")) {
-                    choice_do = "경상남도";
+                    choice_do = "경남";
                     adspin2 = ArrayAdapter.createFromResource(GoodbyePetTimeDateSelectActivity.this,
                             R.array.spinner_do_Gyeongsangnamdo, android.R.layout.simple_spinner_dropdown_item);
                     adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -340,7 +341,7 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
                         }
                     });
                 }else if(adspin1.getItem(i).equals("제주특별자치도")) {
-                    choice_do = "제주특별자치도";
+                    choice_do = "제주도";
                     adspin2 = ArrayAdapter.createFromResource(GoodbyePetTimeDateSelectActivity.this,
                             R.array.spinner_do_JejuSpecial, android.R.layout.simple_spinner_dropdown_item);
                     adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -382,12 +383,12 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
 
                     String day = (String) set_date.getText();
                     String time = (String) set_time.getText();
-//                    String addr = (String) tvAddr.getText();
+                    String addr = choice_do+" "+choice_se;
 
                     Intent intent = new Intent(GoodbyePetTimeDateSelectActivity.this, com.example.together.activities.goodbyePet.GoodbyePetStoreListActivity.class);
                     intent.putExtra("day",day);
                     intent.putExtra("time",time);
-//                    intent.putExtra("addr",addr);
+                    intent.putExtra("addr",addr);
                     startActivity(intent);
                 }
 

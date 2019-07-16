@@ -61,17 +61,18 @@
         android:layout_height="wrap_content"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabs"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:elevation="1dp"
-                android:background="@android:color/background_light"
-                app:tabMode="fixed"
-                app:tabGravity="fill"
-                app:tabTextColor="@color/colorPrimary"
-                app:tabSelectedTextColor="@color/colorAccent">
-            </com.google.android.material.tabs.TabLayout>
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="1dp"
+            android:background="@android:color/background_light"
+            app:tabMode="fixed"
+            app:tabGravity="fill"
+            app:tabTextColor="@color/colorPrimary"
+            app:tabSelectedTextColor="@color/colorAccent">
+        </com.google.android.material.tabs.TabLayout>
+
 
     </com.google.android.material.appbar.AppBarLayout>
 

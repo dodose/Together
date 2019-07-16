@@ -29,13 +29,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.List;
 
-import static com.example.together.activities.petHospital.PetHospitalPetConditionActivity.petcode;
 
 public class PetHospitalCheckReservationInfoActivity extends AppCompatActivity {
 
