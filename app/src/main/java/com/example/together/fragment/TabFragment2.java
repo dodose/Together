@@ -58,11 +58,14 @@ public class TabFragment2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         final String etp_cd= getArguments().getString("code"); // 업체코드 가져오기
+        Log.e("etp_cd",etp_cd);
 
-        final View view = inflater.inflate(R.layout.tab_fragment_2, container, false);
+        View view = inflater.inflate(R.layout.tab_fragment_2, container, false);
 
         total_count = view.findViewById(R.id.total_count);
         reviewListview = view.findViewById(R.id.reviewList);
+
+
 
         //서블릿 통신
         new AsyncTask<Void, Void, JSONObject>() {
@@ -179,13 +182,9 @@ public class TabFragment2 extends Fragment {
 
                         reviewListview.setAdapter(reAdapter);
 
-//
-
                     }
 
-//                    JSONObject jsonObject = (JSONObject) jobj.get("result");
-//
-//                    JSONArray reviewArray = (JSONArray) jsonObject.get("review"); //리뷰 배열 캐스트
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

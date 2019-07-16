@@ -14,7 +14,6 @@ import com.example.together.adapter.ChatUserAdapter;
 import com.example.together.model.Chat;
 import com.example.together.model.User;
 import com.example.together.R;
-import com.example.together.notification.Token;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -77,7 +76,6 @@ public class ChatFragment extends Fragment {
             }
         });
 
-        updateToken(FirebaseInstanceId.getInstance().getToken());
 
         return view;
 
@@ -123,10 +121,5 @@ public class ChatFragment extends Fragment {
         });
     }
 
-    private void updateToken(String token){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Tokens");
-        Token token1 = new Token(token);
-        reference.child(fuser.getUid()).setValue(token1);
-    }
 
 }

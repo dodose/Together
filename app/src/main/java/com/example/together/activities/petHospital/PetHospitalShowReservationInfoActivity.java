@@ -37,6 +37,8 @@ public class PetHospitalShowReservationInfoActivity extends AppCompatActivity {
     FirebaseUser fuser;
     String edit;
 
+    JSONArray Cjarry = new JSONArray();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +73,15 @@ public class PetHospitalShowReservationInfoActivity extends AppCompatActivity {
             }else{
                 SendObj.put("edit",edit);
             }
-            SendObj.put("canser",canser);
+
+            JSONArray Cjarry = new JSONArray();
+
+            for(int i=0; i<canser.size(); i++){
+                JSONObject Cjobj = new JSONObject();
+                Cjobj.put("list",canser.get(i));
+                Cjarry.put(Cjobj);
+            }
+            SendObj.put("Canser",Cjarry);
             Log.e("jobj",SendObj+"");
 
 //
