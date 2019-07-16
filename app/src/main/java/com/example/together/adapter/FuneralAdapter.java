@@ -97,6 +97,7 @@ public class FuneralAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 String na = (String) myViewHolder.etp_name.getText();
                 String code = FuneralArrayList.get(position).etp_cd;
 
+//                Log.e("funeraladapter의 값",code);
                 Intent intent = new Intent(v.getContext(), GoodbyepetMenuSelectActivity.class);
                 intent.putExtra("img",img);
                 intent.putExtra("addr",addr);

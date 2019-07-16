@@ -2,6 +2,8 @@ package com.example.together.activities.goodbyePet;
 
 
 import android.os.Bundle;
+import android.util.Log;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
@@ -43,7 +45,7 @@ public class GoodbyepetMenuSelectActivity extends AppCompatActivity {
         time = Ex.getString("time");
         day = Ex.getString("day");
 
-//        Log.e("넘어온 code값입니다",code);
+        Log.e("넘어온 code값입니다",code);
 
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(getResources().getString(R.string.app_name));
