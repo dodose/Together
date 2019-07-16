@@ -77,7 +77,6 @@ public class ChatFragment extends Fragment {
         });
 
 
-
         return view;
 
     }
@@ -121,7 +120,6 @@ public class ChatFragment extends Fragment {
             }
         });
     }
-
 
 
 }

@@ -18,16 +18,18 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
-        tools:replace="android:appComponentFactory"
-        android:appComponentFactory="whateverString"
         android:allowBackup="false"
+        android:appComponentFactory="whateverString"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
-        <activity android:name=".activities.my_petInfo.MyPetInfoCheckActivity"></activity>
+        android:usesCleartextTraffic="true"
+        tools:replace="android:appComponentFactory">
+        <activity android:name=".activities.petching.PetchingSelectPetActivity"></activity>
+        <activity android:name=".activities.petching.PetchingActivity" />
+        <activity android:name=".activities.my_petInfo.MyPetInfoCheckActivity" />
         <activity android:name=".activities.petHospital.PetHospitalShowReservationInfoActivity" />
         <activity android:name=".activities.petHospital.PetHospitalCheckReservationInfoActivity" />
         <activity android:name=".activities.petHospital.PetHospitalDetailInfoActivity" />
@@ -56,14 +58,12 @@
         <activity android:name=".activities.goodbyePet.GoodbyeHowActivity" />
         <activity android:name=".activities.goodbyePet.GoodbyeRainbowActivity" />
         <activity android:name=".activities.goodbyePet.GoodbyeSelectActivity" />
-        <activity android:name=".activities.goodbyePet.GoodbyepetOrders"/>
+        <activity android:name=".activities.goodbyePet.GoodbyepetOrders" />
         <activity android:name=".activities.petHotel.reViewActivity" />
         <activity android:name=".activities.petHotel.ProductOrderActivity" />
         <activity android:name=".activities.goodbyePet.GoodbyeMemorialActivity" />
         <activity android:name=".activities.map.MapTestActivity" />
-        <activity android:name=".activities.aircalendar.AirCalendarDatePickerActivity">
-
-        </activity>
+        <activity android:name=".activities.aircalendar.AirCalendarDatePickerActivity" />
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -71,11 +71,8 @@
 
         <activity android:name=".activities.my_petInfo.MyPetRegActivity" />
         <activity android:name=".activities.my_petInfo.MyPetListActivity" />
-        <activity android:name=".activities.petching.MatchesActivity" />
-        <activity android:name=".activities.petching.SettingsActivity" />
         <activity android:name=".activities.goodbyePet.GoodbyePetActivity" />
         <activity android:name=".activities.petGroup.PetGroupActivity" />
-        <activity android:name=".activities.petching.PetchingActivity" />
         <activity android:name=".activities.petHotel.PetHotelActivity" />
         <activity android:name=".activities.petHotel.HotelListDataActivity" />
         <activity android:name=".activities.petHotel.HotelDetailActivity" />
@@ -99,6 +96,22 @@
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
 
+        <service
+            android:name=".notification.MyFirebaseIdService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".notification.MyFirebaseMessaging"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

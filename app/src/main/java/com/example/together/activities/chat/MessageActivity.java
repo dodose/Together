@@ -38,6 +38,9 @@ import java.util.HashMap;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MessageActivity extends AppCompatActivity {
 
@@ -82,7 +85,6 @@ public class MessageActivity extends AppCompatActivity {
         });
 
 
-
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -100,7 +102,9 @@ public class MessageActivity extends AppCompatActivity {
 
 
         btn_send.setOnClickListener(v -> {
+
             notify = true;
+
             String msg = text_send.getText().toString();
             if (!msg.equals("")){
                 sendMessage(fuser.getUid(), userid, msg);
@@ -182,10 +186,12 @@ public class MessageActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
+                Log.d(TAG, "노티파이"+notify);
                 if (notify) {
 
+                }else{
+                    notify = false;
                 }
-                notify = false;
             }
 
             @Override
@@ -195,8 +201,6 @@ public class MessageActivity extends AppCompatActivity {
         });
 
     }
-
-
 
 
 
