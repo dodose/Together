@@ -159,8 +159,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/edit_profile"
-                    android:background="@color/button_black"
-                    android:text="프로필 수정"/>
+                    android:background="@color/colorBlue"
+                    android:text="프로필 수정"
+                    android:textColor="#FFFFFF"/>
 
                 </LinearLayout>
 
@@ -208,6 +209,7 @@
                     android:layout_weight="1"
                     android:id="@+id/my_photos"
                     android:src="@drawable/ic_grid"
+                    android:background="@color/colorBlue"
                     style="?android:attr/buttonBarButtonStyle"/>
 
                 <ImageButton
@@ -216,6 +218,7 @@
                     android:layout_weight="1"
                     android:id="@+id/saved_photos"
                     android:src="@drawable/ic_save_photo"
+                    android:background="@color/colorBlue"
                     style="?android:attr/buttonBarButtonStyle"/>
 
                 <ImageButton
@@ -224,6 +227,7 @@
                     android:layout_weight="1"
                     android:id="@+id/mydogs_info"
                     android:src="@drawable/ic_mydogs"
+                    android:background="@color/colorBlue"
                     style="?android:attr/buttonBarButtonStyle"/>
 
             </LinearLayout>

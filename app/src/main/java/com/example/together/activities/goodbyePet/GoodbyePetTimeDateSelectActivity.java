@@ -25,29 +25,22 @@ import java.util.Calendar;
 
 public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
 
-    ViewFlipper viewFlipper;
     public static Button date, time, check;
     public static TextView set_date, set_time;
     public static final int Date_id=0;
     public static final int Time_id =1;
 
+    //Spinner 변수 추가
+    ArrayAdapter<CharSequence> adspin1, adspin2; //어댑터를 선언
+    String choice_do="";
+    String choice_se="";
+    //Spinner 변수 추가
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goodbye_pet_time_date_select);
 
-        int images[] = {R.drawable.b1, R.drawable.b2 , R.drawable.b3};
-
-        viewFlipper = findViewById(R.id.v_flipper);
-        //루프
-//        for(int i=0; i<images.length; i++){
-//            flipperImages(imges[i]);
-//        }
-
-        for(int image: images){
-            flipperImages(image);
-        }
 
         check = (Button) findViewById(R.id.check);
         date = (Button) findViewById(R.id.selectdate);
@@ -72,70 +65,303 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
             }
         });
 
-
-
-
         // Spinner 값 --------------------
         // 1. 다량의 데이터
         // 2. Adapter
         // 3. AdapterView : Spinner
 
-        final String [] city = {"서울","인천","부산",
-                "대전","대구","광주","울산"};
-        final String [] gu = {"동구","서구","남구","북구","남동구"};
-
         // city 와 gu 를 담을 두개의 Spinner 객체
-        final Spinner s2 = (Spinner) findViewById(R.id.spinner2);
-        final Spinner s1 = (Spinner) findViewById(R.id.spinner1);
+        final Spinner spin1 = (Spinner) findViewById(R.id.spinner1);   // 이게 도시 선택
+        final Spinner spin2 = (Spinner) findViewById(R.id.spinner2);   //이게 시/군/구 선택
 
-        // 1 city 에 대한 Spinner
-        ArrayAdapter adapter = new ArrayAdapter(
-                getApplicationContext(), // 현재화면의 제어권자
-//                android.R.layout.simple_spinner_item, // 레이아웃
-                R.layout.spin,
-                city); // 데이터
-        adapter.setDropDownViewResource(
-//                android.R.layout.simple_spinner_dropdown_item);
-                R.layout.spin_dropdown);
+        adspin1 = ArrayAdapter.createFromResource(this, R.array.spinner_do,
+                android.R.layout.simple_spinner_dropdown_item);
 
-        s1.setAdapter(adapter);
+        adspin1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        final TextView tvAddr = (TextView)findViewById(R.id.textView3);
-        s1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spin1.setAdapter(adspin1);
+        spin1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
-                tvAddr.setText("주소 : "+city[position] + " " +
-                        s2.getSelectedItem().toString());
-//                Log.d("test",s1.getSelectedItem().toString()); // 실제 내용
-//                Log.d("test",s1.getSelectedItemId() +""); // positon
-//                Log.d("test",s1.getSelectedItemPosition() +""); // positon
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if(adspin1.getItem(i).equals("서울특별시")) {
+                    choice_do = "서울특별시"; //버튼 클릭시 출력을 위해 값을 넣음
+                    adspin2 = ArrayAdapter.createFromResource(GoodbyePetTimeDateSelectActivity.this, R.array.spinner_do_seoul,
+                            android.R.layout.simple_spinner_dropdown_item);
+                    adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin2.setAdapter(adspin2);
+                    spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            choice_se = adspin2.getItem(i).toString();
+                        }
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+                            //아무것도 선택 안했을때 부분, 자동완성됨
+                        }
+                    });
+                }else if(adspin1.getItem(i).equals("대구광역시")) {
+                    choice_do = "대구광역시";
+                    adspin2 = ArrayAdapter.createFromResource(GoodbyePetTimeDateSelectActivity.this,
+                            R.array.spinner_do_daegu, android.R.layout.simple_spinner_dropdown_item);
+                    adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin2.setAdapter(adspin2);
+                    spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            choice_se = adspin2.getItem(i).toString();
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+                        }
+                    });
+                }else if(adspin1.getItem(i).equals("부산광역시")) {
+                    choice_do = "부산광역시";
+                    adspin2 = ArrayAdapter.createFromResource(GoodbyePetTimeDateSelectActivity.this,
+                            R.array.spinner_do_busan, android.R.layout.simple_spinner_dropdown_item);
+                    adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin2.setAdapter(adspin2);
+                    spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            choice_se = adspin2.getItem(i).toString();
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+                        }
+                    });
+                }else if(adspin1.getItem(i).equals("인천광역시")) {
+                    choice_do = "인천광역시";
+                    adspin2 = ArrayAdapter.createFromResource(GoodbyePetTimeDateSelectActivity.this,
+                            R.array.spinner_do_Incheon, android.R.layout.simple_spinner_dropdown_item);
+                    adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin2.setAdapter(adspin2);
+                    spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            choice_se = adspin2.getItem(i).toString();
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+                        }
+                    });
+                }else if(adspin1.getItem(i).equals("광주광역시")) {
+                    choice_do = "광주광역시";
+                    adspin2 = ArrayAdapter.createFromResource(GoodbyePetTimeDateSelectActivity.this,
+                            R.array.spinner_do_Gwangju, android.R.layout.simple_spinner_dropdown_item);
+                    adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin2.setAdapter(adspin2);
+                    spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            choice_se = adspin2.getItem(i).toString();
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+                        }
+                    });
+                }else if(adspin1.getItem(i).equals("대전광역시")) {
+                    choice_do = "대전광역시";
+                    adspin2 = ArrayAdapter.createFromResource(GoodbyePetTimeDateSelectActivity.this,
+                            R.array.spinner_do_Daejeon, android.R.layout.simple_spinner_dropdown_item);
+                    adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin2.setAdapter(adspin2);
+                    spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            choice_se = adspin2.getItem(i).toString();
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+                        }
+                    });
+                }else if(adspin1.getItem(i).equals("울산광역시")) {
+                    choice_do = "울산광역시";
+                    adspin2 = ArrayAdapter.createFromResource(GoodbyePetTimeDateSelectActivity.this,
+                            R.array.spinner_do_Ulsan, android.R.layout.simple_spinner_dropdown_item);
+                    adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin2.setAdapter(adspin2);
+                    spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            choice_se = adspin2.getItem(i).toString();
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+                        }
+                    });
+                }else if(adspin1.getItem(i).equals("세종특별자치시")) {
+                    choice_do = "세종특별자치시";
+                    adspin2 = ArrayAdapter.createFromResource(GoodbyePetTimeDateSelectActivity.this,
+                            R.array.spinner_do_Sejong_Special, android.R.layout.simple_spinner_dropdown_item);
+                    adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin2.setAdapter(adspin2);
+                    spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            choice_se = adspin2.getItem(i).toString();
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+                        }
+                    });
+                }else if(adspin1.getItem(i).equals("경기도")) {
+                    choice_do = "경기도";
+                    adspin2 = ArrayAdapter.createFromResource(GoodbyePetTimeDateSelectActivity.this,
+                            R.array.spinner_do_Gyeonggido, android.R.layout.simple_spinner_dropdown_item);
+                    adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin2.setAdapter(adspin2);
+                    spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            choice_se = adspin2.getItem(i).toString();
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+                        }
+                    });
+                }else if(adspin1.getItem(i).equals("강원도")) {
+                    choice_do = "강원도";
+                    adspin2 = ArrayAdapter.createFromResource(GoodbyePetTimeDateSelectActivity.this,
+                            R.array.spinner_do_Gangwondo, android.R.layout.simple_spinner_dropdown_item);
+                    adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin2.setAdapter(adspin2);
+                    spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            choice_se = adspin2.getItem(i).toString();
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+                        }
+                    });
+                }else if(adspin1.getItem(i).equals("충청북도")) {
+                    choice_do = "충청북도";
+                    adspin2 = ArrayAdapter.createFromResource(GoodbyePetTimeDateSelectActivity.this,
+                            R.array.spinner_do_Chungcheongbukdo, android.R.layout.simple_spinner_dropdown_item);
+                    adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin2.setAdapter(adspin2);
+                    spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            choice_se = adspin2.getItem(i).toString();
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+                        }
+                    });
+                }else if(adspin1.getItem(i).equals("충청남도")) {
+                    choice_do = "충청남도";
+                    adspin2 = ArrayAdapter.createFromResource(GoodbyePetTimeDateSelectActivity.this,
+                            R.array.spinner_do_Chungcheongnamdo, android.R.layout.simple_spinner_dropdown_item);
+                    adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin2.setAdapter(adspin2);
+                    spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            choice_se = adspin2.getItem(i).toString();
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+                        }
+                    });
+                }else if(adspin1.getItem(i).equals("전라북도")) {
+                    choice_do = "전라북도";
+                    adspin2 = ArrayAdapter.createFromResource(GoodbyePetTimeDateSelectActivity.this,
+                            R.array.spinner_do_Jeollabukdo, android.R.layout.simple_spinner_dropdown_item);
+                    adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin2.setAdapter(adspin2);
+                    spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            choice_se = adspin2.getItem(i).toString();
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+                        }
+                    });
+                }else if(adspin1.getItem(i).equals("전라남도")) {
+                    choice_do = "전라남도";
+                    adspin2 = ArrayAdapter.createFromResource(GoodbyePetTimeDateSelectActivity.this,
+                            R.array.spinner_do_Jeollanamdo, android.R.layout.simple_spinner_dropdown_item);
+                    adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin2.setAdapter(adspin2);
+                    spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            choice_se = adspin2.getItem(i).toString();
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+                        }
+                    });
+                }else if(adspin1.getItem(i).equals("경상북도")) {
+                    choice_do = "경상북도";
+                    adspin2 = ArrayAdapter.createFromResource(GoodbyePetTimeDateSelectActivity.this,
+                            R.array.spinner_do_Gyeongsangbukdo, android.R.layout.simple_spinner_dropdown_item);
+                    adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin2.setAdapter(adspin2);
+                    spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            choice_se = adspin2.getItem(i).toString();
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+                        }
+                    });
+                }else if(adspin1.getItem(i).equals("경상남도")) {
+                    choice_do = "경상남도";
+                    adspin2 = ArrayAdapter.createFromResource(GoodbyePetTimeDateSelectActivity.this,
+                            R.array.spinner_do_Gyeongsangnamdo, android.R.layout.simple_spinner_dropdown_item);
+                    adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin2.setAdapter(adspin2);
+                    spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            choice_se = adspin2.getItem(i).toString();
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+                        }
+                    });
+                }else if(adspin1.getItem(i).equals("제주특별자치도")) {
+                    choice_do = "제주특별자치도";
+                    adspin2 = ArrayAdapter.createFromResource(GoodbyePetTimeDateSelectActivity.this,
+                            R.array.spinner_do_JejuSpecial, android.R.layout.simple_spinner_dropdown_item);
+                    adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin2.setAdapter(adspin2);
+                    spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            choice_se = adspin2.getItem(i).toString();
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+                        }
+                    });
+                }
+            }//end of onItemSelected
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
             }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {}
         });
-
-        // 2. gu 에 대한 Spinner
-        ArrayAdapter adapter2 = new ArrayAdapter(
-                getApplicationContext(),
-                R.layout.spin,
-                gu);
-        adapter2.setDropDownViewResource(R.layout.spin_dropdown);
-
-        s2.setAdapter(adapter2);
-
-        s2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
-                tvAddr.setText("주소 :" +
-                        s1.getSelectedItem().toString()+ " " +
-                        gu[position]);
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {}
-        });
-
 
 
 
@@ -156,12 +382,12 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
 
                     String day = (String) set_date.getText();
                     String time = (String) set_time.getText();
-                    String addr = (String) tvAddr.getText();
+//                    String addr = (String) tvAddr.getText();
 
-                    Intent intent = new Intent(GoodbyePetTimeDateSelectActivity.this, GoodbyePetStoreListActivity.class);
+                    Intent intent = new Intent(GoodbyePetTimeDateSelectActivity.this, com.example.together.activities.goodbyePet.GoodbyePetStoreListActivity.class);
                     intent.putExtra("day",day);
                     intent.putExtra("time",time);
-                    intent.putExtra("addr",addr);
+//                    intent.putExtra("addr",addr);
                     startActivity(intent);
                 }
 
@@ -171,19 +397,19 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
 
 
     }
-    public void flipperImages(int image){
-        ImageView imageview = new ImageView(this);
-        imageview.setBackgroundResource(image);
-
-        viewFlipper.addView(imageview);
-        viewFlipper.setFlipInterval(4000); //4초
-        viewFlipper.setAutoStart(true);
-
-        //애니메이션
-        viewFlipper.setInAnimation(this,android.R.anim.slide_in_left);
-        viewFlipper.setOutAnimation(this,android.R.anim.slide_out_right);
-
-    }
+    //    public void flipperImages(int image){
+//        ImageView imageview = new ImageView(this);
+//        imageview.setBackgroundResource(image);
+//
+//        viewFlipper.addView(imageview);
+//        viewFlipper.setFlipInterval(4000); //4초
+//        viewFlipper.setAutoStart(true);
+//
+//        //애니메이션
+//        viewFlipper.setInAnimation(this,android.R.anim.slide_in_left);
+//        viewFlipper.setOutAnimation(this,android.R.anim.slide_out_right);
+//
+//    }
     protected Dialog onCreateDialog(int id) {
 
         // Get the calander
@@ -233,6 +459,7 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
             set_time.setText(time1);
         }
     };
+
 
 
 }

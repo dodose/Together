@@ -41,21 +41,24 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="89dp"
+            android:layout_height="60dp"
             android:orientation="horizontal"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="-93dp">
 
             <ImageButton
+
                 android:id="@+id/activity_hotel_list_databackbtn"
                 android:layout_width="78dp"
                 android:layout_height="match_parent"
-                android:background="#00FFFFFF"
-                app:srcCompat="@drawable/ic_btn_back" />
+                android:background="#00b0ff"
+                app:srcCompat="@drawable/ic_btn_back2" />
 
 
             <TextView
+                android:background="@color/colorBlue"
                 android:id="@+id/textView"
+                android:textColor="#000"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -67,9 +70,9 @@
                 android:id="@+id/imageButton3"
                 android:layout_width="85dp"
                 android:layout_height="match_parent"
-                android:background="#00FFFFFF"
+                android:background="#00b0ff"
                 android:gravity="end"
-                app:srcCompat="@drawable/ic_options" />
+                app:srcCompat="@drawable/ic_options2" />
         </LinearLayout>
 
         <LinearLayout
@@ -77,22 +80,35 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/Addrserch"
-                android:layout_width="320dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
 
-            <ImageButton
-                android:id="@+id/imageButton4"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="#00FFFFFF"
-                android:tint="#00FFFFFF"
-                app:srcCompat="@drawable/ic_search_light" />
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/filter_search"
+                    android:layout_width="205dp"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:padding="0sp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/hotel_filterbutton" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="45dp"
+                    android:background="#DBDBDB"/>
+
+                <ImageButton
+                    android:id="@+id/open_map"
+                    android:layout_width="205dp"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:padding="0sp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/open_map2" />
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
@@ -100,6 +116,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
+
+            //날짜 들어오는 버튼?
             <Button
                 android:id="@+id/dayBtn"
                 android:layout_width="wrap_content"
@@ -108,7 +126,7 @@
                 android:background="#FFFCFC"
                 android:backgroundTint="#F7F6F6"
                 android:text="" />
-
+            //날짜 들어오는 버튼?
         </LinearLayout>
 
         <LinearLayout

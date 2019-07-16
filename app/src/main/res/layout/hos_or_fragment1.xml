@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:paddingTop="20dp"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            android:text="증상 선택"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginTop="4dp"
+            android:background="@android:color/darker_gray"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/canser_heat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="발열"
+            />
+
+        <CheckBox
+            android:id="@+id/canser_prevent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="예방접종"
+            android:layout_marginLeft="10dp"
+            />
+
+        <CheckBox
+            android:id="@+id/canser_eczema"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="습진"
+            android:layout_marginLeft="10dp"
+            />
+
+        <CheckBox
+            android:id="@+id/canser_skin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="피부병"
+            />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/canser_convul"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="경련"
+            />
+
+        <CheckBox
+            android:id="@+id/canser_reduction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="체중감소"
+            />
+
+            <CheckBox
+                android:id="@+id/canser_vomiting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="구토"
+                />
+
+            <CheckBox
+                android:id="@+id/canser_mites"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="진드기"
+                />
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/canser_body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="발작"
+                />
+
+            <CheckBox
+                android:id="@+id/canser_appetite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="식욕변화"
+                />
+
+            <CheckBox
+                android:id="@+id/canser_born"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="탈골"
+                />
+
+            <CheckBox
+                android:id="@+id/canser_missing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="털빠짐"
+                />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginTop="4dp"
+            android:background="@android:color/darker_gray"/>
+
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            android:text="상세 증상"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <EditText
+                android:id="@+id/detail_canser_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/editText4"
+                android:ems="10"
+                android:lines="5"
+                android:hint="입력 또는 공란으로 두셔도 됩니다"
+                android:gravity="top|left"
+                android:scrollHorizontally="false"
+                android:minWidth="10.0dip"
+                android:maxWidth="5.0dip"
+                android:inputType="textMultiLine" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

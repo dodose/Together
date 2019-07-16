@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.together.activities.petching.PetchingSelectPetActivity">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/bar"
         android:background="?android:attr/windowBackground">
 
 
         <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/toolbar"
             android:background="?android:attr/windowBackground">
 
             <RelativeLayout
@@ -26,18 +25,18 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
+                    android:id="@+id/backTo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_btn_back"
-                    android:id="@+id/backTo"
+                    android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:layout_alignParentStart="true"/>
+                    android:src="@drawable/ic_btn_back" />
 
                 <TextView
-                    android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
                     android:layout_marginStart="102dp"
                     android:layout_toEndOf="@+id/close"
                     android:text="마이펫 정보"
@@ -49,17 +48,25 @@
 
         </androidx.appcompat.widget.Toolbar>
 
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
         <LinearLayout
-            android:background="#f2f2f2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:orientation="vertical">
+            android:background="#f2f2f2"
+            android:orientation="vertical"
+            android:padding="8dp">
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview_dogs"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/recyclerview_dogs"
                 android:orientation="horizontal">
 
             </androidx.recyclerview.widget.RecyclerView>
@@ -72,22 +79,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:tabTextColor="@color/colorBlack"
-            app:tabIndicatorColor="@color/colorPrimary">
+            app:tabIndicatorColor="@color/colorPrimary"
+            app:tabTextColor="@color/colorBlack">
 
         </com.google.android.material.tabs.TabLayout>
 
-    </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/main_petchingPetInfo_tabs_pager"
-        android:layout_below="@+id/bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/main_petchingPetInfo_tabs_pager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/bar">
 
-    </androidx.viewpager.widget.ViewPager>
+        </androidx.viewpager.widget.ViewPager>
 
-
+    </LinearLayout>
 
 
 </LinearLayout>

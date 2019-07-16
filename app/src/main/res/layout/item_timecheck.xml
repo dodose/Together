@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/background_radius_borderblack"
+    android:layout_marginTop="3dp"
+    android:layout_marginBottom="3dp"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/colorLinear"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:orientation="horizontal">
+
+        <RadioGroup
+            android:layout_weight="0.2"
+            android:id="@+id/colorgroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:orientation="vertical"
+            >
+
+            <RadioButton
+                android:id="@+id/clickradio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="     시간대 가들어올 곳"
+                />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/okset"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.8"
+            android:gravity="center"
+            android:textSize="15dp"
+            android:text="가능 유무"/>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -37,120 +38,195 @@
     </androidx.appcompat.widget.Toolbar>
 
 
+    //로고를 감싸는 layout
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+        <ImageView
+            android:id="@+id/login_photo"
+            android:layout_width="273dp"
+            android:layout_height="97dp"
+            android:layout_marginLeft="30dp"
+            android:src="@drawable/together_logo" />
+    </LinearLayout>
+    //로고를 감싸는 layout
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.9"
         android:orientation="vertical">
 
-        <ViewFlipper
-            android:id="@+id/v_flipper"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerHorizontal="true" />
+
+        //버튼들이랑 텍스트 전체 감사는 Layout
+        <LinearLayout
+            android:layout_width="387dp"
+            android:layout_height="502dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:background="@drawable/hotel_home_body"
+            android:orientation="vertical">
 
 
 
+
+
+            //아이콘이랑 텍스트값 전체를 감싸는 layout
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="122dp">
+
+                //호텔 아이콘만 감싸는 layout
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="105dp"
+                        android:layout_marginTop="10dp"
+                        app:srcCompat="@drawable/ic_3d_building" />
+                </LinearLayout>
+                //호텔 아이콘만 감싸는 layout
+
+
+                //호텔이름 또는 지역 명,버튼 감싸는 layout
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="65dp"
+                        android:text="호텔이름 또는 지역 명"
+                        android:textSize="24dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+                //호텔이름 또는 지역 명,버튼 감싸는 layout
+            </LinearLayout>
+            //아이콘이랑 텍스트값 전체를 감싸는 layout
+
+
+            //호텔-검색하기 버튼 Layout
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <EditText
+                    android:id="@+id/location"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textSize="20dp"
+                    android:hint="현재 위치 또는 지역 명"
+                    android:background="@drawable/hotel_loaction_btn"/>
+            </LinearLayout>
+            //호텔-검색하기 버튼 Layout
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                />
+
+
+            //날짜 선택 Layout
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="100dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/hotel_round_rectangle"
+                    android:textSize="20dp"
+                    android:text="날짜 선택"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+            //날짜 선택 Layout
+
+            //날짜 아이콘이랑 선택한 날짜 Layout
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+
+                //날짜 아이콘만 감싸는 Layout
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent">
+                   <ImageView
+                       android:layout_width="80dp"
+                       android:layout_height="80dp"
+                       android:layout_marginTop="5dp"
+                       android:layout_marginLeft="30dp"
+                       app:srcCompat="@drawable/ic_schedule" />
+               </LinearLayout>
+                //날짜 아이콘만 감싸는 Layout
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2019/7/12~2019/7/15"
+                        android:textSize="24dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginLeft="20dp"
+                        />
+
+                </LinearLayout>
+            </LinearLayout>
+            //날짜 아이콘이랑 선택한 날짜 Layout
+
+            <View
+                android:layout_width="370dp"
+                android:layout_height="1dp"
+                android:background="#000"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                />
+
+
+
+            //날짜 선택 Layout
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/searchBtn"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="40dp"
+                    android:background="@drawable/hotel_searchbtn"
+                    android:textSize="20dp"
+                    android:text="호텔 검색"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+            //날짜 선택 Layout
+
+
+        </LinearLayout>
+        //버튼들이랑 텍스트 전체 감사는 Layout
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1.2"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/in"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:gravity="center_vertical|center"
-            android:text="체크인" />
-
-        <TextView
-            android:id="@+id/out"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:gravity="center_vertical|center"
-            android:text="체크 아웃"
-            android:textSize="15dp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1.1"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/Checkin"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:ems="10"
-            android:gravity="center_vertical|center"
-            android:inputType="textPersonName"
-            android:text="YY/DD/MM"
-            android:textSize="18dp" />
-
-        <TextView
-            android:layout_width="30dp"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:text="  ~" />
-
-        <TextView
-            android:id="@+id/Checkout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:ems="10"
-            android:gravity="center_vertical|center"
-            android:inputType="textPersonName"
-            android:text="YY/DD/MM"
-            android:textSize="18dp" />
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1.1"
-        android:orientation="horizontal">
-
-
-        <EditText
-            android:id="@+id/Search"
-            android:layout_width="244dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.7"
-            android:background="@color/cardview_shadow_end_color"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="호텔명 또는 지역명"
-            android:inputType="textPersonName" />
-
-        <ImageButton
-            android:id="@+id/selection"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0.7"
-            android:background="@color/cardview_shadow_end_color"
-            app:srcCompat="@drawable/ic_place" />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/HotelSearch"
-        android:layout_width="196dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="bottom"
-        android:layout_marginLeft="110dp"
-        android:layout_marginTop="30dp"
-        android:layout_weight="1.1"
-        android:backgroundTint="@color/colorPrimary"
-        android:text="검색하기" />
 
 </LinearLayout>
