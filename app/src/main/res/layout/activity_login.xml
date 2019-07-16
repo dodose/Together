@@ -34,6 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <ImageView
+                android:id="@+id/uimage"
                 android:layout_width="47dp"
                 android:layout_height="50dp"
                 android:layout_marginLeft="10dp"
@@ -67,7 +68,7 @@
             android:layout_height="66dp">
 
             <ImageView
-                android:id="@+id/password"
+                android:id="@+id/upassword"
                 android:layout_width="47dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="4dp"
