@@ -145,7 +145,7 @@ public class HotelDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_hotel_detail);
 
         Topname = findViewById(R.id.HotelNameView);
-        Bigname = findViewById(R.id.bigname);
+//        Bigname = findViewById(R.id.bigname);
         detail_addr = findViewById(R.id.detail_addr);
         info = findViewById(R.id.info);
         intro = findViewById(R.id.intro);
@@ -354,14 +354,7 @@ public class HotelDetailActivity extends AppCompatActivity {
                     total_avg_star = avg_star/total_star.size();
                     re_count = String.valueOf(total_star.size());
 
-                    //db에서 가져온 업체정보 꺼내오는곳
-//                    infoObj.optString("etp_user");
-//                    infoObj.optString("etp_ph_no");
-//                    infoObj.optString("etp_license");
-//                    infoObj.optString("etp_email");
-//                    infoObj.optString("etp_info");
-//                    infoObj.optString("etp_intro");
-//                    infoObj.optString("etp_code"); 정보꺼내쓸 미리 만들어둠 햇갈릴까봐
+
 
                     info.setText(infoObj.optString("etp_info"));
                     intro.setText(infoObj.optString("etp_intro"));

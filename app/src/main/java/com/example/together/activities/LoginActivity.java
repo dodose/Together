@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TableLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -34,6 +35,14 @@ public class LoginActivity extends AppCompatActivity {
     EditText email, password;
     Button signUp, loginBtn;
 
+
+    //새로 추가함
+    ImageView uimage;
+    ImageView upassword;
+    Button face_book_login;
+    Button register;
+
+    //새로 추가함
 
     FirebaseAuth auth;
     FirebaseUser firebaseUser;
@@ -66,6 +75,10 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn = findViewById(R.id.loginBtn);
         signUp = findViewById(R.id.register);
         login_photo  = findViewById(R.id.login_photo);
+        uimage = findViewById(R.id.uimage);
+        upassword = findViewById(R.id.upassword);
+        face_book_login = findViewById(R.id.face_book_login);
+        register = findViewById(R.id.register);
 
         auth = FirebaseAuth.getInstance();
 
@@ -129,6 +142,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private  void loading(){
         mTogether_loading = findViewById(R.id.together_loading);
+//        mTogether_loading.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT, 1f));
         mTogether_loading.setVisibility(View.VISIBLE);
 
         email.setVisibility(View.INVISIBLE);
@@ -136,7 +150,10 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn.setVisibility(View.INVISIBLE);
         signUp.setVisibility(View.INVISIBLE);
         login_photo.setVisibility(View.INVISIBLE);
-
+        uimage.setVisibility(View.INVISIBLE);
+        upassword.setVisibility(View.INVISIBLE);
+        face_book_login.setVisibility(View.INVISIBLE);
+       register.setVisibility(View.INVISIBLE);
         DrawableImageViewTarget imageViewTarget = new DrawableImageViewTarget(mTogether_loading);
         Glide.with(this).load(R.raw.together_loading).into(imageViewTarget);
 
@@ -150,6 +167,10 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn.setVisibility(View.VISIBLE);
         signUp.setVisibility(View.VISIBLE);
         login_photo.setVisibility(View.VISIBLE);
+        uimage.setVisibility(View.VISIBLE);
+        upassword.setVisibility(View.VISIBLE);
+        face_book_login.setVisibility(View.VISIBLE);
+        register.setVisibility(View.VISIBLE);
     }
 
 

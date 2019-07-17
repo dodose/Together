@@ -30,7 +30,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -82,7 +81,6 @@ public class MessageActivity extends AppCompatActivity {
         });
 
 
-
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -100,7 +98,9 @@ public class MessageActivity extends AppCompatActivity {
 
 
         btn_send.setOnClickListener(v -> {
+
             notify = true;
+
             String msg = text_send.getText().toString();
             if (!msg.equals("")){
                 sendMessage(fuser.getUid(), userid, msg);
@@ -182,10 +182,12 @@ public class MessageActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
+                Log.d(TAG, "노티파이"+notify);
                 if (notify) {
 
+                }else{
+                    notify = false;
                 }
-                notify = false;
             }
 
             @Override
@@ -195,8 +197,6 @@ public class MessageActivity extends AppCompatActivity {
         });
 
     }
-
-
 
 
 
