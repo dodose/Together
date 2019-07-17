@@ -49,7 +49,7 @@ public class PetchingSelectPetActivity extends AppCompatActivity {
 
         lsPet = new ArrayList<>();
 
-        // 내 강아지 정보 불러오기
+        // My dog info
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
