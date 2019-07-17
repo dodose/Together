@@ -23,6 +23,7 @@ public class PetchingMyPetInfoEditAdapter extends FragmentPagerAdapter {
         {
             case 0:
                 PetBunYangInfoEditFragment petBunYangInfoEditFragment = new PetBunYangInfoEditFragment();
+
                 return petBunYangInfoEditFragment;
 
             case 1:

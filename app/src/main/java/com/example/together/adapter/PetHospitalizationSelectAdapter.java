@@ -9,10 +9,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.together.activities.petHospital.PetHospitalPetConditionActivity;
+import com.example.together.activities.petching.PetchingSelectPetActivity;
+import com.example.together.fragment.PetBunYangInfoEditFragment;
 import com.example.together.model.Pet;
 import com.example.together.R;
 
@@ -28,6 +31,7 @@ public class PetHospitalizationSelectAdapter extends RecyclerView.Adapter<PetHos
     private Context mContext;
     private List<Pet> mPet;
     public boolean selectedPet;
+
 
 
     private ItemClick itemClick;
@@ -82,6 +86,13 @@ public class PetHospitalizationSelectAdapter extends RecyclerView.Adapter<PetHos
                 String selected_my_pet = mPet.get(position).getPetid();
 
                 PetHospitalPetConditionActivity.myPetcode(selected_my_pet);
+
+                //펫칭 펫선택시 선택 펫키값 보내기
+//                PetchingSelectPetActivity.myPetcode_petching(selected_my_pet);
+
+                PetBunYangInfoEditFragment fragment = new PetBunYangInfoEditFragment();
+                fragment.myPetcode_petching(selected_my_pet);
+
             }
         });
 

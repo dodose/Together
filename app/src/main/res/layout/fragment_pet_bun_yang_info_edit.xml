@@ -22,6 +22,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="250dp">
 
+                <ImageView
+                    android:id="@+id/myPetImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
 
                 <TextView
                     android:id="@+id/myPetName"
@@ -30,31 +35,11 @@
                     android:layout_gravity="bottom|left"
                     android:layout_marginLeft="10dp"
                     android:layout_marginBottom="20dip"
-                    android:background="#AA000000"
                     android:padding="12dip"
                     android:text="PetName"
                     android:textColor="#ffffffff"
                     android:textSize="24sp" />
 
-
-                <TextView
-                    android:id="@+id/myPetname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|right"
-                    android:layout_marginRight="80dp"
-                    android:layout_marginBottom="20dip"
-                    android:background="#AA000000"
-                    android:padding="12dip"
-                    android:text="Golden Gate"
-                    android:textColor="#ffffffff"
-                    android:textSize="16sp" />
-
-
-                <ImageView
-                    android:id="@+id/myPetImage"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
 
                 <TextView
                     android:id="@+id/myPetBreed"
@@ -63,11 +48,14 @@
                     android:layout_gravity="bottom|right"
                     android:layout_marginRight="80dp"
                     android:layout_marginBottom="20dip"
-                    android:background="#AA000000"
                     android:padding="12dip"
                     android:text="Golden Gate"
                     android:textColor="#ffffffff"
                     android:textSize="16sp" />
+
+
+
+
 
                 <TextView
                     android:id="@+id/petAge"
@@ -76,7 +64,6 @@
                     android:layout_gravity="bottom|right"
                     android:layout_marginRight="30dp"
                     android:layout_marginBottom="20dip"
-                    android:background="#AA000000"
                     android:padding="12dip"
                     android:text="2살"
                     android:textColor="#ffffffff"
