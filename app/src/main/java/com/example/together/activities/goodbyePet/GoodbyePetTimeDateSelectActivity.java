@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,9 +20,27 @@ import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.together.R;
+import com.example.together.adapter.RecommentAdapter;
+import com.example.together.model.Recommend;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
@@ -30,6 +49,14 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
     public static TextView set_date, set_time;
     public static final int Date_id=0;
     public static final int Time_id =1;
+
+    RecyclerView mRecycleView;
+    RecyclerView.LayoutManager mLayoutManager;
+
+    private String strUrl;
+    private URL Url;
+
+    JSONObject jobj;
 
     //Spinner 변수 추가
     ArrayAdapter<CharSequence> adspin1, adspin2; //어댑터를 선언
@@ -365,9 +392,6 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
         });
 
 
-
-
-
         //확인 클릭시 등록된 업체 스토어리스트로 이동
         check.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -395,22 +419,122 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
             }
         });
 
+        //recyclerview 선언
+        mRecycleView = findViewById(R.id.recommend_recycler);
+        mRecycleView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecycleView.setLayoutManager(mLayoutManager);
 
+        new AsyncTask<Void, Void, JSONObject>() {
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                strUrl = "http://39.127.7.80:8080/Recommend_list"; //탐색하고 싶은 URL이다.
+
+            }
+
+            @Override
+            protected JSONObject doInBackground(Void... voids) {
+
+
+                jobj = new JSONObject();
+
+                try {
+                    //서버 연결
+                    Url = new URL(strUrl);  // URL화 한다.
+                    HttpURLConnection conn = (HttpURLConnection) Url.openConnection(); // URL을 연결한 객체 생성.
+                    conn.setRequestMethod("POST"); // post방식 통신
+                    conn.setDoOutput(true);       // 쓰기모드 지정
+                    conn.setDoInput(true);        // 읽기모드 지정
+
+                    conn.setRequestProperty("Content-Type", "application/json; utf-8");
+                    conn.setRequestProperty("Accept", "application/json; utf-8");
+                    conn.connect();
+
+
+                    //데이터 전달 하는곳
+
+                    OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+
+                    wr.write("완료");
+
+                    wr.flush();
+
+                    wr.close(); //전달후 닫아준다.
+
+
+                    // 데이터 받아오는 곳
+                    InputStream is = null;        //input스트림 개방
+                    BufferedReader reader = null;
+
+                    is = conn.getInputStream();
+                    reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));  //문자열 셋 세팅
+                    StringBuffer rbuffer = new StringBuffer();   //문자열을 담기 위한 객체
+                    String line = null;
+
+                    rbuffer.append(reader.readLine());
+
+                    jobj = new JSONObject(rbuffer.toString().trim());
+                    is.close();
+                    conn.disconnect();
+
+
+                    Log.e("result", String.valueOf(jobj));
+
+
+                } catch (MalformedURLException | ProtocolException exception) {
+                    exception.printStackTrace();
+                } catch (IOException io) {
+                    io.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                return jobj;
+            }
+
+            @Override
+            protected void onPostExecute(JSONObject aVoid) {
+                super.onPostExecute(aVoid);
+
+
+                ArrayList<Recommend> Recommendlist = new ArrayList<Recommend>();
+
+                try {
+                    JSONArray jsonArray = (JSONArray) jobj.get("result");
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                        String mName = jsonObject.optString("etp_nm");
+                        String mAddr = jsonObject.optString("etp_addr");
+                        String mTime = jsonObject.optString("etp_time1") + "~" + jsonObject.optString("etp_time2");
+                        String img_path = jsonObject.optString("etp_image");
+                        String reviewcount =jsonObject.optString("reviewcount");
+                        String reviewavg = jsonObject.optString("reviewavg");
+
+
+
+                        Recommendlist.add(new Recommend(mName,mAddr,mTime,img_path,reviewcount,reviewavg));
+
+                    }
+
+
+                    //넣은 리스트를 리사이클 뷰를 통해 실행;
+                   RecommentAdapter myAdapter = new RecommentAdapter(Recommendlist);
+
+                    mRecycleView.setAdapter(myAdapter);
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }.execute();
 
     }
-    //    public void flipperImages(int image){
-//        ImageView imageview = new ImageView(this);
-//        imageview.setBackgroundResource(image);
-//
-//        viewFlipper.addView(imageview);
-//        viewFlipper.setFlipInterval(4000); //4초
-//        viewFlipper.setAutoStart(true);
-//
-//        //애니메이션
-//        viewFlipper.setInAnimation(this,android.R.anim.slide_in_left);
-//        viewFlipper.setOutAnimation(this,android.R.anim.slide_out_right);
-//
-//    }
+
     protected Dialog onCreateDialog(int id) {
 
         // Get the calander
