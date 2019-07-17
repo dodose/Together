@@ -188,7 +188,7 @@ public class HotelDetailActivity extends AppCompatActivity {
         Log.e("해당하는 업체 경도값",pre_lnt);
 
         Topname.setText(pre_name);
-        Bigname.setText(pre_name);
+//        Bigname.setText(pre_name);
         detail_addr.setText(pre_addr);
         Picasso.get().load(image).fit().into(etp_image);
 
