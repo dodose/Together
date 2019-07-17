@@ -5,26 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff"
-    android:orientation="vertical"
-    android:weightSum="1">
+    android:orientation="vertical">
 
     //투개더 로고
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="0.35"
-        android:weightSum="1">
 
         <ImageView
             android:id="@+id/login_photo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:layout_marginLeft="20dp"
             android:layout_gravity="center"
-            android:layout_marginLeft="30dp"
-            android:src="@drawable/together_logo" />
-    </LinearLayout>
-
+            app:srcCompat="@drawable/together_logo"/>
 
 
     //이메일 입력
@@ -32,7 +24,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.35"
+        android:layout_weight="0.3"
         android:orientation="vertical">
 
 
@@ -114,8 +106,6 @@
             android:id="@+id/loginBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/reg_btn_style"
             android:text="Login"
@@ -127,8 +117,6 @@
             android:id="@+id/face_book_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/reg_btn_style2"
             android:text="Login with Facebook"
@@ -139,8 +127,6 @@
             android:id="@+id/register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/reg_btn_style3"
             android:text="Register"

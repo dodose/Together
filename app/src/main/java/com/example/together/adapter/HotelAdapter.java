@@ -50,7 +50,6 @@ public class HotelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             etp_imgView = view.findViewById(R.id.drawableId);
             etp_name = view.findViewById(R.id.etp_name);
             etp_addr = view.findViewById(R.id.etp_addr);
-//            content = view.findViewById(R.id.content);
             Time = view.findViewById(R.id.Time);
             starcount = view.findViewById(R.id.etp_star);
             prise = view.findViewById(R.id.product_firstPrice);
@@ -79,7 +78,6 @@ public class HotelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         Picasso.get().load(HotelArrayList.get(position).img_path).fit().into(myViewHolder.etp_imgView);
         myViewHolder.etp_addr.setText(HotelArrayList.get(position).etp_addr);
         myViewHolder.etp_name.setText(HotelArrayList.get(position).etp_name);
-//        myViewHolder.content.setText(HotelArrayList.get(position).content);
         myViewHolder.Time.setText(HotelArrayList.get(position).Time);
         myViewHolder.starcount.setText("★  " +HotelArrayList.get(position).starcount);
         myViewHolder.prise.setText(HotelArrayList.get(position).price + "원");
@@ -91,8 +89,8 @@ public class HotelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 String img = HotelArrayList.get(Position).img_path;
                 String etp_lat = HotelArrayList.get(Position).etp_lat;//위도
                 String etp_lnt = HotelArrayList.get(Position).etp_lnt; //경도
-                String addr = (String) myViewHolder.etp_addr.getText();
-                String na = (String) myViewHolder.etp_name.getText();
+                String addr = HotelArrayList.get(Position).etp_addr;
+                String na = HotelArrayList.get(Position).etp_name;
 
 //                Log.e("firstAndlast",first+"~"+last);
 
