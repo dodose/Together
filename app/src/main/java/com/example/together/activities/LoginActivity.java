@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TableLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -141,6 +142,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private  void loading(){
         mTogether_loading = findViewById(R.id.together_loading);
+//        mTogether_loading.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT, 1f));
         mTogether_loading.setVisibility(View.VISIBLE);
 
         email.setVisibility(View.INVISIBLE);

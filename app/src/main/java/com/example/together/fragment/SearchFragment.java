@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -44,7 +45,7 @@ public class SearchFragment extends Fragment {
     private TextView close;
 
     //버튼들 감추거나 보이기 표시를 위함
-    private RelativeLayout selects;
+    private LinearLayout selects;
 
     // 버튼 아이디들
     private ImageView petHotel, petching, petHospital, petGroup, goodbyePet;
