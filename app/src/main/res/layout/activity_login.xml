@@ -112,9 +112,10 @@
 
         <Button
             android:id="@+id/loginBtn"
-            android:layout_width="370dp"
-            android:layout_height="64dp"
-            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/reg_btn_style"
             android:text="Login"
@@ -124,9 +125,10 @@
 
         <Button
             android:id="@+id/face_book_login"
-            android:layout_width="370dp"
-            android:layout_height="64dp"
-            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/reg_btn_style2"
             android:text="Login with Facebook"
@@ -135,9 +137,10 @@
 
         <Button
             android:id="@+id/register"
-            android:layout_width="370dp"
-            android:layout_height="64dp"
-            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/reg_btn_style3"
             android:text="Register"

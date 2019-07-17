@@ -115,9 +115,10 @@
         //선택된 도시 Layout
 
         <LinearLayout
-            android:layout_width="197dp"
-            android:layout_height="80dp"
-            android:orientation="vertical">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="0.5">
 
             <TextView
                 android:id="@+id/textView1"
@@ -138,7 +139,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_weight="0.5">
 
             <TextView
                 android:id="@+id/textView2"
