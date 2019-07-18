@@ -11,7 +11,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:src="@mipmap/ic_launcher_round"
-        android:id="@+id/img_list_pets"/>
+        android:id="@+id/img_pet"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -137,6 +137,7 @@
         android:layout_height="match_parent">
 
         <ImageView
+            android:id="@+id/bunyangpet_detail"
             android:layout_marginRight="20dp"
             android:layout_gravity="center_vertical"
             android:layout_width="30dp"

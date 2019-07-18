@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.example.together.activities.petHospital.PetHospitalPetConditionActivity;
 import com.example.together.activities.petching.PetchingSelectPetActivity;
 import com.example.together.fragment.PetBunYangInfoEditFragment;
+import com.example.together.fragment.PetFriendsInfoEditFragment;
 import com.example.together.model.Pet;
 import com.example.together.R;
 
@@ -90,8 +91,14 @@ public class PetHospitalizationSelectAdapter extends RecyclerView.Adapter<PetHos
                 //펫칭 펫선택시 선택 펫키값 보내기
 //                PetchingSelectPetActivity.myPetcode_petching(selected_my_pet);
 
+
+                //펫칭 분양 프래그먼트로
                 PetBunYangInfoEditFragment fragment = new PetBunYangInfoEditFragment();
                 fragment.myPetcode_petching(selected_my_pet);
+
+                //펫칭 프랜드 프래그먼트로
+                PetFriendsInfoEditFragment fragment2 = new PetFriendsInfoEditFragment();
+                fragment2.myPetcode_petching(selected_my_pet);
 
             }
         });

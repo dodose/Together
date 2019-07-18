@@ -77,7 +77,7 @@
                     android:layout_marginRight="200dp"
                     android:layout_marginBottom="20dip"
                     android:src="@drawable/gender_m"
-                    android:visibility="invisible" />
+                    android:visibility="gone" />
 
                 <ImageView
                     android:id="@+id/gender_w"
@@ -87,7 +87,7 @@
                     android:layout_marginRight="200dp"
                     android:layout_marginBottom="20dip"
                     android:src="@drawable/gender_w"
-                    android:visibility="invisible" />
+                    android:visibility="gone" />
 
             </FrameLayout>
 
@@ -169,6 +169,7 @@
                 android:textStyle="bold" />
 
             <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/petBunyangIntro"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:hint="소개글 작성..." />
@@ -189,16 +190,18 @@
                 android:textStyle="bold" />
 
             <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/specail_note"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:hint="특이사항 작성..." />
 
 
             <Button
+                android:id="@+id/regi_petching_bunyang"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_gravity="bottom"
-                android:text="분양견 등록"
+                android:text="펫칭 분양 등록"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 

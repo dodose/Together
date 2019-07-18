@@ -1,25 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.together.fragment.PetBunYangInfoEditFragment">
+    tools:context="com.example.together.activities.petching.PetchingBunyangDetailInfo">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <ScrollView
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/bar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:background="?android:attr/windowBackground">
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/windowBackground">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/backTo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_btn_back" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="102dp"
+                    android:layout_toEndOf="@+id/close"
+                    android:text="분양펫 상세정보"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
 
 
 
         <LinearLayout
-            android:orientation="vertical"
+            android:id="@+id/wrap_frame_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-
 
             <FrameLayout
                 android:id="@+id/viewPager"
@@ -57,7 +94,6 @@
                     android:textColor="#ffffffff"
                     android:textSize="16sp" />
 
-
                 <TextView
                     android:id="@+id/petAge"
                     android:layout_width="wrap_content"
@@ -78,7 +114,7 @@
                     android:layout_marginRight="200dp"
                     android:layout_marginBottom="20dip"
                     android:src="@drawable/gender_m"
-                    android:visibility="invisible" />
+                    android:visibility="gone" />
 
                 <ImageView
                     android:id="@+id/gender_w"
@@ -88,10 +124,17 @@
                     android:layout_marginRight="200dp"
                     android:layout_marginBottom="20dip"
                     android:src="@drawable/gender_w"
-                    android:visibility="invisible" />
+                    android:visibility="gone" />
 
             </FrameLayout>
 
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <View
                 android:id="@+id/boundary1"
@@ -100,38 +143,38 @@
                 android:layout_marginTop="10dp"
                 android:background="@color/colorPrimary" />
 
-
             <TextView
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="소개"
                 android:textSize="24dp"
-                android:textStyle="bold"
-                android:text="소개"/>
+                android:textStyle="bold" />
 
 
             <com.rengwuxian.materialedittext.MaterialEditText
-                android:id="@+id/petFriendIntro"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="  소개글 작성..." />
-
-            <Button
-                android:id="@+id/regi_petching_friend"
-                android:layout_gravity="bottom"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:text="펫칭 프랜드 등록" />
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
-    </ScrollView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
 
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:text="분양 신청"/>
 
 
+    </LinearLayout>
 
-</LinearLayout>
+
