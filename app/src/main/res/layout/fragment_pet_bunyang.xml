@@ -7,7 +7,7 @@
     <!-- TODO: Update blank fragment layout -->
     <androidx.recyclerview.widget.RecyclerView
 
-        android:id="@+id/recyclerview_dogs"
+        android:id="@+id/recycler_view"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

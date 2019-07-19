@@ -102,7 +102,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         }
     }
 
-    private void getUserInfo(final ImageView imageView, final TextView username, String publisherid){
+    private void getUserInfo(final ImageView imageView, final TextView username, String publisherid)
+    {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(publisherid);
         reference.addValueEventListener(new ValueEventListener() {
             @Override

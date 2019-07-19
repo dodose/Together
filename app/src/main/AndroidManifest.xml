@@ -26,7 +26,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".activities.petching.PetchingBunyangDetailInfo"></activity>
+        <activity android:name=".activities.petching.PetchingFriendDetailInfo"></activity>
+        <activity android:name=".activities.petching.PetchingBunyangDetailInfo" />
         <activity android:name=".activities.petching.PetchingSelectPetActivity" />
         <activity android:name=".activities.petching.PetchingActivity" />
         <activity android:name=".activities.my_petInfo.MyPetInfoCheckActivity" />
