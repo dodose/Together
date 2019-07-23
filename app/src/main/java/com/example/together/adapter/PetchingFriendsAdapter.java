@@ -14,9 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.together.R;
-import com.example.together.activities.petching.PetchingBunyangDetailInfo;
+import com.example.together.activities.petching.PetchingFriendDetailInfo;
 import com.example.together.common.Common;
-import com.example.together.model.PetchingBunyang;
+import com.example.together.model.PetchingFriend;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -24,22 +24,24 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import java.util.List;
 
-public class PetchingBunyangAdapter extends RecyclerView.Adapter<PetchingBunyangAdapter.MyViewHolder> {
+public class PetchingFriendsAdapter extends RecyclerView.Adapter<PetchingFriendsAdapter.MyViewHolder> {
 
 
-    private static final String TAG = "PetchingBunyangAdapter";
+    private static final String TAG = "PetchingFriendsAdapter";
 
     FirebaseUser firebaseUser;
     DatabaseReference reference;
 
     Context mContext;
-    List<PetchingBunyang> mPetchingBunyang;
+    List<PetchingFriend> mPetchingFriends;
 
-    public PetchingBunyangAdapter(Context mContext, List<PetchingBunyang> mPetchingBunyang) {
+
+    public PetchingFriendsAdapter(Context mContext, List<PetchingFriend> mPetchingFriends) {
         this.mContext = mContext;
-        this.mPetchingBunyang = mPetchingBunyang;
+        this.mPetchingFriends = mPetchingFriends;
     }
 
 
@@ -48,7 +50,7 @@ public class PetchingBunyangAdapter extends RecyclerView.Adapter<PetchingBunyang
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(mContext).inflate(R.layout.item_petching_list, parent, false);
-        return new PetchingBunyangAdapter.MyViewHolder(view);
+        return new PetchingFriendsAdapter.MyViewHolder(view);
 
     }
 
@@ -57,23 +59,23 @@ public class PetchingBunyangAdapter extends RecyclerView.Adapter<PetchingBunyang
     {
         Common common = new Common();
 
-        final PetchingBunyang petchingBunyang = mPetchingBunyang.get(position);
-        petchingBunyang.getPetBunyangId();
+        final PetchingFriend petchingFriends = mPetchingFriends.get(position);
+        petchingFriends.getPetFriendId();
 
 
 
-        getPetInfo(mPetchingBunyang.get(position).getPetBunyangId(), viewHolder.img_pet, viewHolder.petName, viewHolder.petAge, viewHolder.petBreed, viewHolder.gender_m, viewHolder.gender_w);
+        getPetInfo(mPetchingFriends.get(position).getPetFriendId(), viewHolder.img_pet, viewHolder.petName, viewHolder.petAge, viewHolder.petBreed, viewHolder.gender_m, viewHolder.gender_w);
 
         viewHolder.bunyangpet_detail.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(v.getContext(), PetchingBunyangDetailInfo.class);
+                Intent intent = new Intent(v.getContext(), PetchingFriendDetailInfo.class);
 
                 // 디테일 정보 전달....
 
-                intent.putExtra("petId",mPetchingBunyang.get(position).getPetBunyangId());
+                intent.putExtra("petId",mPetchingFriends.get(position).getPetFriendId());
 
 
                 mContext.startActivity(intent);
@@ -90,7 +92,7 @@ public class PetchingBunyangAdapter extends RecyclerView.Adapter<PetchingBunyang
     @Override
     public int getItemCount()
     {
-        return mPetchingBunyang.size();
+        return mPetchingFriends.size();
     }
 
 
@@ -98,8 +100,8 @@ public class PetchingBunyangAdapter extends RecyclerView.Adapter<PetchingBunyang
     public class MyViewHolder extends RecyclerView.ViewHolder
     {
 
-         public TextView petName, petBreed, petAge;
-         public ImageView gender_m, gender_w, bunyangpet_detail, img_pet;
+        public TextView petName, petBreed, petAge;
+        public ImageView gender_m, gender_w, bunyangpet_detail, img_pet;
 
         public MyViewHolder(View itemView)
         {
@@ -117,6 +119,7 @@ public class PetchingBunyangAdapter extends RecyclerView.Adapter<PetchingBunyang
             gender_w = itemView.findViewById(R.id.gender_w);
 
             //상세보기 넘어가는 icon
+            //추후 아이디값 이름 변경하기...!!!!!!!
             bunyangpet_detail = itemView.findViewById(R.id.bunyangpet_detail);
 
 
@@ -128,28 +131,35 @@ public class PetchingBunyangAdapter extends RecyclerView.Adapter<PetchingBunyang
 
 
     // 펫 정보 이름, 나이, 견종, 성별,
-    private void getPetInfo(String petbunyangid, final ImageView imageView, final TextView petAge, final TextView petName, final TextView petBreed, final ImageView gender_m, final ImageView gender_w)
+    private void getPetInfo(String petFriendid, final ImageView imageView, final TextView petAge, final TextView petName, final TextView petBreed, final ImageView gender_m, final ImageView gender_w)
     {
 
-        Log.d(TAG, "펫분양: "+petbunyangid);
+        Log.d(TAG, "펫분양: "+petFriendid);
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("PetchingBunyang").child(petbunyangid);
+        Log.d(TAG, "getPetInfo: 키사랑"+petFriendid);
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("PetchingFriend").child(petFriendid);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                PetchingBunyang petchingBunyang = dataSnapshot.getValue(PetchingBunyang.class);
+                PetchingFriend petchingFriend = dataSnapshot.getValue(PetchingFriend.class);
 
-                Glide.with(mContext).load(petchingBunyang.getPetImg()).into(imageView);
+                Log.d(TAG, "onDataChange: ##친구이름"+petchingFriend.getPetName());
+                Log.d(TAG, "onDataChange: ##친구이미지"+petchingFriend.getPetImg());
+                Log.d(TAG, "onDataChange: ##친구나이"+petchingFriend.getAge());
+
+                Glide.with(mContext).load(petchingFriend.getPetImg()).into(imageView);
+                Log.d(TAG, "onDataChange: ##"+petFriendid);
 
 
-                petName.setText(petchingBunyang.getPetName());
-                petBreed.setText(petchingBunyang.getPetBreed());
-                petAge.setText(petchingBunyang.getAge()+"살");
+                petName.setText(petchingFriend.getPetName());
+                petBreed.setText(petchingFriend.getPetBreed());
+                petAge.setText(petchingFriend.getAge()+"살");
 
                 //성별표시
-                if (petchingBunyang.getPetGender().equals("Female"))
+                if (petchingFriend.getPetGender().equals("Female"))
                 {
                     gender_w.setVisibility(View.VISIBLE);
                 }else
@@ -167,7 +177,4 @@ public class PetchingBunyangAdapter extends RecyclerView.Adapter<PetchingBunyang
         });
 
     }
-
-
-
 }

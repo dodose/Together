@@ -10,6 +10,7 @@ public class PetchingBunyang {
     private String having_certificate;
     private String intro_dog;
     private String specail_note;
+    private String owner;
 
 
 
@@ -19,7 +20,7 @@ public class PetchingBunyang {
     public PetchingBunyang() {
     }
 
-    public PetchingBunyang(String petName, String petBreed, String petImg, String petGender, String petAge, String petBunyangId, String having_certificate, String intro_dog, String specail_note) {
+    public PetchingBunyang(String petName, String petBreed, String petImg, String petGender, String petAge, String petBunyangId, String having_certificate, String intro_dog, String specail_note, String owner) {
         this.petName = petName;
         this.petBreed = petBreed;
         this.petImg = petImg;
@@ -29,6 +30,7 @@ public class PetchingBunyang {
         this.having_certificate = having_certificate;
         this.intro_dog = intro_dog;
         this.specail_note = specail_note;
+        this.owner = owner;
     }
 
     public String getPetName() {
@@ -102,5 +104,13 @@ public class PetchingBunyang {
 
     public void setSpecail_note(String specail_note) {
         this.specail_note = specail_note;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 }

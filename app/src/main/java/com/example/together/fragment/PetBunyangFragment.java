@@ -49,8 +49,6 @@ public class PetBunyangFragment extends Fragment  {
         recyclerView.setHasFixedSize(true);
 
 
-        final List<String> keys = new ArrayList<>();
-        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("PetchingBunyang");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -89,7 +87,7 @@ public class PetBunyangFragment extends Fragment  {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-        petBunyangList = new ArrayList<PetchingBunyang>();
+        petBunyangList = new ArrayList<>();
         petchingBunyangAdapter = new PetchingBunyangAdapter(getContext(), petBunyangList);
         recyclerView.setAdapter(petchingBunyangAdapter);
 

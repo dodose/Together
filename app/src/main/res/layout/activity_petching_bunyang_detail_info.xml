@@ -258,7 +258,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true">
 
-            <com.google.android.material.button.MaterialButton
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/bunyang_request"
                 android:layout_gravity="bottom"
                 android:gravity="center"
                 android:layout_width="match_parent"

@@ -42,6 +42,13 @@ public class PetFriendsInfoEditFragment extends Fragment
 
     Button regi_petching_friend;
 
+    public static String petName;
+    public static String petBreed;
+    public static String petImg;
+    public static String petGender;
+    public static int age;
+
+
     FirebaseUser firebaseUser;
     DatabaseReference reference;
 
@@ -84,12 +91,19 @@ public class PetFriendsInfoEditFragment extends Fragment
             public void onClick(View v) {
 
                 firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-                reference = FirebaseDatabase.getInstance().getReference("PetchingFriend").child(firebaseUser.getUid()).child(petcode);
+                reference = FirebaseDatabase.getInstance().getReference("PetchingFriend");
 
                 String pefriendid = reference.push().getKey();
 
                 HashMap<String, Object> hashMap = new HashMap<>();
                 hashMap.put("intro_dog", petFriendIntro.getText().toString().trim());
+                hashMap.put("age", String.valueOf(age));
+                hashMap.put("petName", petName);
+                hashMap.put("petGender", petGender);
+                hashMap.put("petBreed", petBreed);
+                hashMap.put("petImg",petImg);
+                hashMap.put("petcode", petcode);
+                hashMap.put("owner", firebaseUser.getUid());
 
                 reference.child(pefriendid).setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -130,6 +144,11 @@ public class PetFriendsInfoEditFragment extends Fragment
                     myPetName.setText(pet.getPetname());
                     myPetBreed.setText(pet.getPetbreed());
 
+                    petName = pet.getPetname();
+                    petBreed = pet.getPetbreed();
+                    petGender = pet.getGender();
+                    petImg = pet.getPetimageurl();
+
 
                     //만나이 계산
                     SimpleDateFormat format1 = new SimpleDateFormat ( "yyyy-M-dd");
@@ -156,7 +175,7 @@ public class PetFriendsInfoEditFragment extends Fragment
                     int petBirthMonth = Integer.parseInt(Birthday_Month);
                     int petBirthday_Day = Integer.parseInt(Birthday_Day);
 
-                    int age = currentYear - petBirthYear;
+                    age = currentYear - petBirthYear;
                     if (petBirthMonth * 100 + petBirthday_Day > currentMonth * 100 + currentDay) {
                         age--;
                     }

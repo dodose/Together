@@ -156,9 +156,9 @@ public class PetBunYangInfoEditFragment extends Fragment {
                 hashMap.put("petBreed", petBreed);
                 hashMap.put("petImg",petImg);
                 hashMap.put("petcode", petcode);
-                hashMap.put("firebaseUser", firebaseUser.getUid());
+                hashMap.put("owner", firebaseUser.getUid());
                 Log.d("나이", "나이: "+age);
-                hashMap.put("age",String.valueOf(age));
+                hashMap.put("age", String.valueOf(age));
 
 
 
@@ -204,8 +204,6 @@ public class PetBunYangInfoEditFragment extends Fragment {
                     petBreed = pet.getPetbreed();
                     petGender = pet.getGender();
                     petImg = pet.getPetimageurl();
-
-
 
 
                     //만나이 계산
