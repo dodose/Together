@@ -26,7 +26,12 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".activities.petching.PetchingSelectPetActivity"></activity>
+        <activity android:name=".activities.my_petInfo.MypetEditInfoActivity"></activity>
+        <activity
+            android:name=".activities.my_petInfo.MypetWriteCalendarActivity"
+            android:theme="@style/Theme.MyDialog" />
+        <activity android:name=".activities.my_petInfo.MypetCalendarActivity" />
+        <activity android:name=".activities.petching.PetchingSelectPetActivity" />
         <activity android:name=".activities.petching.PetchingActivity" />
         <activity android:name=".activities.my_petInfo.MyPetInfoCheckActivity" />
         <activity android:name=".activities.petHospital.PetHospitalShowReservationInfoActivity" />
@@ -94,8 +99,6 @@
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
-
-
     </application>
 
 </manifest>

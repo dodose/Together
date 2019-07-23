@@ -2,10 +2,12 @@ package com.example.together.activities;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +26,18 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -34,6 +48,11 @@ public class RegisterActivity extends AppCompatActivity {
 
     FirebaseAuth auth;
     DatabaseReference reference;
+
+    private String strUrl;
+    private URL Url;
+
+    JSONObject jobj;
 
 
     @Override
@@ -172,6 +191,7 @@ public class RegisterActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
                             FirebaseUser firebaseUser = auth.getCurrentUser();
                             String userid = firebaseUser.getUid();
+                            String Email = firebaseUser.getEmail();
 
                             reference = FirebaseDatabase.getInstance().getReference().child("Users").child(userid);
 
@@ -183,6 +203,97 @@ public class RegisterActivity extends AppCompatActivity {
                             hashMap.put("bio", "");
                             hashMap.put("imageurl", "https://firebasestorage.googleapis.com/v0/b/blogapp-a9a56.appspot.com/o/users_photos%2Fprofile.png?alt=media&token=a112f73c-373f-41ba-bd0f-dfea8ac8d6a1");
                             hashMap.put("status","offline");
+
+
+                            JSONObject Sendobj = new JSONObject();
+                            try {
+                                Sendobj.put("Uid", userid);
+                                Sendobj.put("user_id",Email);
+                                Sendobj.put("username", username);
+                                Sendobj.put("password",password);
+                                Sendobj.put("ph_no",phnumber);
+                                Sendobj.put("birth_dt",birthday);
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+
+                            new AsyncTask<Void, Void, JSONObject>() {
+                                @Override
+                                protected void onPreExecute() {
+                                    super.onPreExecute();
+                                    strUrl = "http://39.127.7.80:8080/WebSignup"; //탐색하고 싶은 URL이다.
+
+                                }
+
+                                @Override
+                                protected JSONObject doInBackground(Void... voids) {
+
+                                    jobj = new JSONObject();
+
+                                    try {
+                                        //서버 연결
+                                        Url = new URL(strUrl);  // URL화 한다.
+                                        HttpURLConnection conn = (HttpURLConnection) Url.openConnection(); // URL을 연결한 객체 생성.
+                                        conn.setRequestMethod("POST"); // post방식 통신
+                                        conn.setDoOutput(true);       // 쓰기모드 지정
+                                        conn.setDoInput(true);        // 읽기모드 지정
+
+                                        conn.setRequestProperty("Content-Type", "application/json; utf-8");
+                                        conn.setRequestProperty("Accept", "application/json; utf-8");
+                                        conn.connect();
+
+
+                                        //데이터 전달 하는곳
+
+                                        OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+
+                                        wr.write(Sendobj.toString());
+
+                                        wr.flush();
+
+                                        wr.close(); //전달후 닫아준다.
+
+
+                                        // 데이터 받아오는 곳
+                                        InputStream is = null;        //input스트림 개방
+                                        BufferedReader reader = null;
+
+                                        is = conn.getInputStream();
+                                        reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));  //문자열 셋 세팅
+                                        StringBuffer rbuffer = new StringBuffer();   //문자열을 담기 위한 객체
+                                        String line = null;
+
+                                        rbuffer.append(reader.readLine());
+
+                                        jobj = new JSONObject(rbuffer.toString().trim());
+                                        is.close();
+
+                                        conn.disconnect();
+
+
+                                        Log.e("result", jobj + "");
+
+
+                                    } catch (MalformedURLException | ProtocolException exception) {
+                                        exception.printStackTrace();
+                                    } catch (IOException io) {
+                                        io.printStackTrace();
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                    return jobj;
+                                }
+
+                                @Override
+                                protected void onPostExecute(JSONObject aVoid) {
+                                    super.onPostExecute(aVoid);
+
+                                }
+
+
+                            }.execute();
 
                             reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
@@ -200,6 +311,13 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     }
                 });
+
+
+
+
+
+
+
     }
 
 

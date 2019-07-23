@@ -118,6 +118,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+
                 updateProfile(fullname.getText().toString(),
                         username.getText().toString(),
                         bio.getText().toString());
@@ -214,7 +215,7 @@ public class EditProfileActivity extends AppCompatActivity {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             mImageUri = result.getUri();
 
-            Log.wtf(TAG, "onActivityResult: TAG 실행된 결과값오나요? "+mImageUri+"ImageUri" );
+            Log.e(TAG, "onActivityResult: TAG 실행된 결과값오나요? "+mImageUri+"ImageUri" );
 
             uploadImage();
 

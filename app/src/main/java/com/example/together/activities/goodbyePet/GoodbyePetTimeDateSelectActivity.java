@@ -75,6 +75,8 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
         time = (Button) findViewById(R.id.selecttime);
         set_date = (TextView) findViewById(R.id.set_date);
         set_time = (TextView) findViewById(R.id.set_time);
+
+
         date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {

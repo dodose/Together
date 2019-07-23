@@ -65,12 +65,10 @@ public class MyPetListActivity extends AppCompatActivity {
                     Log.d(TAG,key+"키키키");
                     Pet pet = childSnapshot.getValue(Pet.class);
 
-                    pet.getPetname();
-                    pet.getPetimageurl();
-                    pet.getBirthday();
 
                     Log.d(TAG, pet+"펫이당");
                     Log.wtf(TAG, "did you get petweight? : "+pet.getPetweight());
+                    Log.wtf(TAG, "did you get uid? : "+pet.getPetid());
                     Log.wtf(TAG, "did you get Birthday?: "+pet.getBirthday());
                     Log.wtf(TAG, "did you get name?"+pet.getPetname());
                     Log.wtf(TAG, "did u get image url?"+pet.getPetimageurl());

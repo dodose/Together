@@ -103,7 +103,7 @@ public class TimesetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         final MyViewHolder myViewHolder = (MyViewHolder) viewHolder;
         final int Position = position;
 
-       myViewHolder.clickradio.setChecked(mSelectedItem == position);
+        myViewHolder.clickradio.setChecked(mSelectedItem == position);
 
         myViewHolder.clickradio.setText(checklist.get(Position));
         String result[] = checklist.get(Position).split("~");

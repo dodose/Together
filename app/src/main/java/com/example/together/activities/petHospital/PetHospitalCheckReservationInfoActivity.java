@@ -167,58 +167,58 @@ public class PetHospitalCheckReservationInfoActivity extends AppCompatActivity {
 
 
     //액션바 등록
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.hospital_next, menu) ;
+            @Override
+            public boolean onCreateOptionsMenu(Menu menu) {
+                getMenuInflater().inflate(R.menu.hospital_next, menu) ;
 
-        return true ;
-    }
-
-
-    //액션바 클릭 이벤트
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+                return true ;
+            }
 
 
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                //                Intent intent = new Intent(ProductOrderActivity.this,HotelDetailActivity.class);
-                //                startActivity(intent);
-                return true;
-            case R.id.next:
-
-                ArrayList<String> canserlist = new ArrayList<>();
-                canserlist = Hos_or_fragment1.CanserLIst();
-                String detailcanser = null;
-                String orderTime = null;
-
-                detailcanser = Hos_or_fragment1.editCanser();
-                orderTime = TimesetAdapter.Timeset();
-
-                if (canserlist.isEmpty()) {
-                    Toast.makeText(this, "병명을 최소 하나이상 선택해 주세요", Toast.LENGTH_SHORT).show();
-                } else if (orderTime == null) {
-                    Toast.makeText(this, "예약날짜를 최소 하나를 선택해 주세요", Toast.LENGTH_SHORT).show();
-                } else {
-                    Intent intent = new Intent(PetHospitalCheckReservationInfoActivity.this, PetHospitalShowReservationInfoActivity.class);
-                    intent.putStringArrayListExtra("canser", canserlist);
-                    intent.putExtra("orderTime", orderTime);
-                    intent.putExtra("petcode", petcode);
-                    intent.putExtra("date", dateday);
-                    intent.putExtra("etp_nm", topName);
-                    if(detailcanser != null){
-                        intent.putExtra("edit",detailcanser);
-                    }
-                    startActivity(intent);
-
-                }
+            //액션바 클릭 이벤트
+            @Override
+            public boolean onOptionsItemSelected(MenuItem item) {
 
 
+                switch (item.getItemId()) {
+                    case android.R.id.home:
+                        //                Intent intent = new Intent(ProductOrderActivity.this,HotelDetailActivity.class);
+                        //                startActivity(intent);
+                        return true;
+                    case R.id.next:
 
-                return true;
+                        ArrayList<String> canserlist = new ArrayList<>();
+                        canserlist = Hos_or_fragment1.CanserLIst();
+                        String detailcanser = null;
+                        String orderTime = null;
 
-            default:
-                return super.onOptionsItemSelected(item);
+                        detailcanser = Hos_or_fragment1.editCanser();
+                        orderTime = TimesetAdapter.Timeset();
+
+                        if (canserlist.isEmpty()) {
+                            Toast.makeText(this, "병명을 최소 하나이상 선택해 주세요", Toast.LENGTH_SHORT).show();
+                        } else if (orderTime == null) {
+                            Toast.makeText(this, "예약날짜를 최소 하나를 선택해 주세요", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Intent intent = new Intent(PetHospitalCheckReservationInfoActivity.this, PetHospitalShowReservationInfoActivity.class);
+                            intent.putStringArrayListExtra("canser", canserlist);
+                            intent.putExtra("orderTime", orderTime);
+                            intent.putExtra("petcode", petcode);
+                            intent.putExtra("date", dateday);
+                            intent.putExtra("etp_nm", topName);
+                            if(detailcanser != null){
+                                intent.putExtra("edit",detailcanser);
+                            }
+                            startActivity(intent);
+
+                        }
+
+
+
+                        return true;
+
+                    default:
+                        return super.onOptionsItemSelected(item);
 
         }
 

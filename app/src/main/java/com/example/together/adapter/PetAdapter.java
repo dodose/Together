@@ -12,6 +12,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.together.activities.my_petInfo.MyPetInfoCheckActivity;
 import com.example.together.activities.my_petInfo.MyPetListActivity;
 import com.example.together.model.Pet;
 import com.example.together.R;
@@ -66,12 +67,16 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.MyViewHolder> {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(mContext, MyPetListActivity.class);
-
+                Intent intent = new Intent(mContext, MyPetInfoCheckActivity.class);
                 // passing data to the book activity
+                intent.putExtra("petUid",mPet.get(position).getPetid());
                 intent.putExtra("petname", mPet.get(position).getPetname());
                 intent.putExtra("intro", mPet.get(position).getIntro());
-                intent.putExtra("Thumbnail", mPet.get(position).getPetimageurl());
+                intent.putExtra("petimage", mPet.get(position).getPetimageurl());
+                intent.putExtra("birthday", mPet.get(position).getBirthday());
+                intent.putExtra("gender", mPet.get(position).getGender());
+                intent.putExtra("breed", mPet.get(position).getPetbreed());
+                intent.putExtra("weight", mPet.get(position).getPetweight());
                 // start the activity
                 mContext.startActivity(intent);
 

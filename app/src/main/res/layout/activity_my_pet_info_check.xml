@@ -19,223 +19,316 @@
             android:id="@+id/toolbar"
             android:background="?android:attr/windowBackground">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_btn_back"
-                    android:id="@+id/close"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentStart="true"/>
-
                 <TextView
-                    android:id="@+id/petName"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="113dp"
-                    android:layout_toEndOf="@+id/close"
-                    android:text="My Pet Name"
+                    android:gravity="center"
+                    android:text="나의 펫"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="18sp"
+                    android:textSize="18dp"
                     android:textStyle="bold" />
 
-            </RelativeLayout>
 
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
+
+
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="240dp">
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/petImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:layout_editor_absoluteX="-3dp"
-            tools:layout_editor_absoluteY="3dp"
-            tools:srcCompat="@tools:sample/avatars[3]" />
-    </LinearLayout>
+            android:layout_gravity="center"
+            android:layout_weight="0.95" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1.1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/Petname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:text="펫이름"
+                android:textSize="20dp" />
 
 
+        </LinearLayout>
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-
-        <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="30dp"
-            android:layout_weight="0"
-            app:srcCompat="@drawable/ic_mydogs" />
-
-        <TextView
-            android:id="@+id/breed"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:text="혈액형"
-            android:textSize="36sp"
-            tools:layout_editor_absoluteX="59dp"
-            tools:layout_editor_absoluteY="341dp" />
-
-
-        <TextView
-            android:id="@+id/Age"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="20dp"
-            android:text="생년월일"
-            android:textSize="36sp"
-            tools:layout_editor_absoluteX="252dp"
-            tools:layout_editor_absoluteY="341dp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/breed_detail"
-            android:layout_width="143dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
-            android:text="breed_detail"
-            android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/age_datail"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="45dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
-            android:text="age_datail"
-            android:textSize="24sp" />
+            android:orientation="horizontal">
 
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="59dp"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal">
+            <ImageButton
+                android:id="@+id/petching"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="22dp"
+                android:layout_marginLeft="22dp"
+                android:layout_weight="0.3"
+                android:background="@drawable/background_gray_radios_boarder_x"
+                android:src="@drawable/ic_liked" />
 
-        <ImageView
-            android:id="@+id/imageView7"
-            android:layout_width="69dp"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.7"
+                    android:gravity="center"
+                    android:text="펫칭"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/petclander"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="22dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_weight="0.3"
+                    android:background="@drawable/background_gray_radios_boarder_x"
+                    android:src="@drawable/ic_calendar" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.7"
+                    android:gravity="center"
+                    android:text="일정관리"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/editpet"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="22dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_weight="0.3"
+                    android:background="@drawable/background_gray_radios_boarder_x"
+                    android:src="@drawable/ic_edit" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.7"
+                    android:gravity="center"
+                    android:text="정보수정"/>
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+      <!--위는 안건드림 -->
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0"
-            app:srcCompat="@android:drawable/ic_menu_info_details" />
+            android:layout_marginTop="10dp"
+            android:layout_weight="0.6"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/Gender"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:layout_weight="0"
-            android:text="성별"
-            android:textSize="36sp" />
 
-        <TextView
-            android:id="@+id/Status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="130dp"
-            android:layout_weight="0"
-            android:text="상태"
-            android:textSize="36sp" />
-    </LinearLayout>
+            //#1
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="37dp"
-        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/gender_detail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:layout_marginLeft="60dp"
-            android:text="gender_detail"
-            android:textSize="24sp" />
+                //아이콘들어감
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp"
+                    android:layout_weight="0.8"
+                    android:src="@drawable/pawprint"
+                    />
 
-        <TextView
-            android:id="@+id/status_detail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:layout_marginLeft="40dp"
-            android:text="status_detail"
-            android:textSize="24sp" />
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/petbreed"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:gravity="center_vertical"
+                    android:text="포메라니안"
+                    android:textSize="18dp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="59dp"
-        android:layout_marginTop="30dp"
-        android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/imageView9"
-            android:layout_width="59dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0"
-            app:srcCompat="@android:drawable/btn_star_big_on" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/Weight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="0"
-            android:text="몸무게"
-            android:textSize="36sp" />
 
-        <TextView
-            android:id="@+id/Height"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="110dp"
-            android:layout_weight="0"
-            android:text="신장"
-            android:textSize="36sp" />
 
-    </LinearLayout>
+            //#2
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="41dp"
-        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/weight_detail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
-            android:text="weight_detail"
-            android:textSize="24sp" />
+                //아이콘들어감
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp"
+                    android:layout_weight="0.8"
+                    android:src="@drawable/maleandfemale"
+                    />
 
-        <TextView
-            android:id="@+id/height_detail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_weight="0"
-            android:text="height_detail"
-            android:textSize="24sp" />
+                <TextView
+                    android:id="@+id/petGender"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:gravity="center_vertical"
+                    android:text="성별"
+                    android:textSize="18dp" />
+
+
+            </LinearLayout>
+
+            //#3
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal">
+
+
+                //아이콘들어감
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp"
+                    android:layout_weight="0.8"
+                    android:src="@drawable/kettlebell"
+                    />
+
+                <TextView
+                    android:id="@+id/petweight"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:gravity="center_vertical"
+                    android:text="무게"
+                    android:textSize="18dp" />
+
+
+            </LinearLayout>
+
+            //#4
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal">
+
+
+                //아이콘들어감
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp"
+                    android:layout_weight="0.8"
+                    android:src="@drawable/businesscard"
+                    />
+
+                <TextView
+                    android:id="@+id/intro"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:gravity="center_vertical"
+                    android:text="소개"
+                    android:textSize="18dp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal">
+
+
+                //아이콘들어감
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp"
+                    android:layout_weight="0.8"
+                    android:src="@drawable/cake"
+                    />
+
+                <TextView
+                    android:id="@+id/birthday"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:gravity="center_vertical"
+                    android:text="생년월일"
+                    android:textSize="18dp" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>
