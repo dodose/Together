@@ -1,7 +1,5 @@
 package com.example.together.fragment;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,14 +7,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.example.together.R;
 import com.example.together.adapter.PetchingBunyangAdapter;
-import com.example.together.model.Pet;
+import com.example.together.model.PetchingBunyang;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -32,9 +30,11 @@ import java.util.List;
 
 public class PetBunyangFragment extends Fragment  {
 
-    private RecyclerView recyclerView;
-    private PetchingBunyangAdapter petchingBunyangAdapter;
-    private List<Pet> petBunyangList;
+    private static final String TAG = "PetBunyangFragment";
+
+    RecyclerView recyclerView;
+    PetchingBunyangAdapter petchingBunyangAdapter;
+    List<PetchingBunyang> petBunyangList;
 
 
 
@@ -44,35 +44,39 @@ public class PetBunyangFragment extends Fragment  {
 
         View view =  inflater.inflate(R.layout.fragment_pet_bunyang, container, false);
 
+
         recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(linearLayoutManager);
-        petBunyangList = new ArrayList<>();
-        petchingBunyangAdapter = new PetchingBunyangAdapter(getContext(), petBunyangList);
-        recyclerView.setAdapter(petchingBunyangAdapter);
 
-        readPetBunyangList();
 
-        return view;
-    }
-
-    private void readPetBunyangList()
-    {
+        final List<String> keys = new ArrayList<>();
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("PetchingBunyang").child(firebaseUser.getUid());
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("PetchingBunyang");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
+
                 petBunyangList.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren())
+
+                for (DataSnapshot childSnapshot : dataSnapshot.getChildren())
                 {
-                    Pet pet = snapshot.getValue(Pet.class);
-                    petBunyangList.add(pet);
+                    PetchingBunyang petchingBunyang = childSnapshot.getValue(PetchingBunyang.class);
+                    String key = childSnapshot.getKey();
+                    Log.d(TAG, "키키맨?"+key);
+
+                    // as per Franks comment.
+                    petchingBunyang.setPetBunyangId(key);
+
+                    petBunyangList.add(petchingBunyang);
+                    Log.d(TAG, "리스트키: "+petBunyangList);
+
+                    Log.d(TAG, "키키: "+petchingBunyang);
+
                 }
 
-                // 이 코드 다시한번 살피기
+
+
                 Collections.reverse(petBunyangList);
                 petchingBunyangAdapter.notifyDataSetChanged();
             }
@@ -83,6 +87,14 @@ public class PetBunyangFragment extends Fragment  {
             }
         });
 
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
+        petBunyangList = new ArrayList<PetchingBunyang>();
+        petchingBunyangAdapter = new PetchingBunyangAdapter(getContext(), petBunyangList);
+        recyclerView.setAdapter(petchingBunyangAdapter);
+
+
+        return view;
     }
 
 

@@ -38,14 +38,22 @@ import java.util.HashMap;
 
 public class PetBunYangInfoEditFragment extends Fragment {
 
+
     private static final String TAG = "PetBunYangInfoEditFragment";
     public static String petcode;
+
 
     public static ImageView myPetImage, gender_m, gender_w;
     public static TextView myPetName, myPetBreed, myPetAge, petBunyangIntro, specail_note;
     RadioGroup having;
     RadioButton yes, no;
     Button regi_petching_bunyang;
+
+    public static String petName;
+    public static String petBreed;
+    public static String petImg;
+    public static String petGender;
+    public static int age;
 
 
 //    String beforecode;
@@ -56,6 +64,7 @@ public class PetBunYangInfoEditFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
 
 
         // Inflate the layout for this fragment
@@ -123,7 +132,7 @@ public class PetBunYangInfoEditFragment extends Fragment {
             public void onClick(View v) {
 
                 firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-                reference = FirebaseDatabase.getInstance().getReference("PetchingBunyang").child(firebaseUser.getUid()).child(petcode);
+                reference = FirebaseDatabase.getInstance().getReference("PetchingBunyang");
 
                 String petbunyangid = reference.push().getKey();
 
@@ -133,11 +142,25 @@ public class PetBunYangInfoEditFragment extends Fragment {
                 RadioButton seletedRdo = view.findViewById(having.getCheckedRadioButtonId());
                 final String selectedValue = seletedRdo.getText().toString();
 
+                Log.d("test", "onClick: "+petName);
+
+
+
                 HashMap<String, Object> hashMap = new HashMap<>();
                 hashMap.put("having_certificate", selectedValue);
                 hashMap.put("intro_dog", petBunyangIntro.getText().toString().trim());
                 hashMap.put("specail_note", specail_note.getText().toString().trim());
                 hashMap.put("petbunyangid", petbunyangid);
+                hashMap.put("petName", petName);
+                hashMap.put("petGender", petGender);
+                hashMap.put("petBreed", petBreed);
+                hashMap.put("petImg",petImg);
+                hashMap.put("petcode", petcode);
+                hashMap.put("firebaseUser", firebaseUser.getUid());
+                Log.d("나이", "나이: "+age);
+                hashMap.put("age",String.valueOf(age));
+
+
 
                 reference.child(petbunyangid).setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -177,6 +200,13 @@ public class PetBunYangInfoEditFragment extends Fragment {
                     myPetName.setText(pet.getPetname());
                     myPetBreed.setText(pet.getPetbreed());
 
+                    petName = pet.getPetname();
+                    petBreed = pet.getPetbreed();
+                    petGender = pet.getGender();
+                    petImg = pet.getPetimageurl();
+
+
+
 
                     //만나이 계산
                     SimpleDateFormat format1 = new SimpleDateFormat("yyyy-M-dd");
@@ -203,7 +233,7 @@ public class PetBunYangInfoEditFragment extends Fragment {
                     int petBirthMonth = Integer.parseInt(Birthday_Month);
                     int petBirthday_Day = Integer.parseInt(Birthday_Day);
 
-                    int age = currentYear - petBirthYear;
+                    age = currentYear - petBirthYear;
                     if (petBirthMonth * 100 + petBirthday_Day > currentMonth * 100 + currentDay) {
                         age--;
                     }
