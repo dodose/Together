@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#f2f2f2"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview_dogs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="250dp">
+
+
+            <TextView
+                android:id="@+id/myPetName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|left"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="20dip"
+                android:background="#AA000000"
+                android:padding="12dip"
+                android:text="PetName"
+                android:textColor="#ffffffff"
+                android:textSize="24sp" />
+
+
+            <TextView
+                android:id="@+id/myPetname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_marginRight="80dp"
+                android:layout_marginBottom="20dip"
+                android:background="#AA000000"
+                android:padding="12dip"
+                android:text="Golden Gate"
+                android:textColor="#ffffffff"
+                android:textSize="16sp" />
+
+
+            <ImageView
+                android:id="@+id/myPetImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/myPetBreed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_marginRight="80dp"
+                android:layout_marginBottom="20dip"
+                android:background="#AA000000"
+                android:padding="12dip"
+                android:text="Golden Gate"
+                android:textColor="#ffffffff"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="20dip"
+                android:background="#AA000000"
+                android:padding="12dip"
+                android:text="2살"
+                android:textColor="#ffffffff"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/gender_m"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="bottom|right"
+                android:layout_marginRight="200dp"
+                android:layout_marginBottom="20dip"
+                android:src="@drawable/gender_m"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/gender_w"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="bottom|right"
+                android:layout_marginRight="200dp"
+                android:layout_marginBottom="20dip"
+                android:src="@drawable/gender_w"
+                android:visibility="invisible" />
+
+        </FrameLayout>
+
+
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/myPetInfoEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:tabIndicatorColor="@color/colorPrimary"
+            app:tabTextColor="@color/colorBlack">
+
+        </com.google.android.material.tabs.TabLayout>
+
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/main_petchingPetInfo_tabs_pager"
+            android:layout_below="@+id/myPetInfoEdit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+
+        </androidx.viewpager.widget.ViewPager>
+
+    </LinearLayout>
+
+
+</LinearLayout>

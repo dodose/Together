@@ -96,7 +96,7 @@ public class MyPetRegActivity extends AppCompatActivity {
 
                 DatePickerDialog dialog = new DatePickerDialog(
                         MyPetRegActivity.this,
-                        android.R.style.Theme_NoTitleBar,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         mDateSetListener,
                         year,month,day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -110,9 +110,9 @@ public class MyPetRegActivity extends AppCompatActivity {
         mDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                Log.d(TAG, "onDateSet: "+year+"/" +month+"/"+dayOfMonth);
+                Log.d(TAG, "onDateSet: "+year+"/" +month+1 +"/"+dayOfMonth);
 
-                String date = year + "-"+month+1 +"-"+dayOfMonth;
+                String date = year + "-"+(month+1) +"-"+dayOfMonth;
                 final int birthday = year+month+dayOfMonth;
                 mDisplayDate.setText(date);
             }

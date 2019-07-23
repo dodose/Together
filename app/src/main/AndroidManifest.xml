@@ -32,6 +32,8 @@
             android:theme="@style/Theme.MyDialog" />
         <activity android:name=".activities.my_petInfo.MypetCalendarActivity" />
         <activity android:name=".activities.petching.PetchingSelectPetActivity" />
+        <activity android:name=".activities.petching.PetchingFriendDetailInfo"></activity>
+        <activity android:name=".activities.petching.PetchingBunyangDetailInfo" />
         <activity android:name=".activities.petching.PetchingActivity" />
         <activity android:name=".activities.my_petInfo.MyPetInfoCheckActivity" />
         <activity android:name=".activities.petHospital.PetHospitalShowReservationInfoActivity" />
@@ -99,6 +101,8 @@
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
+
+
     </application>
 
 </manifest>

@@ -120,7 +120,6 @@ public class PetHospitalPetConditionActivity extends AppCompatActivity {
         reference = FirebaseDatabase.getInstance().getReference("Pets").child(firebaseUser.getUid());
         reference.addValueEventListener(new ValueEventListener() {
 
-
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot childSnapshot : dataSnapshot.getChildren())

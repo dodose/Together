@@ -261,6 +261,7 @@ public class ProfileFragment extends Fragment {
         hashMap.put("ispost", true);
 
         reference.push().setValue(hashMap);
+
     }
 
 
@@ -271,7 +272,8 @@ public class ProfileFragment extends Fragment {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (getContext() == null){
+                if (getContext() == null)
+                {
                     return;
                 }
 

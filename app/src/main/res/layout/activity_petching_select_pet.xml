@@ -80,6 +80,8 @@
             android:layout_height="wrap_content"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:tabIndicatorColor="@color/colorPrimary"
+            app:tabSelectedTextColor="@color/colorBlue"
+            app:tabBackground="@color/mdtp_circle_color"
             app:tabTextColor="@color/colorBlack">
 
         </com.google.android.material.tabs.TabLayout>
