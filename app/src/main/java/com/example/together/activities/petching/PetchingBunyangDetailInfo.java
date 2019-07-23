@@ -21,6 +21,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
+
 public class PetchingBunyangDetailInfo extends AppCompatActivity {
 
     private TextView petName, petBreed, petAge, petBunyangIntro, specail_note, petBreedCertificatin;
@@ -28,6 +30,7 @@ public class PetchingBunyangDetailInfo extends AppCompatActivity {
     private Button bunyang_request;
 
     DatabaseReference reference;
+    FirebaseUser firebaseUser;
 
 
     @Override
@@ -93,14 +96,27 @@ public class PetchingBunyangDetailInfo extends AppCompatActivity {
 
 
 
-        //분양신청 버튼
+        //분양신청 버튼 클릭시 정보 전달...
 
-        bunyang_request.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent bunyangRequest = new Intent();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-            }
+        bunyang_request.setOnClickListener(v -> {
+
+            reference = FirebaseDatabase.getInstance().getReference("PetchingBunyang").child(petId).child("request").child(firebaseUser.getUid());
+            reference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                {
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+
         });
 
 

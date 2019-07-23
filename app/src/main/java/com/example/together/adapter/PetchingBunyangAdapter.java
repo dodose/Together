@@ -43,6 +43,7 @@ public class PetchingBunyangAdapter extends RecyclerView.Adapter<PetchingBunyang
     }
 
 
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -128,7 +129,7 @@ public class PetchingBunyangAdapter extends RecyclerView.Adapter<PetchingBunyang
 
 
     // 펫 정보 이름, 나이, 견종, 성별,
-    private void getPetInfo(String petbunyangid, final ImageView imageView, final TextView petAge, final TextView petName, final TextView petBreed, final ImageView gender_m, final ImageView gender_w)
+    private void getPetInfo(String petbunyangid, final ImageView imageView, final TextView petName, final TextView petAge, final TextView petBreed, final ImageView gender_m, final ImageView gender_w)
     {
 
         Log.d(TAG, "펫분양: "+petbunyangid);
@@ -144,9 +145,13 @@ public class PetchingBunyangAdapter extends RecyclerView.Adapter<PetchingBunyang
                 Glide.with(mContext).load(petchingBunyang.getPetImg()).into(imageView);
 
 
+                Log.d(TAG, "분양나이"+petchingBunyang.getAge());
+                Log.d(TAG,petchingBunyang.getPetName());
+
                 petName.setText(petchingBunyang.getPetName());
                 petBreed.setText(petchingBunyang.getPetBreed());
                 petAge.setText(petchingBunyang.getAge()+"살");
+
 
                 //성별표시
                 if (petchingBunyang.getPetGender().equals("Female"))
