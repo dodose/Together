@@ -28,6 +28,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.together.R;
+import com.example.together.model.Pet;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -56,7 +57,7 @@ public class MypetEditInfoActivity extends AppCompatActivity {
     TextView petBirthday,tv_change;
     RadioGroup genderGroup;
     RadioButton male,female;
-    String inpetName,inpetgender,inpetbirthday,inpetweight,inpetintro,inpetImage,inpetbreed,inpetUid;
+    String inpetUid;
 
     String myUrl;
 
@@ -80,13 +81,6 @@ public class MypetEditInfoActivity extends AppCompatActivity {
 
         if(Bx != null){
             inpetUid = Bx.getString("petUid");
-            inpetName = Bx.getString("petname");
-            inpetImage = Bx.getString("petimage");
-            inpetgender = Bx.getString("petgender");
-            inpetweight = Bx.getString("petweight");
-            inpetbirthday = Bx.getString("petbirthday");
-            inpetbreed = Bx.getString("petbreed");
-            inpetintro = Bx.getString("petintro");
         }
 
         petImage = findViewById(R.id.image_profile);
@@ -101,22 +95,41 @@ public class MypetEditInfoActivity extends AppCompatActivity {
         male = findViewById(R.id.male);
         female = findViewById(R.id.female);
 
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Pets").child(firebaseUser.getUid()).child(inpetUid);
 
-        Glide.with(getApplicationContext()).load(inpetImage).into(petImage);
-        petName.setText(inpetName);
-        petBreed.setText(inpetbreed);
-        petWeight.setText(inpetweight);
-        intro.setText(inpetintro);
-        petBirthday.setText(inpetbirthday);
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.e("snapshot",dataSnapshot.getValue()+"");
+
+                Pet pet = dataSnapshot.getValue(Pet.class);
+                Glide.with(getApplicationContext()).load(pet.getPetimageurl()).into(petImage);
+                petName.setText(pet.getPetname());
+                petBreed.setText(pet.getPetbreed());
+                petWeight.setText(pet.getPetweight());
+                intro.setText(pet.getIntro());
+
+                if(pet.getBirthday().equals("생년월일")){
+                    petBirthday.setHint("아직 지정된 값이 없습니다 설정해주세요!");
+                }else {
+                    petBirthday.setText(pet.getBirthday());
+                }
+
+                if(pet.getGender().equals("Male")){
+                    male.setChecked(true);
+                }else{
+                    female.setChecked(true);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
 
-
-
-        if(inpetgender.equals("Male")){
-            male.setChecked(true);
-        }else{
-            female.setChecked(true);
-        }
 
         //툴바 선언
         mToolbar = findViewById(R.id.edit_toolbar);
@@ -237,9 +250,9 @@ public class MypetEditInfoActivity extends AppCompatActivity {
                         petWeight.getText().toString(),
                 intro.getText().toString());
 
-                Intent intent = new Intent(MypetEditInfoActivity.this,MyPetInfoCheckActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                startActivity(intent);
+                Intent resultIntent = new Intent();
+                setResult(1,resultIntent);
+                finish();
 
                 return true;
 

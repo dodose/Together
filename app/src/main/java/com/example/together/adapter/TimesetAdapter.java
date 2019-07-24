@@ -106,15 +106,15 @@ public class TimesetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         myViewHolder.clickradio.setChecked(mSelectedItem == position);
 
         myViewHolder.clickradio.setText(checklist.get(Position));
+
         String result[] = checklist.get(Position).split("~");
 
-        if(checkTime.isEmpty()){
+        if(checkTime.get(0).isEmpty()){
 
             myViewHolder.checkset.setTextColor(Color.BLUE);
             myViewHolder.checkset.setText("예약가능");
 
-        }else{
-
+        } else{
             for(int i = 0; i<checkTime.size(); i++){
 
                 if(result[0].trim().equals(checkTime.get(i).substring(10).trim())){

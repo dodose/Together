@@ -59,6 +59,7 @@ public class MyPetListActivity extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                lsPet.clear();
                 for (DataSnapshot childSnapshot : dataSnapshot.getChildren())
                 {
                     String key = childSnapshot.getKey();
@@ -72,6 +73,7 @@ public class MyPetListActivity extends AppCompatActivity {
                     Log.wtf(TAG, "did you get Birthday?: "+pet.getBirthday());
                     Log.wtf(TAG, "did you get name?"+pet.getPetname());
                     Log.wtf(TAG, "did u get image url?"+pet.getPetimageurl());
+
                     lsPet.add(pet);
                 }
 

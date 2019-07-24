@@ -70,13 +70,6 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.MyViewHolder> {
                 Intent intent = new Intent(mContext, MyPetInfoCheckActivity.class);
                 // passing data to the book activity
                 intent.putExtra("petUid",mPet.get(position).getPetid());
-                intent.putExtra("petname", mPet.get(position).getPetname());
-                intent.putExtra("intro", mPet.get(position).getIntro());
-                intent.putExtra("petimage", mPet.get(position).getPetimageurl());
-                intent.putExtra("birthday", mPet.get(position).getBirthday());
-                intent.putExtra("gender", mPet.get(position).getGender());
-                intent.putExtra("breed", mPet.get(position).getPetbreed());
-                intent.putExtra("weight", mPet.get(position).getPetweight());
                 // start the activity
                 mContext.startActivity(intent);
 

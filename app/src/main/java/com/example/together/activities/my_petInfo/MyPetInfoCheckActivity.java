@@ -14,10 +14,21 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.example.together.R;
+import com.example.together.model.Pet;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
@@ -46,13 +57,13 @@ public class MyPetInfoCheckActivity extends AppCompatActivity {
         if(Bx != null){
 
             petUid = Bx.getString("petUid");
-            petname = Bx.getString("petname");
-            intro = Bx.getString("intro");
-            petimage = Bx.getString("petimage");
-            birthday = Bx.getString("birthday");
-            gender = Bx.getString("gender");
-            breed = Bx.getString("breed");
-            weight = Bx.getString("weight");
+//            petname = Bx.getString("petname");
+//            intro = Bx.getString("intro");
+//            petimage = Bx.getString("petimage");
+//            birthday = Bx.getString("birthday");
+//            gender = Bx.getString("gender");
+//            breed = Bx.getString("breed");
+//            weight = Bx.getString("weight");
 
         }
 
@@ -65,42 +76,48 @@ public class MyPetInfoCheckActivity extends AppCompatActivity {
         petintro = findViewById(R.id.intro);
         petbirthday = findViewById(R.id.birthday);
 
-        Log.e("img",petimage);
 
-        Picasso.get().load(petimage).transform(new CircleTransform()).into(petImage);
+        FirebaseUser firebaseUser;
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Pets").child(firebaseUser.getUid()).child(petUid);
 
-
-
-        Petname.setText(petname);
-
-
-
-        if (birthday.equals("생년월일")){
-            petbirthday.setTypeface(null, Typeface.BOLD);
-            petbirthday.setText("(생년월일을 설정해주세요)");
-        }else{
-            petbirthday.setText(birthday+ "출생");
-        }
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.e("snapshot",dataSnapshot.getValue()+"");
+                Pet pet = dataSnapshot.getValue(Pet.class);
 
 
+                Picasso.get().load(pet.getPetimageurl()).transform(new CircleTransform()).into(petImage);
+                Petname.setText(pet.getPetname());
+                petbirthday.setTypeface(null, Typeface.BOLD);
+                petbirthday.setText(pet.getBirthday());
 
-        if(gender.equals("Female")){
-            petGender.setTextColor(Color.RED);
-            petGender.setText("암컷");
-        }else{
-            petGender.setTextColor(Color.BLUE);
-            petGender.setText("수컷");
-        }
+                if(pet.getGender().equals("Female")){
+                    petGender.setTextColor(Color.RED);
+                    petGender.setText("암컷");
+                }else{
+                    petGender.setTextColor(Color.BLUE);
+                    petGender.setText("수컷");
+                }
 
-        if(Integer.parseInt(weight) <= 10){
-            petweight.setText(weight+" KG" + " (소형견)");
-        }else if(Integer.parseInt(weight) <= 20 && Integer.parseInt(weight) > 10){
-            petweight.setText(weight+" KG" + " (중형견)");
-        }else{
-            petweight.setText(weight+" KG" + " (대형견)");
-        }
+                if(Integer.parseInt(pet.getPetweight()) <= 10){
+                    petweight.setText(pet.getPetweight()+" KG" + " (소형견)");
+                }else if(Integer.parseInt(pet.getPetweight()) <= 20 && Integer.parseInt(pet.getPetweight()) > 10){
+                    petweight.setText(pet.getPetweight()+" KG" + " (중형견)");
+                }else{
+                    petweight.setText(pet.getPetweight()+" KG" + " (대형견)");
+                }
 
-        petintro.setText(intro);
+                petintro.setText(pet.getIntro());
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         //각종 버튼 SET
         petching = findViewById(R.id.petching);
@@ -116,7 +133,7 @@ public class MyPetInfoCheckActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MyPetInfoCheckActivity.this, MypetCalendarActivity.class);
                 intent.putExtra("petUid",petUid);
-                intent.putExtra("petName",petname);
+                intent.putExtra("petName",Petname.getText());
                 startActivity(intent);
             }
         });
@@ -124,22 +141,35 @@ public class MyPetInfoCheckActivity extends AppCompatActivity {
         editpet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    Intent intent = new Intent(MyPetInfoCheckActivity.this, MypetEditInfoActivity.class);
-                    intent.putExtra("petUid",petUid);
-                intent.putExtra("petbreed",petbreed.getText());
-                intent.putExtra("petgender",gender);
-                intent.putExtra("petweight",weight);
-                intent.putExtra("petbirthday",petbirthday.getText());
-                intent.putExtra("petintro",petintro.getText());
-                intent.putExtra("petname",petname);
-                intent.putExtra("petimage",petimage);
-                startActivity(intent);
+                Intent intent = new Intent(MyPetInfoCheckActivity.this, MypetEditInfoActivity.class);
+                intent.putExtra("petUid",petUid);
+                startActivityForResult(intent,1);
             }
 
         });
 
 
 
+
+
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_FIRST_USER){
+
+            switch (requestCode){
+                // MainActivity 에서 요청할 때 보낸 요청 코드 (3000)
+                case 1:
+
+                    Toast.makeText(MyPetInfoCheckActivity.this, "수정완료!", Toast.LENGTH_SHORT).show();
+                    break;
+            }
+
+        }
 
     }
 
