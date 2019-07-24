@@ -43,9 +43,16 @@ public class PetchingLoungeFragment extends Fragment {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("PetchingLounge");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
 
-//                petchingLoungeList.clear();
+
+
+                for (DataSnapshot childSnapshot : dataSnapshot.getChildren())
+                {
+                    PetchingLounge petchingLounge = childSnapshot.getValue(PetchingLounge.class);
+
+                }
 
 
 

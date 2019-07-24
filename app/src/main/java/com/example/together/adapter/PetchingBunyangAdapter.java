@@ -74,7 +74,7 @@ public class PetchingBunyangAdapter extends RecyclerView.Adapter<PetchingBunyang
 
                 // 디테일 정보 전달....
 
-                intent.putExtra("petId",mPetchingBunyang.get(position).getPetBunyangId());
+                intent.putExtra("petBunyangId",mPetchingBunyang.get(position).getPetBunyangId());
 
 
                 mContext.startActivity(intent);

@@ -56,11 +56,11 @@ public class PetchingBunyangDetailInfo extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        String petId = intent.getStringExtra("petId");
+        String petBunyangId = intent.getStringExtra("petBunyangId");
 
 
 
-        reference = FirebaseDatabase.getInstance().getReference("PetchingBunyang").child(petId);
+        reference = FirebaseDatabase.getInstance().getReference("PetchingBunyang").child(petBunyangId);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -69,6 +69,11 @@ public class PetchingBunyangDetailInfo extends AppCompatActivity {
                 petAge.setText(petchingBunyang.getAge()+"살");
                 petBreed.setText(petchingBunyang.getPetBreed());
                 Picasso.get().load(petchingBunyang.getPetImg()).fit().into(bunyangPetImage);
+
+                if (petchingBunyang.getOwner().equals(firebaseUser.getUid()))
+                {
+                    bunyang_request.setVisibility(View.GONE);
+                }
 
 
 
@@ -101,21 +106,10 @@ public class PetchingBunyangDetailInfo extends AppCompatActivity {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         bunyang_request.setOnClickListener(v -> {
+            FirebaseDatabase.getInstance().getReference().child("Lounge").child("PetchingBunyang").child(petBunyangId).child("Request").child(firebaseUser.getUid()).setValue("true");
 
-            reference = FirebaseDatabase.getInstance().getReference("PetchingBunyang").child(petId).child("request").child(firebaseUser.getUid());
-            reference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-                {
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
-
+            Intent lounge = new Intent(PetchingBunyangDetailInfo.this, PetchingActivity.class);
+            startActivity(lounge);
 
         });
 
