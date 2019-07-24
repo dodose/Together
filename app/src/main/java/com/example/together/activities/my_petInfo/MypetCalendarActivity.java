@@ -85,7 +85,8 @@ public class MypetCalendarActivity extends AppCompatActivity{
     //Day
     String Day = null;
 
-
+//횟수체크용
+int count;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -139,7 +140,10 @@ public class MypetCalendarActivity extends AppCompatActivity{
                 new SaturdayDecorator(),
                 oneDayDecorator);
 
+
+
         setChangeDayMark(petUid);
+
         //////////////// 처음 월 리스트에서 일정정보를다 가져와야하기때문에 정보를 다긁어와야함 처음부터 ////////////////////
 
 
@@ -162,25 +166,32 @@ public class MypetCalendarActivity extends AppCompatActivity{
                         Day = date.getYear() + "-" + Month + "-" + date.getDay();
                     }
                 }
-                Log.e("1",Day+"");
-                Log.e("2",CalMark.get(0).setTime1.substring(0,10)+"");
 
-                selectDay = new ArrayList<>();
+                Log.e("1", Day + "");
 
-                for(int i=0; i<CalMark.size(); i++){
-                    if(Day.trim().equals(CalMark.get(i).setTime1.substring(0,10).trim())){
 
-                        String time1 = CalMark.get(i).setTime1;
-                        String time2 = CalMark.get(i).setTime2;
-                        String type = CalMark.get(i).setType;
-                        String content = CalMark.get(i).setContent;
+                if(CalMark.size() != 0){
 
-                        selectDay.add(new CalendarData(time1,time2,type,content));
+                    Log.e("2", CalMark + "");
+
+                    selectDay = new ArrayList<>();
+
+                    for (int i = 0; i < CalMark.size(); i++) {
+                        if (Day.trim().equals(CalMark.get(i).setTime1.substring(0, 10).trim())) {
+
+                            String time1 = CalMark.get(i).setTime1;
+                            String time2 = CalMark.get(i).setTime2;
+                            String type = CalMark.get(i).setType;
+                            String content = CalMark.get(i).setContent;
+
+                            selectDay.add(new CalendarData(time1, time2, type, content));
+                        }
                     }
+                    resetAdapter();
                 }
 //
                 //reset
-                resetAdapter();
+
 
 
 
@@ -201,7 +212,6 @@ public class MypetCalendarActivity extends AppCompatActivity{
     private class ApiSimulator extends AsyncTask<Void, Void, List<CalendarDay>> {
 
         ArrayList<CalendarData> Time_Result;
-        ArrayList<String> Type;
 
         ApiSimulator(ArrayList<CalendarData> list){
             this.Time_Result = list;
@@ -210,12 +220,8 @@ public class MypetCalendarActivity extends AppCompatActivity{
 
         @Override
         protected List<CalendarDay> doInBackground(@NonNull Void... voids) {
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
 
+            Log.e("timeResult",Time_Result+"");
 
             Calendar calendar = Calendar.getInstance();
             ArrayList<CalendarDay> dates = new ArrayList<>();
@@ -300,13 +306,13 @@ public class MypetCalendarActivity extends AppCompatActivity{
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(resultCode == RESULT_FIRST_USER){
-            switch (requestCode){
+        if(requestCode == RESULT_FIRST_USER){
+            switch (resultCode){
                 // MainActivity 에서 요청할 때 보낸 요청 코드 (3000)
                 case 1:
                     Toast.makeText(this, "작성완료", Toast.LENGTH_SHORT).show();
                     setChangeDayMark(petUid);
-                    resetAdapter();
+
                     break;
             }
         }
@@ -386,27 +392,32 @@ public class MypetCalendarActivity extends AppCompatActivity{
             protected void onPostExecute(JSONObject aVoid) {
                 super.onPostExecute(aVoid);
 
+                Log.e("들어옴",count+"");
+                count++;
                 CalMark = new ArrayList<>();
 
                 try {
+                    CalMark.clear();
                     JSONArray jsonArray = (JSONArray) jobj.get("result");
 
-                    for (int i = 0; i < jsonArray.length(); i++) {
+                    Log.e("jsonarry",jsonArray+"");
+                    if(jsonArray.length() != 0) {
 
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        String time1 = jsonObject.optString("settime1");
-                        String time2 = jsonObject.optString("settime2");
-                        String type = jsonObject.optString("Type");
-                        String content = jsonObject.optString("Content");
+                            for (int i = 0; i < jsonArray.length(); i++) {
 
-                        CalMark.add(new CalendarData(time1, time2, type, content));
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                String time1 = jsonObject.optString("settime1");
+                                String time2 = jsonObject.optString("settime2");
+                                String type = jsonObject.optString("Type");
+                                String content = jsonObject.optString("Content");
+
+                                CalMark.add(new CalendarData(time1, time2, type, content));
+
+                            }
+
+                                new ApiSimulator(CalMark).executeOnExecutor(Executors.newSingleThreadExecutor());
 
                     }
-
-
-
-                    new ApiSimulator(CalMark).executeOnExecutor(Executors.newSingleThreadExecutor());
-
 
                 } catch (JSONException e) {
                     e.printStackTrace();

@@ -42,14 +42,6 @@ public class PetHotelActivity extends AppCompatActivity {
 
     String AddVal;
 
-
-    //지역명 체크를 위한 지역 배열변수
-    String[] AddressList = new String[] {"대구","대전","서울","부산","인천"};
-
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,13 +61,8 @@ public class PetHotelActivity extends AppCompatActivity {
             }
         });
 
-
         date = findViewById(R.id.date);
         location = findViewById(R.id.location);
-
-
-
-
 
         //현재 날짜와 시간을 가져오기위한 Calendar 인스턴스 선언
 

@@ -77,7 +77,6 @@ public class HotelListDataActivity extends AppCompatActivity {
 
         activity_hotel_list_databackbtn = findViewById(R.id.activity_hotel_list_databackbtn);  //뒤로 가기 버튼
 
-
         //뒤로가기ㅣ 테스트로 만들었음
         activity_hotel_list_databackbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,18 +86,12 @@ public class HotelListDataActivity extends AppCompatActivity {
 
             }
         });
-        //뒤로가기ㅣ 테스트로 만들었음-ㅇㅋ
-
-
 
         //recyclerview 선언
-
         mRecycleView = findViewById(R.id.recycler_view);
         mRecycleView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecycleView.setLayoutManager(mLayoutManager);
-
-
 
         //이전값에서 선언한 intent의 Extras 값을 넘겨주고 변수에 저장
         Bundle Ex = getIntent().getExtras();
@@ -148,9 +141,7 @@ public class HotelListDataActivity extends AppCompatActivity {
                     conn.setRequestProperty("Accept", "application/json; utf-8");
                     conn.connect();
 
-
                     //데이터 전달 하는곳
-
                     OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
 
                     wr.write(first_day + "=" + Last_day + "=" + Address);

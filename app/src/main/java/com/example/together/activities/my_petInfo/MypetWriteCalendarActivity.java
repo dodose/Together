@@ -131,8 +131,6 @@ public class MypetWriteCalendarActivity extends AppCompatActivity {
 
 
         //전체 클릭에 반응하도록 리니어에 전체 클릭이벤트를 걸기위한 버튼 선언
-        firstclick = findViewById(R.id.firstclick);
-        lastclick = findViewById(R.id.lastclick);
 
         //이벤트 종류 정하는 버튼
         evnet = findViewById(R.id.event);
@@ -275,7 +273,7 @@ public class MypetWriteCalendarActivity extends AppCompatActivity {
                             if(jobj.getString("result").equals("success")){
                                 Intent resultIntent = new Intent();
                                 resultIntent.putExtra("result","넘어왓니");
-                                setResult(RESULT_FIRST_USER,resultIntent);
+                                setResult(1,resultIntent);
                                 finish();
                             }else{
                                 Toast.makeText(MypetWriteCalendarActivity.this, "작성중 오류 발생했습니다! 다시 시도해 주세요", Toast.LENGTH_SHORT).show();

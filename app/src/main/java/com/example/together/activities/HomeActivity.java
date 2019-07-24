@@ -21,12 +21,19 @@ import com.example.together.fragment.NotificationFragment;
 import com.example.together.fragment.ProfileFragment;
 import com.example.together.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity implements LifecycleObserver {
 
@@ -45,6 +52,7 @@ public class HomeActivity extends AppCompatActivity implements LifecycleObserver
 
 
         super.onCreate(savedInstanceState);
+
         ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
 
         setContentView(R.layout.activity_home);
@@ -73,8 +81,44 @@ public class HomeActivity extends AppCompatActivity implements LifecycleObserver
         }
 
 
+        String token = FirebaseInstanceId.getInstance().getToken();
+        CreateToken(token);
+
 
     }
+
+
+    private void CreateToken(String token){
+
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Tokens").child(firebaseUser.getUid()).child("TokenUid");
+
+
+        Log.e("잇다없다",reference+"");
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        Log.e("getvalue값",dataSnapshot.getValue()+"");
+                        if(dataSnapshot.getValue()==null){
+                            HashMap<String, Object> hashMap = new HashMap<>();
+                            hashMap.put("token",token);
+                            reference.setValue(hashMap);
+                        }else{
+                            HashMap<String, Object> hashMap = new HashMap<>();
+                            hashMap.put("token",token);
+                            reference.updateChildren(hashMap);
+                        }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
 
 
     // LifeCycle을 채크하여 앱 꺼짐 여부를 채크후 온/오프라인 표시
