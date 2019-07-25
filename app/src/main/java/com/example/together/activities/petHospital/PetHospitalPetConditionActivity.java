@@ -9,6 +9,7 @@ import android.widget.CheckBox;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import com.example.together.activities.aircalendar.core.AirCalendarIntent;
+import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -89,14 +91,13 @@ public class PetHospitalPetConditionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PetHospitalPetConditionActivity.this, PetHospitalSelectBar.class);
-                startActivityForResult(intent,1);
+                startActivityForResult(intent,2);
 
             }
 
 
 
         });
-
 
 
         //병원 검색버튼
@@ -113,7 +114,7 @@ public class PetHospitalPetConditionActivity extends AppCompatActivity {
                 Intent intent = new Intent(PetHospitalPetConditionActivity.this, PetHospitalListActivity.class);
                 intent.putExtra("PETCODE", petcode);
                 intent.putExtra("SELECTDAY",date);
-                intent.putStringArrayListExtra("PETCATEGORY", pet_condition);
+                intent.putExtra("PETCATEGORY", select_clinic.getText());
                 startActivity(intent);
 
             }
@@ -156,121 +157,29 @@ public class PetHospitalPetConditionActivity extends AppCompatActivity {
     }
 
 
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
+            switch (resultCode){
 
-            date = data.getStringExtra(AirCalendarDatePickerActivity.RESULT_SELECT_START_DATE);
-//            data.getStringExtra(AirCalendarDatePickerActivity.RESULT_SELECT_END_DATE);
-            if(data != null)
-            {
-                Toast.makeText(this, "Select Date range : " + data.getStringExtra(AirCalendarDatePickerActivity.RESULT_SELECT_START_DATE) + " ~ " + data.getStringExtra(AirCalendarDatePickerActivity.RESULT_SELECT_END_DATE), Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-
-
-    // 채크박스 값 선택여부
-    public void selectItem(View view)
-    {
-        boolean checked = ((CheckBox) view).isChecked();
-            switch (view.getId())
-            {
-                //종합
-                case R.id.dpt_all:
-                    if (checked)
-                    {
-                        pet_condition.add("종합");
-                    }
-                    else
-                    {
-                        pet_condition.remove("종합");
-                    }
+                case RESULT_OK:
+                    Log.e("ㅇㅇ","들어와잇단다");
+                    date = data.getStringExtra(AirCalendarDatePickerActivity.RESULT_SELECT_START_DATE);
+                    date_select.setText(date);
                     break;
-
-                //내과
-                case R.id.dpt_internal:
-                    if (checked)
-                    {
-                        pet_condition.add("내과");
-                    }
-                    else
-                    {
-                        pet_condition.remove("내과");
-                    }
+                case 2:
+                    select_clinic.setText(data.getExtras().getString("result"));
                     break;
-
-                //외과
-                case R.id.dpt_surgery:
-                    if (checked)
-                    {
-                        pet_condition.add("외과");
-                    }
-                    else
-                    {
-                        pet_condition.remove("외과");
-                    }
-                    break;
-                //피부과
-                case R.id.dpt_skin:
-                    if (checked)
-                    {
-                        pet_condition.add("피부과");
-                    }
-                    else
-                    {
-                        pet_condition.remove("피부과");
-                    }
-                    break;
-                //안과
-                case R.id.dpt_eyes:
-                    if (checked)
-                    {
-                        pet_condition.add("안과");
-                    }
-                    else
-                    {
-                        pet_condition.remove("안과");
-                    }
-                    break;
-                //치과
-                case R.id.dpt_dentist:
-                    if (checked)
-                    {
-                        pet_condition.add("치과");
-                    }
-                    else
-                    {
-                        pet_condition.remove("치과");
-                    }
-                    break;
-                //산과
-                case R.id.dpt_birth:
-                    if (checked)
-                    {
-                        pet_condition.add("산과");
-                    }
-                    else
-                    {
-                        pet_condition.remove("산과");
-                    }
-                    break;
-            }
-
-
-            //값들어오는지 채크해보자
-            for (int i=0; i<pet_condition.size(); i++)
-            {
-                Log.d(TAG, "selectItem: 병원 "+pet_condition.get(i));
             }
 
 
 
 
     }
+
 
     public static void myPetcode(String selected_my_pet) {
         petcode = selected_my_pet;

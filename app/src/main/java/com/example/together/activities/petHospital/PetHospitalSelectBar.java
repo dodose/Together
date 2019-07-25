@@ -58,27 +58,55 @@ public class PetHospitalSelectBar extends AppCompatActivity {
 
                 Toast.makeText(PetHospitalSelectBar.this, radio_btn.getText() + "체크", Toast.LENGTH_SHORT).show();
 
+                Intent resultIntent = new Intent();
+
                 switch (checkedId) {
 
                     case R.id.dpt_all:
+
+                        resultIntent.putExtra("result",radio_btn.getText());
+                        setResult(2,resultIntent);
+                        finish();
                         break;
                     case R.id.dpt_internal:
+
+                        resultIntent.putExtra("result",radio_btn.getText());
+                        setResult(2,resultIntent);
+                        finish();
                         break;
 
                     case R.id.dpt_birth:
+                        resultIntent.putExtra("result",radio_btn.getText());
+                        setResult(2,resultIntent);
+                        finish();
                         break;
 
                     case R.id.dpt_dentist:
+                        resultIntent.putExtra("result",radio_btn.getText());
+                        setResult(2,resultIntent);
+                        finish();
                         break;
                     case R.id.dpt_etc:
+                        resultIntent.putExtra("result",radio_btn.getText());
+                        setResult(2,resultIntent);
+                        finish();
                         break;
 
                     case R.id.dpt_skin:
+                        resultIntent.putExtra("result",radio_btn.getText());
+                        setResult(2,resultIntent);
+                        finish();
                         break;
                     case R.id.dpt_eyes:
+                        resultIntent.putExtra("result",radio_btn.getText());
+                        setResult(2,resultIntent);
+                        finish();
                         break;
 
                     case R.id.dpt_surgery:
+                        resultIntent.putExtra("result",radio_btn.getText());
+                        setResult(2,resultIntent);
+                        finish();
                         break;
 
                 }
