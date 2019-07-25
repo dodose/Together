@@ -40,6 +40,7 @@ public class PetchingLoungeFragment extends Fragment {
     RecyclerView recyclerView;
     PetchingLoungeAdapter petchingLoungeAdapter;
     List<User> userList;
+    List<PetchingBunyang> requestPetKey;
     FirebaseUser firebaseUser;
 
 
@@ -47,6 +48,9 @@ public class PetchingLoungeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
+
+        petchingId();
+        Log.d(TAG, "분양키 리스트 목록처음"+requestPetKey);
 
         View view =  inflater.inflate(R.layout.fragment_pet_firends, container, false);
 
@@ -69,8 +73,9 @@ public class PetchingLoungeFragment extends Fragment {
                     String key = childSnapshot.getKey();
 
                     user.setId(key);
-
+                    
                     userList.add(user);
+                    Log.d(TAG, "앙앙: "+userList);
 
                 }
 
@@ -86,6 +91,9 @@ public class PetchingLoungeFragment extends Fragment {
             }
         });
 
+        Log.d(TAG, "한국인: "+userList);
+
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         userList = new ArrayList<>();
@@ -98,5 +106,37 @@ public class PetchingLoungeFragment extends Fragment {
 
 
     }
+
+    public void petchingId()
+    {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Lounge").child("PetchingBunyang");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot childSnapshot : dataSnapshot.getChildren())
+                {
+                    PetchingBunyang petchingBunyang = childSnapshot.getValue(PetchingBunyang.class);
+                    String petIdKey = childSnapshot.getKey();
+                    petchingBunyang.setPetBunyangId(petIdKey);
+
+                    requestPetKey.add(petchingBunyang);
+                    Log.d(TAG, "분양키 리스트 목록"+requestPetKey);
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError)
+            {
+
+            }
+
+        });
+    }
+
+
+
 
 }

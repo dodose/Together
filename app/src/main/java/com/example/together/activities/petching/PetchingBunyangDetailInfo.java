@@ -74,6 +74,7 @@ public class PetchingBunyangDetailInfo extends AppCompatActivity {
 
                 owner = petchingBunyang.getOwner();
 
+
                 if (petchingBunyang.getOwner().equals(firebaseUser.getUid()))
                 {
                     bunyang_request.setVisibility(View.GONE);
@@ -110,7 +111,8 @@ public class PetchingBunyangDetailInfo extends AppCompatActivity {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         bunyang_request.setOnClickListener(v -> {
-            FirebaseDatabase.getInstance().getReference().child("Lounge").child("PetchingBunyang").child(owner).child("Requestor").child(firebaseUser.getUid()).setValue("true");
+
+            FirebaseDatabase.getInstance().getReference().child("Lounge").child("PetchingBunyang").child(petBunyangId).child("Requestor").child(firebaseUser.getUid()).setValue("true");
 
             Intent lounge = new Intent(PetchingBunyangDetailInfo.this, PetchingActivity.class);
             startActivity(lounge);
