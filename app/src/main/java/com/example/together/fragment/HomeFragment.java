@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
@@ -33,7 +34,7 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-    ImageButton nav_top_post, chat_button;
+    ImageView nav_top_post, chat_button;
     SwipeRefreshLayout swipeRefreshLayout;
 
     private RecyclerView recyclerView;

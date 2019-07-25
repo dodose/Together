@@ -65,30 +65,69 @@
         android:id="@+id/date_linear"
         android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/date_select"
-            android:text="선택한 날짜"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/round_background" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <Button
-            android:layout_marginLeft="15dp"
-            android:id="@+id/pet_select_count"
-            android:text="내 펫 이름"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/round_background" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="이름  "
+                android:textColor="@color/colorBlue"
+                android:textSize="20dp"/>
 
-        <Button
-            android:layout_marginLeft="15dp"
-            android:id="@+id/etp_select"
-            android:text="선택업체 이름"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/round_background" />
+            <Button
+                android:id="@+id/pet_select_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_background"
+                android:text="내 펫 이름" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="날짜  "
+                android:textColor="@color/colorBlue"
+                android:textSize="20dp"/>
+
+            <Button
+                android:id="@+id/date_select"
+                android:text="선택한 날짜"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_background" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="병원 이름  "
+                android:textColor="@color/colorBlue"
+                android:textSize="20dp"/>
+
+            <Button
+                android:id="@+id/etp_select"
+                android:text="선택업체 이름"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_background" />
+        </LinearLayout>
+
 
     </LinearLayout>
 

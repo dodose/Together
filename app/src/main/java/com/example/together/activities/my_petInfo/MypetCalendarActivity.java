@@ -33,9 +33,9 @@ import com.example.together.adapter.CalendarSetAdapter;
 import com.example.together.model.CalendarData;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
-
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;

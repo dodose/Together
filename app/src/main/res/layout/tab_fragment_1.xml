@@ -6,20 +6,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
-    <Button
-        android:layout_below="@+id/lvCategory"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn"
-        android:layout_alignParentBottom="true"
-        android:text="Send Data To Next Activity" />
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_weight="0.6">
 
         <ExpandableListView
             android:id="@+id/lvCategory"
@@ -28,8 +19,18 @@
             android:childDivider="@color/colorBlack"
             android:divider="@null"
             android:dividerHeight="0dp" />
-
-
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="8">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorBlue"
+            android:id="@+id/btn"
+            android:layout_alignParentBottom="true"
+            android:text="선택하기"/>
+    </LinearLayout>
 </LinearLayout>

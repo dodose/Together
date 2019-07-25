@@ -89,8 +89,8 @@ public class GoodbyepetOrders extends AppCompatActivity {
                 stat.setText("확인 완료");
             }
             etpname.setText(etp_nm);
-            day1.setText(or_dt.substring(5));
-            day2.setText(or_dt2.substring(5));
+//            day1.setText(or_dt.substring(5));
+//            day2.setText(or_dt2.substring(5));
 
             price.setText("결제 가격 : " + t_sum + "원");
 

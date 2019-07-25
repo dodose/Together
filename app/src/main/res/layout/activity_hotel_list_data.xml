@@ -58,7 +58,7 @@
             <TextView
                 android:background="@color/colorBlue"
                 android:id="@+id/textView"
-                android:textColor="#000"
+                android:textColor="#FFF"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -87,9 +87,10 @@
 
                 <ImageButton
                     android:id="@+id/filter_search"
-                    android:layout_width="205dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:adjustViewBounds="true"
+                    android:layout_weight="0.5"
                     android:padding="0sp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/hotel_filterbutton" />
@@ -101,10 +102,11 @@
 
                 <ImageButton
                     android:id="@+id/open_map"
-                    android:layout_width="205dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:adjustViewBounds="true"
                     android:padding="0sp"
+                    android:layout_weight="0.5"
                     android:scaleType="fitCenter"
                     android:src="@drawable/open_map2" />
             </LinearLayout>

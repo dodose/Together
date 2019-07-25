@@ -36,9 +36,11 @@ public class PetHospitalPetConditionActivity extends AppCompatActivity {
     public final static int REQUEST_CODE = 1;
 
     private static final String TAG = "PetHospitalPetCondition";
-    private CheckBox dpt_all, dpt_internal, dpt_surgery, dpt_skin, dpt_eyes, dpt_dentist, dpt_birth;
 
     Button petHospital_search_btn, date_select;
+
+    //이게 새로운 거
+    Button select_clinic;
 
     private String selectDate;
 
@@ -63,21 +65,6 @@ public class PetHospitalPetConditionActivity extends AppCompatActivity {
 
         //증상 채크박스선택
 
-        //종합
-        dpt_all = findViewById(R.id.dpt_all);
-        //내과
-        dpt_internal = findViewById(R.id.dpt_internal);
-        //외과
-        dpt_surgery = findViewById(R.id.dpt_surgery);
-        //피부과
-        dpt_skin = findViewById(R.id.dpt_skin);
-        //안과
-        dpt_eyes = findViewById(R.id.dpt_eyes);
-        //치과
-        dpt_dentist = findViewById(R.id.dpt_dentist);
-        //산과
-        dpt_birth = findViewById(R.id.dpt_birth);
-
 
         // 달력 선택
         date_select = findViewById(R.id.date_select);
@@ -92,6 +79,22 @@ public class PetHospitalPetConditionActivity extends AppCompatActivity {
                 intent.putExtra("pet_hospital",-1);
                 startActivityForResult(intent, REQUEST_CODE);
             }
+        });
+
+        //진료과목 선택 버튼
+        select_clinic = findViewById(R.id.select_clinic);
+
+        //퉭
+        select_clinic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PetHospitalPetConditionActivity.this, PetHospitalSelectBar.class);
+                startActivityForResult(intent,1);
+
+            }
+
+
+
         });
 
 
