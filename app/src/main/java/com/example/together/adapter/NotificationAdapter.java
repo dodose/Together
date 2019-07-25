@@ -114,7 +114,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(DatabaseError databaseError)
+            {
 
             }
         });

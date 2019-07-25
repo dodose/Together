@@ -28,6 +28,7 @@ public class PetchingBunyangDetailInfo extends AppCompatActivity {
     private TextView petName, petBreed, petAge, petBunyangIntro, specail_note, petBreedCertificatin;
     private ImageView bunyangPetImage, gender_m, gender_w;
     private Button bunyang_request;
+    public String owner;
 
     DatabaseReference reference;
     FirebaseUser firebaseUser;
@@ -61,7 +62,8 @@ public class PetchingBunyangDetailInfo extends AppCompatActivity {
 
 
         reference = FirebaseDatabase.getInstance().getReference("PetchingBunyang").child(petBunyangId);
-        reference.addValueEventListener(new ValueEventListener() {
+        reference.addValueEventListener(new ValueEventListener()
+        {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 PetchingBunyang petchingBunyang = dataSnapshot.getValue(PetchingBunyang.class);
@@ -69,6 +71,8 @@ public class PetchingBunyangDetailInfo extends AppCompatActivity {
                 petAge.setText(petchingBunyang.getAge()+"살");
                 petBreed.setText(petchingBunyang.getPetBreed());
                 Picasso.get().load(petchingBunyang.getPetImg()).fit().into(bunyangPetImage);
+
+                owner = petchingBunyang.getOwner();
 
                 if (petchingBunyang.getOwner().equals(firebaseUser.getUid()))
                 {
@@ -106,7 +110,7 @@ public class PetchingBunyangDetailInfo extends AppCompatActivity {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         bunyang_request.setOnClickListener(v -> {
-            FirebaseDatabase.getInstance().getReference().child("Lounge").child("PetchingBunyang").child(petBunyangId).child("Request").child(firebaseUser.getUid()).setValue("true");
+            FirebaseDatabase.getInstance().getReference().child("Lounge").child("PetchingBunyang").child(owner).child("Requestor").child(firebaseUser.getUid()).setValue("true");
 
             Intent lounge = new Intent(PetchingBunyangDetailInfo.this, PetchingActivity.class);
             startActivity(lounge);
