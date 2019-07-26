@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.together.R;
 import com.example.together.activities.petching.PetchingBunyangDetailInfo;
+import com.example.together.model.Lounge;
 import com.example.together.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,6 +25,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class PetchingLoungeAdapter extends RecyclerView.Adapter<PetchingLoungeAdapter.MyViewHolder> {
@@ -37,7 +42,8 @@ public class PetchingLoungeAdapter extends RecyclerView.Adapter<PetchingLoungeAd
     Context mContext;
     List<User> mUser;
 
-    public PetchingLoungeAdapter(Context mContext, List<User> mUser) {
+    public PetchingLoungeAdapter(Context mContext, List<User> mUser)
+    {
         this.mContext = mContext;
         this.mUser = mUser;
     }
@@ -59,6 +65,10 @@ public class PetchingLoungeAdapter extends RecyclerView.Adapter<PetchingLoungeAd
 
         final User user = mUser.get(position);
         user.getId();
+
+        Log.d(TAG, "빼오냥"+user.getId());
+
+        getRequestorUserInfo(viewHolder.img_requestor, viewHolder.requestor_name);
 
 
 
@@ -93,6 +103,7 @@ public class PetchingLoungeAdapter extends RecyclerView.Adapter<PetchingLoungeAd
 
         public Button allow, refuse;
         public ImageView img_requestor;
+        public TextView requestor_name;
 
         public MyViewHolder(View itemView)
         {
@@ -103,6 +114,7 @@ public class PetchingLoungeAdapter extends RecyclerView.Adapter<PetchingLoungeAd
             allow = itemView.findViewById(R.id.allow);
             refuse = itemView.findViewById(R.id.refuse);
 
+            requestor_name = itemView.findViewById(R.id.requestor_name);
 
         }
     }
@@ -110,26 +122,52 @@ public class PetchingLoungeAdapter extends RecyclerView.Adapter<PetchingLoungeAd
 
 
     // 펫 정보 이름, 나이, 견종, 성별,
-    private void getPetInfo(String petbunyangid, final ImageView imageView, final TextView petName, final TextView petAge, final TextView petBreed, final ImageView gender_m, final ImageView gender_w)
+    private void getRequestorUserInfo(final ImageView img_requestor, final TextView requestor_name)
     {
 
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("PetchingBunyang").child(petbunyangid);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("PetchingBunyang").child(firebaseUser.getUid()).child("Requestor");
+        DatabaseReference userReference = FirebaseDatabase.getInstance().getReference("Users");
+
         reference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot datas: dataSnapshot.getChildren()){
+                    for(DataSnapshot ds : datas.getChildren()){
+                        String id = ds.getKey();
+
+                        userReference.child(id).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                User user = dataSnapshot.getValue(User.class);
+                                requestor_name.setText(user.getFullname());
+
+                                Log.d(TAG, "이름들 "+user.getFullname());
 
 
+                                Picasso.get().load(user.getImageurl()).fit().into(img_requestor);
+                                Log.d(TAG, "이미지들: "+user.getImageurl());
+
+
+                            }
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                throw databaseError.toException();
+                            }
+                        });
+                    }
+                }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                throw databaseError.toException();
             }
         });
 
     }
+
+
 
 }

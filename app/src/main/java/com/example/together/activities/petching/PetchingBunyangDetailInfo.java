@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -110,9 +111,18 @@ public class PetchingBunyangDetailInfo extends AppCompatActivity {
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        bunyang_request.setOnClickListener(v -> {
+        bunyang_request.setOnClickListener(v ->
+        {
 
-            FirebaseDatabase.getInstance().getReference().child("Lounge").child("PetchingBunyang").child(petBunyangId).child("Requestor").child(firebaseUser.getUid()).setValue("true");
+            Log.d("주인", "주인은: "+owner);
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Lounge").child("PetchingBunyang").child(owner).child("Requestor");
+
+            HashMap<String, Object> hashMap = new HashMap<>();
+            hashMap.put("petBunyangId", petBunyangId);
+            hashMap.put(firebaseUser.getUid(), true);
+
+            reference.setValue(hashMap);
+
 
             Intent lounge = new Intent(PetchingBunyangDetailInfo.this, PetchingActivity.class);
             startActivity(lounge);
