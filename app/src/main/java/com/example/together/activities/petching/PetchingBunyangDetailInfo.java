@@ -119,7 +119,7 @@ public class PetchingBunyangDetailInfo extends AppCompatActivity {
 
             HashMap<String, Object> hashMap = new HashMap<>();
             hashMap.put("petBunyangId", petBunyangId);
-            hashMap.put(firebaseUser.getUid(), true);
+            hashMap.put("requestorId",firebaseUser.getUid());
 
             reference.setValue(hashMap);
 
