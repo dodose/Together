@@ -44,7 +44,6 @@ public class PetBunyangFragment extends Fragment  {
 
         View view =  inflater.inflate(R.layout.fragment_pet_bunyang, container, false);
 
-
         recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
 

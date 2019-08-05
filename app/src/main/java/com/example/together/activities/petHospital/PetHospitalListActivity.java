@@ -85,7 +85,7 @@ public class PetHospitalListActivity extends AppCompatActivity {
         Bundle Bx = getIntent().getExtras();
         final String petcode = Bx.getString("PETCODE");
         final String day = Bx.getString("SELECTDAY");
-        final ArrayList<String> petcategory = Bx.getStringArrayList("PETCATEGORY");
+        final String petcategory = Bx.getString("PETCATEGORY");
 
         //petcode를 통해 uid값을 가져옴
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -133,12 +133,14 @@ public class PetHospitalListActivity extends AppCompatActivity {
 
         final JSONObject t_map = new JSONObject();
         JSONArray tjarry = new JSONArray();
+        ArrayList<String> petcate = new ArrayList<>();
+        petcate.add(petcategory);
 
-        for (int i = 0; i < petcategory.size(); i++) {
+        for (int i = 0; i < petcate.size(); i++) {
             try {
                 JSONObject map = new JSONObject();
                 map.put("Day", day);
-                map.put("category", petcategory.get(i));
+                map.put("category", petcate.get(i));
                 tjarry.put(map);
             } catch (JSONException e) {
                 e.printStackTrace();

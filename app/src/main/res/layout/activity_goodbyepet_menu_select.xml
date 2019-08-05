@@ -39,7 +39,7 @@ tools:context=".activities.goodbyePet.GoodbyepetMenuSelectActivity">
         android:id="@+id/tabStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="리뷰" />
+        android:text="'리뷰" />
 
     <com.google.android.material.tabs.TabItem
         android:id="@+id/tabCalls"

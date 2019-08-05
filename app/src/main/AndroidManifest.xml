@@ -28,6 +28,8 @@
         tools:replace="android:appComponentFactory">
         <activity android:name=".activities.petching.PetchingRequestorInfoActivity"></activity>
         <activity android:name=".activities.my_petInfo.MypetEditInfoActivity" />
+        <activity android:name=".activities.petHospital.PetHospitalSelectBar"></activity>
+
         <activity
             android:name=".activities.my_petInfo.MypetWriteCalendarActivity"
             android:theme="@style/Theme.MyDialog" />
@@ -118,6 +120,8 @@
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
+
+
     </application>
 
 </manifest>

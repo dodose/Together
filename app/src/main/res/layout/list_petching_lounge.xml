@@ -4,7 +4,7 @@
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
     android:layout_width="120dp"
-    android:layout_height="190dp"
+    android:layout_height="220dp"
     xmlns:cardview="http://schemas.android.com/apk/res-auto"
     android:layout_margin="5dp"
     cardview:cardCornerRadius="4dp">
@@ -15,6 +15,15 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/requestor_name"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:text="TEST"/>
+
 
 
         <ImageView

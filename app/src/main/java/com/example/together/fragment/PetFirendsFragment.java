@@ -66,6 +66,7 @@ public class PetFirendsFragment extends Fragment {
                     // as per Franks comment.
                     petchingFriend.setPetFriendId(key);
 
+
                     petFriendsList.add(petchingFriend);
                     Log.d(TAG, "리스트키: "+petFriendsList);
 
@@ -73,6 +74,7 @@ public class PetFirendsFragment extends Fragment {
 
                 }
 
+                Log.d(TAG, "우산 "+petFriendsList);
 
                 Collections.reverse(petFriendsList);
                 petchingFriendsAdapter.notifyDataSetChanged();
@@ -84,6 +86,8 @@ public class PetFirendsFragment extends Fragment {
 
             }
         });
+
+
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);

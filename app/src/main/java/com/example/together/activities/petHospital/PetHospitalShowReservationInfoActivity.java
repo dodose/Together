@@ -1,8 +1,11 @@
 package com.example.together.activities.petHospital;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.together.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,6 +32,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class PetHospitalShowReservationInfoActivity extends AppCompatActivity {
 
     JSONObject SendObj = new JSONObject();
+    Button close;
 
     private String strUrl;
     private URL Url;
@@ -46,6 +50,8 @@ public class PetHospitalShowReservationInfoActivity extends AppCompatActivity {
 
         fuser = FirebaseAuth.getInstance().getCurrentUser();
 
+        close = findViewById(R.id.close);
+
         Bundle Bx = getIntent().getExtras();
 
         ArrayList<String> canser = Bx.getStringArrayList("canser");
@@ -59,6 +65,16 @@ public class PetHospitalShowReservationInfoActivity extends AppCompatActivity {
             edit = Bx.getString("edit");
 
         }
+
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PetHospitalShowReservationInfoActivity.this, PetHospitalDetailInfoActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+            }
+        });
+
 
         fuser = FirebaseAuth.getInstance().getCurrentUser();
 

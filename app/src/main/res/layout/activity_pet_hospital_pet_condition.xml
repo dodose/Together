@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FCF7F7"
     tools:context="com.example.together.activities.petHospital.PetHospitalPetConditionActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -40,156 +41,211 @@
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="18sp"
                     android:textStyle="bold" />
-
-
             </RelativeLayout>
-
         </androidx.appcompat.widget.Toolbar>
-
     </com.google.android.material.appbar.AppBarLayout>
-    <TextView
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="24dp"
-        android:textStyle="bold"
-        android:text="진료받을 펫 선택"/>
+    //여기까지 툴바
 
+
+
+
+//큰 레이아웃1
     <LinearLayout
-        android:background="#f2f2f2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
         android:orientation="vertical">
 
-        <androidx.recyclerview.widget.RecyclerView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/recyclerview_dogs"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:padding="3dp"
+                android:layout_weight="0.1"
+                android:src="@drawable/ic_paw"/>
 
-        </androidx.recyclerview.widget.RecyclerView>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.9"
+                android:layout_height="match_parent"
+                android:text="진료받을 펫 선택"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="24dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/recyclerview_dogs"
+                android:orientation="horizontal">
+            </androidx.recyclerview.widget.RecyclerView>
 
 
     </LinearLayout>
 
+
+    //1
+    //큰 레이아웃2
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="3.5"
+        android:orientation="vertical">
 
-
-    <TextView
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="24dp"
-        android:textStyle="bold"
-        android:text="진료과"/>
-
-        <View
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:layout_marginTop="4dp"
-            android:background="@android:color/darker_gray"/>
+            android:layout_height="0dp"
+            android:layout_weight="4">
+
+            //진료과 아이콘이랑 텍스트
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!--<ImageView-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_weight="0.1"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_marginBottom="5dp"-->
+                    <!--android:src="@drawable/ic_medical_kit"/>-->
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.9"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="24dp"
+                    android:textStyle="bold"
+                    android:text="진료과"/>
 
 
-    <CheckBox
-        android:id="@+id/dpt_all"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/dpt_all"
-        android:onClick="selectItem"/>
+            </LinearLayout>
+            //여기까지가 진료과 아이콘이랑 텍스트
 
-    <CheckBox
-        android:id="@+id/dpt_internal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/dpt_internal"
-        android:onClick="selectItem"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:layout_weight="2">
 
-    <CheckBox
-        android:id="@+id/dpt_surgery"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/dpt_surgery"
-        android:onClick="selectItem"/>
 
-    <CheckBox
-        android:id="@+id/dpt_skin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/dpt_skin"
-        android:onClick="selectItem"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.07"
+                    android:orientation="horizontal">
 
-    <CheckBox
-        android:id="@+id/dpt_eyes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/dpt_eyes"
-        android:onClick="selectItem"/>
 
-    <CheckBox
-        android:id="@+id/dpt_dentist"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/dpt_dentist"
-        android:onClick="selectItem"/>
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.05"
+                        android:paddingTop="20dp"
+                        android:background="@drawable/ic_medical_kit" />
 
-    <CheckBox
-        android:id="@+id/dpt_birth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/dpt_birth"
-        android:onClick="selectItem"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.3"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="15dp"
+                        android:text="진료과목 선택"
+                        android:textSize="24dp"
+                        android:textColor="#000"/>
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/select_clinic"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.08"
+                    android:text="진료과목 선택"
+                    android:background="@drawable/clinic_btn_style"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:layout_weight="3">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.07"
+                    android:orientation="horizontal">
+
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.05"
+                        android:paddingTop="20dp"
+                        android:background="@drawable/ic_calendar" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_weight="0.3"
+                        android:text="진료날짜 선택"
+                        android:textColor="#000"
+                        android:textSize="24dp" />
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/date_select"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.08"
+                    android:text="진료날짜 선택"
+                    android:background="@drawable/clinic_btn_style"
+                    />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:layout_weight="1">
+
+            <!--<Button-->
+                <!--android:id="@+id/date_select"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:background="@drawable/date_select2"/>-->
+            <Button
+                android:layout_marginTop="20dp"
+                android:id="@+id/petHospital_search_btn"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:text="검색"
+                android:textSize="30dp"
+                android:textColor="#FFF"
+                android:layout_height="match_parent"
+                android:background="@drawable/button_radius2"/>
+
+        </LinearLayout>
 
     </LinearLayout>
-
-
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:layout_marginTop="4dp"
-        android:background="@android:color/darker_gray"/>
-
-    <Button
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="5dp"
-        android:id="@+id/date_select"
-        android:text="진료날짜 선택"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/round_background" />
-
-
-    <LinearLayout
-        android:layout_marginLeft="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center">
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center">
-
-        <Button
-            android:id="@+id/petHospital_search_btn"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="검색" />
-
-    </LinearLayout>
-
-
-
 
 </LinearLayout>
