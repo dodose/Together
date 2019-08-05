@@ -26,15 +26,22 @@
         android:orientation="vertical"
         android:layout_margin="15dp"
         android:background="@drawable/background_radius_borderblack">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.85">
-
+            android:layout_weight="0.85"
+            android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="text님의 예약현황"
+                android:text="user"
+                android:textSize="30dp"
+                android:layout_marginLeft="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="님의 예약현황"
                 android:layout_marginLeft="10dp"
                 android:textSize="30dp"/>
         </LinearLayout>
@@ -140,7 +147,7 @@
                     android:layout_weight="0.5"
                     android:padding="10dp"
                     android:layout_marginLeft="10dp"
-                    android:text="상태표시"
+                    android:text="업체이름"
                     android:textSize="13dp"/>
 
                 <TextView
@@ -198,7 +205,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_weight="1.9"
+                            android:layout_weight="2.5"
                             android:orientation="horizontal">
 
                             <Button
@@ -206,14 +213,16 @@
                                 android:layout_height="match_parent"
                                 android:layout_margin="12dp"
                                 android:text="닫기"
-                                android:layout_weight="0.5"/>
+                                android:layout_weight="0.5"
+                                android:background="#9CDFFF"/>
 
                             <Button
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_margin="12dp"
                                 android:text="MY예약"
-                                android:layout_weight="0.5"/>
+                                android:layout_weight="0.5"
+                                android:background="#9CDFFF"/>
 
                         </LinearLayout>
                     </LinearLayout>
