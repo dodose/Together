@@ -123,13 +123,14 @@ public class MessageActivity extends AppCompatActivity {
             String msg = text_send.getText().toString();
             if (!msg.equals("")){
                 sendMessage(fuser.getUid(), userid, msg);
+                sendpushAlert(userid,username.getText().toString(),text_send.getText().toString());
             }else {
                 Toast.makeText(MessageActivity.this, "내용을 입력해주세요", Toast.LENGTH_SHORT).show();
             }
             text_send.setText("");
 
             //푸쉬알림
-            sendpushAlert(userid);
+
 
 
         });
@@ -163,7 +164,7 @@ public class MessageActivity extends AppCompatActivity {
         seenMessage(userid);
     }
 
-    private void sendpushAlert(String userid) {
+    private void sendpushAlert(String userid,String userNmae,String sendText) {
 
         reference = FirebaseDatabase.getInstance().getReference("Tokens").child(userid).child("TokenUid");
         reference.addValueEventListener(new ValueEventListener() {
@@ -196,7 +197,7 @@ public class MessageActivity extends AppCompatActivity {
                             conn.setDoOutput(true);       // 쓰기모드 지정
 
 
-                            String input = "{\"notification\" : {\"title\" : \"[Together Talk] \", \"body\" : \"새로운 메세지가 왔습니다..\"}, \"to\":\""+tokenKey.get("token").toString()+"\"}";
+                            String input = "{\"notification\" : {\"title\" : \""+userNmae+" \", \"body\" : \""+sendText+"\"}, \"to\":\""+tokenKey.get("token").toString()+"\"}";
 
                             OutputStream os = conn.getOutputStream();
 
