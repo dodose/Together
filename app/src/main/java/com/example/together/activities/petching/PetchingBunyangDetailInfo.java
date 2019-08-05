@@ -115,11 +115,10 @@ public class PetchingBunyangDetailInfo extends AppCompatActivity {
         {
 
             Log.d("주인", "주인은: "+owner);
-            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Lounge").child("PetchingBunyang").child(owner).child("Requestor");
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Lounge").child("PetchingBunyang").child(owner).child("PetId").child(petBunyangId).child("Requestor");
 
             HashMap<String, Object> hashMap = new HashMap<>();
-            hashMap.put("petBunyangId", petBunyangId);
-            hashMap.put("requestorId",firebaseUser.getUid());
+            hashMap.put(firebaseUser.getUid(),true);
 
             reference.setValue(hashMap);
 

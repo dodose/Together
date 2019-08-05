@@ -108,4 +108,6 @@ public class User {
     public void setBirth_dt(String birth_dt) {
         this.birth_dt = birth_dt;
     }
+
+
 }

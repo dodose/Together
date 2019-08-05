@@ -141,16 +141,11 @@ public class PetchingLoungeAdapter extends RecyclerView.Adapter<PetchingLoungeAd
                         userReference.child(id).addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
-                                User user = dataSnapshot.getValue(User.class);
-                                requestor_name.setText(user.getFullname());
 
-                                Log.d(TAG, "이름들 "+user.getFullname());
-
-
-                                Picasso.get().load(user.getImageurl()).fit().into(img_requestor);
-                                Log.d(TAG, "이미지들: "+user.getImageurl());
-
-
+                                String fullName = dataSnapshot.child("fullname").getValue(String.class);
+                                Log.d(TAG, "나마에: "+fullName);
+                                String imageUrl = dataSnapshot.child("imageUrl").getValue(String.class);
+                                Log.d(TAG, "이메지: "+imageUrl);
                             }
                             @Override
                             public void onCancelled(@NonNull DatabaseError databaseError) {
