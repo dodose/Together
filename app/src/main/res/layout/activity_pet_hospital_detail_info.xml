@@ -49,10 +49,18 @@
         android:layout_width="match_parent"
         android:layout_height="240dp">
 
+        <FrameLayout
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="250dp">
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/petHospitalImage"/>
+
+        </FrameLayout>
+
 
     </LinearLayout>
 

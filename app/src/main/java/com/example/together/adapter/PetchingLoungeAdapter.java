@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.together.R;
 import com.example.together.activities.petching.PetchingBunyangDetailInfo;
+import com.example.together.activities.petching.PetchingLoungeDetailInfoActivity;
 import com.example.together.model.Lounge;
 import com.example.together.model.User;
 import com.google.firebase.auth.FirebaseAuth;
@@ -68,7 +69,7 @@ public class PetchingLoungeAdapter extends RecyclerView.Adapter<PetchingLoungeAd
 
         Log.d(TAG, "빼오냥"+user.getId());
 
-        getRequestorUserInfo(viewHolder.img_requestor, viewHolder.requestor_name);
+        getRequestorUserInfo(mUser.get(position).getId(), viewHolder.img_requestor , viewHolder.requestor_name);
 
 
 
@@ -77,12 +78,14 @@ public class PetchingLoungeAdapter extends RecyclerView.Adapter<PetchingLoungeAd
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(v.getContext(), PetchingBunyangDetailInfo.class);
+                Intent intent = new Intent(v.getContext(), PetchingLoungeDetailInfoActivity.class);
 
-               // intent.putExtra("petBunyangId",mUser.get(position).getPetBunyangId());
+                intent.putExtra("requester_name",mUser.get(position).getFullname());
+                intent.putExtra("requester_img", mUser.get(position).getImageurl());
+                intent.putExtra("requester_intro", mUser.get(position).getBio());
+                // intent.putExtra("requester_pet_id",mUser.get(position).getUid)
 
                 mContext.startActivity(intent);
-
 
             }
         });
@@ -122,42 +125,26 @@ public class PetchingLoungeAdapter extends RecyclerView.Adapter<PetchingLoungeAd
 
 
     // 펫 정보 이름, 나이, 견종, 성별,
-    private void getRequestorUserInfo(final ImageView img_requestor, final TextView requestor_name)
+    private void getRequestorUserInfo(String userid, final ImageView img_requestor, final TextView requestor_name)
     {
-
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("PetchingBunyang").child(firebaseUser.getUid()).child("Requestor");
-        DatabaseReference userReference = FirebaseDatabase.getInstance().getReference("Users");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot datas: dataSnapshot.getChildren()){
-                    for(DataSnapshot ds : datas.getChildren()){
-                        String id = ds.getKey();
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue(User.class);
 
-                        userReference.child(id).addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
+                Glide.with(mContext).load(user.getImageurl()).into(img_requestor);
 
-                                String fullName = dataSnapshot.child("fullname").getValue(String.class);
-                                Log.d(TAG, "나마에: "+fullName);
-                                String imageUrl = dataSnapshot.child("imageUrl").getValue(String.class);
-                                Log.d(TAG, "이메지: "+imageUrl);
-                            }
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-                                throw databaseError.toException();
-                            }
-                        });
-                    }
-                }
+                requestor_name.setText(user.getUsername());
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                throw databaseError.toException();
+
             }
         });
 

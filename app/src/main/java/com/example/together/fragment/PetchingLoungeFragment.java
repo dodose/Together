@@ -1,6 +1,7 @@
 package com.example.together.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,16 +13,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.together.R;
-import com.example.together.adapter.PetchingBunyangAdapter;
-import com.example.together.adapter.PetchingFriendsAdapter;
 import com.example.together.adapter.PetchingLoungeAdapter;
-import com.example.together.model.Lounge;
-import com.example.together.model.PetchingBunyang;
-import com.example.together.model.PetchingFriend;
 import com.example.together.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,7 +24,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -45,6 +38,8 @@ public class PetchingLoungeFragment extends Fragment {
     PetchingLoungeAdapter petchingLoungeAdapter;
     List<User> userList;
     FirebaseUser firebaseUser;
+    List<String> idList = new ArrayList<>();
+    public String petKey;
 
 
 
@@ -59,66 +54,33 @@ public class PetchingLoungeFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
 
 
-//        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-//        Log.d(TAG, "주인"+firebaseUser.getUid());
-//
-//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Lounge").child("PetchingBunyang").child(firebaseUser.getUid()).child(????).child("Requestor");
-//        reference.addValueEventListener(new ValueEventListener() {
-//
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                for (DataSnapshot childSnapshot : dataSnapshot.getChildren())
-//                {
-//                    User user = childSnapshot.getValue(User.class);
-//                    String key = childSnapshot.getKey();
-//
-//                    user.setId(key);
-//
-//                    userList.add(user);
-//
-//                }
-//
-//                Collections.reverse(userList);
-//                petchingLoungeAdapter.notifyDataSetChanged();
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-
-
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Lounge").child("PetchingBunyang").child(firebaseUser.getUid()).child("PetId");
-        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("PetchingBunyang");
+
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot datas : dataSnapshot.getChildren())
-                    for (DataSnapshot ds : datas.getChildren())
+
+                    for (DataSnapshot ds : dataSnapshot.getChildren())
                     {
                         String id = ds.getKey();
-                        Log.d(TAG, "안재욱: "+id);
+                        petKey = id;
+                        DatasetPetkey(id);
+                        Log.d(TAG, "안재욱: "+id+"도도새"+petKey);
+                        DatabaseReference reference1 =
+                                FirebaseDatabase.getInstance().getReference("Lounge").child("PetchingBunyang").child(firebaseUser.getUid()).child("PetId").child(id).child("Requestor");
 
-                        reference1.child(id).child("Requestor").addValueEventListener(new ValueEventListener() {
+                        reference1.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren())
+                                idList.clear();
+                                for (DataSnapshot snapshot : dataSnapshot.getChildren())
                                 {
-                                    Log.d(TAG, "키리스트: " + dataSnapshot1);
-                                    User user = dataSnapshot1.getValue(User.class);
-                                    String key = dataSnapshot1.getKey();
+                                    idList.add(snapshot.getKey());
 
-                                    user.setId(key);
-
-                                    userList.add(user);
                                 }
-
-                                    Collections.reverse(userList);
-                                    petchingLoungeAdapter.notifyDataSetChanged();
+                                showUsers();
 
                             }
 
@@ -127,6 +89,7 @@ public class PetchingLoungeFragment extends Fragment {
 
                             }
                         });
+
                     }
             }
 
@@ -135,7 +98,6 @@ public class PetchingLoungeFragment extends Fragment {
                 Log.d(TAG, "펫키에러");
             }
         });
-
 
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
@@ -148,51 +110,46 @@ public class PetchingLoungeFragment extends Fragment {
 
         return view;
 
+    }
 
+    private void DatasetPetkey(String id) {
+        Log.e("들어오나",id);
+        this.petKey = id;
+    }
+
+
+    private void showUsers(){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                userList.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    User user = snapshot.getValue(User.class);
+                    for (String id : idList){
+                        if (user.getId().equals(id)){
+                            userList.add(user);
+                        }
+                    }
+                }
+                Collections.reverse(userList);
+                petchingLoungeAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
 
 
-//    public void getPetKeyWhatChosen()
-//    {
-//        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Lounge").child("PetchingBunyang").child(firebaseUser.getUid()).child("PetId");
-//        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("PetchingBunyang");
-//
-//        reference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                for (DataSnapshot datas : dataSnapshot.getChildren())
-//                {
-//                    for (DataSnapshot ds : datas.getChildren())
-//                    {
-//                        String id = ds.getKey();
-//                        Log.d(TAG, "안재욱: "+id);
-//
-//                        reference1.child(id).child("Requestor").addValueEventListener(new ValueEventListener() {
-//                            @Override
-//                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                                for (DataSnapshot dataSnapshot1 : snapshot.getChildren())
-//                                    Log.d(TAG, "키리스트: "+ dataSnapshot1);
-//                            }
-//
-//                            @Override
-//                            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                            }
-//                        });
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//                Log.d(TAG, "펫키에러");
-//            }
-//        });
-//
-//
-//    }
+    //선택된 펫키를 보냄..
+    public String petKey() {
+        return petKey;
+    }
+
 
 
 }

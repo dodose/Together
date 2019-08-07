@@ -3,6 +3,7 @@ package com.example.together.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,6 +29,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.HashMap;
 
@@ -113,6 +115,8 @@ public class LoginActivity extends AppCompatActivity {
                                     }
 
                                     if(task.isSuccessful()){
+                                        String token = FirebaseInstanceId.getInstance().getToken();
+                                        CreateToken(token);
                                         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users")
                                                 .child(auth.getCurrentUser().getUid());
 
@@ -121,6 +125,7 @@ public class LoginActivity extends AppCompatActivity {
                                             public void onDataChange(DataSnapshot dataSnapshot) {
                                                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
                                                 startActivity(intent);
                                                 finish();
                                             }
@@ -183,6 +188,37 @@ public class LoginActivity extends AppCompatActivity {
 
         Toast.makeText(getApplicationContext(),text,Toast.LENGTH_LONG).show();
 
+    }
+
+    private void CreateToken(String token){
+
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Tokens").child(firebaseUser.getUid()).child("TokenUid");
+
+
+        Log.e("잇다없다",reference+"");
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Log.e("getvalue값",dataSnapshot.getValue()+"");
+                if(dataSnapshot.getValue()==null){
+                    HashMap<String, Object> hashMap = new HashMap<>();
+                    hashMap.put("token",token);
+                    reference.setValue(hashMap);
+                }else{
+                    HashMap<String, Object> hashMap = new HashMap<>();
+                    hashMap.put("token",token);
+                    reference.updateChildren(hashMap);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
 

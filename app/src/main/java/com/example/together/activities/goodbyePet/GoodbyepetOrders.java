@@ -22,8 +22,6 @@ public class GoodbyepetOrders extends AppCompatActivity {
     TextView order_code;
     TextView stat;
     TextView etpname;
-    TextView day1;
-    TextView day2;
     TextView price;
 
     private int t_sum;
@@ -37,8 +35,6 @@ public class GoodbyepetOrders extends AppCompatActivity {
         order_code = findViewById(R.id.order_cd);
         stat = findViewById(R.id.status);
         etpname = findViewById(R.id.etp_nm);
-        day1 = findViewById(R.id.first);
-        day2 = findViewById(R.id.second);
         price = findViewById(R.id.total_price2);
 
 
