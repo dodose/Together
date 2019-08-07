@@ -1,7 +1,6 @@
 package com.example.together.fragment;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,7 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.together.R;
+import com.example.together.activities.petching.PetchingLoungeDetailInfoActivity;
 import com.example.together.adapter.PetchingLoungeAdapter;
+import com.example.together.model.Pet;
 import com.example.together.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -43,6 +44,7 @@ public class PetchingLoungeFragment extends Fragment {
 
 
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
@@ -65,11 +67,18 @@ public class PetchingLoungeFragment extends Fragment {
                     for (DataSnapshot ds : dataSnapshot.getChildren())
                     {
                         String id = ds.getKey();
-                        petKey = id;
-                        DatasetPetkey(id);
-                        Log.d(TAG, "안재욱: "+id+"도도새"+petKey);
+                        petchingLoungeAdapter.setId(id);
+
+                        PetchingLoungeFragment petchingLoungeFragment = new PetchingLoungeFragment(); // Fragment 생성
+                        Bundle bundle = new Bundle(1); // 파라미터는 전달할 데이터 개수
+                        bundle.putString("id", id); // key , value
+                        petchingLoungeFragment.setArguments(bundle);
+
+
+
+
                         DatabaseReference reference1 =
-                                FirebaseDatabase.getInstance().getReference("Lounge").child("PetchingBunyang").child(firebaseUser.getUid()).child("PetId").child(id).child("Requestor");
+                                FirebaseDatabase.getInstance().getReference( "Lounge").child("PetchingBunyang").child(firebaseUser.getUid()).child("PetId").child(id).child("Requestor");
 
                         reference1.addValueEventListener(new ValueEventListener() {
                             @Override
@@ -80,6 +89,7 @@ public class PetchingLoungeFragment extends Fragment {
                                     idList.add(snapshot.getKey());
 
                                 }
+
                                 showUsers();
 
                             }
@@ -100,10 +110,12 @@ public class PetchingLoungeFragment extends Fragment {
         });
 
 
+        Log.d(TAG, "하마: "+petKey);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         userList = new ArrayList<>();
         petchingLoungeAdapter = new PetchingLoungeAdapter(getContext(), userList);
+
         recyclerView.setAdapter(petchingLoungeAdapter);
 
 
@@ -112,10 +124,7 @@ public class PetchingLoungeFragment extends Fragment {
 
     }
 
-    private void DatasetPetkey(String id) {
-        Log.e("들어오나",id);
-        this.petKey = id;
-    }
+
 
 
     private void showUsers(){
@@ -145,10 +154,6 @@ public class PetchingLoungeFragment extends Fragment {
 
 
 
-    //선택된 펫키를 보냄..
-    public String petKey() {
-        return petKey;
-    }
 
 
 

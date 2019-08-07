@@ -55,14 +55,17 @@ public class PetchingLoungeDetailInfoActivity extends AppCompatActivity {
          requester_name.setText(name);
 
 //         PetchingLoungeFragment petchingLoungeFragment = new PetchingLoungeFragment();
-         String petKey = new PetchingLoungeFragment().petKey();
-         Log.d(TAG, "펫키 "+petKey);
+
+         String petKey = "test";
+
+
 
 
          //거절 클릭시 데이터 삭제petKey
          refuse.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
+
 
                  FirebaseDatabase.getInstance().getReference("Lounge").child("PetchingBunyang").child(firebaseUser.getUid()).child(petKey).child("Requestor").removeValue();
 

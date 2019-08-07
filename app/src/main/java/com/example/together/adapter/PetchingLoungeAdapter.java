@@ -2,6 +2,7 @@ package com.example.together.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +18,9 @@ import com.bumptech.glide.Glide;
 import com.example.together.R;
 import com.example.together.activities.petching.PetchingBunyangDetailInfo;
 import com.example.together.activities.petching.PetchingLoungeDetailInfoActivity;
+import com.example.together.fragment.PetchingLoungeFragment;
 import com.example.together.model.Lounge;
+import com.example.together.model.Pet;
 import com.example.together.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -37,11 +40,14 @@ public class PetchingLoungeAdapter extends RecyclerView.Adapter<PetchingLoungeAd
 
     private static final String TAG = "PetchingBunyangAdapter";
 
+
+    String id;
     FirebaseUser firebaseUser;
     DatabaseReference reference;
 
     Context mContext;
     List<User> mUser;
+
 
     public PetchingLoungeAdapter(Context mContext, List<User> mUser)
     {
@@ -55,6 +61,8 @@ public class PetchingLoungeAdapter extends RecyclerView.Adapter<PetchingLoungeAd
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
+
+        Log.d(TAG, "did u bring id key"+id);
         View view = LayoutInflater.from(mContext).inflate(R.layout.list_petching_lounge, parent, false);
         return new PetchingLoungeAdapter.MyViewHolder(view);
 
@@ -63,6 +71,8 @@ public class PetchingLoungeAdapter extends RecyclerView.Adapter<PetchingLoungeAd
     @Override
     public void onBindViewHolder(MyViewHolder viewHolder, int position)
     {
+
+
 
         final User user = mUser.get(position);
         user.getId();
@@ -78,6 +88,7 @@ public class PetchingLoungeAdapter extends RecyclerView.Adapter<PetchingLoungeAd
             @Override
             public void onClick(View v)
             {
+
                 Intent intent = new Intent(v.getContext(), PetchingLoungeDetailInfoActivity.class);
 
                 intent.putExtra("requester_name",mUser.get(position).getFullname());
@@ -149,6 +160,15 @@ public class PetchingLoungeAdapter extends RecyclerView.Adapter<PetchingLoungeAd
         });
 
     }
+
+
+
+    public void setId(String mId) {
+        id = mId;
+    }
+
+
+
 
 
 
