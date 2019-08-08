@@ -40,6 +40,7 @@ public class PetchingLoungeFragment extends Fragment {
     List<User> userList;
     FirebaseUser firebaseUser;
     List<String> idList = new ArrayList<>();
+    List<String> idFriendList = new ArrayList<>();
     public String petKey;
 
 
@@ -68,13 +69,6 @@ public class PetchingLoungeFragment extends Fragment {
                     {
                         String id = ds.getKey();
                         petchingLoungeAdapter.setId(id);
-
-                        PetchingLoungeFragment petchingLoungeFragment = new PetchingLoungeFragment(); // Fragment 생성
-                        Bundle bundle = new Bundle(1); // 파라미터는 전달할 데이터 개수
-                        bundle.putString("id", id); // key , value
-                        petchingLoungeFragment.setArguments(bundle);
-
-
 
 
                         DatabaseReference reference1 =

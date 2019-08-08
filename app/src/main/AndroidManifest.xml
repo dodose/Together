@@ -26,7 +26,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".activities.petching.PetchingLoungeDetailInfoActivity"></activity>
+        <activity android:name=".activities.petching.PetchingLoungeDetailInfoActivity" />
         <activity android:name=".activities.petching.PetchingRequestorInfoActivity" />
         <activity android:name=".activities.my_petInfo.MypetEditInfoActivity" />
         <activity android:name=".activities.petHospital.PetHospitalSelectBar" />

@@ -62,7 +62,6 @@ public class PetchingLoungeAdapter extends RecyclerView.Adapter<PetchingLoungeAd
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
 
-        Log.d(TAG, "did u bring id key"+id);
         View view = LayoutInflater.from(mContext).inflate(R.layout.list_petching_lounge, parent, false);
         return new PetchingLoungeAdapter.MyViewHolder(view);
 
@@ -91,9 +90,11 @@ public class PetchingLoungeAdapter extends RecyclerView.Adapter<PetchingLoungeAd
 
                 Intent intent = new Intent(v.getContext(), PetchingLoungeDetailInfoActivity.class);
 
+                intent.putExtra("pet_id",id);
                 intent.putExtra("requester_name",mUser.get(position).getFullname());
                 intent.putExtra("requester_img", mUser.get(position).getImageurl());
                 intent.putExtra("requester_intro", mUser.get(position).getBio());
+                intent.putExtra("requester_id", mUser.get(position).getId());
                 // intent.putExtra("requester_pet_id",mUser.get(position).getUid)
 
                 mContext.startActivity(intent);

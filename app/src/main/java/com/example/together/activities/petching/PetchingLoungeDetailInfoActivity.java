@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.example.together.R;
 import com.example.together.fragment.PetchingLoungeFragment;
 import com.example.together.model.PetchingLounge;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
@@ -48,6 +49,8 @@ public class PetchingLoungeDetailInfoActivity extends AppCompatActivity {
          String name = intent.getStringExtra("requester_name");
          String img = intent.getStringExtra("requester_img");
          String intro = intent.getStringExtra("requester_intro");
+         String petkey = intent.getStringExtra("pet_id");
+         String requester_id = intent.getStringExtra("requester_id");
 
 
          Picasso.get().load(img).fit().into(requester_img);
@@ -56,7 +59,6 @@ public class PetchingLoungeDetailInfoActivity extends AppCompatActivity {
 
 //         PetchingLoungeFragment petchingLoungeFragment = new PetchingLoungeFragment();
 
-         String petKey = "test";
 
 
 
@@ -66,8 +68,9 @@ public class PetchingLoungeDetailInfoActivity extends AppCompatActivity {
              @Override
              public void onClick(View v) {
 
-
-                 FirebaseDatabase.getInstance().getReference("Lounge").child("PetchingBunyang").child(firebaseUser.getUid()).child(petKey).child("Requestor").removeValue();
+                 Log.d(TAG, "신청자 "+requester_id);
+                 firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                 FirebaseDatabase.getInstance().getReference("Lounge").child("PetchingBunyang").child(firebaseUser.getUid()).child("PetId").child(petkey).child("Requestor").child(requester_id).removeValue();
 
                  Intent backView = new Intent(PetchingLoungeDetailInfoActivity.this, PetchingActivity.class);
                  backView.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
