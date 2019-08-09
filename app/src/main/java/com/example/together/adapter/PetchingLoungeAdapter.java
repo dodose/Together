@@ -95,7 +95,7 @@ public class PetchingLoungeAdapter extends RecyclerView.Adapter<PetchingLoungeAd
                 intent.putExtra("requester_img", mUser.get(position).getImageurl());
                 intent.putExtra("requester_intro", mUser.get(position).getBio());
                 intent.putExtra("requester_id", mUser.get(position).getId());
-                // intent.putExtra("requester_pet_id",mUser.get(position).getUid)
+
 
                 mContext.startActivity(intent);
 

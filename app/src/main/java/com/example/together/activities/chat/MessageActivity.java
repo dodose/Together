@@ -163,7 +163,7 @@ public class MessageActivity extends AppCompatActivity {
         seenMessage(userid);
     }
 
-    private void sendpushAlert(String userid) {
+    public void sendpushAlert(String userid) {
 
         reference = FirebaseDatabase.getInstance().getReference("Tokens").child(userid).child("TokenUid");
         reference.addValueEventListener(new ValueEventListener() {
@@ -284,8 +284,7 @@ public class MessageActivity extends AppCompatActivity {
 
 
 
-
-            private void seenMessage(String userid){
+    public void seenMessage(String userid){
         reference = FirebaseDatabase.getInstance().getReference("Chats");
         seenListener = reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -309,7 +308,7 @@ public class MessageActivity extends AppCompatActivity {
 
 
 
-    private void sendMessage(String sender, final String receiver, String message){
+    public void sendMessage(String sender, final String receiver, String message){
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 

@@ -81,15 +81,34 @@
             android:layout_marginTop="15dp"
             app:met_floatingLabel="normal"/>
 
-
-        <EditText
-            android:layout_marginTop="15dp"
-            android:id="@+id/petBreed"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:hint="견종"
-            app:met_floatingLabel="normal" />
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:id="@+id/mPetBreed"
+                android:layout_width="300sp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginLeft="5dp"
+                android:hint="견종을 선택하세요"
+                app:met_floatingLabel="normal" />
+
+            <Button
+                android:id="@+id/select_pet_breed"
+                android:background="@drawable/circle_bg"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/mPetBreed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="선택"/>
+
+        </RelativeLayout>
+
+
 
         <EditText
             android:layout_marginTop="15dp"

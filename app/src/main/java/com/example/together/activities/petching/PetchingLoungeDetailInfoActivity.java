@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.together.R;
+import com.example.together.activities.chat.MessageActivity;
 import com.example.together.fragment.PetchingLoungeFragment;
 import com.example.together.model.PetchingLounge;
 import com.google.firebase.auth.FirebaseAuth;
@@ -85,7 +86,10 @@ public class PetchingLoungeDetailInfoActivity extends AppCompatActivity {
         accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                String message = "펫칭 신청을 수락하였습니다.";
+                MessageActivity messageActivity = new MessageActivity();
+                messageActivity.sendpushAlert(requester_id);
+                messageActivity.sendMessage(firebaseUser.getUid(),requester_id,message);
             }
         });
 

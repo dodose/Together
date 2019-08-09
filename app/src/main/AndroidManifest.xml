@@ -18,14 +18,13 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
-        android:allowBackup="false"
+        tools:replace="android:appComponentFactory"
         android:appComponentFactory="whateverString"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true"
-        tools:replace="android:appComponentFactory">
+        android:usesCleartextTraffic="true">
         <activity android:name=".activities.petching.PetchingLoungeDetailInfoActivity" />
         <activity android:name=".activities.petching.PetchingRequestorInfoActivity" />
         <activity android:name=".activities.my_petInfo.MypetEditInfoActivity" />
