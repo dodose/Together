@@ -8,26 +8,7 @@
         android:tag="layout/activity_hotel_home_0"
         android:orientation="vertical">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="92dp" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="92dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="92dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -46,33 +27,26 @@
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="-93dp">
 
-            <ImageButton
-
-                android:id="@+id/activity_hotel_list_databackbtn"
-                android:layout_width="78dp"
-                android:layout_height="match_parent"
-                android:background="#00b0ff"
-                app:srcCompat="@drawable/ic_btn_back2" />
-
-
-            <TextView
-                android:background="@color/colorBlue"
-                android:id="@+id/textView"
-                android:textColor="#FFF"
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical|center"
-                android:text="Pet Hotel"
-                android:textSize="30dp" />
+                android:background="@color/colorBlue">
 
-            <ImageButton
-                android:id="@+id/imageButton3"
-                android:layout_width="85dp"
-                android:layout_height="match_parent"
-                android:background="#00b0ff"
-                android:gravity="end"
-                app:srcCompat="@drawable/ic_options2" />
+                <TextView
+                    android:textColor="#FFF"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="투개더 호텔"
+                    android:textSize="25dp" />
+
+
+            </androidx.appcompat.widget.Toolbar>
+
+
+
+
         </LinearLayout>
 
         <LinearLayout

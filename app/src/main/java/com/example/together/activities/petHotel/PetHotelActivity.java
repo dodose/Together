@@ -19,28 +19,27 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.together.activities.HomeActivity;
 import com.example.together.R;
+import com.example.together.activities.aircalendar.AirCalendarDatePickerActivity;
+import com.example.together.activities.aircalendar.core.AirCalendarIntent;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class PetHotelActivity extends AppCompatActivity {
 
-    //이미지 배너 슬라이드
-    ViewFlipper viewFlipper;
+    public final static int REQUEST_CODE = 1;
     int mYear, mMonth, mDay;
-
-    ImageButton imageButton;
 
     TextView date;
 
-    EditText location;
-    ImageButton backTo;
+    TextView location;
 
     Button HotelSearchBtn;
 
     //전체값 정렬;
 
     String AddVal;
+    String AddDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,50 +48,41 @@ public class PetHotelActivity extends AppCompatActivity {
 
         //텍스트뷰 2개 연결
 
-        backTo = (ImageButton) findViewById(R.id.backTo);
-
-        backTo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent  = new Intent(PetHotelActivity.this, HomeActivity.class);
-                intent.putExtra("flag","flag");
-                startActivity(intent);
-
-            }
-        });
-
         date = findViewById(R.id.date);
         location = findViewById(R.id.location);
 
-        //현재 날짜와 시간을 가져오기위한 Calendar 인스턴스 선언
+        date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AirCalendarIntent intent = new AirCalendarIntent(PetHotelActivity.this);
+                intent.setSelectButtonText("Select");
+                intent.setResetBtnText("Reset");
+                intent.setWeekStart(Calendar.MONDAY);
+//                intent.putExtra("pet_hospital",-1);
+                startActivityForResult(intent, REQUEST_CODE);
+            }
+        });
 
-        Calendar cal = new GregorianCalendar();
+        location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    Intent intent = new Intent(PetHotelActivity.this,HotelLocationSelect.class);
+                    startActivityForResult(intent,2);
+            }
+        });
 
-        mYear = cal.get(Calendar.YEAR);
-
-        mMonth = cal.get(Calendar.MONTH);
-
-        mDay = cal.get(Calendar.DAY_OF_MONTH);
 
         HotelSearchBtn = findViewById(R.id.searchBtn);
 
         HotelSearchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                String dd = date.getText().toString();
-
-                String split[] = dd.split("~");
+                String split[] = AddDate.split("~");
                 AddVal = location.getText().toString();
-
-
-//                Toast.makeText(PetHotelActivity.this, First + Last + AddVal, Toast.LENGTH_SHORT).show();
-
                 Intent intent = new Intent(PetHotelActivity.this, HotelListDataActivity.class);
                 intent.putExtra("First_day", split[0]);
                 intent.putExtra("Last_day", split[1]);
                 intent.putExtra("AddVal", AddVal);
-
 
                 startActivity(intent);
 
@@ -103,6 +93,29 @@ public class PetHotelActivity extends AppCompatActivity {
 
 
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+                Log.e("requestCode",requestCode+"");
+                Log.e("resultCode",resultCode+"");
+
+            switch (resultCode){
+
+                case RESULT_OK:
+                    date.setText(data.getStringExtra(AirCalendarDatePickerActivity.RESULT_SELECT_START_DATE).substring(5)+"~"+data.getStringExtra(AirCalendarDatePickerActivity.RESULT_SELECT_END_DATE).substring(5));
+                    AddDate = data.getStringExtra(AirCalendarDatePickerActivity.RESULT_SELECT_START_DATE)+"~"+data.getStringExtra(AirCalendarDatePickerActivity.RESULT_SELECT_END_DATE);
+                    break;
+                case 2:{
+                    location.setText(data.getExtras().getString("result"));
+                    break;
+                }
+
+            }
+
+
+        }
+
 
 }
 

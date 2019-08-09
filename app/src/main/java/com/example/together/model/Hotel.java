@@ -11,9 +11,10 @@ public class Hotel {
     public String price;
     public String etp_lat;
     public String etp_lnt;
+    public String etp_km;
 
 
-    public Hotel(String img_path, String mAddr, String mName, String mTime, String mcontent, Float starcount, String firstprise,String lat,String lnt) {
+    public Hotel(String img_path, String mAddr, String mName, String mTime, String mcontent, Float starcount, String firstprise,String lat,String lnt,Float km) {
 
         this.img_path = img_path;
         this.etp_addr = mAddr;
@@ -24,6 +25,7 @@ public class Hotel {
         this.price = firstprise;
         this.etp_lat = lat;
         this.etp_lnt = lnt;
+        this.etp_km = km.toString();
 
     }
 

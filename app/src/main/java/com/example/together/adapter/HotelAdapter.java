@@ -38,6 +38,7 @@ public class HotelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         ImageView etp_imgView;
         TextView starcount;
         TextView etp_name;
+        TextView etp_km;
         TextView Time;
         TextView etp_addr;
         TextView content;
@@ -50,6 +51,7 @@ public class HotelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             etp_imgView = view.findViewById(R.id.drawableId);
             etp_name = view.findViewById(R.id.etp_name);
             etp_addr = view.findViewById(R.id.etp_addr);
+            etp_km = view.findViewById(R.id.dis_km);
             Time = view.findViewById(R.id.Time);
             starcount = view.findViewById(R.id.etp_star);
             prise = view.findViewById(R.id.product_firstPrice);
@@ -77,7 +79,15 @@ public class HotelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         Picasso.get().load(HotelArrayList.get(position).img_path).fit().into(myViewHolder.etp_imgView);
         myViewHolder.etp_addr.setText(HotelArrayList.get(position).etp_addr);
-        myViewHolder.etp_name.setText(HotelArrayList.get(position).etp_name);
+        if(HotelArrayList.get(position).etp_name.length() >= 6){
+            myViewHolder.etp_name.setTextSize(15);
+            myViewHolder.etp_name.setText(HotelArrayList.get(position).etp_name);
+        }else{
+            myViewHolder.etp_name.setTextSize(18);
+            myViewHolder.etp_name.setText(HotelArrayList.get(position).etp_name);
+        }
+
+        myViewHolder.etp_km.setText(" "+HotelArrayList.get(position).etp_km+" Km");
         myViewHolder.Time.setText(HotelArrayList.get(position).Time);
         myViewHolder.starcount.setText("★  " +HotelArrayList.get(position).starcount);
         myViewHolder.prise.setText(HotelArrayList.get(position).price + "원");

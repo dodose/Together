@@ -27,6 +27,7 @@
     <!--도시 시/군/구 값 -->
     <string name="app_name2">My Application</string>
     <string-array name="spinner_do">
+        <item>도시를 선택해주세요</item>
         <item>서울특별시</item>
         <item>부산광역시</item>
         <item>대구광역시</item>
@@ -46,7 +47,6 @@
         <item>제주특별자치도</item>
     </string-array>
     <string-array name="spinner_do_seoul">
-        <item>강남구</item>
         <item>강동구</item>
         <item>강북구</item>
         <item>강서구</item>
@@ -319,6 +319,11 @@
     <string-array name="spinner_do_JejuSpecial">
         <item>서귀포시</item>
         <item>제주시</item>
+    </string-array>
+
+    <string-array name="spinner_default">
+        <item>없음</item>
+
     </string-array>
     <!--도시 시/군/구 값 -->
 
