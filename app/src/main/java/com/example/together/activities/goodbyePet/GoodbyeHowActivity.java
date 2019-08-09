@@ -22,9 +22,6 @@ public class GoodbyeHowActivity extends AppCompatActivity {
 
         int images[] = {R.drawable.o1, R.drawable.o2, R.drawable.o3,R.drawable.o4,R.drawable.o5,R.drawable.o6,R.drawable.o7};
 
-        activity_goodbye_how_databackbtn = findViewById(R.id.activity_hotel_list_databackbtn);  //뒤로 가기 버튼
-
-
 
 
         viewFlipper = findViewById(R.id.v_flipper);

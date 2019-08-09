@@ -51,6 +51,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -123,7 +124,24 @@ public class MessageActivity extends AppCompatActivity {
             String msg = text_send.getText().toString();
             if (!msg.equals("")){
                 sendMessage(fuser.getUid(), userid, msg);
-                sendpushAlert(userid,username.getText().toString(),text_send.getText().toString());
+
+
+                DatabaseReference r_usernmRef = FirebaseDatabase.getInstance().getReference("Users").child(fuser.getUid());
+                r_usernmRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        User user = dataSnapshot.getValue(User.class);
+
+                        sendpushAlert(userid,user.getUsername(),msg);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+
             }else {
                 Toast.makeText(MessageActivity.this, "내용을 입력해주세요", Toast.LENGTH_SHORT).show();
             }
@@ -166,6 +184,7 @@ public class MessageActivity extends AppCompatActivity {
 
     private void sendpushAlert(String userid,String userNmae,String sendText) {
 
+        Log.e("s",sendText);
         reference = FirebaseDatabase.getInstance().getReference("Tokens").child(userid).child("TokenUid");
         reference.addValueEventListener(new ValueEventListener() {
 
@@ -222,35 +241,6 @@ public class MessageActivity extends AppCompatActivity {
                             // print result
                             System.out.println(response.toString());
                             //데이터 전달 하는곳
-
-//                            OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-//
-//                            wr.write();
-//
-//                            wr.flush();
-//
-//                            wr.close(); //전달후 닫아준다.
-//
-//
-//                            // 데이터 받아오는 곳
-//                            InputStream is = null;        //input스트림 개방
-//                            BufferedReader reader = null;
-//
-//                            is = conn.getInputStream();
-//                            reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));  //문자열 셋 세팅
-//                            StringBuffer rbuffer = new StringBuffer();   //문자열을 담기 위한 객체
-//                            String line = null;
-//
-//                            rbuffer.append(reader.readLine());
-//
-//                            String jobj = rbuffer.toString().trim();
-//                            is.close();
-//
-//                            conn.disconnect();
-//
-//
-//                            Log.e("result", jobj + "");
-
 
                         } catch (MalformedURLException | ProtocolException exception) {
                             exception.printStackTrace();

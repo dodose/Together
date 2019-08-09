@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="8dp">
+    android:orientation="vertical">
 
 
     //검색 LinearLayout
@@ -15,29 +14,24 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/Addrserch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:layout_weight="0.7"
-            android:inputType="textPersonName"
-            android:text="Name" />
-
-        <ImageButton
-            android:id="@+id/imageButton4"
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.3"
-            android:background="#00FFFFFF"
-            android:tint="#00FFFFFF"
-            app:srcCompat="@drawable/ic_search_light" />
+            android:background="@drawable/background_border_gray">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:text="장례 업체 검색"/>
+
+        </androidx.appcompat.widget.Toolbar>
+
+
     </LinearLayout>
-    //검색 LinearLayout
 
-
-
-        //날짜, 예약 시간 버튼정렬들 Layout
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -46,7 +40,7 @@
         //날짜 선택 Layout - 날짜버튼, 텍스트뷰
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_weight="0.5">
@@ -59,16 +53,10 @@
                 android:background="@drawable/rounded_button"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="날짜를 선택 클릭"
+                android:text="날짜를 선택해 주세요"
                 android:textColor="@color/mdtp_white" />
             //선택할 날짜 텍스트뷰
 
-            <TextView
-                android:id="@+id/set_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="10dp" />
         </LinearLayout>
         //날짜 선택 Layout - 날짜버튼, 텍스트뷰
 
@@ -76,7 +64,7 @@
         //예약 시간선택, 텍스트 Layout
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_weight="0.5">
@@ -89,17 +77,11 @@
                 android:background="@drawable/rounded_button"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="예약 시간선택 클릭"
+                android:text="예약 시간을 선택해 주세요"
                 android:textColor="@color/mdtp_white" />
 
             //예약 시간 보여줄 텍스트뷰
 
-            <TextView
-                android:id="@+id/set_time"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="10dp" />
         </LinearLayout>
 
     </LinearLayout>
@@ -108,47 +90,34 @@
 
     //도시, 구, 주소를 보여줄 Layout
     <LinearLayout
-        android:layout_width="400dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         //선택된 도시 Layout
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_weight="0.5">
 
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="도시를 선택하세요"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <Spinner
                 android:id="@+id/spinner1"
                 android:layout_width="match_parent"
-                android:layout_height="43dp" />
+                android:layout_height="49dp" />
         </LinearLayout>
         //선택된 도시 Layout
 
 
         //선택된 구 Layout
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_weight="0.5">
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="시/군/구를 선택하세요"
-                android:textSize="21dp"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <Spinner
                 android:id="@+id/spinner2"
@@ -203,13 +172,13 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.5">
+        android:layout_weight="0.55">
 
 
         <Button
             android:id="@+id/check"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="검색"
             android:background="@drawable/reg_btn_style"
             />
