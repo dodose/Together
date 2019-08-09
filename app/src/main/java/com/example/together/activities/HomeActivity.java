@@ -84,43 +84,13 @@ public class HomeActivity extends AppCompatActivity implements LifecycleObserver
         }
 
 
-        String token = FirebaseInstanceId.getInstance().getToken();
-        CreateToken(token);
+
 
 
     }
 
 
-    private void CreateToken(String token){
 
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Tokens").child(firebaseUser.getUid()).child("TokenUid");
-
-
-        Log.e("잇다없다",reference+"");
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        Log.e("getvalue값",dataSnapshot.getValue()+"");
-                        if(dataSnapshot.getValue()==null){
-                            HashMap<String, Object> hashMap = new HashMap<>();
-                            hashMap.put("token",token);
-                            reference.setValue(hashMap);
-                        }else{
-                            HashMap<String, Object> hashMap = new HashMap<>();
-                            hashMap.put("token",token);
-                            reference.updateChildren(hashMap);
-                        }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
 
 
 

@@ -1,15 +1,19 @@
 package com.example.together.fragment;
 
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -19,8 +23,11 @@ import android.widget.Toast;
 
 import com.example.together.R;
 import com.example.together.activities.petching.PetchingActivity;
+import com.example.together.activities.petching.PetchingSelectPetActivity;
 import com.example.together.model.Pet;
+import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -29,11 +36,17 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
 import com.squareup.picasso.Picasso;
+import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+
+import static android.app.Activity.RESULT_OK;
 
 
 public class PetBunYangInfoEditFragment extends Fragment {
@@ -43,8 +56,8 @@ public class PetBunYangInfoEditFragment extends Fragment {
     public static String petcode;
 
 
-    public static ImageView myPetImage, gender_m, gender_w;
-    public static TextView myPetName, myPetBreed, myPetAge, petBunyangIntro, specail_note;
+    public static ImageView myPetImage, gender_m, gender_w, image_blood_certification;
+    public static TextView myPetName, myPetBreed, myPetAge, petBunyangIntro, specail_note, blood_certi_img_upload;
     RadioGroup having;
     RadioButton yes, no;
     Button regi_petching_bunyang;
@@ -56,16 +69,26 @@ public class PetBunYangInfoEditFragment extends Fragment {
     public static int age;
 
 
+    //이미지 업로드
+    private Uri mImageUri;
+    private StorageTask uploadTask;
+    StorageReference storageReference;
+    private String myUrl;
+
+
+
 //    String beforecode;
 
     FirebaseUser firebaseUser;
     DatabaseReference reference;
 
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-
+        storageReference = FirebaseStorage.getInstance().getReference("blood");
 
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_pet_bun_yang_info_edit, container, false);
@@ -79,6 +102,7 @@ public class PetBunYangInfoEditFragment extends Fragment {
         myPetName = view.findViewById(R.id.myPetName);
         myPetBreed = view.findViewById(R.id.myPetBreed);
         myPetAge = view.findViewById(R.id.petAge);
+        blood_certi_img_upload = view.findViewById(R.id.blood_certi_img_upload);
         //   petAge = view.findViewById(R.id.petAge);
 
         // 내 펫 이미지
@@ -103,6 +127,24 @@ public class PetBunYangInfoEditFragment extends Fragment {
         // 등록버튼
         regi_petching_bunyang = view.findViewById(R.id.regi_petching_bunyang);
 
+        // 혈통증명서 업로드
+        blood_certi_img_upload = view.findViewById(R.id.blood_certi_img_upload);
+
+        // 혈통증명서 담을 이미지
+        image_blood_certification = view.findViewById(R.id.image_blood_certification);
+
+
+
+
+        blood_certi_img_upload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CropImage.activity()
+                        .setAspectRatio(1, 1)
+                        .start(getContext(), PetBunYangInfoEditFragment.this);
+            }
+        });
+
 
         // 라디오 참고 https://bitsoul.tistory.com/47
 
@@ -117,9 +159,11 @@ public class PetBunYangInfoEditFragment extends Fragment {
                 switch (checkedId) {
 
                     case R.id.yes:
+                        blood_certi_img_upload.setVisibility(View.VISIBLE);
                         break;
 
                     case R.id.no:
+                        blood_certi_img_upload.setVisibility(View.GONE);
                         break;
                 }
             }
@@ -159,6 +203,7 @@ public class PetBunYangInfoEditFragment extends Fragment {
                 hashMap.put("owner", firebaseUser.getUid());
                 Log.d("나이", "나이: "+age);
                 hashMap.put("age", String.valueOf(age));
+                hashMap.put("image_blood_certification",myUrl);
 
 
 
@@ -266,4 +311,88 @@ public class PetBunYangInfoEditFragment extends Fragment {
 
 
     }
+
+
+    //이미지 업로드
+    private String getFileExtension(Uri uri){
+        ContentResolver contentResolver = getActivity().getApplicationContext().getContentResolver();
+        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
+        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
+
+    }
+
+    private void uploadImage(){
+        // Progress .xml에서 Visible 하는거 구현
+
+        //To show ProgressBar
+
+        if (mImageUri != null){
+            final StorageReference filereference = storageReference.child(System.currentTimeMillis()
+                    +"."+getFileExtension(mImageUri));
+
+            uploadTask = filereference.putFile(mImageUri);
+
+            uploadTask.continueWithTask(new Continuation() {
+                @Override
+                public Object then(@NonNull Task task) throws Exception {
+                    if (!task.isSuccessful()) {
+                        throw task.getException();
+                    }
+
+                    return filereference.getDownloadUrl();
+                }
+
+            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if (task.isSuccessful()){
+                        Uri downloadUri = task.getResult();
+                        myUrl = downloadUri.toString();
+
+                        Log.d("혈통주소", "onComplete: "+myUrl+"주소");
+                        Log.d("빅뱅", ""+petcode);
+
+                    } else {
+
+                    }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    System.out.println(e.getMessage()+"이미지 분양 업로드 에러");
+                }
+            });
+
+        }else {
+        }
+
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK){
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            mImageUri = result.getUri();
+            if (mImageUri!=null)
+            {
+                image_blood_certification.setVisibility(View.VISIBLE);
+            }
+            image_blood_certification.setImageURI(mImageUri);
+
+            Log.e("조인성", "onActivityResult: TAG 실행된 결과값오나요? "+mImageUri+"ImageUri" );
+
+            uploadImage();
+
+
+
+
+        }else {
+
+        }
+    }
+
+
 }

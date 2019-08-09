@@ -2,6 +2,7 @@ package com.example.together.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +17,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.together.R;
 import com.example.together.activities.petching.PetchingBunyangDetailInfo;
+import com.example.together.activities.petching.PetchingLoungeDetailInfoActivity;
+import com.example.together.fragment.PetchingLoungeFragment;
 import com.example.together.model.Lounge;
+import com.example.together.model.Pet;
 import com.example.together.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,11 +40,14 @@ public class PetchingLoungeAdapter extends RecyclerView.Adapter<PetchingLoungeAd
 
     private static final String TAG = "PetchingBunyangAdapter";
 
+
+    String id;
     FirebaseUser firebaseUser;
     DatabaseReference reference;
 
     Context mContext;
     List<User> mUser;
+
 
     public PetchingLoungeAdapter(Context mContext, List<User> mUser)
     {
@@ -54,6 +61,7 @@ public class PetchingLoungeAdapter extends RecyclerView.Adapter<PetchingLoungeAd
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
+
         View view = LayoutInflater.from(mContext).inflate(R.layout.list_petching_lounge, parent, false);
         return new PetchingLoungeAdapter.MyViewHolder(view);
 
@@ -63,12 +71,14 @@ public class PetchingLoungeAdapter extends RecyclerView.Adapter<PetchingLoungeAd
     public void onBindViewHolder(MyViewHolder viewHolder, int position)
     {
 
+
+
         final User user = mUser.get(position);
         user.getId();
 
         Log.d(TAG, "빼오냥"+user.getId());
 
-        getRequestorUserInfo(viewHolder.img_requestor, viewHolder.requestor_name);
+        getRequestorUserInfo(mUser.get(position).getId(), viewHolder.img_requestor , viewHolder.requestor_name);
 
 
 
@@ -77,12 +87,17 @@ public class PetchingLoungeAdapter extends RecyclerView.Adapter<PetchingLoungeAd
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(v.getContext(), PetchingBunyangDetailInfo.class);
 
-               // intent.putExtra("petBunyangId",mUser.get(position).getPetBunyangId());
+                Intent intent = new Intent(v.getContext(), PetchingLoungeDetailInfoActivity.class);
+
+                intent.putExtra("pet_id",id);
+                intent.putExtra("requester_name",mUser.get(position).getFullname());
+                intent.putExtra("requester_img", mUser.get(position).getImageurl());
+                intent.putExtra("requester_intro", mUser.get(position).getBio());
+                intent.putExtra("requester_id", mUser.get(position).getId());
+                // intent.putExtra("requester_pet_id",mUser.get(position).getUid)
 
                 mContext.startActivity(intent);
-
 
             }
         });
@@ -122,51 +137,39 @@ public class PetchingLoungeAdapter extends RecyclerView.Adapter<PetchingLoungeAd
 
 
     // 펫 정보 이름, 나이, 견종, 성별,
-    private void getRequestorUserInfo(final ImageView img_requestor, final TextView requestor_name)
+    private void getRequestorUserInfo(String userid, final ImageView img_requestor, final TextView requestor_name)
     {
-
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("PetchingBunyang").child(firebaseUser.getUid()).child("Requestor");
-        DatabaseReference userReference = FirebaseDatabase.getInstance().getReference("Users");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot datas: dataSnapshot.getChildren()){
-                    for(DataSnapshot ds : datas.getChildren()){
-                        String id = ds.getKey();
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue(User.class);
 
-                        userReference.child(id).addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-                                User user = dataSnapshot.getValue(User.class);
-                                requestor_name.setText(user.getFullname());
+                Glide.with(mContext).load(user.getImageurl()).into(img_requestor);
 
-                                Log.d(TAG, "이름들 "+user.getFullname());
-
-
-                                Picasso.get().load(user.getImageurl()).fit().into(img_requestor);
-                                Log.d(TAG, "이미지들: "+user.getImageurl());
-
-
-                            }
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-                                throw databaseError.toException();
-                            }
-                        });
-                    }
-                }
+                requestor_name.setText(user.getUsername());
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                throw databaseError.toException();
+
             }
         });
 
     }
+
+
+
+    public void setId(String mId) {
+        id = mId;
+    }
+
+
+
 
 
 

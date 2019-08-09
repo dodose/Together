@@ -22,8 +22,6 @@ public class GoodbyepetOrders extends AppCompatActivity {
     TextView order_code;
     TextView stat;
     TextView etpname;
-    TextView day1;
-    TextView day2;
     TextView price;
 
     private int t_sum;

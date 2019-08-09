@@ -16,6 +16,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
 import com.example.together.fragment.ChatFragment;
+import com.example.together.fragment.PetchingChatFragment;
 import com.example.together.fragment.UsersFragment;
 import com.example.together.model.User;
 import com.example.together.R;
@@ -80,6 +81,7 @@ public class ChatsActivity extends AppCompatActivity {
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         viewPagerAdapter.addFragment(new ChatFragment(), "채팅");
+        viewPagerAdapter.addFragment(new PetchingChatFragment(), "펫칭");
         viewPagerAdapter.addFragment(new UsersFragment(), "친구찾기");
 
         viewPager.setAdapter(viewPagerAdapter);
