@@ -86,9 +86,13 @@ public class PetchingLoungeDetailInfoActivity extends AppCompatActivity {
         accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                Log.e("user",firebaseUser.getUid());
+                Log.e("recever",requester_id);
+                String sendName = "투개더";
                 String message = "펫칭 신청을 수락하였습니다.";
                 MessageActivity messageActivity = new MessageActivity();
-                messageActivity.sendpushAlert(requester_id);
+                messageActivity.sendpushAlert(requester_id,sendName,message);
                 messageActivity.sendMessage(firebaseUser.getUid(),requester_id,message);
             }
         });

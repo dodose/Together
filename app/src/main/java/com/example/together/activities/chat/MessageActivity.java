@@ -182,7 +182,7 @@ public class MessageActivity extends AppCompatActivity {
         seenMessage(userid);
     }
 
-    private void sendpushAlert(String userid,String userNmae,String sendText) {
+    public void sendpushAlert(String userid,String userNmae,String sendText) {
 
         Log.e("s",sendText);
         reference = FirebaseDatabase.getInstance().getReference("Tokens").child(userid).child("TokenUid");
@@ -329,7 +329,7 @@ public class MessageActivity extends AppCompatActivity {
 
 
 
-    private void sendMessage(String sender, final String receiver, String message){
+    public void sendMessage(String sender, final String receiver, String message){
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
@@ -343,7 +343,7 @@ public class MessageActivity extends AppCompatActivity {
 
         final String msg = message;
 
-        reference = FirebaseDatabase.getInstance().getReference("Users").child(fuser.getUid());
+        reference = FirebaseDatabase.getInstance().getReference("Users").child(sender);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
