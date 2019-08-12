@@ -6,6 +6,7 @@ import android.net.Uri;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.EditText;
@@ -16,25 +17,38 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.together.R;
+import com.example.together.activities.petching.PetchingSelectPetActivity;
+import com.example.together.adapter.PetHospitalizationSelectAdapter;
+import com.example.together.model.Pet;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
 public class PostActivity extends AppCompatActivity {
+
+    public static String petcode;
 
     Uri imageUri;
     String myUrl = "";
@@ -44,6 +58,15 @@ public class PostActivity extends AppCompatActivity {
     ImageView close, image_added;
     TextView post;
     EditText description;
+    private static final String TAG = "PostActivity";
+
+    FirebaseDatabase firebaseDatabase;
+    FirebaseUser firebaseUser;
+    DatabaseReference reference;
+
+    PetHospitalizationSelectAdapter petHospitalizationSelectAdapter;
+
+    List<Pet> lsPet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +98,51 @@ public class PostActivity extends AppCompatActivity {
         CropImage.activity()
                 .setAspectRatio(1, 1)
                 .start(PostActivity.this);
+
+
+        lsPet = new ArrayList<>();
+
+
+
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        reference = FirebaseDatabase.getInstance().getReference("Pets").child(firebaseUser.getUid());
+        reference.addValueEventListener(new ValueEventListener() {
+
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot childSnapshot : dataSnapshot.getChildren())
+                {
+
+                    String key = childSnapshot.getKey();
+                    Pet pet = childSnapshot.getValue(Pet.class);
+                    Log.d(TAG, "키키키"+key);
+
+                    lsPet.add(pet);
+
+                    Log.d(TAG, "야야야성별"+pet.getGender());
+                    Log.d(TAG, "야야야생일"+pet.getBirthday());
+                }
+
+
+                LinearLayoutManager layoutManager = new LinearLayoutManager(PostActivity.this, LinearLayoutManager.HORIZONTAL, false);
+                RecyclerView recyclerview_dogs = findViewById(R.id.recyclerview_dogs);
+                recyclerview_dogs.setLayoutManager(layoutManager);
+                recyclerview_dogs.setNestedScrollingEnabled(false);
+
+                petHospitalizationSelectAdapter = new PetHospitalizationSelectAdapter(PostActivity.this, lsPet);
+                recyclerview_dogs.setAdapter(petHospitalizationSelectAdapter);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+
+        });
+
     }
 
 
@@ -118,6 +186,7 @@ public class PostActivity extends AppCompatActivity {
                         hashMap.put("postimage", myUrl);
                         hashMap.put("description", description.getText().toString());
                         hashMap.put("publisher", FirebaseAuth.getInstance().getCurrentUser().getUid());
+                        hashMap.put("petcode", petcode);
 
                         reference.child(postid).setValue(hashMap);
 
@@ -150,6 +219,7 @@ public class PostActivity extends AppCompatActivity {
             }
 
             image_added.setImageURI(imageUri);
+
         }else{
             showMessage("에러가 발생했습니다.");
             startActivity(new Intent(PostActivity.this, HomeActivity.class));
@@ -164,6 +234,14 @@ public class PostActivity extends AppCompatActivity {
     private void showMessage(String text) {
 
         Toast.makeText(getApplicationContext(),text,Toast.LENGTH_LONG).show();
+
+    }
+
+    public void myPetcode_petching(String selected_my_pet)
+    {
+
+        petcode = selected_my_pet;
+        Log.d(TAG, "포스트펫코드"+petcode);
 
     }
 }

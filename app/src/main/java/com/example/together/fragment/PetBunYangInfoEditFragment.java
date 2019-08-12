@@ -2,6 +2,7 @@ package com.example.together.fragment;
 
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -9,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +44,7 @@ import com.google.firebase.storage.StorageTask;
 import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -74,6 +77,8 @@ public class PetBunYangInfoEditFragment extends Fragment {
     private StorageTask uploadTask;
     StorageReference storageReference;
     private String myUrl;
+
+    private final int PICK_IMAGE_REQUEST = 71;
 
 
 
@@ -135,13 +140,15 @@ public class PetBunYangInfoEditFragment extends Fragment {
 
 
 
-
         blood_certi_img_upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CropImage.activity()
-                        .setAspectRatio(1, 1)
-                        .start(getContext(), PetBunYangInfoEditFragment.this);
+
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+
             }
         });
 
@@ -372,21 +379,27 @@ public class PetBunYangInfoEditFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Log.d("장난감", "여기오나" );
+        Log.d("공기", "onActivityResult: "+requestCode);
+        Log.d("공기밥", "onActivityResult: "+resultCode);
+        Log.d("공기돌", "onActivityResult: "+data);
 
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK){
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            mImageUri = result.getUri();
-            if (mImageUri!=null)
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null)
+        {
+
+            mImageUri = data.getData();
+            Log.d("업로드", ""+mImageUri);
+            try
             {
-                image_blood_certification.setVisibility(View.VISIBLE);
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), mImageUri);
+                image_blood_certification.setImageBitmap(bitmap);
+            }catch (IOException e)
+            {
+                e.printStackTrace();
             }
-            image_blood_certification.setImageURI(mImageUri);
 
-            Log.e("조인성", "onActivityResult: TAG 실행된 결과값오나요? "+mImageUri+"ImageUri" );
 
             uploadImage();
-
-
 
 
         }else {

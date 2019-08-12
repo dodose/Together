@@ -162,28 +162,8 @@
 
             </LinearLayout>
     </LinearLayout>
-     <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="end"
-            android:layout_weight="0.03">
 
-            <ImageView
-                android:id="@+id/bunyangpet_detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_right_arrow" />
-
-        </LinearLayout>
 
     </LinearLayout>
-
-
-
-
-
-
-
 
 </LinearLayout>

@@ -37,7 +37,6 @@ public class PetBunyangFragment extends Fragment  {
     List<PetchingBunyang> petBunyangList;
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
