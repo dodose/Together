@@ -95,7 +95,9 @@
                 android:id="@+id/boundary"
                 android:layout_width="wrap_content"
                 android:layout_height="2dp"
-                android:background="@color/colorPrimary" />
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#B4CCEB" />
 
 
             <LinearLayout
@@ -156,8 +158,9 @@
                 android:id="@+id/boundary1"
                 android:layout_width="wrap_content"
                 android:layout_height="2dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/colorPrimary" />
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#B4CCEB" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -174,11 +177,13 @@
                 android:layout_height="200dp"
                 android:hint="소개글 작성..." />
 
-            <View
-                android:id="@+id/boundary2"
-                android:layout_width="wrap_content"
-                android:layout_height="2dp"
-                android:background="@color/colorPrimary" />
+            <!--<View-->
+                <!--android:id="@+id/boundary2"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="2dp"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:layout_marginRight="10dp"-->
+                <!--android:background="@color/colorBlue" />-->
 
             <TextView
                 android:layout_width="wrap_content"
@@ -203,7 +208,8 @@
                 android:layout_gravity="bottom"
                 android:text="펫칭 분양 등록"
                 android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:background="@color/colorBlue"/>
 
         </LinearLayout>
 

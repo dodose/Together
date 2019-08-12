@@ -141,7 +141,7 @@ public class PetchingBunyangAdapter extends RecyclerView.Adapter<PetchingBunyang
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 PetchingBunyang petchingBunyang = dataSnapshot.getValue(PetchingBunyang.class);
 
-                Glide.with(mContext).load(petchingBunyang.getPetImg()).into(imageView);
+                Glide.with(mContext).load(petchingBunyang.getPetImg()).fitCenter().into(imageView);
 
 
                 petName.setText(petchingBunyang.getPetName());

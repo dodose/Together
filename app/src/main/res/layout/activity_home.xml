@@ -24,10 +24,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/bottom_navigation"
+
             app:itemIconTint="@color/colorBlue"
             app:labelVisibilityMode="unlabeled"
             android:background="?android:attr/windowBackground"
-            app:menu="@menu/bottom_navigation">s
+            app:menu="@menu/bottom_navigation">
 
         </com.google.android.material.bottomnavigation.BottomNavigationView>
 

@@ -78,6 +78,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|left"
+                    android:textStyle="bold"
                     android:layout_marginLeft="10dp"
                     android:layout_marginBottom="20dip"
                     android:padding="12dip"
@@ -93,6 +94,7 @@
                     android:layout_gravity="bottom|right"
                     android:layout_marginRight="80dp"
                     android:layout_marginBottom="20dip"
+                    android:textStyle="bold"
                     android:padding="12dip"
                     android:text="Golden Gate"
                     android:textColor="#ffffffff"
@@ -107,6 +109,7 @@
                     android:layout_marginBottom="20dip"
                     android:padding="12dip"
                     android:text="2살"
+                    android:textStyle="bold"
                     android:textColor="#ffffffff"
                     android:textSize="16sp" />
 
@@ -141,42 +144,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:text="혈통 증명서 보유여부 : "
-                    android:textSize="24dp"
-                    android:textStyle="bold" />
-
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/petBreedCertificatin"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_gravity="center"
-                    android:textSize="24dp"
-                    android:text="YES"
-                    android:gravity="center"
-                    android:textAlignment="center"
-                    android:textStyle="bold" />
-
-
-
-            </LinearLayout>
 
         </LinearLayout>
 
@@ -190,12 +158,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <View
-                android:id="@+id/boundary1"
-                android:layout_width="wrap_content"
-                android:layout_height="2dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/colorPrimary" />
+            <!--<View-->
+                <!--android:id="@+id/boundary1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="2dp"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:layout_marginRight="10dp"-->
+                <!--android:background="@color/colorBlue" />-->
 
             <TextView
                 android:layout_width="wrap_content"
@@ -224,9 +194,12 @@
             android:layout_width="wrap_content"
             android:layout_height="2dp"
             android:layout_marginTop="10dp"
-            android:background="@color/colorPrimary" />
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/colorBlue" />
 
         <LinearLayout
+            android:id="@+id/bssk"
             android:orientation="vertical"
             android:layout_below="@+id/intro_bunyang_pet"
             android:layout_width="match_parent"
@@ -250,7 +223,47 @@
                 android:textSize="16sp"
                 android:text="TEST"/>
 
+            <View
+                android:id="@+id/boundary1"
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/colorBlue" />
         </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:layout_below="@+id/bssk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="혈통 증명서 보유여부 : "
+                android:textSize="24dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/petBreedCertificatin"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="50dp"
+                android:layout_gravity="center"
+                android:textSize="24dp"
+                android:text="YES"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
 
 
         <LinearLayout
@@ -259,11 +272,13 @@
             android:layout_alignParentBottom="true">
 
             <androidx.appcompat.widget.AppCompatButton
+                android:background="@color/colorBlue"
                 android:id="@+id/bunyang_request"
                 android:layout_gravity="bottom"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
                 android:textStyle="bold"
                 android:textSize="24sp"
                 android:text="분양 신청"/>
