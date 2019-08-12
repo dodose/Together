@@ -238,8 +238,9 @@
 
             <ImageView
                 android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_height="130dp"
                 android:layout_gravity="center"
+                android:src="@drawable/togethermark"
                 android:background="#1029"/>
 
             <TextView

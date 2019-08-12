@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.together.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,6 +35,8 @@ public class PetHospitalShowReservationInfoActivity extends AppCompatActivity {
     JSONObject SendObj = new JSONObject();
     Button close;
 
+    TextView order_time,status,etp_name,info;
+
     private String strUrl;
     private URL Url;
 
@@ -47,6 +50,8 @@ public class PetHospitalShowReservationInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_hospital_show_reservation_info);
+
+
 
         fuser = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -65,6 +70,16 @@ public class PetHospitalShowReservationInfoActivity extends AppCompatActivity {
             edit = Bx.getString("edit");
 
         }
+
+        order_time = findViewById(R.id.order_time);
+        etp_name = findViewById(R.id.etp_nm);
+        status = findViewById(R.id.status);
+        info = findViewById(R.id.info);
+
+        order_time.setText(date+" "+Time);
+        etp_name.setText(etp_nm);
+        status.setText("예약 대기중");
+        info.setText("상세내역\n\n"+"선택한 질병명\n\n"+canser+"\n\n"+"문의주신내용\n\n"+edit);
 
         close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -189,4 +204,8 @@ public class PetHospitalShowReservationInfoActivity extends AppCompatActivity {
 
 
     }
+    //뒤로가기 버튼 막기
+    @Override public void onBackPressed() { //super.onBackPressed();
+    }
+
 }

@@ -18,6 +18,8 @@ import com.example.together.activities.petHospital.PetHospitalDetailInfoActivity
 import com.example.together.model.Hospital;
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class HospitalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
@@ -26,12 +28,14 @@ public class HospitalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private ArrayList<Hospital> list;
     private String petcode;
     private String date;
+    private String Address;
 
-    public HospitalAdapter(ArrayList<Hospital> hospitalList, Context mContent,String petcode ,String date) {
+    public HospitalAdapter(ArrayList<Hospital> hospitalList, Context mContent,String petcode ,String date,String Address) {
         this.list = hospitalList;
         this.c = mContent;
         this.petcode = petcode;
         this.date = date;
+        this.Address = Address;
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -41,6 +45,7 @@ public class HospitalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         TextView Time;
         TextView etp_addr;
         TextView content;
+        TextView dis_km;
 
         // TextView 나중에 위도경도 변환값들어갈곳
 
@@ -53,6 +58,8 @@ public class HospitalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             content = view.findViewById(R.id.content);
             Time = view.findViewById(R.id.Time);
             starcount = view.findViewById(R.id.etp_star);
+            dis_km = view.findViewById(R.id.dis_km);
+
 
 
         }
@@ -80,6 +87,7 @@ public class HospitalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         myViewHolder.content.setText(list.get(position).content);
         myViewHolder.Time.setText(list.get(position).mTime);
         myViewHolder.starcount.setText("★  " +list.get(position).starcount);
+        myViewHolder.dis_km.setText(list.get(position).km+ " km");
 
 
         myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +97,7 @@ public class HospitalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 String code = list.get(Position).etp_cd;
                 String img = list.get(Position).img_path;
                 String Name = list.get(Position).mName;
+                String etp_addr = list.get(Position).mAddr;
 
 //
                 Intent intent = new Intent(v.getContext(), PetHospitalDetailInfoActivity.class);
@@ -97,6 +106,7 @@ public class HospitalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 intent.putExtra("img",img);
                 intent.putExtra("code",code);
                 intent.putExtra("name",Name);
+                intent.putExtra("Address",etp_addr);
 
                 v.getContext().startActivity(intent);
             }

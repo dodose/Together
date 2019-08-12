@@ -36,7 +36,9 @@
                     android:id="@+id/etp_star"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:textSize="20dp"
                     android:paddingLeft="5dp"
+                    android:textColor="@color/colorBlue"
                     android:text="★ 4.4"
                     />
 
@@ -52,6 +54,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
                     android:text="업체이름"
                     android:padding="5dp" />
 
@@ -79,7 +83,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.3"
-                    android:textSize="12dp"
+                    android:textSize="14dp"
                     android:padding="5dp"
                     android:text="업체 주소"/>
 

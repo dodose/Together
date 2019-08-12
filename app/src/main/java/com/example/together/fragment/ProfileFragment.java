@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -14,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -68,6 +72,8 @@ public class ProfileFragment extends Fragment {
 
     ImageButton my_photos, saved_photos, mydogs_info;
 
+    Toolbar myToolbar;
+
 
 
     @Override
@@ -75,13 +81,25 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
+
+        //툴바 선언
+        myToolbar = view.findViewById(R.id.toolbar);
+
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        activity.setSupportActionBar(myToolbar);
+
+        //액션바 왼쪽에 버튼
+        activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        activity.getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu);
+        activity.getSupportActionBar().setTitle("");
+
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         SharedPreferences prefs = getContext().getSharedPreferences("PREFS", Context.MODE_PRIVATE);
         profileid = prefs.getString("profileid", "none");
 
         image_profile = view.findViewById(R.id.image_profile);
-        options = view.findViewById(R.id.options);
+//        options = view.findViewById(R.id.options);
         pets = view.findViewById(R.id.pets);
         followers = view.findViewById(R.id.followers);
         following = view.findViewById(R.id.following);
@@ -163,14 +181,14 @@ public class ProfileFragment extends Fragment {
                 }
             }
         });
-
-        options.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), OptionActivity.class);
-                startActivity(intent);
-            }
-        });
+//
+//        options.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getContext(), OptionActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
 
 
@@ -280,7 +298,7 @@ public class ProfileFragment extends Fragment {
                 User user = dataSnapshot.getValue(User.class);
 
                 Glide.with(getContext()).load(user.getImageurl()).into(image_profile);
-                username.setText(user.getUsername());
+                username.setText(user.getUsername()+"의 마이페이지");
                 fullname.setText(user.getFullname());
                 bio.setText(user.getBio());
 
@@ -437,35 +455,24 @@ public class ProfileFragment extends Fragment {
     }
 
 
+    //액션바 클릭 이벤트
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
 
 
+        switch (item.getItemId()) {
+            case  android.R.id.home :
+//                Intent intent = new Intent(ProductOrderActivity.this,HotelDetailActivity.class);
+//                startActivity(intent);
+                Log.e("ㅇ","홈버튼눌림");
+                return true ;
 
-/*  POST Count
-
-    private void getNrPost(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                int i = 0;
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    Post post = snapshot.getValue(Post.class);
-                    if (post.getPublisher().equals(profileid)){
-                        i++;
-                    }
-                }
-
-                posts.setText(""+i);
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+            default :
+                return super.onOptionsItemSelected(item) ;
+        }
     }
- */
+
+
+
 
 }

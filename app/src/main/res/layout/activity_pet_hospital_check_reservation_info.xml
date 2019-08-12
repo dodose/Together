@@ -42,23 +42,31 @@
 
     <LinearLayout
         android:id="@+id/filter_location_Info"
-        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:background="#1313"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="업체 위치"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_weight="0.75"
+            />
 
         <TextView
             android:id="@+id/location"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center_vertical"
+            android:layout_weight="0.25"
+            android:gravity="center"
             android:text="북구 복현동"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textSize="18sp"/>
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_place"/>
 
     </LinearLayout>
     <LinearLayout
@@ -140,36 +148,47 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
-
-        <ImageButton
-            android:id="@+id/LeftBtn"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="left"
-            android:layout_weight="1"
-            android:background="#fafafa"
-            android:src="@drawable/mdtp_ic_chevron_left_black_24dp"
-            tools:visibility="invisible" />
-
+        android:orientation="vertical">
 
         <FrameLayout
             android:id="@+id/container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.2"
-            android:layout_gravity="center"/>
+            android:layout_height="0dp"
+            android:layout_weight="6"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-        <ImageButton
-            android:id="@+id/RightBtn"
+            <ImageButton
+            android:id="@+id/LeftBtn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#fafafa"
+                android:layout_margin="10dp"
+                android:background="@drawable/hotel_round_rectangle"
+            android:layout_gravity="center"
             android:layout_weight="1"
-            android:src="@drawable/mdtp_ic_chevron_right_black_24dp"
-            android:layout_gravity="right"/>
+            android:src="@drawable/mdtp_ic_chevron_left_black_24dp"
+            />
+
+
+            <ImageButton
+                android:id="@+id/RightBtn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:background="@drawable/hotel_round_rectangle"
+                android:layout_weight="1"
+                android:src="@drawable/mdtp_ic_chevron_right_black_24dp"
+                android:layout_gravity="center"/>
+
+
+        </LinearLayout>
+
 
     </LinearLayout>
+
+
 
 </LinearLayout>

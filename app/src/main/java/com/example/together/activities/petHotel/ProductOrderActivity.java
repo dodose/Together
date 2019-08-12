@@ -131,26 +131,6 @@ public class ProductOrderActivity extends AppCompatActivity {
 
 
 
-        //문자를위한 권한체크
-        int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS);
-        if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(this, "SMS 수신권한 주어져있음", Toast.LENGTH_LONG).show();
-
-        } else {          // 권한 X 경우
-            Toast.makeText(this, "SMS 수신권한 없음", Toast.LENGTH_LONG).show();
-
-            //권한 설명이 필요한지 안필요한지 여부
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.SEND_SMS)) {//
-                Toast.makeText(this, "SMS 권한 설명 필요함", Toast.LENGTH_LONG).show();
-                //권한은 시스템에서 처리 한다 이것을 시스템에 요청해야함
-            } else {
-                ActivityCompat.requestPermissions(this, new String[]{
-                        Manifest.permission.SEND_SMS         //권한 부여를 시스템에게 요청한다.
-                }, 1);
-
-            }
-        }
-
         //툴바 선언
         myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -303,21 +283,16 @@ public class ProductOrderActivity extends AppCompatActivity {
                 }.execute();
 
 
-                String mess = "호텔의" + prefirst+"일" +"~"+prelast+"일의" +"상품 : "+prename + "이 예약이완료되었습니다 "+ ", 예약에는 1~3일정도 소요될수있습니다.";
-                //예약완료시 문자보내는것
-                sendSMS("01055059374",mess);
-
-
                 //완료시 alert 창
                     AlertDialog.Builder alert_confirm = new AlertDialog.Builder(ProductOrderActivity.this);
-                    alert_confirm.setMessage("예약이 완료되었습니다, 리뷰작성을 하시겠습니까?").setCancelable(false).setPositiveButton("확인",
+                    alert_confirm.setMessage("예약이 완료되었습니다, My예약으로 바로 이동 하시겠습니까?").setCancelable(false).setPositiveButton("확인",
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     // 'YES'
-                                    Intent intent = new Intent(ProductOrderActivity.this,reViewActivity.class);
-                                    intent.putExtra("etpcode",result);
-                                    startActivity(intent);
+//                                    Intent intent = new Intent(ProductOrderActivity.this,reViewActivity.class);
+//                                    intent.putExtra("etpcode",result);
+//                                    startActivity(intent);
                                 }
                             }).setNegativeButton("취소",
                             new DialogInterface.OnClickListener() {
@@ -367,31 +342,6 @@ public class ProductOrderActivity extends AppCompatActivity {
         }
     }
 
-
-    //문자전송 이벤트
-    public void sendSMS(String phoneNumber, String message){
-        String SENT = "SMS_SENT";
-        String DELIVERED = "SMS_DELIVERED";
-
-        PendingIntent sentPI = PendingIntent.getBroadcast(this,0,new Intent(SENT),0);
-        PendingIntent deliverdPI = PendingIntent.getBroadcast(this,0,new Intent(DELIVERED),0);
-
-        registerReceiver(new BroadcastReceiver() {
-
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                switch (getResultCode()){
-                    case Activity.RESULT_OK :
-                    break;
-                }
-
-            }
-        },new IntentFilter(SENT));
-
-        SmsManager sms = SmsManager.getDefault();
-        sms.sendTextMessage(phoneNumber,null,message,sentPI,deliverdPI);
-
-    }
 
 
 }

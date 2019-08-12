@@ -9,8 +9,7 @@
         android:id="@+id/userimage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1.5"
-        android:background="#fcba03"/>
+        android:layout_weight="1.5"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -73,14 +72,29 @@
             android:paddingTop="5dp"
             android:text="내용" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.7"
+                android:padding="3dp"
+                android:textSize="15dp"
+                android:text="작성일"/>
+
         <TextView
             android:id="@+id/review_dt"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="0.3"
             android:padding="3dp"
             android:text="2019/06/07"
             android:textSize="15dp" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

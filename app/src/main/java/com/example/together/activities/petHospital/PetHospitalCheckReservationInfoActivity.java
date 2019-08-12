@@ -61,6 +61,11 @@ public class PetHospitalCheckReservationInfoActivity extends AppCompatActivity {
     String petcode;
     String dateday;
     String topName;
+    String Address;
+
+    TextView location;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +75,11 @@ public class PetHospitalCheckReservationInfoActivity extends AppCompatActivity {
         petcode = Bx.getString("petcode");
         dateday = Bx.getString("date");
         topName = Bx.getString("etp_name");
+        Address = Bx.getString("Address");
+
+        location = findViewById(R.id.location);
+        location.setText(Address);
+
 
         //툴바 선언
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -126,14 +136,13 @@ public class PetHospitalCheckReservationInfoActivity extends AppCompatActivity {
 
         fragment2 = new Hos_or_fragment2(topName,dateday);
 
-        left.setVisibility(View.INVISIBLE);
         //프레그먼트를 메니져로 보여줌
         getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_rigth).add(R.id.container,fragment1).commit();
 
         left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                left.setVisibility(View.INVISIBLE);
+                right.setVisibility(View.VISIBLE);
                 String A = "1";
                 switchFragment(A);
             }
@@ -142,7 +151,7 @@ public class PetHospitalCheckReservationInfoActivity extends AppCompatActivity {
         right.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                left.setVisibility(View.VISIBLE);
+                right.setVisibility(View.INVISIBLE);
                 String B = "2";
                 switchFragment(B);
 
