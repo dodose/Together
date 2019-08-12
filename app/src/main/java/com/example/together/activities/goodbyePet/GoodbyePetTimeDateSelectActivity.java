@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -52,6 +54,7 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
 
     RecyclerView mRecycleView;
     RecyclerView.LayoutManager mLayoutManager;
+    Toolbar mToolbar;
 
     private String strUrl;
     private URL Url;
@@ -69,12 +72,17 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goodbye_pet_time_date_select);
 
-
+        mToolbar = findViewById(R.id.toolbar);
         check = (Button) findViewById(R.id.check);
         date = (Button) findViewById(R.id.selectdate);
         time = (Button) findViewById(R.id.selecttime);
-        set_date = (TextView) findViewById(R.id.set_date);
-        set_time = (TextView) findViewById(R.id.set_time);
+
+
+        //툴바 액션바 왼쪽에 버튼
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_btn_back);
+        getSupportActionBar().setTitle("");
 
 
         date.setOnClickListener(new View.OnClickListener() {
@@ -113,7 +121,23 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
         spin1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if(adspin1.getItem(i).equals("서울특별시")) {
+                if(adspin1.getItem(i).equals("도시를 선택해주세요")){
+                    choice_do = "도시를 선택해주세요"; //버튼 클릭시 출력을 위해 값을 넣음
+                    adspin2 = ArrayAdapter.createFromResource(GoodbyePetTimeDateSelectActivity.this, R.array.spinner_default,
+                            android.R.layout.simple_spinner_dropdown_item);
+                    adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin2.setAdapter(adspin2);
+                    spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            choice_se = adspin2.getItem(i).toString();
+                        }
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+                            //아무것도 선택 안했을때 부분, 자동완성됨
+                        }
+                    });
+            }else if(adspin1.getItem(i).equals("서울특별시")) {
                     choice_do = "서울"; //버튼 클릭시 출력을 위해 값을 넣음
                     adspin2 = ArrayAdapter.createFromResource(GoodbyePetTimeDateSelectActivity.this, R.array.spinner_do_seoul,
                             android.R.layout.simple_spinner_dropdown_item);
@@ -400,20 +424,20 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 // 시간 날짜 입력되었는지 확인한 후에 입력하였으면 넘기기
-                if(set_date==null){
+                if(date==null){
                     Toast.makeText(GoodbyePetTimeDateSelectActivity.this, "날짜를 입력해주세요", Toast.LENGTH_SHORT).show();
 
-                }else if(set_time==null){
+                }else if(time==null){
                     Toast.makeText(GoodbyePetTimeDateSelectActivity.this, "시간을 입력해주세요", Toast.LENGTH_SHORT).show();
                 }else{
 
-                    String day = (String) set_date.getText();
-                    String time = (String) set_time.getText();
+                    String day = (String) date.getText();
+                    String times = (String) time.getText();
                     String addr = choice_do+" "+choice_se;
 
                     Intent intent = new Intent(GoodbyePetTimeDateSelectActivity.this, com.example.together.activities.goodbyePet.GoodbyePetStoreListActivity.class);
                     intent.putExtra("day",day);
-                    intent.putExtra("time",time);
+                    intent.putExtra("time",times);
                     intent.putExtra("addr",addr);
                     startActivity(intent);
                 }
@@ -573,7 +597,7 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
             // store the data in one string and set it to text
             String date1 = String.valueOf(year) + "/" + String.valueOf(month+1)
                     + "/" + String.valueOf(day);
-            set_date.setText(date1);
+            date.setText(date1);
         }
     };
 
@@ -583,9 +607,29 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
         public void onTimeSet(TimePicker view, int hour, int minute) {
             // store the data in one string and set it to text
             String time1 = String.valueOf(hour) + ":00";
-            set_time.setText(time1);
+            time.setText(time1);
         }
     };
+
+
+    //액션바 클릭 이벤트
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Log.e("눌림","뒤로가기버튼 눌림");
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }
+
+
+
+    }
 
 
 

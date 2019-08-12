@@ -1,7 +1,9 @@
 package com.example.together.activities.my_petInfo;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -16,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +41,7 @@ import com.google.firebase.storage.StorageTask;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
@@ -53,18 +57,21 @@ public class MyPetRegActivity extends AppCompatActivity {
 
     private static final String TAG = "MyPetRegActivity";
 
+    ArrayList<String> itmes = new ArrayList<>();
+
 
 
     ImageView mImage_profile;
-    TextView mDisplayDate, mTv_change;
-    EditText mPetName, mIntro, mPetBreed, mPetWeight;
+    TextView mDisplayDate, mTv_change, mPetBreed;
+    EditText mPetName, mIntro, mPetWeight;
     RadioGroup mGenderGroup;
     RadioButton mMale, mFemale;
     DatePickerDialog.OnDateSetListener mDateSetListener;
-    Button mAdd_mypet, cancel;
+    Button mAdd_mypet, cancel, select_pet_breed;
 
     FirebaseAuth auth;
     DatabaseReference reference;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +90,27 @@ public class MyPetRegActivity extends AppCompatActivity {
         mFemale = findViewById(R.id.female);
         mGenderGroup = findViewById(R.id.genderGroup);
         cancel = findViewById(R.id.cancel);
+        select_pet_breed = findViewById(R.id.select_pet_breed);
+
+
+
+        AlertDialog.Builder spinner = new AlertDialog.Builder(this);
+        spinner.setTitle("");
+        String[] types = {};
+        spinner.setItems(types, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+
+        select_pet_breed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                spinner.show();
+            }
+        });
 
 
 

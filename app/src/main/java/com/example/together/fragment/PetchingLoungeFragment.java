@@ -12,16 +12,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.together.R;
-import com.example.together.adapter.PetchingBunyangAdapter;
-import com.example.together.adapter.PetchingFriendsAdapter;
+import com.example.together.activities.petching.PetchingLoungeDetailInfoActivity;
 import com.example.together.adapter.PetchingLoungeAdapter;
-import com.example.together.model.Lounge;
-import com.example.together.model.PetchingBunyang;
-import com.example.together.model.PetchingFriend;
+import com.example.together.model.Pet;
 import com.example.together.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,7 +25,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -45,6 +39,10 @@ public class PetchingLoungeFragment extends Fragment {
     PetchingLoungeAdapter petchingLoungeAdapter;
     List<User> userList;
     FirebaseUser firebaseUser;
+    List<String> idList = new ArrayList<>();
+    List<String> idFriendList = new ArrayList<>();
+    public String petKey;
+
 
 
 
@@ -53,41 +51,92 @@ public class PetchingLoungeFragment extends Fragment {
     {
 
 
-
-        View view =  inflater.inflate(R.layout.fragment_pet_firends, container, false);
+        View view =  inflater.inflate(R.layout.fragment_petching_lounge, container, false);
 
         recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
 
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        Log.d(TAG, "주인"+firebaseUser.getUid());
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Lounge").child("PetchingBunyang").child(firebaseUser.getUid()).child("PetId");
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Lounge").child("PetchingBunyang").child(firebaseUser.getUid()).child("Requestor");
+
         reference.addValueEventListener(new ValueEventListener() {
-
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot childSnapshot : dataSnapshot.getChildren())
-                {
-                    User user = childSnapshot.getValue(User.class);
-                    String key = childSnapshot.getKey();
+
+                    for (DataSnapshot ds : dataSnapshot.getChildren())
+                    {
+                        String id = ds.getKey();
+                        petchingLoungeAdapter.setId(id);
 
 
-                    Log.d(TAG, "양갱이: "+childSnapshot.getKey());
+                        DatabaseReference reference1 =
+                                FirebaseDatabase.getInstance().getReference( "Lounge").child("PetchingBunyang").child(firebaseUser.getUid()).child("PetId").child(id).child("Requestor");
 
-                    user.setId(key);
+                        reference1.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                idList.clear();
+                                for (DataSnapshot snapshot : dataSnapshot.getChildren())
+                                {
+                                    idList.add(snapshot.getKey());
 
-                    userList.add(user);
+                                }
 
+                                showUsers();
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+
+                    }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.d(TAG, "펫키에러");
+            }
+        });
+
+
+        Log.d(TAG, "하마: "+petKey);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
+        userList = new ArrayList<>();
+        petchingLoungeAdapter = new PetchingLoungeAdapter(getContext(), userList);
+
+        recyclerView.setAdapter(petchingLoungeAdapter);
+
+
+
+        return view;
+
+    }
+
+
+
+
+    private void showUsers(){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                userList.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    User user = snapshot.getValue(User.class);
+                    for (String id : idList){
+                        if (user.getId().equals(id)){
+                            userList.add(user);
+                        }
+                    }
                 }
-
-
-                Log.d(TAG, "상무: "+userList);
-
                 Collections.reverse(userList);
                 petchingLoungeAdapter.notifyDataSetChanged();
-
             }
 
             @Override
@@ -95,21 +144,11 @@ public class PetchingLoungeFragment extends Fragment {
 
             }
         });
-
-        Log.d(TAG, "분양키 리스트 목록처음"+userList);
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(linearLayoutManager);
-        userList = new ArrayList<>();
-        petchingLoungeAdapter = new PetchingLoungeAdapter(getContext(), userList);
-        recyclerView.setAdapter(petchingLoungeAdapter);
-
-
-
-        return view;
-
-
     }
+
+
+
+
 
 
 }

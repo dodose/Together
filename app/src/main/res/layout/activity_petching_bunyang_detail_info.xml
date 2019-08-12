@@ -139,12 +139,42 @@
 
         <LinearLayout
             android:id="@+id/petBreedCheck"
+            android:layout_marginTop="10dp"
             android:layout_below="@+id/wrap_frame_layout"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
 
+            <LinearLayout
+                android:layout_weight="2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_weight="1.5"
+                    android:id="@+id/petBreedCertificatin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:textSize="20dp"
+                    android:text="YES"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:onClick="showPopup"
+                    android:id="@+id/blood_certi_img_popup"
+                    android:visibility="gone"
+                    android:background="@color/chat"
+                    android:layout_weight="0.5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="보기"/>
+
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -232,38 +262,6 @@
                 android:layout_marginRight="10dp"
                 android:background="@color/colorBlue" />
         </LinearLayout>
-
-
-
-
-        <LinearLayout
-            android:layout_below="@+id/bssk"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="혈통 증명서 보유여부 : "
-                android:textSize="24dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/petBreedCertificatin"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="50dp"
-                android:layout_gravity="center"
-                android:textSize="24dp"
-                android:text="YES"
-                android:gravity="center"
-                android:textAlignment="center"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-
 
 
         <LinearLayout

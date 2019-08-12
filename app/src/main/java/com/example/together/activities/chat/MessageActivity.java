@@ -51,6 +51,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -123,13 +124,31 @@ public class MessageActivity extends AppCompatActivity {
             String msg = text_send.getText().toString();
             if (!msg.equals("")){
                 sendMessage(fuser.getUid(), userid, msg);
+
+
+                DatabaseReference r_usernmRef = FirebaseDatabase.getInstance().getReference("Users").child(fuser.getUid());
+                r_usernmRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        User user = dataSnapshot.getValue(User.class);
+
+                        sendpushAlert(userid,user.getUsername(),msg);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+
             }else {
                 Toast.makeText(MessageActivity.this, "내용을 입력해주세요", Toast.LENGTH_SHORT).show();
             }
             text_send.setText("");
 
             //푸쉬알림
-            sendpushAlert(userid);
+
 
 
         });
@@ -163,8 +182,9 @@ public class MessageActivity extends AppCompatActivity {
         seenMessage(userid);
     }
 
-    private void sendpushAlert(String userid) {
+    public void sendpushAlert(String userid,String userNmae,String sendText) {
 
+        Log.e("s",sendText);
         reference = FirebaseDatabase.getInstance().getReference("Tokens").child(userid).child("TokenUid");
         reference.addValueEventListener(new ValueEventListener() {
 
@@ -196,7 +216,7 @@ public class MessageActivity extends AppCompatActivity {
                             conn.setDoOutput(true);       // 쓰기모드 지정
 
 
-                            String input = "{\"notification\" : {\"title\" : \"[Together Talk] \", \"body\" : \"새로운 메세지가 왔습니다..\"}, \"to\":\""+tokenKey.get("token").toString()+"\"}";
+                            String input = "{\"notification\" : {\"title\" : \""+userNmae+" \", \"body\" : \""+sendText+"\"}, \"to\":\""+tokenKey.get("token").toString()+"\"}";
 
                             OutputStream os = conn.getOutputStream();
 
@@ -309,7 +329,7 @@ public class MessageActivity extends AppCompatActivity {
 
 
 
-    private void sendMessage(String sender, final String receiver, String message){
+    public void sendMessage(String sender, final String receiver, String message){
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
@@ -323,7 +343,7 @@ public class MessageActivity extends AppCompatActivity {
 
         final String msg = message;
 
-        reference = FirebaseDatabase.getInstance().getReference("Users").child(fuser.getUid());
+        reference = FirebaseDatabase.getInstance().getReference("Users").child(sender);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

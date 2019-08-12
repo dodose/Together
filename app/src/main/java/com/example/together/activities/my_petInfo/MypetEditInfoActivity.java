@@ -59,6 +59,7 @@ public class MypetEditInfoActivity extends AppCompatActivity {
     RadioButton male,female;
     String inpetUid;
 
+
     String myUrl;
 
     FirebaseUser firebaseUser;
@@ -94,6 +95,9 @@ public class MypetEditInfoActivity extends AppCompatActivity {
         genderGroup = findViewById(R.id.genderGroup);
         male = findViewById(R.id.male);
         female = findViewById(R.id.female);
+
+
+
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Pets").child(firebaseUser.getUid()).child(inpetUid);
 
