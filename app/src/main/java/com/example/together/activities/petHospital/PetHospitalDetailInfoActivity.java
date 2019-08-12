@@ -61,6 +61,7 @@ public class PetHospitalDetailInfoActivity extends AppCompatActivity {
         final String petcode = Bx.getString("petcode");
         final String date = Bx.getString("date");
         final String code = Bx.getString("code");
+        final String Address = Bx.getString("Address");
 
 
         topNmae =findViewById(R.id.petHospitalName);
@@ -126,7 +127,7 @@ public class PetHospitalDetailInfoActivity extends AppCompatActivity {
                     conn.disconnect();
 
 
-                    Log.e("result", String.valueOf(jobj));
+                    Log.e("hospitaldetalinfo", String.valueOf(jobj));
 
 
                 } catch (MalformedURLException | ProtocolException exception) {
@@ -205,6 +206,7 @@ public class PetHospitalDetailInfoActivity extends AppCompatActivity {
                 intent.putExtra("date",date);
                 intent.putExtra("petcode",petcode);
                 intent.putExtra("etp_name",topNmae.getText());
+                intent.putExtra("Address",Address);
                 startActivity(intent);
             }
         });

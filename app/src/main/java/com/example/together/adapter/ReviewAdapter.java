@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.together.model.Review;
@@ -45,6 +46,7 @@ public class ReviewAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.item_review, parent, false);
         }
 
+        ImageView tv_Image = convertView.findViewById(R.id.userimage);
         TextView tv_name = (TextView) convertView.findViewById(R.id.user_name); //유저아이디
         TextView tv_cont = (TextView) convertView.findViewById(R.id.reviewcontents); //리뷰내용
         TextView tv_star = convertView.findViewById(R.id.star_avg); //리뷰 평점
@@ -53,9 +55,21 @@ public class ReviewAdapter extends BaseAdapter {
 
         Review getRevieList = review.get(position);
 
+
         tv_name.setText(getRevieList.getReviewnm());
         tv_cont.setText(getRevieList.getReviewcont());
         tv_star.setText(getRevieList.getReviewstar().toString());
+        if(getRevieList.getReviewstar() >= 0 && getRevieList.getReviewstar() < 1){
+            tv_Image.setImageResource(R.drawable.varysad);
+        }else if(getRevieList.getReviewstar() >= 1 && getRevieList.getReviewstar() < 2){
+            tv_Image.setImageResource(R.drawable.sad);
+        }else if(getRevieList.getReviewstar() >= 2 && getRevieList.getReviewstar() < 3){
+            tv_Image.setImageResource(R.drawable.soso);
+        }else if(getRevieList.getReviewstar() >= 3 && getRevieList.getReviewstar() < 4){
+            tv_Image.setImageResource(R.drawable.happy);
+        }else{
+            tv_Image.setImageResource(R.drawable.varyhappy);
+        }
         tv_dt.setText(getRevieList.getReviewdt());
 
         return convertView;

@@ -198,19 +198,45 @@ public class Hos_or_fragment2 extends Fragment {
 
 
                             if(Timeset.equals("60")) {
-                                checklist.add(v_t1 + ":00" + "~" + Integer.parseInt(String.valueOf(v_t1 + 1)) + ":00");
+                                if(v_t1 < 9) {
+                                    checklist.add("0"+v_t1 + ":00" + "~" + "0"+Integer.parseInt(String.valueOf(v_t1 + 1)) + ":00");
+                                }else if(v_t1 == 9){
+                                    checklist.add("0"+v_t1 + ":00" + "~" +Integer.parseInt(String.valueOf(v_t1 + 1)) + ":00");
+                                }else{
+                                    checklist.add(v_t1 + ":00" + "~" +Integer.parseInt(String.valueOf(v_t1 + 1)) + ":00");
+                                }
                                 v_t1 += 1;
                                 count += 1;
                             }else if(Timeset.equals("30")){
-                                checklist.add(v_t1 + ":00" + "~" + v_t1 + ":30");
-                                checklist.add(v_t1 + ":30" + "~" +Integer.parseInt(String.valueOf(v_t1 + 1)) + ":00");
+                                if(v_t1 < 9) {
+                                checklist.add("0"+v_t1 + ":00" + "~" + "0"+v_t1 + ":30");
+                                checklist.add("0"+v_t1 + ":30" + "~" +"0"+Integer.parseInt(String.valueOf(v_t1 + 1)) + ":00");
+                                }else if(v_t1 == 9){
+                                    checklist.add("0"+v_t1 + ":00" + "~" + "0"+v_t1 + ":30");
+                                    checklist.add("0"+v_t1 + ":30" + "~" +Integer.parseInt(String.valueOf(v_t1 + 1)) + ":00");
+                                }else{
+                                    checklist.add(v_t1 + ":00" + "~" + v_t1 + ":30");
+                                    checklist.add(v_t1 + ":30" + "~" +Integer.parseInt(String.valueOf(v_t1 + 1)) + ":00");
+                                }
                                 v_t1 += 1;
                                 count += 2;
                             }else if(Timeset.equals("15")){
-                                checklist.add(v_t1 + ":00" + "~" + v_t1 + ":15");
-                                checklist.add(v_t1 + ":15" + "~" + v_t1 + ":30");
-                                checklist.add(v_t1 + ":30" + "~" + v_t1 + ":45");
-                                checklist.add(v_t1 + ":45" + "~" +Integer.parseInt(String.valueOf(v_t1 + 1)) + ":00");
+                                if(v_t1 < 9) {
+                                checklist.add("0"+v_t1 + ":00" + "~" + "0"+v_t1 + ":15");
+                                checklist.add("0"+v_t1 + ":15" + "~" + "0"+v_t1 + ":30");
+                                checklist.add("0"+v_t1 + ":30" + "~" + "0"+v_t1 + ":45");
+                                checklist.add("0"+v_t1 + ":45" + "~" +"0"+Integer.parseInt(String.valueOf(v_t1 + 1)) + ":00");
+                                }else if(v_t1 == 9){
+                                    checklist.add("0"+v_t1 + ":00" + "~" +"0"+ v_t1 + ":15");
+                                    checklist.add("0"+v_t1 + ":15" + "~" + "0"+v_t1 + ":30");
+                                    checklist.add("0"+v_t1 + ":30" + "~" + "0"+v_t1 + ":45");
+                                    checklist.add("0"+v_t1 + ":45" + "~" +Integer.parseInt(String.valueOf(v_t1 + 1)) + ":00");
+                                }else{
+                                    checklist.add(v_t1 + ":00" + "~" + v_t1 + ":15");
+                                    checklist.add(v_t1 + ":15" + "~" + v_t1 + ":30");
+                                    checklist.add(v_t1 + ":30" + "~" + v_t1 + ":45");
+                                    checklist.add(v_t1 + ":45" + "~" +Integer.parseInt(String.valueOf(v_t1 + 1)) + ":00");
+                                }
                                 v_t1 += 1;
                                 count += 4;
                             }
