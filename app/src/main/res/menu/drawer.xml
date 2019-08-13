@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/navigation_item_attachment"
+            android:checked="true"
+            android:title="마이페이지" />
+        <item
+            android:id="@+id/navigation_item_order"
+            android:title="예약목록" />
+
+        <item
+            android:id="@+id/navigation_item_customer"
+            android:title="고객센터문의" />
+
+        <item
+            android:id="@+id/navigation_item_logout"
+            android:title="로그아웃" />
+    </group>
+
+
+</menu>
