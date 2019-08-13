@@ -131,7 +131,6 @@ public class PetchingBunyangDetailInfo extends AppCompatActivity {
                 }
 
 
-
                 petBunyangIntro.setText(petchingBunyang.getIntro_dog());
                 specail_note.setText(petchingBunyang.getSpecail_note());
 
@@ -183,7 +182,8 @@ public class PetchingBunyangDetailInfo extends AppCompatActivity {
         close = myDialog.findViewById(R.id.close);
         img_petching_blood_certification = myDialog.findViewById(R.id.img_petching_blood_certification);
 
-        close.setOnClickListener(new View.OnClickListener() {
+        close.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v) {
                 myDialog.dismiss();
@@ -223,6 +223,8 @@ public class PetchingBunyangDetailInfo extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                lsPetPost.clear();
+
                 for (DataSnapshot childSnapshot : dataSnapshot.getChildren())
                 {
                     String key = childSnapshot.getKey();
@@ -233,17 +235,20 @@ public class PetchingBunyangDetailInfo extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot)
                         {
-                            Log.d(TAG, "대구");
-                            lsPetPost.clear();
+
                             Post post = dataSnapshot.getValue(Post.class);
+                            Log.d(TAG, "발리"+post.getPostid());
+                            Log.d(TAG, "인니어"+petcode);
+                            Log.d(TAG, "도도새"+post.getPetcode());
                             if (petcode.equals(post.getPetcode()))
                             {
                                post.getPostimage();
                                 Log.d(TAG, "포스트이미지: "+post.getPostimage());
                                post.getPostid();
+                               lsPetPost.add(post);
                             }
 
-                            lsPetPost.add(post);
+
 
                             Log.d(TAG, "강의실"+lsPetPost);
 
