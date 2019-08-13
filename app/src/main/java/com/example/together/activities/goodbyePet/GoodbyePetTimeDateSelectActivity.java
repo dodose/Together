@@ -620,6 +620,9 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 Log.e("눌림","뒤로가기버튼 눌림");
+                Intent intent = new Intent(GoodbyePetTimeDateSelectActivity.this, GoodbyeSelectActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
                 return true;
 
             default:

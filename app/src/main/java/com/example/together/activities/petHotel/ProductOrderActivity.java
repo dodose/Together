@@ -318,7 +318,7 @@ public class ProductOrderActivity extends AppCompatActivity {
     //액션바 등록
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.hotel_menu, menu) ;
+
 
         return true ;
     }
@@ -331,8 +331,9 @@ public class ProductOrderActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case  android.R.id.home :
-//                Intent intent = new Intent(ProductOrderActivity.this,HotelDetailActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(ProductOrderActivity.this,HotelDetailActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
                 return true ;
             case R.id.settings :
 //                ((TextView)findViewById(R.id.textView)).setText("ACCOUNT") ;
