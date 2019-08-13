@@ -65,6 +65,11 @@ public class MypageFragment1 extends Fragment {
     ImageButton my_photos, saved_photos, mydogs_info;
 
 
+    public MypageFragment1(TextView username) {
+        this.username = username;
+    }
+
+
     // Fragment 의 layout 을 설정하기 위해서는 onCreateView() 메소드를 사용한다.
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -75,6 +80,8 @@ public class MypageFragment1 extends Fragment {
 
         SharedPreferences prefs = getContext().getSharedPreferences("PREFS", Context.MODE_PRIVATE);
         profileid = prefs.getString("profileid", "none");
+
+        username.setText("마이페이지");
 
         image_profile = view.findViewById(R.id.image_profile);
 //        options = view.findViewById(R.id.options);
