@@ -14,7 +14,6 @@ import android.util.Log;
 import com.example.together.R;
 import com.example.together.adapter.PetHospitalizationSelectAdapter;
 import com.example.together.adapter.PetchingMyPetInfoEditAdapter;
-import com.example.together.fragment.PetBunYangInfoEditFragment;
 import com.example.together.model.Pet;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -71,7 +70,6 @@ public class PetchingSelectPetActivity extends AppCompatActivity {
 
         reference = FirebaseDatabase.getInstance().getReference("Pets").child(firebaseUser.getUid());
         reference.addValueEventListener(new ValueEventListener() {
-
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

@@ -67,7 +67,7 @@ public class PetchingFriendsAdapter extends RecyclerView.Adapter<PetchingFriends
 
         getPetInfo(mPetchingFriends.get(position).getPetFriendId(), viewHolder.img_pet, viewHolder.petName, viewHolder.petAge, viewHolder.petBreed, viewHolder.gender_m, viewHolder.gender_w);
 
-        viewHolder.bunyangpet_detail.setOnClickListener(new View.OnClickListener()
+        viewHolder.img_pet.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
@@ -121,8 +121,6 @@ public class PetchingFriendsAdapter extends RecyclerView.Adapter<PetchingFriends
 
             //상세보기 넘어가는 icon
             //추후 아이디값 이름 변경하기...!!!!!!!
-            bunyangpet_detail = itemView.findViewById(R.id.bunyangpet_detail);
-
 
         }
     }

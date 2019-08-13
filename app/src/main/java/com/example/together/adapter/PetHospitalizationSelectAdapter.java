@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.together.activities.PostActivity;
 import com.example.together.activities.petHospital.PetHospitalPetConditionActivity;
 import com.example.together.activities.petching.PetchingSelectPetActivity;
 import com.example.together.fragment.PetBunYangInfoEditFragment;
@@ -99,6 +100,9 @@ public class PetHospitalizationSelectAdapter extends RecyclerView.Adapter<PetHos
                 //펫칭 프랜드 프래그먼트로
                 PetFriendsInfoEditFragment fragment2 = new PetFriendsInfoEditFragment();
                 fragment2.myPetcode_petching(selected_my_pet);
+
+                PostActivity postActivity = new PostActivity();
+                postActivity.myPetcode_petching(selected_my_pet);
 
             }
         });

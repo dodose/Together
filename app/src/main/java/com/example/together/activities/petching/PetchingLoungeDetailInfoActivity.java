@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.together.R;
+import com.example.together.activities.chat.ChatsActivity;
 import com.example.together.activities.chat.MessageActivity;
 import com.example.together.fragment.PetchingLoungeFragment;
 import com.example.together.model.PetchingLounge;
@@ -85,15 +86,18 @@ public class PetchingLoungeDetailInfoActivity extends AppCompatActivity {
          // 수락 클릭시 매칭성사 메시지 보내지게끔
         accept.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                 Log.e("user",firebaseUser.getUid());
                 Log.e("recever",requester_id);
                 String sendName = "투개더";
                 String message = "펫칭 신청을 수락하였습니다.";
                 MessageActivity messageActivity = new MessageActivity();
-                messageActivity.sendpushAlert(requester_id,sendName,message);
-                messageActivity.sendMessage(firebaseUser.getUid(),requester_id,message);
+                messageActivity.sendpushAlert(requester_id, sendName, message);
+
+                Intent intent1 = new Intent(PetchingLoungeDetailInfoActivity.this, ChatsActivity.class);
+                startActivity(intent1);
             }
         });
 

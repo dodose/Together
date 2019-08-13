@@ -65,7 +65,7 @@ public class PetchingBunyangAdapter extends RecyclerView.Adapter<PetchingBunyang
 
         getPetInfo(mPetchingBunyang.get(position).getPetBunyangId(), viewHolder.img_pet, viewHolder.petName, viewHolder.petAge, viewHolder.petBreed, viewHolder.gender_m, viewHolder.gender_w);
 
-        viewHolder.bunyangpet_detail.setOnClickListener(new View.OnClickListener()
+        viewHolder.img_pet.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
@@ -75,6 +75,7 @@ public class PetchingBunyangAdapter extends RecyclerView.Adapter<PetchingBunyang
                 // 디테일 정보 전달....
 
                 intent.putExtra("petBunyangId",mPetchingBunyang.get(position).getPetBunyangId());
+                intent.putExtra("petcode",mPetchingBunyang.get(position).getPetcode());
 
 
                 mContext.startActivity(intent);
@@ -100,7 +101,7 @@ public class PetchingBunyangAdapter extends RecyclerView.Adapter<PetchingBunyang
     {
 
          public TextView petName, petBreed, petAge;
-         public ImageView gender_m, gender_w, bunyangpet_detail, img_pet;
+         public ImageView gender_m, gender_w, img_pet;
 
         public MyViewHolder(View itemView)
         {
@@ -113,12 +114,9 @@ public class PetchingBunyangAdapter extends RecyclerView.Adapter<PetchingBunyang
             img_pet = itemView.findViewById(R.id.img_pet);
 
             //이미지들
-            img_pet = itemView.findViewById(R.id.img_pet);
             gender_m = itemView.findViewById(R.id.gender_m);
             gender_w = itemView.findViewById(R.id.gender_w);
 
-            //상세보기 넘어가는 icon
-            bunyangpet_detail = itemView.findViewById(R.id.bunyangpet_detail);
 
 
         }

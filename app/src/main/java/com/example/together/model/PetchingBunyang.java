@@ -13,12 +13,13 @@ public class PetchingBunyang {
     private String owner;
     private String petBunyangId;
     private String image_blood_certification;
+    private String petcode;
 
 
     public PetchingBunyang() {
     }
 
-    public PetchingBunyang(String petName, String petBreed, String petImg, String petGender, String age, String having_certificate, String intro_dog, String specail_note, String owner, String petBunyangId, String image_blood_certification) {
+    public PetchingBunyang(String petName, String petBreed, String petImg, String petGender, String age, String having_certificate, String intro_dog, String specail_note, String owner, String petBunyangId, String image_blood_certification, String petcode) {
         this.petName = petName;
         this.petBreed = petBreed;
         this.petImg = petImg;
@@ -30,6 +31,7 @@ public class PetchingBunyang {
         this.owner = owner;
         this.petBunyangId = petBunyangId;
         this.image_blood_certification = image_blood_certification;
+        this.petcode = petcode;
     }
 
     public String getPetName() {
@@ -118,5 +120,13 @@ public class PetchingBunyang {
 
     public void setImage_blood_certification(String image_blood_certification) {
         this.image_blood_certification = image_blood_certification;
+    }
+
+    public String getPetcode() {
+        return petcode;
+    }
+
+    public void setPetcode(String petcode) {
+        this.petcode = petcode;
     }
 }
