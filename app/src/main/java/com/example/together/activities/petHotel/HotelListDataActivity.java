@@ -346,7 +346,9 @@ public class HotelListDataActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case android.R.id.home:
-
+                Intent intent = new Intent(HotelListDataActivity.this,PetHotelActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
                 return true;
             case R.id.search:
 

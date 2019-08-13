@@ -88,6 +88,9 @@ public class HotelLocationSelect extends AppCompatActivity {
                     changeText.setVisibility(View.GONE);
                 }else{
                     //뒤로가기버튼
+                    Intent intent = new Intent(HotelLocationSelect.this,PetHotelActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    startActivity(intent);
                 }
                 return true;
             case R.id.search:

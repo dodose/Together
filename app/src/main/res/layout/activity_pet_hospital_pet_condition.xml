@@ -24,12 +24,7 @@
                 android:layout_height="wrap_content">
 
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:src="@drawable/ic_btn_back"
-                    android:id="@+id/backTo"/>
+
 
                 <TextView
                     android:id="@+id/petName"
