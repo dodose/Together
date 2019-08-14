@@ -232,7 +232,7 @@ public class HotelDetailActivity extends AppCompatActivity {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                strUrl = "http://39.127.7.80:8080/detail_product"; //탐색하고 싶은 URL이다.
+                strUrl = "http://13.209.25.83:8080/detail_product"; //탐색하고 싶은 URL이다.
 
             }
 

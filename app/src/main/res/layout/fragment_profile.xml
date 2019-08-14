@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:text="마이페이지"
                 android:textSize="20sp"
-                android:paddingLeft="80dp"
+                android:paddingLeft="100dp"
                 android:textStyle="bold"
                 android:id="@+id/username"
                 android:textColor="@color/colorPrimaryDark"/>

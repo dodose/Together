@@ -17,7 +17,6 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
-
     <application
         android:allowBackup="false"
         android:appComponentFactory="whateverString"
@@ -27,6 +26,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:appComponentFactory">
+        <activity android:name=".activities.petching.PetchingStoryDetailActivity"></activity>
         <activity android:name=".activities.petHotel.LocationShowActivity" />
         <activity android:name=".activities.petHotel.HotelLocationSelect" />
         <activity android:name=".activities.petching.PetchingRequestorInfoActivity" />
@@ -82,7 +82,7 @@
         <activity android:name=".activities.goodbyePet.GoodbyePetStoreListActivity" />
         <activity android:name=".activities.goodbyePet.GoodbyePetTimeDateSelectActivity" />
         <activity android:name=".activities.goodbyePet.GoodbyepetMenuSelectActivity" />
-        <activity android:name=".activities.petching.PetchingLoungeDetailInfoActivity"/>
+        <activity android:name=".activities.petching.PetchingLoungeDetailInfoActivity" />
         <activity android:name=".activities.goodbyePet.GoodbyeHowActivity" />
         <activity android:name=".activities.goodbyePet.GoodbyeRainbowActivity" />
         <activity android:name=".activities.goodbyePet.GoodbyeSelectActivity" />
