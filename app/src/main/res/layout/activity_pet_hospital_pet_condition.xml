@@ -19,10 +19,6 @@
             android:background="?android:attr/windowBackground"
             android:id="@+id/toolbar">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
 
 
 
@@ -30,13 +26,13 @@
                     android:id="@+id/petName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="113dp"
+                    android:layout_gravity="center"
                     android:layout_toEndOf="@+id/close"
-                    android:text="Pet Hospital "
+                    android:text="펫 병원"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="18sp"
+                    android:textSize="25sp"
                     android:textStyle="bold" />
-            </RelativeLayout>
+
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
     //여기까지 툴바

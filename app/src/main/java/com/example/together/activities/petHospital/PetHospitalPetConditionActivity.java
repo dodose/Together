@@ -74,7 +74,7 @@ public class PetHospitalPetConditionActivity extends AppCompatActivity {
         setSupportActionBar(hosToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_btn_back);
-        getSupportActionBar().setTitle("");
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 
         // 달력 선택

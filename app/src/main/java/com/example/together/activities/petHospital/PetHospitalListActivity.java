@@ -12,20 +12,25 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.together.R;
+import com.example.together.activities.HomeActivity;
 import com.example.together.activities.petHotel.GpsTracker;
 import com.example.together.adapter.HospitalAdapter;
 import com.example.together.model.Hospital;
@@ -82,7 +87,7 @@ public class PetHospitalListActivity extends AppCompatActivity {
     String etp_cd;
     String etpcontent;
     Float etp_km;
-
+    Toolbar mToolbar;
 
     //recycler view 선언
     RecyclerView mRecycleView;
@@ -112,6 +117,15 @@ public class PetHospitalListActivity extends AppCompatActivity {
 
             checkRunTimePermission();
         }
+
+
+        mToolbar = findViewById(R.id.toolbar);
+
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_btn_back);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
 
         gpsTracker = new GpsTracker(PetHospitalListActivity.this);
 
@@ -497,6 +511,25 @@ public class PetHospitalListActivity extends AppCompatActivity {
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                 || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
 
+        return true ;
+    }
+
+
+    //액션바 클릭 이벤트
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent intent = new Intent(PetHospitalListActivity.this, PetHospitalPetConditionActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
 }

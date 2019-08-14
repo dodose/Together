@@ -23,19 +23,11 @@
 
 
 
-                <ImageView
+           <TextView
+                    android:id="@+id/petHospitalName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_btn_back"
-                    android:id="@+id/close"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentStart="true"/>
-
-                <TextView
-                    android:id="@+id/petHospitalName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
+                    android:layout_gravity="center"
                     android:layout_toEndOf="@+id/close"
                     android:text="Pet Hospital Name 들어갈곳 "
                     android:textColor="@color/colorPrimaryDark"
