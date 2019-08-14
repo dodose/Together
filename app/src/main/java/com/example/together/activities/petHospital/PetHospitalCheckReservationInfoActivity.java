@@ -18,6 +18,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.example.together.R;
+import com.example.together.activities.petHotel.HotelDetailActivity;
+import com.example.together.activities.petHotel.reViewActivity;
 import com.example.together.adapter.TimesetAdapter;
 import com.example.together.fragment.Hos_or_fragment1;
 import com.example.together.fragment.Hos_or_fragment2;
@@ -191,8 +193,9 @@ public class PetHospitalCheckReservationInfoActivity extends AppCompatActivity {
 
                 switch (item.getItemId()) {
                     case android.R.id.home:
-                        //                Intent intent = new Intent(ProductOrderActivity.this,HotelDetailActivity.class);
-                        //                startActivity(intent);
+                        Intent intent1 = new Intent(PetHospitalCheckReservationInfoActivity.this, PetHospitalDetailInfoActivity.class);
+                        intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        startActivity(intent1);
                         return true;
                     case R.id.next:
 

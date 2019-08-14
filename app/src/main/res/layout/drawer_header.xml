@@ -2,16 +2,34 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="120dp"
     android:background="?attr/colorPrimaryDark"
     android:padding="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     android:gravity="bottom">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_weight="0.3"
+        android:layout_gravity="center"
+        android:src ="@drawable/ic_setting"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="으에에에에에이이잉"
+        android:layout_weight="0.7"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:text="마이메뉴"
+        android:textSize="30dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+    </LinearLayout>
 
 </LinearLayout>

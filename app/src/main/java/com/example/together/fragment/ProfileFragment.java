@@ -1,5 +1,6 @@
 package com.example.together.fragment;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,8 +10,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -34,6 +38,8 @@ public class ProfileFragment extends Fragment {
     MypageFragment2 fragment2;
     MypageFragment3 fragment3;
 
+    TextView username;
+
     private DrawerLayout mDrawerLayout;
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
@@ -44,7 +50,7 @@ public class ProfileFragment extends Fragment {
 
         //툴바 선언
         myToolbar = view.findViewById(R.id.toolbar);
-
+        username = view.findViewById(R.id.username);
 
 
 
@@ -60,8 +66,8 @@ public class ProfileFragment extends Fragment {
 
         mDrawerLayout = (DrawerLayout) view.findViewById(R.id.bar);
 
-        fragment1 = new MypageFragment1();
-        fragment2 = new MypageFragment2();
+        fragment1 = new MypageFragment1(username);
+        fragment2 = new MypageFragment2(username);
         fragment3 = new MypageFragment3();
 
         activity.getSupportFragmentManager().beginTransaction().add(R.id.setlayoutfrag,fragment1).commit();
@@ -95,8 +101,27 @@ public class ProfileFragment extends Fragment {
                         break;
 
                     case R.id.navigation_item_logout:
-                        FirebaseAuth.getInstance().signOut();
-                        startActivity(new Intent(activity, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+
+                        AlertDialog.Builder alert_confirm = new AlertDialog.Builder(activity);
+                        alert_confirm.setMessage("정말로 로그아웃 하시겠어요?").setCancelable(false).setPositiveButton("확인",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // 'YES'
+                                   FirebaseAuth.getInstance().signOut();
+                                    startActivity(new Intent(activity, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                                    }
+                                }).setNegativeButton("취소",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // 'No'
+                                        return;
+                                    }
+                                });
+                        AlertDialog alert = alert_confirm.create();
+                        alert.show();
+
                         break;
 
 
@@ -118,9 +143,9 @@ public class ProfileFragment extends Fragment {
         Fragment selected = null;
 
         if (value == "1") {
-            selected = fragment1;
+            selected = new MypageFragment1(username);
         } else if(value == "2") {
-            selected = fragment2;
+            selected = new MypageFragment2(username);
         } else if (value == "3"){
             selected = fragment3;
         }
@@ -143,8 +168,6 @@ public class ProfileFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                //                ((TextView)findViewById(R.id.textView)).setText("SEARCH") ;
-                Log.e("d","눌리긴하엿다");
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 return true;
 

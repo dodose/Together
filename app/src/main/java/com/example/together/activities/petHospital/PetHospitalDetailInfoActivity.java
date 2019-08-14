@@ -4,14 +4,18 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.example.together.R;
+import com.example.together.activities.HomeActivity;
 import com.example.together.fragment.Hos_fragment1;
 import com.example.together.fragment.Hos_fragment2;
 import com.google.android.material.tabs.TabLayout;
@@ -34,7 +38,7 @@ public class PetHospitalDetailInfoActivity extends AppCompatActivity {
 
     TextView topNmae;
     ImageView topImg;
-
+    Toolbar mToolbar;
 
     //Task
     private String strUrl;
@@ -63,6 +67,12 @@ public class PetHospitalDetailInfoActivity extends AppCompatActivity {
         final String code = Bx.getString("code");
         final String Address = Bx.getString("Address");
 
+        mToolbar = findViewById(R.id.toolbar);
+
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_btn_back);
+        getSupportActionBar().setTitle("");
 
         topNmae =findViewById(R.id.petHospitalName);
         topImg = findViewById(R.id.petHospitalImage);
@@ -77,7 +87,7 @@ public class PetHospitalDetailInfoActivity extends AppCompatActivity {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                strUrl = "http://39.127.7.80:8080/Hospital_detail"; //탐색하고 싶은 URL이다.
+                strUrl = "http://13.209.25.83:8080/Hospital_detail"; //탐색하고 싶은 URL이다.
 
             }
 
@@ -210,12 +220,26 @@ public class PetHospitalDetailInfoActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        return true ;
+    }
 
 
-
-
-
-
-
+    //액션바 클릭 이벤트
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent intent = new Intent(PetHospitalDetailInfoActivity.this, PetHospitalListActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
     android:orientation="vertical">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_radius_borderblackw1"
+        android:background="@drawable/background_radius_borderblack"
         android:orientation="vertical">
 
         <LinearLayout
@@ -20,20 +23,54 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 android:layout_weight="0.8"
                 android:gravity="center"
-                android:text="구분" />
+                android:text="주문날짜" />
 
             <TextView
+                android:id="@+id/th_dt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingRight="20dp"
                 android:layout_weight="0.2"
-                android:gravity="center"
+                android:textSize="16sp"
+                android:gravity="right"
                 android:text="주문날짜" />
 
         </LinearLayout>
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="7dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:text="주문번호" />
+
+                <TextView
+                    android:id="@+id/or_cd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_weight="0.2"
+                    android:gravity="center"
+                    android:text="주문날짜" />
+
+            </LinearLayout>
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -42,20 +79,42 @@
 
 
             <TextView
-                android:layout_width="87dp"
+                android:id="@+id/stat1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:layout_margin="5dp"
                 android:gravity="center"
-                android:text="주문상태" />
+                android:padding="5dp"
+                android:textColor="#000000"
+                android:background="@drawable/button_radiusw1"
+                android:text="예약대기중" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/stat2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="121dp"
+                android:layout_weight="0.3"
+                android:layout_margin="5dp"
+                android:gravity="center"
                 android:padding="5dp"
-                android:textColor="#FFFFFF"
-                android:background="@drawable/background_radius_borderblackw2"
+                android:textColor="#000000"
+                android:background="@drawable/background_radius_borderblackw3"
                 android:text="예약확정" />
 
+            <TextView
+                android:id="@+id/stat3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="0.3"
+                android:gravity="center"
+                android:padding="5dp"
+                android:textColor="#000000"
+                android:background="@drawable/background_radius_borderblackw3"
+                android:text="예약취소" />
+
+
         </LinearLayout>
 
         <LinearLayout
@@ -69,13 +128,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.8"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 android:gravity="center"
                 android:text="업체명" />
 
             <TextView
+                android:id="@+id/etp_nm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.2"
+                android:textSize="16sp"
                 android:gravity="center"
                 android:text="업체명" />
         </LinearLayout>
@@ -91,13 +154,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.8"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 android:gravity="center"
                 android:text="상품명" />
 
             <TextView
+                android:id="@+id/pd_nm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.2"
+                android:textSize="16sp"
                 android:gravity="center"
                 android:text="상품명" />
         </LinearLayout>
@@ -113,13 +180,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.8"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 android:gravity="center"
                 android:text="총 금액" />
 
             <TextView
+                android:id="@+id/or_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.2"
+                android:textSize="16sp"
+                android:textColor="@color/mdtp_red"
                 android:gravity="center"
                 android:text="돈" />
         </LinearLayout>
@@ -135,27 +207,70 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.8"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 android:gravity="center"
                 android:text="예약일시" />
 
             <TextView
+                android:id="@+id/or_dt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.2"
+                android:textSize="16sp"
                 android:gravity="center"
                 android:text="예약" />
 
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/button5"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/detail_show"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:textSize="18sp"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:background="@drawable/button_radiusw1"
-            android:text="상세보기" />
+            android:text="업체보기" />
+
+            <Button
+                android:id="@+id/detail_review"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:textSize="18sp"
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                android:layout_weight="0.5"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:background="@drawable/button_radiusw1"
+                android:text="리뷰작성 " />
+
+            <Button
+                android:id="@+id/detail_cancle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                android:layout_weight="0.5"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:background="@drawable/button_radiusw1"
+                android:text="예약취소" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
 
