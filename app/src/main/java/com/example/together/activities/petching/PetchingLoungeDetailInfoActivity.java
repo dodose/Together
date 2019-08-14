@@ -17,10 +17,13 @@ import com.example.together.fragment.PetchingLoungeFragment;
 import com.example.together.model.PetchingLounge;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
+
+import java.util.HashMap;
 
 public class PetchingLoungeDetailInfoActivity extends AppCompatActivity {
 
@@ -89,6 +92,13 @@ public class PetchingLoungeDetailInfoActivity extends AppCompatActivity {
             public void onClick(View v)
             {
                 firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Pets").child(firebaseUser.getUid()).child(petkey);
+                HashMap<String, Object> hashMap = new HashMap<>();
+                hashMap.put("petching_status", "yes");
+
+                reference.updateChildren(hashMap);
+
+
                 Log.e("user",firebaseUser.getUid());
                 Log.e("recever",requester_id);
                 String sendName = "투개더";

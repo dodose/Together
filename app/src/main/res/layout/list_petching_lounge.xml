@@ -29,11 +29,12 @@
         <ImageView
             android:id="@+id/img_requestor"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="190dp"
             android:background="#2d2d2d"
             android:scaleType="fitXY" />
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_weight="2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
