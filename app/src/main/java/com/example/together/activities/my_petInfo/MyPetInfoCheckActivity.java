@@ -10,6 +10,8 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -18,9 +20,12 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
 import com.example.together.R;
+import com.example.together.activities.HomeActivity;
+import com.example.together.activities.petHospital.PetHospitalPetConditionActivity;
 import com.example.together.model.Pet;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -43,6 +48,7 @@ public class MyPetInfoCheckActivity extends AppCompatActivity {
     String breed;
     String weight;
 
+    Toolbar toolbar;
     ImageView petImage;
     ImageButton petching,petclander,editpet;
     TextView Petname,petbreed,petGender,petweight,petintro,petbirthday;
@@ -76,6 +82,12 @@ public class MyPetInfoCheckActivity extends AppCompatActivity {
         petintro = findViewById(R.id.intro);
         petbirthday = findViewById(R.id.birthday);
 
+        toolbar = findViewById(R.id.toolbar);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_btn_back);
+        getSupportActionBar().setTitle("");
 
         FirebaseUser firebaseUser;
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -229,4 +241,24 @@ public class MyPetInfoCheckActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        return true ;
+    }
+
+
+    //액션바 클릭 이벤트
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent intent = new Intent(MyPetInfoCheckActivity.this, MyPetListActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }
