@@ -435,7 +435,7 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
                     String times = (String) time.getText();
                     String addr = choice_do+" "+choice_se;
 
-                    Intent intent = new Intent(GoodbyePetTimeDateSelectActivity.this, com.example.together.activities.goodbyePet.GoodbyePetStoreListActivity.class);
+                    Intent intent = new Intent(GoodbyePetTimeDateSelectActivity.this, GoodbyePetStoreListActivity.class);
                     intent.putExtra("day",day);
                     intent.putExtra("time",times);
                     intent.putExtra("addr",addr);

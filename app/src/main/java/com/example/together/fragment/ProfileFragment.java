@@ -20,6 +20,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+
+import com.example.together.MypageOrder;
 import com.example.together.activities.LoginActivity;
 import com.example.together.R;
 import com.google.android.material.navigation.NavigationView;
@@ -35,7 +37,6 @@ public class ProfileFragment extends Fragment {
     AppCompatActivity activity;
 
     MypageFragment1 fragment1;
-    MypageFragment2 fragment2;
     MypageFragment3 fragment3;
 
     TextView username;
@@ -67,7 +68,6 @@ public class ProfileFragment extends Fragment {
         mDrawerLayout = (DrawerLayout) view.findViewById(R.id.bar);
 
         fragment1 = new MypageFragment1(username);
-        fragment2 = new MypageFragment2(username);
         fragment3 = new MypageFragment3();
 
         activity.getSupportFragmentManager().beginTransaction().add(R.id.setlayoutfrag,fragment1).commit();
@@ -91,8 +91,10 @@ public class ProfileFragment extends Fragment {
                         break;
 
                     case R.id.navigation_item_order:
-                        String B = "2";
-                        switchFragment(B);
+//                        String B = "2";
+//                        switchFragment(B);
+                        Intent intent = new Intent(view.getContext(), MypageOrder.class);
+                        startActivity(intent);
                         break;
 
                     case R.id.navigation_item_customer:
@@ -144,9 +146,7 @@ public class ProfileFragment extends Fragment {
 
         if (value == "1") {
             selected = new MypageFragment1(username);
-        } else if(value == "2") {
-            selected = new MypageFragment2(username);
-        } else if (value == "3"){
+        }else if (value == "3"){
             selected = fragment3;
         }
 

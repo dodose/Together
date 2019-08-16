@@ -26,7 +26,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".activities.petching.PetchingStoryDetailActivity"></activity>
+        <activity android:name=".MypageOrder"></activity>
+        <activity android:name=".activities.EtpInfoActivity" />
+        <activity android:name=".activities.petching.PetchingStoryDetailActivity" />
         <activity android:name=".activities.petHotel.LocationShowActivity" />
         <activity android:name=".activities.petHotel.HotelLocationSelect" />
         <activity android:name=".activities.petching.PetchingRequestorInfoActivity" />
@@ -87,7 +89,7 @@
         <activity android:name=".activities.goodbyePet.GoodbyeRainbowActivity" />
         <activity android:name=".activities.goodbyePet.GoodbyeSelectActivity" />
         <activity android:name=".activities.goodbyePet.GoodbyepetOrders" />
-        <activity android:name=".activities.petHotel.reViewActivity" />
+        <activity android:name=".activities.reViewActivity" />
         <activity android:name=".activities.petHotel.ProductOrderActivity" />
         <activity android:name=".activities.goodbyePet.GoodbyeMemorialActivity" />
         <activity android:name=".activities.map.MapTestActivity" />

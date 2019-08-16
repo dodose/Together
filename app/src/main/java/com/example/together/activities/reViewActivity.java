@@ -1,4 +1,4 @@
-package com.example.together.activities.petHotel;
+package com.example.together.activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -170,7 +170,7 @@ public class reViewActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 // 'YES'
-                                Intent intent = new Intent(reViewActivity.this,HotelDetailActivity.class);
+                                Intent intent = new Intent(reViewActivity.this, HomeActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                                 startActivity(intent);
                             }

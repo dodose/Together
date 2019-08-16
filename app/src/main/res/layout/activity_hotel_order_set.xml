@@ -191,7 +191,6 @@
                             android:background="@drawable/hotel_round_rectangle"/>
 
                         <Button
-                            android:id="@+id/myOrder"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_margin="12dp"

@@ -87,7 +87,7 @@
                 android:gravity="center"
                 android:padding="5dp"
                 android:textColor="#000000"
-                android:background="@drawable/button_radiusw1"
+                android:background="@drawable/background_radius_borderblackw2"
                 android:text="예약대기중" />
 
             <TextView
@@ -239,7 +239,7 @@
             android:textStyle="bold"
             android:layout_gravity="center"
             android:layout_margin="10dp"
-            android:background="@drawable/button_radiusw1"
+            android:background="@drawable/background_radius_borderblackw2"
             android:text="업체보기" />
 
             <Button
@@ -253,7 +253,7 @@
                 android:layout_weight="0.5"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
-                android:background="@drawable/button_radiusw1"
+                android:background="@drawable/background_radius_borderblackw2"
                 android:text="리뷰작성 " />
 
             <Button
@@ -266,7 +266,7 @@
                 android:layout_weight="0.5"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
-                android:background="@drawable/button_radiusw1"
+                android:background="@drawable/background_radius_borderblackw2"
                 android:text="예약취소" />
 
         </LinearLayout>

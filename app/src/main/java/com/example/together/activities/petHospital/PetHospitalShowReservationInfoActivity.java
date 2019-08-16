@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.together.MypageOrder;
 import com.example.together.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -33,7 +34,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class PetHospitalShowReservationInfoActivity extends AppCompatActivity {
 
     JSONObject SendObj = new JSONObject();
-    Button close;
+    Button close,myOrder;
 
     TextView order_time,status,etp_name,info;
 
@@ -80,6 +81,16 @@ public class PetHospitalShowReservationInfoActivity extends AppCompatActivity {
         etp_name.setText(etp_nm);
         status.setText("예약 대기중");
         info.setText("상세내역\n\n"+"선택한 질병명\n\n"+canser+"\n\n"+"문의주신내용\n\n"+edit);
+
+        myOrder = findViewById(R.id.myOrder);
+
+        myOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PetHospitalShowReservationInfoActivity.this, MypageOrder.class);
+                startActivity(intent);
+            }
+        });
 
         close.setOnClickListener(new View.OnClickListener() {
             @Override
