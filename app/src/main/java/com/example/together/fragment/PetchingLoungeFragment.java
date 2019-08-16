@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.example.together.R;
 import com.example.together.activities.petching.PetchingLoungeDetailInfoActivity;
@@ -42,6 +43,8 @@ public class PetchingLoungeFragment extends Fragment {
     List<String> idList = new ArrayList<>();
     List<String> idFriendList = new ArrayList<>();
     public String petKey;
+    public LinearLayout layout_for_adjust;
+
 
 
 
@@ -52,6 +55,8 @@ public class PetchingLoungeFragment extends Fragment {
 
 
         View view =  inflater.inflate(R.layout.fragment_petching_lounge, container, false);
+
+        layout_for_adjust = view.findViewById(R.id.layout_for_adjust);
 
         recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
@@ -67,19 +72,23 @@ public class PetchingLoungeFragment extends Fragment {
 
                     for (DataSnapshot ds : dataSnapshot.getChildren())
                     {
+                        idList.clear();
                         String id = ds.getKey();
                         petchingLoungeAdapter.setId(id);
 
 
                         DatabaseReference reference1 =
                                 FirebaseDatabase.getInstance().getReference( "Lounge").child("PetchingBunyang").child(firebaseUser.getUid()).child("PetId").child(id).child("Requestor");
-
                         reference1.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                idList.clear();
+
                                 for (DataSnapshot snapshot : dataSnapshot.getChildren())
                                 {
+                                    if (snapshot.getKey()!=null)
+                                    {
+                                        layout_for_adjust.setVisibility(View.GONE);
+                                    }
                                     idList.add(snapshot.getKey());
 
                                 }
@@ -105,11 +114,10 @@ public class PetchingLoungeFragment extends Fragment {
 
 
         Log.d(TAG, "하마: "+petKey);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         userList = new ArrayList<>();
         petchingLoungeAdapter = new PetchingLoungeAdapter(getContext(), userList);
-
         recyclerView.setAdapter(petchingLoungeAdapter);
 
 
@@ -123,6 +131,7 @@ public class PetchingLoungeFragment extends Fragment {
 
     private void showUsers(){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

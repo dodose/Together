@@ -65,7 +65,7 @@ public class PetchingBunyangAdapter extends RecyclerView.Adapter<PetchingBunyang
 
         getPetInfo(mPetchingBunyang.get(position).getPetBunyangId(), viewHolder.img_pet, viewHolder.petName, viewHolder.petAge, viewHolder.petBreed, viewHolder.gender_m, viewHolder.gender_w);
 
-        viewHolder.img_pet.setOnClickListener(new View.OnClickListener()
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)

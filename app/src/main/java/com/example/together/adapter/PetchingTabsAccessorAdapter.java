@@ -56,7 +56,7 @@ public class PetchingTabsAccessorAdapter extends FragmentPagerAdapter
         switch (position)
         {
             case 0:
-                return "펫칭 강아지";
+                return "펫칭 분양";
 
             case 1:
                 return "펫칭 프랜드";

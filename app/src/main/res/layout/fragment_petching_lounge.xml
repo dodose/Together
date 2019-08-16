@@ -1,20 +1,102 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.together.fragment.PetchingLoungeFragment">
+    android:layout_height="wrap_content">
 
-    <!-- TODO: Update blank fragment layout -->
-    <androidx.recyclerview.widget.RecyclerView
-
-        android:id="@+id/recycler_view"
-        android:layout_marginTop="20dp"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-</RelativeLayout>
+
+            <ImageView
+                android:layout_marginLeft="5dp"
+                android:id="@+id/img_bunyang"
+                android:layout_width="100dp"
+                android:layout_height="50sp"
+                android:src="@drawable/petching_bunyang" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="펫칭 분양"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+
+        </LinearLayout>
 
 
 
+        <com.takusemba.multisnaprecyclerview.MultiSnapRecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
+            app:msrv_gravity="start"
+            app:msrv_ms_per_inch="@dimen/normal_speed"
+            app:msrv_snap_count="1" />
+        
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/layout_for_adjust"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:visibility="invisible">
+        </LinearLayout>
+
+        
+        <View
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="3dp"
+            android:background="@color/LoginBtnO"/>
+        
+
+        <LinearLayout
+            android:layout_marginLeft="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_marginLeft="5dp"
+                android:id="@+id/img_friend"
+                android:layout_width="100dp"
+                android:layout_height="50sp"
+                android:src="@drawable/petching_friend" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="펫칭 프랜드"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <com.takusemba.multisnaprecyclerview.MultiSnapRecyclerView
+            android:id="@+id/second_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
+            app:msrv_gravity="center"
+            app:msrv_ms_per_inch="@dimen/low_speed"
+            app:msrv_snap_count="2" />
+    </LinearLayout>
+
+</ScrollView>
