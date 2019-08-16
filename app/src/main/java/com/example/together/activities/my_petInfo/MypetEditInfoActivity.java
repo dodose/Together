@@ -28,6 +28,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.together.R;
+import com.example.together.activities.petHotel.HotelDetailActivity;
+import com.example.together.activities.petHotel.reViewActivity;
 import com.example.together.model.Pet;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -242,8 +244,9 @@ public class MypetEditInfoActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case android.R.id.home:
-                //                Intent intent = new Intent(ProductOrderActivity.this,HotelDetailActivity.class);
-                //                startActivity(intent);
+                Intent intent = new Intent(MypetEditInfoActivity.this, MyPetListActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
                 return true;
             case R.id.edit:
 
