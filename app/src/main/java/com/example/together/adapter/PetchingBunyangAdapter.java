@@ -78,6 +78,7 @@ public class PetchingBunyangAdapter extends RecyclerView.Adapter<PetchingBunyang
                 intent.putExtra("petcode",mPetchingBunyang.get(position).getPetcode());
 
 
+
                 mContext.startActivity(intent);
 
                 // start the activity
