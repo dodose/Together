@@ -30,24 +30,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.85"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="user"
-                android:textSize="30dp"
-                android:layout_marginLeft="10dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="님의 예약현황"
-                android:layout_marginLeft="10dp"
-                android:textSize="30dp"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:orientation="horizontal"
             android:layout_weight="0.7">
 
@@ -63,7 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="예약 완료"
-                android:layout_marginTop="55dp"
+                android:layout_marginTop="65dp"
                 android:textSize="35dp"
                 android:textStyle="bold"
                 android:textColor="#000"
@@ -95,7 +77,7 @@
                         android:layout_weight="0.5"
                         android:layout_marginLeft="10dp"
                         android:padding="10dp"
-                        android:text="주문번호"
+                        android:text="예약일시"
                         android:textSize="13dp"/>
                     <TextView
                         android:id="@+id/order_cd"
@@ -105,7 +87,7 @@
                         android:padding="10dp"
                         android:gravity="right"
                         android:layout_marginRight="10dp"
-                        android:text="주문번호"
+                        android:text="예약일시"
                         android:textSize="13dp" />
                 </LinearLayout>
 
@@ -209,20 +191,24 @@
                             android:orientation="horizontal">
 
                             <Button
+                                android:id="@+id/backs"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_margin="12dp"
+                                android:textSize="18dp"
                                 android:text="닫기"
                                 android:layout_weight="0.5"
-                                android:background="#9CDFFF"/>
+                                android:background="@drawable/background_radius_borderblackw2"/>
 
                             <Button
+                                android:id="@+id/myorders"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:textSize="18dp"
                                 android:layout_margin="12dp"
                                 android:text="MY예약"
                                 android:layout_weight="0.5"
-                                android:background="#9CDFFF"/>
+                                android:background="@drawable/background_radius_borderblackw2"/>
 
                         </LinearLayout>
                     </LinearLayout>

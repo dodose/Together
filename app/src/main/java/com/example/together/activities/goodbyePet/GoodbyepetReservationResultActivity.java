@@ -1,6 +1,7 @@
 package com.example.together.activities.goodbyePet;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -109,7 +110,9 @@ public class GoodbyepetReservationResultActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                //                ((TextView)findViewById(R.id.textView)).setText("SEARCH") ;
+                Intent intent = new Intent(GoodbyepetReservationResultActivity.this, GoodbyepetMenuSelectActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
                 return true;
             case R.id.settings:
                 //                ((TextView)findViewById(R.id.textView)).setText("ACCOUNT") ;
