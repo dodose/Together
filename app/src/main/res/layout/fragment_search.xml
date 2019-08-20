@@ -105,7 +105,7 @@
                         android:layout_width="143dp"
                         android:layout_height="123dp"
                         android:padding="10dp"
-                        android:src="@drawable/hotel" />
+                        android:src="@drawable/ic_pet_hotel_building_with_a_dog_image_in_a_heart_shape" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -135,7 +135,7 @@
                         android:layout_width="141dp"
                         android:layout_height="129dp"
                         android:padding="10dp"
-                        android:src="@drawable/petching" />
+                        android:src="@drawable/ic_cat" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -180,7 +180,7 @@
                     android:layout_width="141dp"
                     android:layout_height="129dp"
                     android:padding="10dp"
-                    android:src="@drawable/hospital" />
+                    android:src="@drawable/ic_pets_hospital" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -245,20 +245,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="vertical"
-                    android:background="@drawable/background_border_graybtn5">
+                    android:orientation="vertical">
 
                     <ImageView
                         android:id="@+id/petGroup"
                         android:layout_width="141dp"
                         android:layout_height="129dp"
                         android:padding="10dp"
-                        android:src="@drawable/group" />
+                        android:src="@color/colorWhite" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="펫모여"
+                        android:text=""
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -277,20 +276,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="vertical"
-                    android:background="@drawable/background_border_graybtn6">
+                    android:orientation="vertical">
 
                     <ImageView
                         android:id="@+id/next"
                         android:layout_width="141dp"
                         android:layout_height="129dp"
                         android:padding="10dp"
-                        android:src="@drawable/group" />
+                        android:src="@color/colorWhite" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="추후 개발 예정"
+                        android:text=""
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
