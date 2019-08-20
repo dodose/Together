@@ -232,7 +232,7 @@ public class HotelDetailActivity extends AppCompatActivity {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                strUrl = "http://39.127.7.80:8080/detail_product"; //탐색하고 싶은 URL이다.
+                strUrl = "http://13.209.25.83:8080/detail_product"; //탐색하고 싶은 URL이다.
 
             }
 
@@ -474,7 +474,9 @@ public class HotelDetailActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                //                ((TextView)findViewById(R.id.textView)).setText("SEARCH") ;
+                Intent intent = new Intent(HotelDetailActivity.this,HotelListDataActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
                 return true;
             case R.id.settings:
                 //                ((TextView)findViewById(R.id.textView)).setText("ACCOUNT") ;

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
     android:id="@+id/pet_cardview_id"
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
@@ -29,11 +30,12 @@
         <ImageView
             android:id="@+id/img_requestor"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="190dp"
             android:background="#2d2d2d"
             android:scaleType="fitXY" />
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_weight="2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

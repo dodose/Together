@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -62,7 +63,7 @@ public class PetchingLoungeAdapter extends RecyclerView.Adapter<PetchingLoungeAd
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
 
-        View view = LayoutInflater.from(mContext).inflate(R.layout.list_petching_lounge, parent, false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.petching_card, parent, false);
         return new PetchingLoungeAdapter.MyViewHolder(view);
 
     }
@@ -75,6 +76,7 @@ public class PetchingLoungeAdapter extends RecyclerView.Adapter<PetchingLoungeAd
 
         final User user = mUser.get(position);
         user.getId();
+
 
         Log.d(TAG, "빼오냥"+user.getId());
 
@@ -120,16 +122,18 @@ public class PetchingLoungeAdapter extends RecyclerView.Adapter<PetchingLoungeAd
         public ImageView img_requestor;
         public TextView requestor_name;
 
+
         public MyViewHolder(View itemView)
         {
             super(itemView);
 
             img_requestor = itemView.findViewById(R.id.img_requestor);
 
-            allow = itemView.findViewById(R.id.allow);
-            refuse = itemView.findViewById(R.id.refuse);
+//            allow = itemView.findViewById(R.id.allow);
+//            refuse = itemView.findViewById(R.id.refuse);
 
             requestor_name = itemView.findViewById(R.id.requestor_name);
+
 
         }
     }

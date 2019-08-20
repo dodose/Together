@@ -3,6 +3,8 @@ package com.example.together.activities.petHospital;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -11,10 +13,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.together.activities.HomeActivity;
 import com.example.together.activities.aircalendar.AirCalendarDatePickerActivity;
+import com.example.together.activities.goodbyePet.GoodbyeSelectActivity;
 import com.example.together.adapter.PetHospitalizationSelectAdapter;
 import com.example.together.model.Pet;
 import com.example.together.R;
@@ -55,10 +60,7 @@ public class PetHospitalPetConditionActivity extends AppCompatActivity {
     private String date;
 
     public static String petcode;
-
-
-
-
+    Toolbar hosToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,13 @@ public class PetHospitalPetConditionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pet_hospital_pet_condition);
 
         //증상 채크박스선택
+
+        hosToolbar = findViewById(R.id.toolbar);
+
+        setSupportActionBar(hosToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_btn_back);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 
         // 달력 선택
@@ -154,6 +163,28 @@ public class PetHospitalPetConditionActivity extends AppCompatActivity {
 
         });
 
+    }
+
+    //액션바 등록
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        return true ;
+    }
+
+
+    //액션바 클릭 이벤트
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent intent = new Intent(PetHospitalPetConditionActivity.this, HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 

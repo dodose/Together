@@ -455,7 +455,7 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                strUrl = "http://39.127.7.80:8080/Recommend_list"; //탐색하고 싶은 URL이다.
+                strUrl = "http://13.209.25.83:8080/Recommend_list"; //탐색하고 싶은 URL이다.
 
             }
 
@@ -620,6 +620,9 @@ public class GoodbyePetTimeDateSelectActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 Log.e("눌림","뒤로가기버튼 눌림");
+                Intent intent = new Intent(GoodbyePetTimeDateSelectActivity.this, GoodbyeSelectActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
                 return true;
 
             default:

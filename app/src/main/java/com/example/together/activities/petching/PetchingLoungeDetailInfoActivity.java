@@ -1,5 +1,6 @@
 package com.example.together.activities.petching;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -14,13 +15,20 @@ import com.example.together.R;
 import com.example.together.activities.chat.ChatsActivity;
 import com.example.together.activities.chat.MessageActivity;
 import com.example.together.fragment.PetchingLoungeFragment;
+import com.example.together.model.PetchingBunyang;
 import com.example.together.model.PetchingLounge;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
+
+import java.util.HashMap;
 
 public class PetchingLoungeDetailInfoActivity extends AppCompatActivity {
 
@@ -30,11 +38,14 @@ public class PetchingLoungeDetailInfoActivity extends AppCompatActivity {
     TextView requester_name, requester_intro;
     ImageView requester_img;
     Button refuse, accept;
+    String userPetkey;
+
 
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_petching_lounge_detail_info);
 
@@ -59,7 +70,7 @@ public class PetchingLoungeDetailInfoActivity extends AppCompatActivity {
          requester_intro.setText(intro);
          requester_name.setText(name);
 
-//         PetchingLoungeFragment petchingLoungeFragment = new PetchingLoungeFragment();
+//        PetchingLoungeFragment petchingLoungeFragment = new PetchingLoungeFragment();
 
 
 
@@ -88,7 +99,14 @@ public class PetchingLoungeDetailInfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+
                 firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                Log.d(TAG, "수락펫키"+petkey);
+
+
+                getPetcode(petkey);
+
+
                 Log.e("user",firebaseUser.getUid());
                 Log.e("recever",requester_id);
                 String sendName = "투개더";
@@ -98,6 +116,35 @@ public class PetchingLoungeDetailInfoActivity extends AppCompatActivity {
 
                 Intent intent1 = new Intent(PetchingLoungeDetailInfoActivity.this, ChatsActivity.class);
                 startActivity(intent1);
+            }
+        });
+
+
+    }
+
+
+    public void getPetcode(String petkey)
+    {
+
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        Log.d(TAG, "펫키펫키"+petkey);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("PetchingBunyang").child(petkey);
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                PetchingBunyang petchingBunyang = dataSnapshot.getValue(PetchingBunyang.class);
+                userPetkey = petchingBunyang.getPetcode();
+
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Pets").child(firebaseUser.getUid()).child(userPetkey);
+                HashMap<String, Object> hashMap = new HashMap<>();
+                hashMap.put("petching_status", "yes");
+
+                reference.updateChildren(hashMap);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
 

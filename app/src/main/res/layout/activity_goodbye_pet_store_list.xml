@@ -21,29 +21,16 @@
             android:id="@+id/toolbar"
             android:background="?android:attr/windowBackground">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
-                <ImageView
+            <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_btn_back"
-                    android:id="@+id/close"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentStart="true"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="113dp"
-                    android:layout_toEndOf="@+id/close"
-                    android:text="굿바이 업체"
+                    android:textSize="20dp"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:text="장례 업체 검색"/>
 
-            </RelativeLayout>
 
         </androidx.appcompat.widget.Toolbar>
 

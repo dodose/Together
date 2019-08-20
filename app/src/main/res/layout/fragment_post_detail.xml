@@ -12,9 +12,11 @@
         android:background="?android:attr/windowBackground">
 
         <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/toolbar"
+            android:layout_alignStart="@+id/bar"
+            android:layout_alignTop="@+id/bar"
             android:background="?android:attr/windowBackground">
 
             <RelativeLayout

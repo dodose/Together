@@ -62,8 +62,8 @@ public class MyPetRegActivity extends AppCompatActivity {
 
 
     ImageView mImage_profile;
-    TextView mDisplayDate, mTv_change, mPetBreed;
-    EditText mPetName, mIntro, mPetWeight;
+    TextView mDisplayDate, mTv_change;  //mPetBreed
+    EditText mPetName, mIntro, mPetWeight, mPetBreed;
     RadioGroup mGenderGroup;
     RadioButton mMale, mFemale;
     DatePickerDialog.OnDateSetListener mDateSetListener;
@@ -83,14 +83,14 @@ public class MyPetRegActivity extends AppCompatActivity {
         mAdd_mypet = findViewById(R.id.add_mypet);
         mDisplayDate = findViewById(R.id.dog_birthday);
         mPetName = findViewById(R.id.petName);
-        mPetBreed = findViewById(R.id.petBreed);
+        mPetBreed = findViewById(R.id.mPetBreed);
         mPetWeight = findViewById(R.id.petWeight);
         mIntro = findViewById(R.id.intro);
         mMale = findViewById(R.id.male);
         mFemale = findViewById(R.id.female);
         mGenderGroup = findViewById(R.id.genderGroup);
         cancel = findViewById(R.id.cancel);
-        select_pet_breed = findViewById(R.id.select_pet_breed);
+       // select_pet_breed = findViewById(R.id.select_pet_breed);
 
 
 
@@ -105,12 +105,12 @@ public class MyPetRegActivity extends AppCompatActivity {
         });
 
 
-        select_pet_breed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                spinner.show();
-            }
-        });
+//        select_pet_breed.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                spinner.show();
+//            }
+//        });
 
 
 
@@ -182,6 +182,7 @@ public class MyPetRegActivity extends AppCompatActivity {
                 hashMap.put("gender", selectedValue);
                 hashMap.put("petimageurl", petimageUrl);
                 hashMap.put("petid", petid);
+                hashMap.put("petching_status", "no");
 
 
                 reference.child(petid).setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {

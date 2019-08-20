@@ -214,7 +214,7 @@ public class ProductOrderActivity extends AppCompatActivity {
                     @Override
                     protected void onPreExecute() {
                         super.onPreExecute();
-                        strUrl = "http://39.127.7.80:8080/order_pro"; //탐색하고 싶은 URL이다.
+                        strUrl = "http://13.209.25.83:8080/order_pro"; //탐색하고 싶은 URL이다.
 
                     }
 
@@ -318,7 +318,7 @@ public class ProductOrderActivity extends AppCompatActivity {
     //액션바 등록
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.hotel_menu, menu) ;
+
 
         return true ;
     }
@@ -331,8 +331,9 @@ public class ProductOrderActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case  android.R.id.home :
-//                Intent intent = new Intent(ProductOrderActivity.this,HotelDetailActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(ProductOrderActivity.this,HotelDetailActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
                 return true ;
             case R.id.settings :
 //                ((TextView)findViewById(R.id.textView)).setText("ACCOUNT") ;
