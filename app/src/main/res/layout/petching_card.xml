@@ -27,6 +27,8 @@
                 android:scaleType="fitXY"/>
 
             <TextView
+                android:gravity="center"
+                android:textAlignment="center"
                 android:id="@+id/requestor_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

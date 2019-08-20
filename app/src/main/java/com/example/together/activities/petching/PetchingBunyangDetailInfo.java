@@ -17,10 +17,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.together.R;
+import com.example.together.activities.chat.MessageActivity;
 import com.example.together.adapter.PetPostAdapter;
 import com.example.together.model.Pet;
 import com.example.together.model.PetchingBunyang;
 import com.example.together.model.Post;
+import com.example.together.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -154,14 +156,42 @@ public class PetchingBunyangDetailInfo extends AppCompatActivity {
 
             Log.d("주인", "주인은: "+owner);
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Lounge").child("PetchingBunyang").child(owner).child("PetId").child(petBunyangId).child("Requestor");
+            DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
+
+
 
             HashMap<String, Object> hashMap = new HashMap<>();
             hashMap.put(firebaseUser.getUid(),true);
 
-            reference.setValue(hashMap);
+
+            reference.updateChildren(hashMap);
+
 
 
             Intent lounge = new Intent(PetchingBunyangDetailInfo.this, PetchingActivity.class);
+
+
+            reference2.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    User user = dataSnapshot.getValue(User.class);
+                    user.getUsername();
+
+                    String sendName = "투개더";
+
+
+                    MessageActivity messageActivity = new MessageActivity();
+                    messageActivity.sendpushAlert(owner, "투개더", user.getUsername()+"님이 분양신청을 하였습니다");
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+
             startActivity(lounge);
 
         });

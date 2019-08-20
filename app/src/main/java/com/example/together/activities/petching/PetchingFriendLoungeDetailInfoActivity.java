@@ -17,6 +17,7 @@ import com.example.together.activities.chat.ChatsActivity;
 import com.example.together.activities.chat.MessageActivity;
 import com.example.together.fragment.PetchingLoungeFragment;
 import com.example.together.model.PetchingBunyang;
+import com.example.together.model.PetchingFriend;
 import com.example.together.model.PetchingLounge;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -33,7 +34,7 @@ import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class PetchingLoungeDetailInfoActivity extends AppCompatActivity {
+public class PetchingFriendLoungeDetailInfoActivity extends AppCompatActivity {
 
     private static final String TAG = "PetchingLoungeDetailInf";
     FirebaseDatabase firebaseDatabase;
@@ -67,31 +68,31 @@ public class PetchingLoungeDetailInfoActivity extends AppCompatActivity {
         petName = findViewById(R.id.petName);
 
 
-         Intent intent = getIntent();
+        Intent intent = getIntent();
 
-         String name = intent.getStringExtra("requester_name");
-         String img = intent.getStringExtra("requester_img");
-         String intro = intent.getStringExtra("requester_intro");
-         String petkey = intent.getStringExtra("pet_id");
-         String requester_id = intent.getStringExtra("requester_id");
+        String name = intent.getStringExtra("requester_name");
+        String img = intent.getStringExtra("requester_img");
+        String intro = intent.getStringExtra("requester_intro");
+        String petkey = intent.getStringExtra("pet_id");
+        String requester_id = intent.getStringExtra("requester_id");
 
 
-         Picasso.get().load(img).fit().into(requester_img);
-         requester_intro.setText(intro);
-         requester_name.setText(name);
+        Picasso.get().load(img).fit().into(requester_img);
+        requester_intro.setText(intro);
+        requester_name.setText(name);
 
 //        PetchingLoungeFragment petchingLoungeFragment = new PetchingLoungeFragment();
 
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("PetchingBunyang").child(petkey);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("PetchingFriend").child(petkey);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                PetchingBunyang petchingBunyang = dataSnapshot.getValue(PetchingBunyang.class);
-                Log.d(TAG, "이름: "+petchingBunyang.getPetName() +"이미지"+petchingBunyang.getPetImg());
+                PetchingFriend petchingFriend = dataSnapshot.getValue(PetchingFriend.class);
+                Log.d(TAG, "이름: "+petchingFriend.getPetName() +"이미지"+petchingFriend.getPetImg());
 
-                Glide.with(getApplicationContext()).load(petchingBunyang.getPetImg()).into(petImg);
-                petName.setText(petchingBunyang.getPetName()+"의 분양을 신청하였습니다");
+                Glide.with(getApplicationContext()).load(petchingFriend.getPetImg()).into(petImg);
+                petName.setText(petchingFriend.getPetName()+"의 분양을 신청하였습니다");
 
             }
 
@@ -102,25 +103,25 @@ public class PetchingLoungeDetailInfoActivity extends AppCompatActivity {
         });
 
 
-         //거절 클릭시 데이터 삭제petKey
-         refuse.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
+        //거절 클릭시 데이터 삭제petKey
+        refuse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-                 Log.d(TAG, "신청자 "+requester_id);
-                 firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-                 FirebaseDatabase.getInstance().getReference("Lounge").child("PetchingBunyang").child(firebaseUser.getUid()).child("PetId").child(petkey).child("Requestor").child(requester_id).removeValue();
+                Log.d(TAG, "신청자 "+requester_id);
+                firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                FirebaseDatabase.getInstance().getReference("Lounge").child("PetchingFriend").child(firebaseUser.getUid()).child("PetId").child(petkey).child("Requestor").child(requester_id).removeValue();
 
-                 Intent backView = new Intent(PetchingLoungeDetailInfoActivity.this, PetchingActivity.class);
-                 backView.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                 startActivity(backView);
+                Intent backView = new Intent(PetchingFriendLoungeDetailInfoActivity.this, PetchingActivity.class);
+                backView.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(backView);
 
-             }
-         });
+            }
+        });
 
 
 
-         // 수락 클릭시 매칭성사 메시지 보내지게끔
+        // 수락 클릭시 매칭성사 메시지 보내지게끔
         accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -140,7 +141,7 @@ public class PetchingLoungeDetailInfoActivity extends AppCompatActivity {
                 MessageActivity messageActivity = new MessageActivity();
                 messageActivity.sendpushAlert(requester_id, sendName, message);
 
-                Intent intent1 = new Intent(PetchingLoungeDetailInfoActivity.this, ChatsActivity.class);
+                Intent intent1 = new Intent(PetchingFriendLoungeDetailInfoActivity.this, ChatsActivity.class);
                 startActivity(intent1);
             }
         });

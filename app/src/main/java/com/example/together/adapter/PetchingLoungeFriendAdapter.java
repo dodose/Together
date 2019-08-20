@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.together.R;
 import com.example.together.activities.petching.PetchingBunyangDetailInfo;
+import com.example.together.activities.petching.PetchingFriendLoungeDetailInfoActivity;
 import com.example.together.activities.petching.PetchingLoungeDetailInfoActivity;
 import com.example.together.fragment.PetchingLoungeFragment;
 import com.example.together.model.Lounge;
@@ -36,7 +37,7 @@ import org.w3c.dom.Text;
 
 import java.util.List;
 
-public class PetchingLoungeAdapter extends RecyclerView.Adapter<PetchingLoungeAdapter.MyViewHolder> {
+public class PetchingLoungeFriendAdapter extends RecyclerView.Adapter<PetchingLoungeFriendAdapter.MyViewHolder> {
 
 
     private static final String TAG = "PetchingBunyangAdapter";
@@ -50,7 +51,7 @@ public class PetchingLoungeAdapter extends RecyclerView.Adapter<PetchingLoungeAd
     List<User> mUser;
 
 
-    public PetchingLoungeAdapter(Context mContext, List<User> mUser)
+    public PetchingLoungeFriendAdapter(Context mContext, List<User> mUser)
     {
         this.mContext = mContext;
         this.mUser = mUser;
@@ -64,7 +65,7 @@ public class PetchingLoungeAdapter extends RecyclerView.Adapter<PetchingLoungeAd
 
 
         View view = LayoutInflater.from(mContext).inflate(R.layout.petching_card, parent, false);
-        return new PetchingLoungeAdapter.MyViewHolder(view);
+        return new PetchingLoungeFriendAdapter.MyViewHolder(view);
 
     }
 
@@ -90,7 +91,7 @@ public class PetchingLoungeAdapter extends RecyclerView.Adapter<PetchingLoungeAd
             public void onClick(View v)
             {
 
-                Intent intent = new Intent(v.getContext(), PetchingLoungeDetailInfoActivity.class);
+                Intent intent = new Intent(v.getContext(), PetchingFriendLoungeDetailInfoActivity.class);
 
                 intent.putExtra("pet_id",id);
                 Log.d(TAG, "펫아이디"+id);
@@ -111,7 +112,7 @@ public class PetchingLoungeAdapter extends RecyclerView.Adapter<PetchingLoungeAd
     public int getItemCount()
     {
         return mUser.size();
-                //mPetchingLounge.size();
+        //mPetchingLounge.size();
     }
 
 
