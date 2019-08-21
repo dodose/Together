@@ -15,6 +15,7 @@ import androidx.core.app.NotificationCompat;
 
 import com.example.together.activities.HomeActivity;
 import com.example.together.activities.chat.ChatsActivity;
+import com.example.together.activities.petching.PetchingActivity;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -50,13 +51,71 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         String act = "HomeActivity";
 
-        sendNotification(bodyMessage,title);
+        if(bodyMessage.contains("분양신청")){
 
+            sendNotification2(bodyMessage, title);
+
+        }else {
+
+            sendNotification(bodyMessage, title);
+        }
     }
 
     private void sendNotification(String messageBody,String title) {
 
         Intent intent = new Intent(this, ChatsActivity.class);
+
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
+
+                PendingIntent.FLAG_ONE_SHOT);
+
+        String channelId = "default";
+
+        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+        NotificationCompat.Builder notificationBuilder =
+
+                new NotificationCompat.Builder(this, channelId)
+
+                        .setSmallIcon(R.mipmap.ic_launcher)
+
+                        .setContentTitle(title)
+
+                        .setContentText(messageBody)
+
+                        .setAutoCancel(true)
+
+                        .setSound(defaultSoundUri)
+
+                        .setContentIntent(pendingIntent);
+
+
+
+        NotificationManager notificationManager =
+
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+            String channelName = "default";
+
+            NotificationChannel channel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH);
+
+            notificationManager.createNotificationChannel(channel);
+
+        }
+
+        notificationManager.notify(0, notificationBuilder.build());
+
+    }
+
+    private void sendNotification2(String messageBody,String title) {
+
+        Intent intent = new Intent(this, PetchingActivity.class);
 
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 

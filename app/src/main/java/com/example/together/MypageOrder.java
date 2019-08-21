@@ -2,6 +2,7 @@ package com.example.together;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -52,6 +53,7 @@ public class MypageOrder extends AppCompatActivity {
     RecyclerView orderList_recycler_cancle;
 
     FirebaseUser fuser;
+    public Context mContext;
 
     private String strUrl;
     private URL Url;
@@ -67,6 +69,7 @@ public class MypageOrder extends AppCompatActivity {
     String etp_cd;
     String etp_nm;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +84,7 @@ public class MypageOrder extends AppCompatActivity {
                 tabs.addTab(tabs.newTab().setText("완료내역"));
                 tabs.addTab(tabs.newTab().setText("취소내역"));
 
+                mContext = this;
 
 
                 orderList_recycler_ing = findViewById(R.id.orderList_recycler_ing);
@@ -210,13 +214,13 @@ public class MypageOrder extends AppCompatActivity {
 
                             }
 
-                            MypageOrderAdapter mAdapter = new MypageOrderAdapter(UserOrder_i);
+                            MypageOrderAdapter mAdapter = new MypageOrderAdapter(UserOrder_i, mContext);
                             orderList_recycler_ing.setAdapter(mAdapter);
 
-                            MypageOrderAdapter mAdapter1 = new MypageOrderAdapter(UserOrder_s);
+                            MypageOrderAdapter mAdapter1 = new MypageOrderAdapter(UserOrder_s,mContext);
                             orderList_recycler_success.setAdapter(mAdapter1);
 
-                            MypageOrderAdapter mAdapter2 = new MypageOrderAdapter(UserOrder_c);
+                            MypageOrderAdapter mAdapter2 = new MypageOrderAdapter(UserOrder_c,mContext);
                             orderList_recycler_cancle.setAdapter(mAdapter2);
 
 
@@ -253,6 +257,7 @@ public class MypageOrder extends AppCompatActivity {
                                     orderList_recycler_ing.setVisibility(View.GONE);
                                     orderList_recycler_success.setVisibility(View.GONE);
                                     orderList_recycler_cancle.setVisibility(View.VISIBLE);
+
                                 }
 
                             }
@@ -296,4 +301,6 @@ public class MypageOrder extends AppCompatActivity {
 
 
     }
+
+
 }

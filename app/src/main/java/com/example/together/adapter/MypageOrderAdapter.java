@@ -1,5 +1,6 @@
 package com.example.together.adapter;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -14,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.together.MypageOrder;
 import com.example.together.R;
 import com.example.together.activities.EtpInfoActivity;
 import com.example.together.activities.reViewActivity;
@@ -40,10 +42,11 @@ public class MypageOrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public JSONObject jobj;
     public URL Url;
     public String strUrl;
+    public Context mContext;
 
-    public MypageOrderAdapter(ArrayList<UserOrder> userOrder) {
+    public MypageOrderAdapter(ArrayList<UserOrder> userOrder,Context context) {
         this.userOrder = userOrder;
-
+        this.mContext = context;
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -164,9 +167,11 @@ public class MypageOrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                                         in.put("day2",userOrder.get(position).or_dt2);
 
                                         DBconnet(in);
-
-                                        userOrder.remove(position);
-                                        notifyDataSetChanged();
+                                        Intent intent = new Intent(v.getContext(),MypageOrder.class);
+                                        ((MypageOrder)mContext).finish();
+                                        ((MypageOrder)mContext).overridePendingTransition(0, 0);
+                                        v.getContext().startActivity(intent);
+                                        ((MypageOrder)mContext).overridePendingTransition(0, 0);
 
                                     } catch (JSONException e) {
                                         e.printStackTrace();
@@ -200,6 +205,7 @@ public class MypageOrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     }
 
+
     @Override
     public int getItemCount() {
         return userOrder.size();
@@ -211,7 +217,7 @@ public class MypageOrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                strUrl = "http://39.127.7.80:8080/Order_cancle"; //탐색하고 싶은 URL이다.
+                strUrl = "http://http://13.209.25.83:8080/Order_cancle"; //탐색하고 싶은 URL이다.
 
             }
 
@@ -285,4 +291,6 @@ public class MypageOrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }.execute();
 
     }
+
+
 }

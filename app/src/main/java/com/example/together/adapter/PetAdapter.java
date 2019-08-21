@@ -51,9 +51,9 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.MyViewHolder> {
 
         final Pet pet = mPet.get(position);
 
+        Log.d(TAG, "테스트"+mPet.get(position).getPetname());
+        holder.dog_name.setText(mPet.get(position).getPetname());
 
-        holder.petname.setText(mPet.get(position).getPetname());
-        // holder.petimage.setImageResource(mPet.get());
 
         Log.d(TAG, "펫이미지: "+pet.getPetimageurl());
 
@@ -86,7 +86,7 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.MyViewHolder> {
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView petname;
+        TextView dog_name;
         ImageView petimage;
         CardView pet_cardview_id;
 
@@ -94,9 +94,10 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.MyViewHolder> {
         public MyViewHolder(View itemView) {
             super(itemView);
 
-            petname =  itemView.findViewById(R.id.dog_name);
+            dog_name =  itemView.findViewById(R.id.dog_name);
             petimage =  itemView.findViewById(R.id.dog_img_id);
             pet_cardview_id =  itemView.findViewById(R.id.pet_cardview_id);
+
 
 
         }

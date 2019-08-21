@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.FocusFinder;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.together.R;
 import com.example.together.model.PetchingFriend;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,6 +27,8 @@ import java.util.HashMap;
 
 public class PetchingFriendDetailInfo extends AppCompatActivity {
 
+    private static final String TAG = "PetchingFriendDetailInf";
+
     private TextView petName, petBreed, petAge, petFriendIntro;
     private ImageView petFriendImage, gender_m, gender_w;
     private Button friend_request;
@@ -33,12 +37,14 @@ public class PetchingFriendDetailInfo extends AppCompatActivity {
     DatabaseReference reference;
     FirebaseUser firebaseUser;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
 
         Intent intent = getIntent();
         petFriendId = intent.getStringExtra("petFriendId");
+        Log.d(TAG, "통통"+petFriendId);
         petcode = intent.getStringExtra("petcode");
 
         super.onCreate(savedInstanceState);
@@ -59,7 +65,7 @@ public class PetchingFriendDetailInfo extends AppCompatActivity {
         String petId = intent2.getStringExtra("petId");
 
 
-        reference = FirebaseDatabase.getInstance().getReference("PetchingFriend").child(petId);
+        reference = FirebaseDatabase.getInstance().getReference("PetchingFriend").child(petFriendId);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -70,6 +76,7 @@ public class PetchingFriendDetailInfo extends AppCompatActivity {
                 Picasso.get().load(petchingFriend.getPetImg()).fit().into(petFriendImage);
 
                 owner = petchingFriend.getOwner();
+                Log.d("주인", "onDataChange: "+owner);
 
 
                 if (petchingFriend.getPetGender().equals("Female"))
@@ -94,16 +101,18 @@ public class PetchingFriendDetailInfo extends AppCompatActivity {
 
 
         //친구신청 버튼
-
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         friend_request.setOnClickListener(v -> {
             Log.d("주인", "주인은: "+owner);
+            Log.d("프랜드", "프랜드: "+petFriendId);
+
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Lounge").child("PetchingFriend").child(owner).child("PetId").child(petFriendId).child("Requestor");
 
             HashMap<String, Object> hashMap = new HashMap<>();
             hashMap.put(firebaseUser.getUid(),true);
 
-            reference.setValue(hashMap);
+            reference.updateChildren(hashMap);
 
 
             Intent lounge = new Intent(PetchingFriendDetailInfo.this, PetchingActivity.class);

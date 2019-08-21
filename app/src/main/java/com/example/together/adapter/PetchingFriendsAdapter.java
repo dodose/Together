@@ -77,7 +77,8 @@ public class PetchingFriendsAdapter extends RecyclerView.Adapter<PetchingFriends
                 // 디테일 정보 전달....
 
                 Log.d(TAG, "펫아이디란"+mPetchingFriends.get(position).getPetFriendId());
-                intent.putExtra("petId",mPetchingFriends.get(position).getPetFriendId());
+                intent.putExtra("petFriendId",mPetchingFriends.get(position).getPetFriendId());
+
 
 
                 mContext.startActivity(intent);

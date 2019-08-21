@@ -138,6 +138,19 @@ public class MyPetInfoCheckActivity extends AppCompatActivity {
 
 
 
+        //Petching imageButton 클릭
+        petching.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MyPetInfoCheckActivity.this, MyPetchingCondition.class);
+                intent.putExtra("petUid",petUid);
+                intent.putExtra("petName",Petname.getText());
+                startActivity(intent);
+            }
+        });
+
+
+
 
         //버튼 클릭 이벤트
         petclander.setOnClickListener(new View.OnClickListener() {
