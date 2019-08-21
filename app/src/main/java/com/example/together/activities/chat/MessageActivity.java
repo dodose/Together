@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -82,6 +84,11 @@ public class MessageActivity extends AppCompatActivity {
 
     String userid;
 
+    ImageView btn_plus, btn_cancel, camera, album,  petManager, map;
+
+    RelativeLayout messageBox, icon_box;
+
+
 
     boolean notify = false;
 
@@ -112,6 +119,51 @@ public class MessageActivity extends AppCompatActivity {
         username = findViewById(R.id.username);
         btn_send = findViewById(R.id.btn_send);
         text_send = findViewById(R.id.text_send);
+
+
+        messageBox = findViewById(R.id.messageBox);
+        icon_box = findViewById(R.id.icon_box);
+
+        // popup 버튼
+        btn_plus = findViewById(R.id.btn_plus);
+
+        // include view 들
+        btn_cancel = findViewById(R.id.btn_cancel);
+        camera = findViewById(R.id.camera);
+        album = findViewById(R.id.album);
+        petManager = findViewById(R.id.petManager);
+        map = findViewById(R.id.map);
+
+
+        btn_plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btn_plus.setVisibility(View.GONE);
+                icon_box.setVisibility(View.VISIBLE);
+            }
+        });
+
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                messageBox.setVisibility(View.VISIBLE);
+                icon_box.setVisibility(View.GONE);
+                btn_plus.setVisibility(View.VISIBLE);
+            }
+        });
+
+        petManager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
+
+
+
+
 
         intent = getIntent();
         final String userid = intent.getStringExtra("userid");
