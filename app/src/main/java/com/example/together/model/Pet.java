@@ -11,6 +11,7 @@ public class Pet {
     private String intro;
     private String petid;
     private Boolean isChecked;
+    private String petching_status;
 
     public Pet() {
 
@@ -21,7 +22,7 @@ public class Pet {
         this.isChecked = isChecked;
     }
 
-    public Pet(String petimageurl, String petname, String petbreed, String petweight, String birthday, String gender, String intro, String petid) {
+    public Pet(String petimageurl, String petname, String petbreed, String petweight, String birthday, String gender, String intro, String petid, String petching_status) {
         this.petimageurl = petimageurl;
         this.petname = petname;
         this.petbreed = petbreed;
@@ -30,6 +31,7 @@ public class Pet {
         this.gender = gender;
         this.intro = intro;
         this.petid = petid;
+        this.petching_status = petching_status;
     }
 
     public Pet(String petimageurl, String petname, String intro) {
@@ -113,6 +115,14 @@ public class Pet {
 
     public void setChecked(Boolean checked) {
         isChecked = checked;
+    }
+
+    public String getPetching_status() {
+        return petching_status;
+    }
+
+    public void setPetching_status(String petching_status) {
+        this.petching_status = petching_status;
     }
 }
 

@@ -82,6 +82,12 @@ public class MyPetInfoCheckActivity extends AppCompatActivity {
         petintro = findViewById(R.id.intro);
         petbirthday = findViewById(R.id.birthday);
 
+
+        //각종 버튼 SET
+        petching = findViewById(R.id.petching);
+        petclander = findViewById(R.id.petclander);
+        editpet = findViewById(R.id.editpet);
+
         toolbar = findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
@@ -92,6 +98,7 @@ public class MyPetInfoCheckActivity extends AppCompatActivity {
         FirebaseUser firebaseUser;
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Pets").child(firebaseUser.getUid()).child(petUid);
+
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -123,6 +130,14 @@ public class MyPetInfoCheckActivity extends AppCompatActivity {
 
                 petintro.setText(pet.getIntro());
 
+                if (pet.getPetching_status().equals("yes"))
+                {
+                    petching.setBackgroundResource(R.drawable.petching_condition_not_null);
+                }else
+                {
+                    petching.setBackgroundResource(R.drawable.petching_condition_null);
+                }
+
             }
 
             @Override
@@ -131,10 +146,9 @@ public class MyPetInfoCheckActivity extends AppCompatActivity {
             }
         });
 
-        //각종 버튼 SET
-        petching = findViewById(R.id.petching);
-        petclander = findViewById(R.id.petclander);
-        editpet = findViewById(R.id.editpet);
+
+
+
 
 
 
