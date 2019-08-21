@@ -26,6 +26,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -44,11 +45,13 @@
             android:layout_height="wrap_content">
 
             <Button
+                android:id="@+id/ok"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="확인"/>
 
             <Button
+                android:id="@+id/refuse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="취소"/>
