@@ -1,17 +1,10 @@
 package com.example.together.activities.petHotel;
 
-import android.Manifest;
-import android.app.Activity;
-import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,14 +13,12 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
+import com.example.together.MypageOrder;
 import com.example.together.activities.map.MapPetHotel;
 import com.example.together.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -171,11 +162,8 @@ public class ProductOrderActivity extends AppCompatActivity {
         orBtn = findViewById(R.id.orderbtn);
 
 
-        int sum = Integer.parseInt(prelast.substring(2)) - Integer.parseInt(prefirst.substring(2));
+        int sum = Integer.parseInt(prelast.substring(3)) - Integer.parseInt(prefirst.substring(3));
 
-
-
-        Log.e("총일수",sum+"");
 
         //이전값과 텍스트 뷰 값 채워주기
 
@@ -208,91 +196,109 @@ public class ProductOrderActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //클릭시 디비접속후 값 받아와서 넣고빼기;
 
-
-
-                new AsyncTask<Void, Void, Void>() {
-                    @Override
-                    protected void onPreExecute() {
-                        super.onPreExecute();
-                        strUrl = "http://13.209.25.83:8080/order_pro"; //탐색하고 싶은 URL이다.
-
-                    }
-
-                    @Override
-                    protected Void doInBackground(Void... voids) {
-
-
-                        try {
-                            //서버 연결
-                            Url = new URL(strUrl);  // URL화 한다.
-                            HttpURLConnection conn = (HttpURLConnection) Url.openConnection(); // URL을 연결한 객체 생성.
-                            conn.setRequestMethod("POST"); // post방식 통신
-                            conn.setDoOutput(true);       // 쓰기모드 지정
-                            conn.setDoInput(true);        // 읽기모드 지정
-
-                            conn.setRequestProperty("Content-Type", "application/json; utf-8");
-                            conn.setRequestProperty("Accept", "application/json; utf-8");
-                            conn.connect();
-
-
-                            //데이터 전달 하는곳
-
-                            OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-
-                            wr.write( user +"="+ prename + "=" + preaddr + "=" + preph + "=" + prefirst + "=" + prelast + "=" + precont + "=" +preprise);
-
-                            wr.flush();
-
-                            wr.close(); //전달후 닫아준다.
-
-
-                            // 데이터 받아오는 곳
-                            InputStream is = null;        //input스트림 개방
-                            BufferedReader reader = null;
-
-                            is = conn.getInputStream();
-                            reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));  //문자열 셋 세팅
-                            StringBuffer rbuffer = new StringBuffer();   //문자열을 담기 위한 객체
-                            String line = null;
-
-                            rbuffer.append(reader.readLine());
-
-                            result = rbuffer.toString().trim();
-                            is.close();
-                            conn.disconnect();
-
-
-                            Log.e("result", result);
-
-
-                        } catch (MalformedURLException | ProtocolException exception) {
-                            exception.printStackTrace();
-                        } catch (IOException io) {
-                            io.printStackTrace();
-                        }
-                        return null;
-                    }
-
-                    @Override
-                    protected void onPostExecute(Void aVoid) {
-                        super.onPostExecute(aVoid);
-
-
-
-                    }
-                }.execute();
-
-
                 //완료시 alert 창
                     AlertDialog.Builder alert_confirm = new AlertDialog.Builder(ProductOrderActivity.this);
-                    alert_confirm.setMessage("예약이 완료되었습니다, My예약으로 바로 이동 하시겠습니까?").setCancelable(false).setPositiveButton("확인",
+                    alert_confirm.setMessage("해당 내용으로 예약을 하시겠습니까?").setCancelable(false).setPositiveButton("확인",
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     // 'YES'
-//                                    Intent intent = new Intent(ProductOrderActivity.this,reViewActivity.class);
-//                                    intent.putExtra("etpcode",result);
-//                                    startActivity(intent);
+                                    new AsyncTask<Void, Void, Void>() {
+                                        @Override
+                                        protected void onPreExecute() {
+                                            super.onPreExecute();
+                                            strUrl = "http://13.209.25.83:8080/order_pro"; //탐색하고 싶은 URL이다.
+
+                                        }
+
+                                        @Override
+                                        protected Void doInBackground(Void... voids) {
+
+
+                                            try {
+                                                //서버 연결
+                                                Url = new URL(strUrl);  // URL화 한다.
+                                                HttpURLConnection conn = (HttpURLConnection) Url.openConnection(); // URL을 연결한 객체 생성.
+                                                conn.setRequestMethod("POST"); // post방식 통신
+                                                conn.setDoOutput(true);       // 쓰기모드 지정
+                                                conn.setDoInput(true);        // 읽기모드 지정
+
+                                                conn.setRequestProperty("Content-Type", "application/json; utf-8");
+                                                conn.setRequestProperty("Accept", "application/json; utf-8");
+                                                conn.connect();
+
+
+                                                //데이터 전달 하는곳
+
+                                                OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+
+                                                wr.write( user +"="+ prename + "=" + preaddr + "=" + preph + "=" + prefirst + "=" + prelast + "=" + precont + "=" +preprise);
+
+                                                wr.flush();
+
+                                                wr.close(); //전달후 닫아준다.
+
+
+                                                // 데이터 받아오는 곳
+                                                InputStream is = null;        //input스트림 개방
+                                                BufferedReader reader = null;
+
+                                                is = conn.getInputStream();
+                                                reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));  //문자열 셋 세팅
+                                                StringBuffer rbuffer = new StringBuffer();   //문자열을 담기 위한 객체
+                                                String line = null;
+
+                                                rbuffer.append(reader.readLine());
+
+                                                result = rbuffer.toString().trim();
+                                                is.close();
+                                                conn.disconnect();
+
+
+                                                Log.e("result", result);
+
+
+                                            } catch (MalformedURLException | ProtocolException exception) {
+                                                exception.printStackTrace();
+                                            } catch (IOException io) {
+                                                io.printStackTrace();
+                                            }
+                                            return null;
+                                        }
+
+                                        @Override
+                                        protected void onPostExecute(Void aVoid) {
+                                            super.onPostExecute(aVoid);
+
+
+
+                                            AlertDialog.Builder alert_confirm = new AlertDialog.Builder(ProductOrderActivity.this);
+                                            alert_confirm.setMessage("예약이 완료되었습니다. My예약으로 바로 이동하시겠습니까?").setCancelable(false).setPositiveButton("확인",
+                                                    new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface dialog, int which) {
+                                                            // 'YES'
+                                                            Intent intent = new Intent(ProductOrderActivity.this, MypageOrder.class);
+                                                            startActivity(intent);
+
+                                                        }
+                                                    }).setNegativeButton("취소",
+                                                    new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface dialog, int which) {
+                                                            Intent intent = new Intent(ProductOrderActivity.this,HotelDetailActivity.class);
+                                                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                                            startActivity(intent);
+                                                            return;
+                                                        }
+                                                    });
+                                            AlertDialog alert = alert_confirm.create();
+                                            alert.show();
+
+
+                                        }
+                                    }.execute();
+
                                 }
                             }).setNegativeButton("취소",
                             new DialogInterface.OnClickListener() {

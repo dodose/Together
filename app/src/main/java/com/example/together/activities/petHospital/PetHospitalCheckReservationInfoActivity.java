@@ -18,8 +18,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.example.together.R;
-import com.example.together.activities.petHotel.HotelDetailActivity;
-import com.example.together.activities.petHotel.reViewActivity;
 import com.example.together.adapter.TimesetAdapter;
 import com.example.together.fragment.Hos_or_fragment1;
 import com.example.together.fragment.Hos_or_fragment2;

@@ -11,8 +11,6 @@ import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.together.activities.petHotel.HotelDetailActivity;
-import com.example.together.activities.petHotel.reViewActivity;
 import com.example.together.adapter.f_productAdapter;
 import com.example.together.model.FuneralProdcutOrder;
 import com.example.together.R;

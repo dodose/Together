@@ -195,18 +195,20 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_margin="12dp"
+                                android:textSize="18dp"
                                 android:text="닫기"
                                 android:layout_weight="0.5"
-                                android:background="#9CDFFF"/>
+                                android:background="@drawable/background_radius_borderblackw2"/>
 
                             <Button
                                 android:id="@+id/myorders"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:textSize="18dp"
                                 android:layout_margin="12dp"
                                 android:text="MY예약"
                                 android:layout_weight="0.5"
-                                android:background="#9CDFFF"/>
+                                android:background="@drawable/background_radius_borderblackw2"/>
 
                         </LinearLayout>
                     </LinearLayout>

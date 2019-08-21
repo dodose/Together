@@ -1,8 +1,12 @@
 package com.example.together.activities.goodbyePet;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -12,6 +16,7 @@ import com.example.together.adapter.PageAdapter;
 import com.example.together.R;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
+import com.squareup.picasso.Picasso;
 
 public class GoodbyepetMenuSelectActivity extends AppCompatActivity {
 
@@ -22,6 +27,8 @@ public class GoodbyepetMenuSelectActivity extends AppCompatActivity {
     TabItem tabChats;
     TabItem tabStatus;
     TabItem tabCalls;
+
+    ImageView etp_image;
 
     //이전 item요청에 따른 데이터 전달
     String img;
@@ -45,17 +52,21 @@ public class GoodbyepetMenuSelectActivity extends AppCompatActivity {
         time = Ex.getString("time");
         day = Ex.getString("day");
 
-        Log.e("넘어온 code값입니다",code);
-
         toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(getResources().getString(R.string.app_name));
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_btn_back);
+        getSupportActionBar().setTitle(name);
 
+
+        etp_image = findViewById(R.id.etp_image);
         tabLayout = findViewById(R.id.tablayout);
         tabChats = findViewById(R.id.tabChats);
         tabStatus = findViewById(R.id.tabStatus);
         tabCalls = findViewById(R.id.tabCalls);
         viewPager = findViewById(R.id.viewPager);
+
+        Picasso.get().load(img).fit().into(etp_image);
 
         pageAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount(),code,day,time);
         viewPager.setAdapter(pageAdapter);
@@ -80,6 +91,21 @@ public class GoodbyepetMenuSelectActivity extends AppCompatActivity {
         });
 
 
+    }
+
+
+    //액션바 클릭 이벤트
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent intent = new Intent(GoodbyepetMenuSelectActivity.this, GoodbyePetStoreListActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 

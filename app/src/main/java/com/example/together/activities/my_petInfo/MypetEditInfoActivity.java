@@ -28,8 +28,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.together.R;
-import com.example.together.activities.petHotel.HotelDetailActivity;
-import com.example.together.activities.petHotel.reViewActivity;
+
 import com.example.together.model.Pet;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;

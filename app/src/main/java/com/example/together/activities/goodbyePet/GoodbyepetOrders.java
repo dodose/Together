@@ -11,9 +11,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.together.MypageOrder;
 import com.example.together.R;
 import com.example.together.activities.petHotel.HotelDetailActivity;
-import com.example.together.activities.petHotel.reViewActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,8 +27,6 @@ public class GoodbyepetOrders extends AppCompatActivity {
     TextView order_code;
     TextView stat;
     TextView etpname;
-    TextView day1;
-    TextView day2;
     TextView price;
     Button button1;
     Button button2;
@@ -43,8 +41,6 @@ public class GoodbyepetOrders extends AppCompatActivity {
         order_code = findViewById(R.id.order_cd);
         stat = findViewById(R.id.status);
         etpname = findViewById(R.id.etp_nm);
-//        day1 = findViewById(R.id.first);
-//        day2 = findViewById(R.id.second);
         price = findViewById(R.id.total_price2);
         button1 = findViewById(R.id.backs);
         button2 = findViewById(R.id.myorders);
@@ -53,16 +49,19 @@ public class GoodbyepetOrders extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                Intent intent;
+
                 switch (v.getId()){
                     case R.id.backs:
                         //동작
-                        Intent intent1 = new Intent(GoodbyepetOrders.this,HotelDetailActivity.class);
-                        startActivity(intent1);
+                        intent = new Intent(GoodbyepetOrders.this,GoodbyePetStoreListActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        startActivity(intent);
                         break;
 
                     case R.id.myorders:
-                        Intent intent2 = new Intent(GoodbyepetOrders.this,HotelDetailActivity.class);
-                        startActivity(intent2);
+                        intent = new Intent(GoodbyepetOrders.this, MypageOrder.class);
+                        startActivity(intent);
                         break;
                 }
             }
@@ -123,7 +122,8 @@ public class GoodbyepetOrders extends AppCompatActivity {
 //            day1.setText(or_dt.substring(5));
 //            day2.setText(or_dt2.substring(5));
 
-            price.setText("결제 가격 : " + t_sum + "원");
+            price.setText("결제 가격 : " + t_sum + " 원");
+
 
 
 

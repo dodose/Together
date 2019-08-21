@@ -15,10 +15,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.together.activities.HomeActivity;
-import com.example.together.activities.petHospital.PetHospitalPetConditionActivity;
-import com.example.together.activities.petHotel.HotelDetailActivity;
-import com.example.together.activities.petHotel.reViewActivity;
 import com.example.together.adapter.FuneralAdapter;
 import com.example.together.model.Funeral;
 import com.example.together.R;
@@ -67,9 +63,6 @@ public class GoodbyePetStoreListActivity extends AppCompatActivity {
     String price;
     String etp_cd; //업체코드
 
-    //뒤로가기버튼
-    ImageView close;
-
     //AsyncTask 결과값
     JSONObject jobj;
 
@@ -104,8 +97,6 @@ public class GoodbyePetStoreListActivity extends AppCompatActivity {
         addr = Ex.getString("addr");
 
         Log.e("result", day + Time + addr);
-
-
 
 
 
