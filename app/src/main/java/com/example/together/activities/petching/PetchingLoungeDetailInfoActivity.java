@@ -2,10 +2,13 @@ package com.example.together.activities.petching;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -13,8 +16,10 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.together.R;
+import com.example.together.activities.HomeActivity;
 import com.example.together.activities.chat.ChatsActivity;
 import com.example.together.activities.chat.MessageActivity;
+import com.example.together.activities.petHospital.PetHospitalPetConditionActivity;
 import com.example.together.fragment.PetchingLoungeFragment;
 import com.example.together.model.PetchingBunyang;
 import com.example.together.model.PetchingLounge;
@@ -42,7 +47,7 @@ public class PetchingLoungeDetailInfoActivity extends AppCompatActivity {
     ImageView requester_img;
     Button refuse, accept;
     String userPetkey;
-
+    private Toolbar toolbar;
     CircleImageView petImg;
 
 
@@ -53,6 +58,14 @@ public class PetchingLoungeDetailInfoActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_petching_lounge_detail_info);
+
+
+        toolbar = findViewById(R.id.toolbar);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_btn_back);
+        getSupportActionBar().setTitle("");
 
         requester_name = findViewById(R.id.requester_name);
         requester_intro = findViewById(R.id.requester_intro);
@@ -174,5 +187,25 @@ public class PetchingLoungeDetailInfoActivity extends AppCompatActivity {
             }
         });
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        return true ;
+    }
+
+
+    //액션바 클릭 이벤트
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent intent = new Intent(PetchingLoungeDetailInfoActivity.this, PetchingActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
