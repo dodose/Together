@@ -2,17 +2,22 @@ package com.example.together.activities.petching;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.FocusFinder;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.together.R;
+import com.example.together.activities.HomeActivity;
+import com.example.together.activities.petHospital.PetHospitalPetConditionActivity;
 import com.example.together.model.PetchingFriend;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -33,7 +38,7 @@ public class PetchingFriendDetailInfo extends AppCompatActivity {
     private ImageView petFriendImage, gender_m, gender_w;
     private Button friend_request;
     public String owner, petFriendId, petcode;
-
+    private Toolbar toolbar;
     DatabaseReference reference;
     FirebaseUser firebaseUser;
 
@@ -42,6 +47,7 @@ public class PetchingFriendDetailInfo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState)
     {
 
+
         Intent intent = getIntent();
         petFriendId = intent.getStringExtra("petFriendId");
         Log.d(TAG, "통통"+petFriendId);
@@ -49,6 +55,14 @@ public class PetchingFriendDetailInfo extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_petching_friend_detail_info);
+
+        toolbar = findViewById(R.id.toolbar);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_btn_back);
+        getSupportActionBar().setTitle("");
+
 
         petName = findViewById(R.id.petName);
         petBreed = findViewById(R.id.petBreed);
@@ -122,5 +136,24 @@ public class PetchingFriendDetailInfo extends AppCompatActivity {
 
 
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
 
+        return true ;
+    }
+
+
+    //액션바 클릭 이벤트
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent intent = new Intent(PetchingFriendDetailInfo.this, PetchingActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }

@@ -1,15 +1,20 @@
 package com.example.together.activities.petching;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toolbar;
+
 
 import com.example.together.R;
+import com.example.together.activities.HomeActivity;
+import com.example.together.activities.petHospital.PetHospitalPetConditionActivity;
 import com.example.together.adapter.PetchingTabsAccessorAdapter;
 import com.google.android.material.tabs.TabLayout;
 
@@ -35,8 +40,15 @@ public class PetchingActivity extends AppCompatActivity
         tabLayout = (TabLayout) findViewById(R.id.main_tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-
         selct_pets = findViewById(R.id.selct_pets);
+
+        mToolbar = findViewById(R.id.toolbar);
+
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_btn_back);
+        getSupportActionBar().setTitle("");
+
 
         selct_pets.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,5 +59,26 @@ public class PetchingActivity extends AppCompatActivity
         });
 
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        return true ;
+    }
+
+
+    //액션바 클릭 이벤트
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent intent = new Intent(PetchingActivity.this, HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 
 }

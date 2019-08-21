@@ -2,6 +2,7 @@ package com.example.together.activities.petching;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,6 +11,8 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,7 +20,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.together.R;
+import com.example.together.activities.HomeActivity;
 import com.example.together.activities.chat.MessageActivity;
+import com.example.together.activities.petHospital.PetHospitalPetConditionActivity;
 import com.example.together.adapter.PetPostAdapter;
 import com.example.together.model.Pet;
 import com.example.together.model.PetchingBunyang;
@@ -46,7 +51,7 @@ public class PetchingBunyangDetailInfo extends AppCompatActivity {
     public String owner;
     String petBunyangId, petcode;
     RecyclerView recycler_view_post_history;
-
+    private Toolbar toolbar;
     List<Post> lsPetPost;
 
 
@@ -68,6 +73,13 @@ public class PetchingBunyangDetailInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_petching_bunyang_detail_info);
         myDialog = new Dialog(this);
+
+        toolbar = findViewById(R.id.toolbar);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_btn_back);
+        getSupportActionBar().setTitle("");
 
 
         petName = findViewById(R.id.petName);
@@ -310,5 +322,25 @@ public class PetchingBunyangDetailInfo extends AppCompatActivity {
                 Log.wtf(TAG, "onCancelled: 펫이미지 가져오는데 문제 발생! ");
             }
         });
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        return true ;
+    }
+
+
+    //액션바 클릭 이벤트
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent intent = new Intent(PetchingBunyangDetailInfo.this, PetchingActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
