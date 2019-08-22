@@ -110,8 +110,9 @@ public class PetchingConditionAdapter extends RecyclerView.Adapter<PetchingCondi
                             hashMap.put("petid", mPetUid);
                             hashMap.put("petimageurl", pet.getPetimageurl());
                             hashMap.put("petname",pet.getPetname());
+                            hashMap.put("petching_status","no");
 
-                            reference2.push().setValue(hashMap);
+                            reference2.setValue(hashMap);
 
                             if (hashMap!= null)
                             {
@@ -119,9 +120,8 @@ public class PetchingConditionAdapter extends RecyclerView.Adapter<PetchingCondi
                                 FirebaseDatabase.getInstance().getReference("Pets").child(firebaseUser.getUid()).child(mPetUid).removeValue();
                                 FirebaseDatabase.getInstance().getReference("Lounge").child("PetchingBunyang").child(firebaseUser.getUid()).child("PetId")
                                         .child(mPetbungyangid).child("Requestor").child(pet.getPetid()).removeValue();
+                                FirebaseDatabase.getInstance().getReference("PetchingBunyang").child(mPetbungyangid).removeValue();
 
-                                // PetchingBunyang 데이터도 삭제해줘야함...
-                                //FirebaseDatabase.getInstance().getReference("PetchingBunyang")
                             }
 
                             Intent intent = new Intent(mContext, MyPetListActivity.class);

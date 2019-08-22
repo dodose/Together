@@ -300,9 +300,9 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_gravity="bottom"
+            android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/pet_post_story">
+            android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.AppCompatButton
                 android:background="@color/colorBlue"
