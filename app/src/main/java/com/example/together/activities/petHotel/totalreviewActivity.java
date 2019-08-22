@@ -1,5 +1,6 @@
 package com.example.together.activities.petHotel;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -8,6 +9,8 @@ import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.together.activities.HomeActivity;
+import com.example.together.activities.petHospital.PetHospitalPetConditionActivity;
 import com.example.together.adapter.ReviewAdapter;
 import com.example.together.model.Review;
 import com.example.together.R;
@@ -64,17 +67,8 @@ public class totalreviewActivity extends AppCompatActivity {
 
 
 
-
     }
 
-
-    //액션바 등록
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.hotel_menu, menu) ;
-
-        return true ;
-    }
 
 
     //액션바 클릭 이벤트
@@ -82,11 +76,11 @@ public class totalreviewActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                //                ((TextView)findViewById(R.id.textView)).setText("SEARCH") ;
+                Intent intent = new Intent(totalreviewActivity.this, HotelDetailActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
                 return true;
-            case R.id.settings:
-                //                ((TextView)findViewById(R.id.textView)).setText("ACCOUNT") ;
-                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
