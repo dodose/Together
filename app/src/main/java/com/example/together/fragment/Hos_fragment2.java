@@ -77,7 +77,7 @@ public class Hos_fragment2 extends Fragment {
                     }
                  double total = sum/jarry.length();
 
-                   total_count.setText(String.valueOf(total));
+                   total_count.setText(String.valueOf(Math.round(total*100)/100.0));
 
                 ReviewAdapter reAdapter = new ReviewAdapter(ReviewList);
 

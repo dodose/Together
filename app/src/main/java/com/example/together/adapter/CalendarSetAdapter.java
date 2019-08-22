@@ -1,5 +1,7 @@
 package com.example.together.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.together.R;
+import com.example.together.activities.my_petInfo.MypetCalendarActivity;
+import com.example.together.activities.my_petInfo.MypetCalendarShowActivity;
 import com.example.together.model.CalendarData;
 
 import java.util.ArrayList;
@@ -18,9 +22,11 @@ import java.util.ArrayList;
 public class CalendarSetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private ArrayList<CalendarData> calMark;
+    public Context mContext;
 
-    public CalendarSetAdapter(ArrayList<CalendarData> calMark) {
+    public CalendarSetAdapter(ArrayList<CalendarData> calMark,Context c) {
             this.calMark = calMark;
+            this.mContext = c;
     }
 
 
@@ -73,14 +79,12 @@ public class CalendarSetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             @Override
             public void onClick(View v) {
 
-                Log.e("아이템눌림","해당하는 아이템이 눌림");
-//                String img = FuneralArrayList.get(Position).img_path;
-//
-//                Log.e("funeraladapter의 값",code);
-//                Intent intent = new Intent(v.getContext(), GoodbyepetMenuSelectActivity.class);
-//                intent.putExtra("img",img);
-//
-//                v.getContext().startActivity(intent);
+
+                Intent intent = new Intent(v.getContext(), MypetCalendarShowActivity.class);
+                intent.putExtra("Content",calMark.get(position).setContent);
+                intent.putExtra("Time",calMark.get(position).setTime1);
+                intent.putExtra("Time2",calMark.get(position).setTime2);
+                ((MypetCalendarActivity) mContext).startActivityForResult(intent,2);
             }
 
         });

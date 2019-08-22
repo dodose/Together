@@ -1,6 +1,7 @@
 package com.example.together.activities.my_petInfo;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 
@@ -84,6 +85,7 @@ public class MypetCalendarActivity extends AppCompatActivity{
 
     //Day
     String Day = null;
+    Context mContext;
 
 //횟수체크용
 int count;
@@ -113,7 +115,7 @@ int count;
         mRecycleView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecycleView.setLayoutManager(mLayoutManager);
-
+        mContext = this;
 
         //툴바 선언
         mToolbar = findViewById(R.id.cal_toolbar);
@@ -204,7 +206,7 @@ int count;
     }
 
     private void resetAdapter() {
-        CalendarSetAdapter mAdapter = new CalendarSetAdapter(selectDay);
+        CalendarSetAdapter mAdapter = new CalendarSetAdapter(selectDay,mContext);
         mRecycleView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
     }
@@ -261,7 +263,8 @@ int count;
                 return;
             }
 
-            materialCalendarView.addDecorator(new EventDecorator(Color.GREEN, calendarDays,MypetCalendarActivity.this));
+                    materialCalendarView.addDecorator(new EventDecorator(Color.GREEN, calendarDays, MypetCalendarActivity.this));
+
 
         }
     }
@@ -306,15 +309,27 @@ int count;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == RESULT_FIRST_USER){
+
+            Log.e("d",requestCode+"");
+
             switch (resultCode){
                 // MainActivity 에서 요청할 때 보낸 요청 코드 (3000)
+
                 case 1:
                     Toast.makeText(this, "작성완료", Toast.LENGTH_SHORT).show();
                     setChangeDayMark(petUid);
+                    break;
+
+                case 2:
+                    setChangeDayMark(petUid);
+                    Intent intent = getIntent();
+                    finish();
+                    overridePendingTransition(0, 0);
+                    startActivity(intent);
+                    overridePendingTransition(0, 0);
 
                     break;
-            }
+
         }
     }
 
@@ -414,6 +429,7 @@ int count;
                                 CalMark.add(new CalendarData(time1, time2, type, content));
 
                             }
+
 
                                 new ApiSimulator(CalMark).executeOnExecutor(Executors.newSingleThreadExecutor());
 

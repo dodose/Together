@@ -1,5 +1,7 @@
 package com.example.together.activities.petHospital;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -43,6 +46,7 @@ public class PetHospitalPetConditionActivity extends AppCompatActivity {
     public final static int REQUEST_CODE = 1;
 
     private static final String TAG = "PetHospitalPetCondition";
+    public static final int Date_id=0;
 
     Button petHospital_search_btn, date_select;
 
@@ -83,12 +87,8 @@ public class PetHospitalPetConditionActivity extends AppCompatActivity {
         date_select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AirCalendarIntent intent = new AirCalendarIntent(PetHospitalPetConditionActivity.this);
-                intent.setSelectButtonText("Select");
-                intent.setResetBtnText("Reset");
-                intent.setWeekStart(Calendar.MONDAY);
-                intent.putExtra("pet_hospital",-1);
-                startActivityForResult(intent, REQUEST_CODE);
+
+                showDialog(Date_id);
             }
         });
 
@@ -196,11 +196,6 @@ public class PetHospitalPetConditionActivity extends AppCompatActivity {
 
             switch (resultCode){
 
-                case RESULT_OK:
-                    Log.e("ㅇㅇ","들어와잇단다");
-                    date = data.getStringExtra(AirCalendarDatePickerActivity.RESULT_SELECT_START_DATE);
-                    date_select.setText(date);
-                    break;
                 case 2:
                     select_clinic.setText(data.getExtras().getString("result"));
                     break;
@@ -215,6 +210,43 @@ public class PetHospitalPetConditionActivity extends AppCompatActivity {
     public static void myPetcode(String selected_my_pet) {
         petcode = selected_my_pet;
     }
+
+    protected Dialog onCreateDialog(int id) {
+
+        // Get the calander
+        Calendar c = Calendar.getInstance();
+
+        // From calander get the year, month, day, hour, minute
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        int hour = c.get(Calendar.HOUR_OF_DAY);
+        int minute = c.get(Calendar.MINUTE);
+
+        switch (id) {
+            case Date_id:
+
+                // Open the datepicker dialog
+                return new DatePickerDialog(PetHospitalPetConditionActivity.this, date_listener, year,
+                        month, day);
+
+
+        }
+        return null;
+    }
+
+    // Date picker dialog
+    DatePickerDialog.OnDateSetListener date_listener = new DatePickerDialog.OnDateSetListener() {
+
+        @Override
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+            // store the data in one string and set it to text
+            String date1 = String.valueOf(year) + "/" + String.valueOf(month+1)
+                    + "/" + String.valueOf(day);
+            date_select.setText(date1);
+            date = date1;
+        }
+    };
 
 
 }

@@ -167,6 +167,7 @@ public class MypageOrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                                         in.put("day2",userOrder.get(position).or_dt2);
 
                                         DBconnet(in);
+
                                         Intent intent = new Intent(v.getContext(),MypageOrder.class);
                                         ((MypageOrder)mContext).finish();
                                         ((MypageOrder)mContext).overridePendingTransition(0, 0);
@@ -217,7 +218,7 @@ public class MypageOrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                strUrl = "http://http://13.209.25.83:8080/Order_cancle"; //탐색하고 싶은 URL이다.
+                strUrl = "http://13.209.25.83:8080/Order_cancle"; //탐색하고 싶은 URL이다.
 
             }
 
@@ -284,7 +285,6 @@ public class MypageOrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             protected void onPostExecute(JSONObject aVoid) {
                 super.onPostExecute(aVoid);
 
-                notifyDataSetChanged();
 
 
             }
