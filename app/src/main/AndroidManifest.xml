@@ -7,16 +7,6 @@
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the 'MyLocation' functionality.
     -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- 맵 이용하기 위함 -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 다음 지도 -->
-    <uses-permission android:name="android.permission.INTERNET" /> <!-- 대략적인 위치 참조 권한 -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 정확한 위치 참조 권한 -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.SEND_SMS" />
-    <uses-permission android:name="android.permission.RECEIVE_SMS" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
     <application
         android:allowBackup="false"
         android:appComponentFactory="whateverString"
@@ -26,10 +16,13 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".activities.petching.PetchingFriendLoungeDetailInfoActivity"></activity>
+        <activity android:name=".activities.chat.PetManagerActivity"
+                  android:theme="@style/Theme.MyDialog">
+        </activity>
+        <activity android:name=".activities.petching.PetchingFriendLoungeDetailInfoActivity" />
         <activity android:name=".activities.my_petInfo.MyPetchingCondition" />
         <activity android:name=".activities.petching.PetchingStoryDetailActivity" />
-        <activity android:name=".MypageOrder"></activity>
+        <activity android:name=".MypageOrder" />
         <activity android:name=".activities.EtpInfoActivity" />
         <activity android:name=".activities.petHotel.LocationShowActivity" />
         <activity android:name=".activities.petHotel.HotelLocationSelect" />
@@ -59,31 +52,15 @@
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
         <!-- push set -->
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/ic_launcher" />
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/colorAccent" />
-
-        <service
-            android:name=".MyFirebaseMessagingService"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
-
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
-
         <activity
             android:name=".activities.map.MapPetHotel"
             android:label="@string/title_activity_map_pet_hotel" />
         <activity android:name=".activities.petHotel.totalreviewActivity" />
+
         <activity android:name=".activities.goodbyePet.GoodbyepetReservationResultActivity" />
+
         <activity android:name=".activities.goodbyePet.GoodbyePetStoreListActivity" />
+
         <activity android:name=".activities.goodbyePet.GoodbyePetTimeDateSelectActivity" />
         <activity android:name=".activities.goodbyePet.GoodbyepetMenuSelectActivity" />
         <activity android:name=".activities.petching.PetchingLoungeDetailInfoActivity" />
@@ -96,16 +73,13 @@
         <activity android:name=".activities.goodbyePet.GoodbyeMemorialActivity" />
         <activity android:name=".activities.map.MapTestActivity" />
         <activity android:name=".activities.aircalendar.AirCalendarDatePickerActivity" />
-
-        <uses-library
-            android:name="org.apache.http.legacy"
-            android:required="false" />
-
         <activity android:name=".activities.my_petInfo.MyPetRegActivity" />
         <activity android:name=".activities.my_petInfo.MyPetListActivity" />
         <activity android:name=".activities.goodbyePet.GoodbyePetActivity" />
         <activity android:name=".activities.petGroup.PetGroupActivity" />
+
         <activity android:name=".activities.petHotel.PetHotelActivity" />
+
         <activity android:name=".activities.petHotel.HotelListDataActivity" />
         <activity android:name=".activities.petHotel.HotelDetailActivity" />
         <activity android:name=".activities.chat.MessageActivity" />
@@ -127,6 +101,35 @@
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
-    </application>
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_launcher" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+    </application> <!-- 맵 이용하기 위함 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 다음 지도 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 대략적인 위치 참조 권한 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 정확한 위치 참조 권한 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
 </manifest>

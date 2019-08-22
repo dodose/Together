@@ -54,7 +54,7 @@
                 android:id="@+id/refuse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="취소"/>
+                android:text="거절"/>
 
         </LinearLayout>
 

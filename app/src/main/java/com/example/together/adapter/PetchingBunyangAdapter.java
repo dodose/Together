@@ -59,11 +59,11 @@ public class PetchingBunyangAdapter extends RecyclerView.Adapter<PetchingBunyang
         Common common = new Common();
 
         final PetchingBunyang petchingBunyang = mPetchingBunyang.get(position);
-        petchingBunyang.getPetBunyangId();
+        petchingBunyang.getPetbunyangid();
 
 
 
-        getPetInfo(mPetchingBunyang.get(position).getPetBunyangId(), viewHolder.img_pet, viewHolder.petName, viewHolder.petAge, viewHolder.petBreed, viewHolder.gender_m, viewHolder.gender_w);
+        getPetInfo(mPetchingBunyang.get(position).getPetbunyangid(), viewHolder.img_pet, viewHolder.petName, viewHolder.petAge, viewHolder.petBreed, viewHolder.gender_m, viewHolder.gender_w);
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener()
         {
@@ -74,7 +74,7 @@ public class PetchingBunyangAdapter extends RecyclerView.Adapter<PetchingBunyang
 
                 // 디테일 정보 전달....
 
-                intent.putExtra("petBunyangId",mPetchingBunyang.get(position).getPetBunyangId());
+                intent.putExtra("petBunyangId",mPetchingBunyang.get(position).getPetbunyangid());
                 intent.putExtra("petcode",mPetchingBunyang.get(position).getPetcode());
 
 

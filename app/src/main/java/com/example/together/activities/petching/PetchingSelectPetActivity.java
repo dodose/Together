@@ -92,6 +92,7 @@ public class PetchingSelectPetActivity extends AppCompatActivity {
 
                     String key = childSnapshot.getKey();
                     Pet pet = childSnapshot.getValue(Pet.class);
+                    Log.d(TAG, "키맨"+key);
 
                     lsPet.add(pet);
 

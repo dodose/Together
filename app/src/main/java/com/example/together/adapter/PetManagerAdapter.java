@@ -1,6 +1,7 @@
 package com.example.together.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.together.activities.PostActivity;
+import com.example.together.activities.chat.PetManagerActivity;
+import com.example.together.activities.my_petInfo.MyPetInfoCheckActivity;
 import com.example.together.activities.petHospital.PetHospitalPetConditionActivity;
 import com.example.together.activities.petching.PetchingSelectPetActivity;
 import com.example.together.fragment.PetBunYangInfoEditFragment;
@@ -25,7 +28,7 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class PetHospitalizationSelectAdapter extends RecyclerView.Adapter<PetHospitalizationSelectAdapter.ViewHolder>  {
+public class PetManagerAdapter extends RecyclerView.Adapter<PetManagerAdapter.ViewHolder>  {
 
     private static final String TAG = "PetHospitalizationSelec";
 
@@ -49,7 +52,7 @@ public class PetHospitalizationSelectAdapter extends RecyclerView.Adapter<PetHos
 
 
 
-    public PetHospitalizationSelectAdapter(Context mContext, List<Pet> mPet){
+    public PetManagerAdapter(Context mContext, List<Pet> mPet){
         this.mContext = mContext;
         this.mPet = mPet;
 
@@ -87,38 +90,11 @@ public class PetHospitalizationSelectAdapter extends RecyclerView.Adapter<PetHos
                 notifyDataSetChanged();
                 String selected_my_pet = mPet.get(position).getPetid();
 
-                PetHospitalPetConditionActivity.myPetcode(selected_my_pet);
-
-                //펫칭 펫선택시 선택 펫키값 보내기
-//                PetchingSelectPetActivity.myPetcode_petching(selected_my_pet);
-
-
-                //펫칭 분양 프래그먼트로
-                PetBunYangInfoEditFragment fragment = new PetBunYangInfoEditFragment();
-                fragment.myPetcode_petching(selected_my_pet);
-
-                //펫칭 프랜드 프래그먼트로
-                PetFriendsInfoEditFragment fragment2 = new PetFriendsInfoEditFragment();
-                fragment2.myPetcode_petching(selected_my_pet);
-
-                //펫칭
-
-
-                PostActivity postActivity = new PostActivity();
-                postActivity.myPetcode_petching(selected_my_pet);
-
+                Intent intent = new Intent(mContext, MyPetInfoCheckActivity.class);
+                intent.putExtra("petUid",selected_my_pet);
+                mContext.startActivity(intent);
             }
         });
-
-
-        if (row_index==position){
-            viewHolder.pet_cardview_id.setBackgroundColor(Color.parseColor("#ebfaa0"));
-
-        }
-        else
-        {
-            viewHolder.pet_cardview_id.setBackgroundColor(Color.TRANSPARENT);
-        }
 
     }
 
@@ -134,11 +110,6 @@ public class PetHospitalizationSelectAdapter extends RecyclerView.Adapter<PetHos
         CircleImageView petimage;
         TextView petname;
         CardView pet_cardview_id;
-
-        //아이템 클릭시 실행 함수
-
-
-        //아이템 클릭시 실행 함수 등록 함수
 
 
 
