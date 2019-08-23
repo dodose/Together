@@ -62,7 +62,7 @@ public class PetBunyangFragment extends Fragment  {
                     Log.d(TAG, "키키맨?"+key);
 
                     // as per Franks comment.
-                    petchingBunyang.setPetBunyangId(key);
+                    petchingBunyang.setPetbunyangid(key);
 
                     petBunyangList.add(petchingBunyang);
                     Log.d(TAG, "리스트키: "+petBunyangList);

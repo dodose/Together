@@ -32,5 +32,7 @@
     <color name="LoginBtnO">#54caff</color>
     <color name="LoginBtnT">#00b0ff</color>
     <color name="LoginBtnThree">#0082bd</color>
+
+    <color name="goodBackground">#eaff7b</color>
 </resources>
 

@@ -22,8 +22,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.together.MyFirebaseMessagingService;
 import com.example.together.activities.LoginActivity;
+import com.example.together.activities.petching.PetchingSelectPetActivity;
 import com.example.together.adapter.MessageAdapter;
 import com.example.together.model.Chat;
 import com.example.together.model.User;
@@ -36,16 +36,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
@@ -53,7 +49,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -152,16 +147,15 @@ public class MessageActivity extends AppCompatActivity {
             }
         });
 
-        petManager.setOnClickListener(new View.OnClickListener() {
+        petManager.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
-
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(MessageActivity.this, PetManagerActivity.class);
+                startActivity(intent);
             }
         });
-
-
-
-
 
 
 

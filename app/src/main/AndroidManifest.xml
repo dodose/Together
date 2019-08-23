@@ -26,8 +26,11 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".activities.my_petInfo.MypetCalendarShowActivity"></activity>
+        <activity android:name=".activities.chat.PetManagerActivity"
+                  android:theme="@style/Theme.MyDialog">
+        </activity>
         <activity android:name=".activities.petching.PetchingFriendLoungeDetailInfoActivity" />
+        <activity android:name=".activities.my_petInfo.MypetCalendarShowActivity"></activity>
         <activity android:name=".activities.my_petInfo.MyPetchingCondition" />
         <activity android:name=".activities.petching.PetchingStoryDetailActivity" />
         <activity android:name=".MypageOrder" />
@@ -128,6 +131,8 @@
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
-    </application>
+
+    </application> <!-- 맵 이용하기 위함 -->
+
 
 </manifest>

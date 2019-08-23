@@ -21,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MyPetchingCondition extends AppCompatActivity {
@@ -29,10 +30,13 @@ public class MyPetchingCondition extends AppCompatActivity {
     
     DatabaseReference reference, reference2, reference3, reference4;
     FirebaseUser firebaseUser;
-    String petUid;
+    public String petUid;
+    String petbungyangid;
     PetchingConditionAdapter petchingConditionAdapter;
+    PetchingBunyang petchingBunyang;
 
     List<User> lsUser;
+    List<String> idList;
     RecyclerView recyclerview_requester;
 
     @Override
@@ -45,6 +49,9 @@ public class MyPetchingCondition extends AppCompatActivity {
         Intent intent = getIntent();
         petUid = intent.getExtras().getString("petUid");
 
+        idList = new ArrayList<>();
+        lsUser = new ArrayList<>();
+
         reference = FirebaseDatabase.getInstance().getReference("PetchingBunyang");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -52,48 +59,48 @@ public class MyPetchingCondition extends AppCompatActivity {
                 for (DataSnapshot childSnapshot : dataSnapshot.getChildren())
                 {
                     String key = childSnapshot.getKey();
-                    Log.d(TAG, "키키키 "+key);
+                    Log.d(TAG, "젠틀맨 "+key);
 
                     reference2 = FirebaseDatabase.getInstance().getReference("PetchingBunyang").child(key);
                     reference2.addValueEventListener(new ValueEventListener()
                     {
                         @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            PetchingBunyang petchingBunyang = dataSnapshot.getValue(PetchingBunyang.class);
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot2) {
+                            PetchingBunyang petchingBunyang = dataSnapshot2.getValue(PetchingBunyang.class);
 
-                            Log.d(TAG, "Twice"+petchingBunyang.getPetcode());
+                            Log.d(TAG, "아아아아"+petchingBunyang.getPetcode());
+                            Log.d(TAG, "Twice"+petchingBunyang.getPetbunyangid());
                             Log.d(TAG, "사자"+petUid);
                             if (petUid.equals(petchingBunyang.getPetcode()))
                             {
-                                Log.d(TAG, "사과"+petchingBunyang.getPetcode());
+                                Log.d(TAG, "빡빡"+dataSnapshot2.child("petBunyangId").getValue());
 
-                                String banana = petchingBunyang.getPetcode();
-                                Log.d(TAG, "바나나"+banana);
+                                petbungyangid = petchingBunyang.getPetbunyangid();
 
-                                Log.d(TAG, "바보"+petUid.equals(petchingBunyang.getPetcode()));
                                 firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-                                reference3 = FirebaseDatabase.getInstance().getReference("Lounge").child("PetchingBunyang").child(firebaseUser.getUid()).child("PetId").child(banana).child("Requestor");
-                                Log.d(TAG, "강아지");
+                                reference3 = FirebaseDatabase.getInstance().getReference("Lounge").child("PetchingBunyang").child(firebaseUser.getUid()).child("PetId").child(petbungyangid).child("Requestor");
                                 reference3.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
-                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot2)
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot3)
                                     {
-                                        for (DataSnapshot snapshot : dataSnapshot.getChildren())
+                                        idList.clear();
+                                        for (DataSnapshot childSnapshot2 : dataSnapshot3.getChildren())
                                         {
-                                            User user = snapshot.getValue(User.class);
-                                            Log.d(TAG, "신청자아이디키"+user.getId());
-                                            String requesterUserKey = user.getId();
-                                            reference4 = FirebaseDatabase.getInstance().getReference("Users").child(requesterUserKey);
+                                            idList.add(childSnapshot2.getKey());
+                                            Log.d(TAG, "신청자아이디키"+idList);
+                                            Log.d(TAG, "스냅키"+childSnapshot2.getKey());
+
+                                            reference4 = FirebaseDatabase.getInstance().getReference("Users").child(childSnapshot2.getKey());
                                             reference4.addValueEventListener(new ValueEventListener() {
                                                 @Override
-                                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                                    User user = dataSnapshot.getValue(User.class);
-                                                    user.getImageurl();
-                                                    user.getUsername();
-                                                    Log.d(TAG, "유저이름"+user.getUsername());
-                                                    Log.d(TAG, "유저이미지"+user.getImageurl());
+                                                public void onDataChange(@NonNull DataSnapshot dataSnapshot4) {
+                                                    User user = dataSnapshot4.getValue(User.class);
                                                     lsUser.add(user);
+                                                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MyPetchingCondition.this, LinearLayoutManager.VERTICAL, false);
+                                                    recyclerview_requester.setLayoutManager(linearLayoutManager);
+                                                    petchingConditionAdapter = new PetchingConditionAdapter(MyPetchingCondition.this, lsUser, petUid, petbungyangid);
+                                                    recyclerview_requester.setAdapter(petchingConditionAdapter);
                                                 }
 
                                                 @Override
@@ -102,14 +109,10 @@ public class MyPetchingCondition extends AppCompatActivity {
                                                 }
                                             });
 
-                                            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
-                                            recyclerview_requester.setLayoutManager(linearLayoutManager);
-                                            petchingConditionAdapter = new PetchingConditionAdapter(MyPetchingCondition.this, lsUser);
+
                                         }
 
                                     }
-
-
 
 
                                     @Override
@@ -136,7 +139,6 @@ public class MyPetchingCondition extends AppCompatActivity {
 
             }
         });
-
 
 
     }
