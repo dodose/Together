@@ -46,7 +46,7 @@ public class PetchingLoungeDetailInfoActivity extends AppCompatActivity {
     TextView requester_name, requester_intro, petName;
     ImageView requester_img;
     Button refuse, accept;
-    String userPetkey;
+    String userPetkey,petNameForSend;
     private Toolbar toolbar;
     CircleImageView petImg;
 
@@ -105,6 +105,7 @@ public class PetchingLoungeDetailInfoActivity extends AppCompatActivity {
 
                 Glide.with(getApplicationContext()).load(petchingBunyang.getPetImg()).into(petImg);
                 petName.setText(petchingBunyang.getPetName()+"의 분양을 신청하였습니다");
+                petNameForSend = petchingBunyang.getPetName();
 
             }
 
@@ -149,9 +150,10 @@ public class PetchingLoungeDetailInfoActivity extends AppCompatActivity {
                 Log.e("user",firebaseUser.getUid());
                 Log.e("recever",requester_id);
                 String sendName = "투개더";
-                String message = "펫칭 신청을 수락하였습니다.";
+                String message = petNameForSend+"분양 신청을 수락하였습니다.";
                 MessageActivity messageActivity = new MessageActivity();
                 messageActivity.sendpushAlert(requester_id, sendName, message);
+                messageActivity.sendMessage(firebaseUser.getUid() ,requester_id ,petNameForSend+"의 분양신청 수락을 하였습니다." );
 
                 Intent intent1 = new Intent(PetchingLoungeDetailInfoActivity.this, ChatsActivity.class);
                 startActivity(intent1);
