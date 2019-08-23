@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.together.R;
+import com.example.together.activities.HomeActivity;
 import com.example.together.activities.chat.ChatsActivity;
 import com.example.together.activities.my_petInfo.MyPetListActivity;
 import com.example.together.activities.my_petInfo.MyPetchingCondition;
@@ -118,7 +119,7 @@ public class PetchingConditionAdapter extends RecyclerView.Adapter<PetchingCondi
 
                             }
 
-                            Intent intent = new Intent(mContext, ChatsActivity.class);
+                            Intent intent = new Intent(mContext, HomeActivity.class);
                             mContext.startActivity(intent);
 
 
