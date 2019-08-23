@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.together.R;
+import com.example.together.activities.chat.ChatsActivity;
 import com.example.together.activities.my_petInfo.MyPetListActivity;
 import com.example.together.activities.my_petInfo.MyPetchingCondition;
 import com.example.together.model.Pet;
@@ -93,14 +94,6 @@ public class PetchingConditionAdapter extends RecyclerView.Adapter<PetchingCondi
 
                         Log.d(TAG, "멍멍"+pet.getBirthday());
 
-                            pet.getBirthday();
-                            pet.getGender();
-                            pet.getPetbreed();
-                            pet.getPetid();
-                            pet.getPetimageurl();
-                            pet.getPetweight();
-                            pet.getPetname();
-
                             DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Pets").child(mUser.get(position).getId()).child(mPetUid);
 
                             HashMap<String, Object> hashMap = new HashMap<>();
@@ -110,21 +103,22 @@ public class PetchingConditionAdapter extends RecyclerView.Adapter<PetchingCondi
                             hashMap.put("petid", mPetUid);
                             hashMap.put("petimageurl", pet.getPetimageurl());
                             hashMap.put("petname",pet.getPetname());
+                            hashMap.put("petching_status","no");
+                            hashMap.put("petweight",pet.getPetweight());
 
-                            reference2.push().setValue(hashMap);
+                            reference2.setValue(hashMap);
 
                             if (hashMap!= null)
                             {
                                 firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                                 FirebaseDatabase.getInstance().getReference("Pets").child(firebaseUser.getUid()).child(mPetUid).removeValue();
                                 FirebaseDatabase.getInstance().getReference("Lounge").child("PetchingBunyang").child(firebaseUser.getUid()).child("PetId")
-                                        .child(mPetbungyangid).child("Requestor").child(pet.getPetid()).removeValue();
+                                        .child(mPetbungyangid).child("Requestor").child(mUser.get(position).getId()).removeValue();
+                                FirebaseDatabase.getInstance().getReference("PetchingBunyang").child(mPetbungyangid).removeValue();
 
-                                // PetchingBunyang 데이터도 삭제해줘야함...
-                                //FirebaseDatabase.getInstance().getReference("PetchingBunyang")
                             }
 
-                            Intent intent = new Intent(mContext, MyPetListActivity.class);
+                            Intent intent = new Intent(mContext, ChatsActivity.class);
                             mContext.startActivity(intent);
 
 

@@ -228,7 +228,7 @@ public class MessageActivity extends AppCompatActivity {
         seenMessage(userid);
     }
 
-    public void sendpushAlert(String userid,String userNmae,String sendText) {
+    public void sendpushAlert(String userid, String userName, String sendText) {
 
         Log.e("s",sendText);
         reference = FirebaseDatabase.getInstance().getReference("Tokens").child(userid).child("TokenUid");
@@ -262,7 +262,7 @@ public class MessageActivity extends AppCompatActivity {
                             conn.setDoOutput(true);       // 쓰기모드 지정
 
 
-                            String input = "{\"notification\" : {\"title\" : \""+userNmae+" \", \"body\" : \""+sendText+"\"}, \"to\":\""+tokenKey.get("token").toString()+"\"}";
+                            String input = "{\"notification\" : {\"title\" : \""+userName+" \", \"body\" : \""+sendText+"\"}, \"to\":\""+tokenKey.get("token").toString()+"\"}";
 
                             OutputStream os = conn.getOutputStream();
 

@@ -187,6 +187,8 @@ public class PetchingBunyangDetailInfo extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
                     User user = dataSnapshot.getValue(User.class);
                     user.getUsername();
 
@@ -195,6 +197,7 @@ public class PetchingBunyangDetailInfo extends AppCompatActivity {
 
                     MessageActivity messageActivity = new MessageActivity();
                     messageActivity.sendpushAlert(owner, "투개더", user.getUsername()+"님이 분양신청을 하였습니다");
+
                 }
 
                 @Override

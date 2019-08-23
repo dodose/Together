@@ -297,21 +297,23 @@
         </LinearLayout>
 
 
+
+
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_gravity="bottom"
+            android:layout_below="@+id/pet_post_story"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/pet_post_story">
+            android:layout_alignParentBottom="true">
 
             <androidx.appcompat.widget.AppCompatButton
-                android:background="@color/colorBlue"
                 android:id="@+id/bunyang_request"
+                android:layout_gravity="bottom"
                 android:gravity="center"
+                android:background="@color/colorBlue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#FFFFFF"
                 android:textStyle="bold"
+                android:textColor="#FFFFFF"
                 android:textSize="24sp"
                 android:text="분양 신청"/>
 
