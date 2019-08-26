@@ -119,8 +119,9 @@ public class PetchingConditionAdapter extends RecyclerView.Adapter<PetchingCondi
 
                             }
 
-                            Intent intent = new Intent(mContext, HomeActivity.class);
-                            mContext.startActivity(intent);
+                            Intent intent = new Intent(v.getContext(), HomeActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            v.getContext().startActivity(intent);
 
 
 

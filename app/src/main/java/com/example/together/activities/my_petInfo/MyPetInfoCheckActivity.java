@@ -106,7 +106,12 @@ public class MyPetInfoCheckActivity extends AppCompatActivity {
                 Log.e("snapshot",dataSnapshot.getValue()+"");
                 Pet pet = dataSnapshot.getValue(Pet.class);
 
-
+                if (pet.getPetimageurl() == null)
+                {
+                    Intent intent = new Intent(MyPetInfoCheckActivity.this, MyPetListActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    startActivity(intent);
+                }
                 Picasso.get().load(pet.getPetimageurl()).transform(new CircleTransform()).into(petImage);
                 Petname.setText(pet.getPetname());
                 petbirthday.setTypeface(null, Typeface.BOLD);
