@@ -63,6 +63,7 @@ public class MyPetInfoCheckActivity extends AppCompatActivity {
         if(Bx != null){
 
             petUid = Bx.getString("petUid");
+
 //            petname = Bx.getString("petname");
 //            intro = Bx.getString("intro");
 //            petimage = Bx.getString("petimage");
@@ -71,6 +72,9 @@ public class MyPetInfoCheckActivity extends AppCompatActivity {
 //            breed = Bx.getString("breed");
 //            weight = Bx.getString("weight");
 
+        }else {
+            Intent intent = new Intent(MyPetInfoCheckActivity.this, MyPetListActivity.class);
+            startActivity(intent);
         }
 
         //이미지 및 텍스트뷰
@@ -97,48 +101,57 @@ public class MyPetInfoCheckActivity extends AppCompatActivity {
 
         FirebaseUser firebaseUser;
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        Log.d("배달",""+petUid);
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Pets").child(firebaseUser.getUid()).child(petUid);
 
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.e("snapshot",dataSnapshot.getValue()+"");
-                Pet pet = dataSnapshot.getValue(Pet.class);
+
+                if (dataSnapshot.exists()) {
+
+                    Log.e("snapshot", dataSnapshot.getValue() + "");
+
+                    Pet pet = dataSnapshot.getValue(Pet.class);
 
 
-                Picasso.get().load(pet.getPetimageurl()).transform(new CircleTransform()).into(petImage);
-                Petname.setText(pet.getPetname());
-                petbirthday.setTypeface(null, Typeface.BOLD);
-                petbirthday.setText(pet.getBirthday());
+                    Picasso.get().load(pet.getPetimageurl()).transform(new CircleTransform()).into(petImage);
+                    Petname.setText(pet.getPetname());
+                    petbirthday.setTypeface(null, Typeface.BOLD);
+                    petbirthday.setText(pet.getBirthday());
 
-                if(pet.getGender().equals("Female")){
-                    petGender.setTextColor(Color.RED);
-                    petGender.setText("암컷");
-                }else{
-                    petGender.setTextColor(Color.BLUE);
-                    petGender.setText("수컷");
-                }
+                    if (pet.getGender().equals("Female")) {
+                        petGender.setTextColor(Color.RED);
+                        petGender.setText("암컷");
+                    } else {
+                        petGender.setTextColor(Color.BLUE);
+                        petGender.setText("수컷");
+                    }
 
-                if(Integer.parseInt(pet.getPetweight()) <= 10){
-                    petweight.setText(pet.getPetweight()+" KG" + " (소형견)");
-                }else if(Integer.parseInt(pet.getPetweight()) <= 20 && Integer.parseInt(pet.getPetweight()) > 10){
-                    petweight.setText(pet.getPetweight()+" KG" + " (중형견)");
-                }else{
-                    petweight.setText(pet.getPetweight()+" KG" + " (대형견)");
-                }
+                    if (Integer.parseInt(pet.getPetweight()) <= 10) {
+                        petweight.setText(pet.getPetweight() + " KG" + " (소형견)");
+                    } else if (Integer.parseInt(pet.getPetweight()) <= 20 && Integer.parseInt(pet.getPetweight()) > 10) {
+                        petweight.setText(pet.getPetweight() + " KG" + " (중형견)");
+                    } else {
+                        petweight.setText(pet.getPetweight() + " KG" + " (대형견)");
+                    }
 
-                petintro.setText(pet.getIntro());
+                    petintro.setText(pet.getIntro());
 
-                if (pet.getPetching_status().equals("yes"))
-                {
-                    petching.setBackgroundResource(R.drawable.petching_condition_not_null);
-                }else
-                {
-                    petching.setBackgroundResource(R.drawable.petching_condition_null);
+                    if (pet.getPetching_status().equals("yes")) {
+                        petching.setBackgroundResource(R.drawable.petching_condition_not_null);
+                    } else {
+                        petching.setBackgroundResource(R.drawable.petching_condition_null);
+                    }
+
+                }else {
+                    Intent intent = new Intent(MyPetInfoCheckActivity.this, MyPetListActivity.class);
+                    startActivity(intent);
                 }
 
             }
+
 
             @Override
             public void onCancelled(DatabaseError databaseError) {

@@ -1,7 +1,10 @@
 package com.example.together.activities.chat;
 
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 
@@ -15,6 +18,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
+import com.example.together.activities.HomeActivity;
 import com.example.together.fragment.ChatFragment;
 import com.example.together.fragment.PetchingChatFragment;
 import com.example.together.fragment.UsersFragment;
@@ -41,6 +45,8 @@ public class ChatsActivity extends AppCompatActivity {
     FirebaseUser firebaseUser;
     DatabaseReference reference;
 
+    ImageButton goHome;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +58,18 @@ public class ChatsActivity extends AppCompatActivity {
 
         image_profile = findViewById(R.id.image_profile);
         username = findViewById(R.id.username);
+        goHome = findViewById(R.id.goHome);
+
+        goHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ChatsActivity.this, HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+            }
+        });
+
+
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());

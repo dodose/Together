@@ -78,7 +78,7 @@ public class PetchingBunyangAdapter extends RecyclerView.Adapter<PetchingBunyang
                 intent.putExtra("petcode",mPetchingBunyang.get(position).getPetcode());
 
 
-
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 mContext.startActivity(intent);
 
                 // start the activity
@@ -138,6 +138,8 @@ public class PetchingBunyangAdapter extends RecyclerView.Adapter<PetchingBunyang
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
                 PetchingBunyang petchingBunyang = dataSnapshot.getValue(PetchingBunyang.class);
 
                 Glide.with(mContext).load(petchingBunyang.getPetImg()).fitCenter().into(imageView);
