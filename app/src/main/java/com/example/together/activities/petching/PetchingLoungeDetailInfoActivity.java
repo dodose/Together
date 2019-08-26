@@ -156,6 +156,7 @@ public class PetchingLoungeDetailInfoActivity extends AppCompatActivity {
                 messageActivity.sendMessage(firebaseUser.getUid() ,requester_id ,petNameForSend+"의 분양신청 수락을 하였습니다." );
 
                 Intent intent1 = new Intent(PetchingLoungeDetailInfoActivity.this, ChatsActivity.class);
+                intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent1);
             }
         });

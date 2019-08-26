@@ -50,7 +50,6 @@ public class PetchingConditionAdapter extends RecyclerView.Adapter<PetchingCondi
 
     public PetchingConditionAdapter(Context mContext, List<User> mUser, String petUid, String petbungyangid)
     {
-        Log.d(TAG, "국어");
         this.mContext = mContext;
         this.mUser = mUser;
         this.mPetUid = petUid;
@@ -91,9 +90,11 @@ public class PetchingConditionAdapter extends RecyclerView.Adapter<PetchingCondi
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        Pet pet = dataSnapshot.getValue(Pet.class);
 
-                        Log.d(TAG, "멍멍"+pet.getBirthday());
+                        if (dataSnapshot.exists()){
+
+                            Pet pet = dataSnapshot.getValue(Pet.class);
+
 
                             DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Pets").child(mUser.get(position).getId()).child(mPetUid);
 
@@ -118,13 +119,16 @@ public class PetchingConditionAdapter extends RecyclerView.Adapter<PetchingCondi
                                 FirebaseDatabase.getInstance().getReference("PetchingBunyang").child(mPetbungyangid).removeValue();
 
                             }
-
-                            Intent intent = new Intent(v.getContext(), HomeActivity.class);
+//
+                            Intent intent = new Intent(mContext, HomeActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                            v.getContext().startActivity(intent);
+                            mContext.startActivity(intent);
 
-
-
+                        }else
+                            {
+                                Intent intent = new Intent(mContext, MyPetListActivity.class);
+                                mContext.startActivity(intent);
+                            }
                     }
 
                     @Override
