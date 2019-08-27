@@ -97,7 +97,7 @@ public class PetchingLoungeDetailInfoActivity extends AppCompatActivity {
 
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("PetchingBunyang").child(petkey);
-        reference.addValueEventListener(new ValueEventListener() {
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 PetchingBunyang petchingBunyang = dataSnapshot.getValue(PetchingBunyang.class);
@@ -171,7 +171,7 @@ public class PetchingLoungeDetailInfoActivity extends AppCompatActivity {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         Log.d(TAG, "펫키펫키"+petkey);
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("PetchingBunyang").child(petkey);
-        reference.addValueEventListener(new ValueEventListener() {
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 PetchingBunyang petchingBunyang = dataSnapshot.getValue(PetchingBunyang.class);
