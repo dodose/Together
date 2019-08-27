@@ -53,7 +53,7 @@ public class MyPetchingCondition extends AppCompatActivity {
         lsUser = new ArrayList<>();
 
         reference = FirebaseDatabase.getInstance().getReference("PetchingBunyang");
-        reference.addValueEventListener(new ValueEventListener() {
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot childSnapshot : dataSnapshot.getChildren())
@@ -62,7 +62,7 @@ public class MyPetchingCondition extends AppCompatActivity {
                     Log.d(TAG, "젠틀맨 "+key);
 
                     reference2 = FirebaseDatabase.getInstance().getReference("PetchingBunyang").child(key);
-                    reference2.addValueEventListener(new ValueEventListener()
+                    reference2.addListenerForSingleValueEvent(new ValueEventListener()
                     {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot2) {
@@ -92,7 +92,7 @@ public class MyPetchingCondition extends AppCompatActivity {
                                             Log.d(TAG, "스냅키"+childSnapshot2.getKey());
 
                                             reference4 = FirebaseDatabase.getInstance().getReference("Users").child(childSnapshot2.getKey());
-                                            reference4.addValueEventListener(new ValueEventListener() {
+                                            reference4.addListenerForSingleValueEvent(new ValueEventListener() {
                                                 @Override
                                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot4) {
                                                     User user = dataSnapshot4.getValue(User.class);

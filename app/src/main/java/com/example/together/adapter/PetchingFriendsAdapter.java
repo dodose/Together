@@ -142,7 +142,7 @@ public class PetchingFriendsAdapter extends RecyclerView.Adapter<PetchingFriends
         Log.d(TAG, "getPetInfo: 키사랑"+petFriendid);
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("PetchingFriend").child(petFriendid);
-        reference.addValueEventListener(new ValueEventListener() {
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 PetchingFriend petchingFriend = dataSnapshot.getValue(PetchingFriend.class);

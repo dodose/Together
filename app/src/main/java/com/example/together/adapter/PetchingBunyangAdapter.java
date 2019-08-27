@@ -135,9 +135,10 @@ public class PetchingBunyangAdapter extends RecyclerView.Adapter<PetchingBunyang
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("PetchingBunyang").child(petbunyangid);
-        reference.addValueEventListener(new ValueEventListener() {
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
 
 
                 PetchingBunyang petchingBunyang = dataSnapshot.getValue(PetchingBunyang.class);
@@ -158,6 +159,8 @@ public class PetchingBunyangAdapter extends RecyclerView.Adapter<PetchingBunyang
                 {
                     gender_m.setVisibility(View.VISIBLE);
                 }
+
+
 //
 
             }

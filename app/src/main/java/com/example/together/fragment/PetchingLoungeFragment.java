@@ -182,6 +182,7 @@ public class PetchingLoungeFragment extends Fragment {
 
 
 
+
         LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         second_recycler_view.setLayoutManager(linearLayoutManager2);
         userList2 = new ArrayList<>();

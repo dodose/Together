@@ -87,7 +87,7 @@ public class PetchingConditionAdapter extends RecyclerView.Adapter<PetchingCondi
                 firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Pets").child(firebaseUser.getUid()).child(mPetUid);
-                reference.addValueEventListener(new ValueEventListener() {
+                reference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -120,7 +120,7 @@ public class PetchingConditionAdapter extends RecyclerView.Adapter<PetchingCondi
 
                             }
 //
-                            Intent intent = new Intent(mContext, HomeActivity.class);
+                            Intent intent = new Intent(mContext, ChatsActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             mContext.startActivity(intent);
 

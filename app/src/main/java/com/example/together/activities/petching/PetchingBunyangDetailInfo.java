@@ -109,7 +109,7 @@ public class PetchingBunyangDetailInfo extends AppCompatActivity {
 
 
         reference = FirebaseDatabase.getInstance().getReference("PetchingBunyang").child(petBunyangId);
-        reference.addValueEventListener(new ValueEventListener()
+        reference.addListenerForSingleValueEvent(new ValueEventListener()
         {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
