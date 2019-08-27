@@ -65,7 +65,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         Intent intent = new Intent(this, ChatsActivity.class);
 
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
 
@@ -117,7 +117,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         Intent intent = new Intent(this, PetchingActivity.class);
 
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
 
