@@ -288,33 +288,6 @@ public class MessageActivity extends AppCompatActivity {
                             System.out.println(response.toString());
                             //데이터 전달 하는곳
 
-//                            OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-//
-//                            wr.write();
-//
-//                            wr.flush();
-//
-//                            wr.close(); //전달후 닫아준다.
-//
-//
-//                            // 데이터 받아오는 곳
-//                            InputStream is = null;        //input스트림 개방
-//                            BufferedReader reader = null;
-//
-//                            is = conn.getInputStream();
-//                            reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));  //문자열 셋 세팅
-//                            StringBuffer rbuffer = new StringBuffer();   //문자열을 담기 위한 객체
-//                            String line = null;
-//
-//                            rbuffer.append(reader.readLine());
-//
-//                            String jobj = rbuffer.toString().trim();
-//                            is.close();
-//
-//                            conn.disconnect();
-//
-//
-//                            Log.e("result", jobj + "");
 
 
                         } catch (MalformedURLException | ProtocolException exception) {

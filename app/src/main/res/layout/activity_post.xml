@@ -34,13 +34,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="POST"
+                    android:text="등록하기"
                     android:id="@+id/post"
                     android:textSize="15sp"
                     android:layout_marginEnd="10dp"
                     android:layout_centerVertical="true"
                     android:layout_alignParentEnd="true"
-                    android:textColor="@color/colorPrimary"/>
+                    android:textColor="@color/colorBlack"/>
 
             </RelativeLayout>
 
@@ -50,15 +50,16 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:background="#f2f2f2"
+        android:layout_weight="2.5"
         android:orientation="vertical"
         android:padding="8dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview_dogs"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
         </androidx.recyclerview.widget.RecyclerView>
@@ -69,13 +70,15 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
+        android:layout_height="0dp"
+        android:layout_weight="7.5"
+        android:padding="15dp"
         android:orientation="vertical">
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="350dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:scaleType="centerInside"
             android:layout_gravity="center"
             android:src="@mipmap/ic_launcher"
@@ -83,9 +86,9 @@
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:hint="Description"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:hint="게시글 내용 작성"
             android:maxLines="5"
             android:id="@+id/description"/>
 

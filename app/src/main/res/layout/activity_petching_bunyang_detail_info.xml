@@ -42,7 +42,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_weight="9">
 
 
     <RelativeLayout
@@ -150,8 +151,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
-                    android:text="혈통증명서 보유여부 : "
-                    android:textSize="24sp"
+                    android:text="혈통증명서 보유여부▶"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
 
@@ -279,7 +280,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
-                android:text="Story"
+                android:text="PetStroy"
                 android:textSize="24dp"
                 android:textStyle="bold" />
 
@@ -297,33 +298,28 @@
         </LinearLayout>
 
 
-
-
-        <LinearLayout
-            android:layout_below="@+id/pet_post_story"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true">
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/bunyang_request"
-                android:layout_gravity="bottom"
-                android:gravity="center"
-                android:background="@color/colorBlue"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textColor="#FFFFFF"
-                android:textSize="24sp"
-                android:text="분양 신청"/>
-
-        </LinearLayout>
-
-
-
-
     </RelativeLayout>
     </ScrollView>
+
+    <LinearLayout
+        android:layout_below="@+id/pet_post_story"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bunyang_request"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:background="@color/colorBlue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:text="분양 신청"/>
+
+    </LinearLayout>
 
 
 

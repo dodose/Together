@@ -24,7 +24,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="9"
-            android:text="필터"
+            android:text="정렬"
             android:textSize="25dp"
             android:paddingLeft="20dp"
             android:textStyle="bold"/>

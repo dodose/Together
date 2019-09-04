@@ -74,7 +74,7 @@ public class PetFirendsFragment extends Fragment {
 
                 }
 
-                Log.d(TAG, "우산 "+petFriendsList);
+                Log.d(TAG, " "+petFriendsList);
 
                 Collections.reverse(petFriendsList);
                 petchingFriendsAdapter.notifyDataSetChanged();

@@ -88,29 +88,31 @@
             android:id="@+id/boundary0"
             android:layout_width="wrap_content"
             android:layout_height="2dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:background="@color/colorPrimary" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/background_radius_borderblackw1"
             android:orientation="horizontal">
 
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/petImg"
-                android:layout_marginLeft="10dp"
                 android:layout_gravity="center_vertical"
                 android:layout_width="80dp"
                 android:layout_height="80dp" />
 
             <TextView
                 android:id="@+id/petName"
-                android:layout_marginLeft="20dp"
                 android:layout_gravity="center_vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
+                android:padding="10dp"
+                android:textStyle="bold"
                 android:text="TEST"/>
 
 
@@ -176,24 +178,26 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/refuse"
             android:layout_gravity="bottom"
-            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="3dp"
             android:textStyle="bold"
             android:textSize="24sp"
             android:text="거절"
+            android:background="@drawable/background_gray_radios_boarder_x"
             android:layout_weight="1"/>
 
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/accept"
             android:layout_gravity="bottom"
-            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="3dp"
             android:textStyle="bold"
             android:textSize="24sp"
             android:text="수락"
+            android:background="@drawable/background_gray_radios_boarder_x"
             android:layout_weight="1"/>
 
     </LinearLayout>

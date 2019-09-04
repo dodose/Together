@@ -26,6 +26,7 @@ import com.example.together.activities.CommentsActivity;
 import com.example.together.activities.FollowersActivity;
 import com.example.together.fragment.PostDetailFragment;
 import com.example.together.fragment.ProfileFragment;
+import com.example.together.model.Pet;
 import com.example.together.model.Post;
 import com.example.together.model.User;
 import com.example.together.R;
@@ -82,6 +83,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         nrLikes(viewHolder.likes, post.getPostid());
         getComments(post.getPostid(), viewHolder.comments);
         isSaved(post.getPostid(), viewHolder.save);
+        isPetching(post.getPetcode(),post.getPublisher(), viewHolder.share);
 
 
 
@@ -249,6 +251,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
     }
 
+
     @Override
     public int getItemCount() {
 
@@ -259,7 +262,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        public ImageView image_profile, post_image, like, comment, save, more;
+        public ImageView image_profile, post_image, like, comment, save, more,share;
         public TextView username, likes, publisher, description, comments;
 
         public ViewHolder(@NonNull View itemView) {
@@ -276,11 +279,39 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             likes = itemView.findViewById(R.id.likes);
             publisher = itemView.findViewById(R.id.publisher);
             description = itemView.findViewById(R.id.description);
+            share = itemView.findViewById(R.id.share);
             more = itemView.findViewById(R.id.more);
 
 
         }
     }
+
+    private void isPetching(String petcode,String publiserId,final ImageView share) {
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Pets").child(publiserId).child(petcode);
+
+            reference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    Pet pet = dataSnapshot.getValue(Pet.class);
+                    if (pet.getPetching_status().equals("yes")) {
+                        share.setVisibility(View.VISIBLE);
+                    } else {
+                        share.setVisibility(View.GONE);
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+
+    }
+
 
 
     private void getComments(String postid, final TextView comments){
